@@ -31,7 +31,7 @@ if (isset($_POST['submit'])) {
     $result = $stmt->execute([$U_Id, $password]);
 
     if ($result) {
-      $error = "New user created successfully!";
+      $error = "New user created successfully! Your user ID is: " . $U_Id . ". Please sign in to continue.";
     } else {
       $error = "There was an error. Please ensure all fields are filled and try again";
     }
@@ -66,11 +66,6 @@ if (isset($_POST['submit'])) {
         <?php echo $error; ?>
       </p>
     </div>
-    <script>
-      setTimeout(function() {
-        document.querySelector(".error-div").style.display = "none";
-      }, 5000);
-    </script>
   <?php endif; ?>
   <form action="" method="POST" name="signup">
     <div id="signin">
