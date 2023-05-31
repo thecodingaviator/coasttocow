@@ -24,6 +24,8 @@ if (isset($_POST['submit'])) {
     $stmt->execute([$last_name, $email]);
     $U_Id = $stmt->fetchColumn();
 
+    $U_Id = 'C3' . $U_Id;
+
     $sql = "INSERT INTO `C3UserNameAndPassword`(`UserId`, `UserPassword`) VALUES (?, ?)";
     $stmt = $conn->prepare($sql);
     $result = $stmt->execute([$U_Id, $password]);
@@ -65,7 +67,6 @@ if (isset($_POST['submit'])) {
       </p>
     </div>
     <script>
-      // Hide div after 5s.
       setTimeout(function() {
         document.querySelector(".error-div").style.display = "none";
       }, 5000);
