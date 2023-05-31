@@ -31,10 +31,10 @@
       <button>Sign In</button>
     </div>
     <div class="div6">
-      <a href="signup.html" rel="noopener noreferrer">Sign Up</a>
+      <a href="signup.php" rel="noopener noreferrer">Sign Up</a>
     </div>
     <div class="div7">
-      <a href="resetpassword.html" rel="noopener noreferrer">Forgot Password?</a>
+      <a href="resetpassword.php" rel="noopener noreferrer">Forgot Password?</a>
     </div>
   </div>
 </body>

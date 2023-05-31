@@ -31,7 +31,7 @@
       <button>Reset Password</button>
     </div>
     <div class="div6">
-      <a href="http://" target="_blank" rel="noopener noreferrer">Sign In</a>
+      <a href="index.php" rel="noopener noreferrer">Sign In</a>
     </div>
   </div>
 </body>
