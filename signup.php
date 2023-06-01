@@ -26,9 +26,9 @@ if (isset($_POST['submit'])) {
 
     $U_Id = 'C3' . $U_Id;
 
-    $sql = "INSERT INTO `C3UserNameAndPassword`(`UserId`, `UserPassword`) VALUES (?, ?)";
+    $sql = "INSERT INTO `C3UserNameAndPassword`(`UserId`, `UserPassword`, `UIdSU`) VALUES (?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $result = $stmt->execute([$U_Id, $password]);
+    $result = $stmt->execute([$U_Id, $password, $email]);
 
     if ($result) {
       $error = "New user created successfully! Your user ID is: " . $U_Id . ". Please sign in to continue.";

@@ -1,42 +1,52 @@
 <?php
 include "config.php";
 
+function generateTemporaryPassword()
+{
+  $length = 8;
+  $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  $charactersLength = strlen($characters);
+  $temporaryPassword = '';
+  for ($i = 0; $i < $length; $i++) {
+    $temporaryPassword .= $characters[rand(0, $charactersLength - 1)];
+  }
+  return $temporaryPassword;
+}
+
 if (isset($_POST['submit'])) {
-  $first_name = $_POST['FirstName'];
-  $last_name = $_POST['LastName'];
+  $userID = $_POST['UserID'];
   $email = $_POST['Email'];
-  $password = $_POST['Password'];
-  $phone = $_POST['PhoneNumber'];
-  $title = $_POST['JobTitle'];
-  $institution = $_POST['Institution'];
 
-  // Hash password using SHA-256
-  $password = hash('sha256', $password);
-
-  $sql = "INSERT INTO `C3SignUp`(`FirstName`, `LastName`, `Email`, `PhoneNumber`, `JobTitle`, `Institution`) 
-            VALUES (?, ?, ?, ?, ?, ?)";
+  $sql = "SELECT UserPassword FROM C3UserNameAndPassword WHERE UserId = ? AND UIdSU = ?";
   $stmt = $conn->prepare($sql);
-  $result = $stmt->execute([$first_name, $last_name, $email, $phone, $title, $institution]);
+  $stmt->execute([$userID, $email]);
+  $password = $stmt->fetchColumn();
 
-  if ($result) {
-    $sql = "SELECT U_Id FROM C3SignUp WHERE LastName = ? AND Email = ?";
+  if ($password) {
+    // Generate a temporary password
+    $temporaryPassword = generateTemporaryPassword();
+
+    // Update the user's password with the temporary password
+    $sql = "UPDATE C3UserNameAndPassword SET UserPassword = ? WHERE UserId = ? AND UIdSU = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->execute([$last_name, $email]);
-    $U_Id = $stmt->fetchColumn();
-
-    $U_Id = 'C3' . $U_Id;
-
-    $sql = "INSERT INTO `C3UserNameAndPassword`(`UserId`, `UserPassword`) VALUES (?, ?)";
-    $stmt = $conn->prepare($sql);
-    $result = $stmt->execute([$U_Id, $password]);
+    $result = $stmt->execute([hash('sha256', $temporaryPassword), $userID, $email]);
 
     if ($result) {
-      $error = "New user created successfully! Your user ID is: " . $U_Id . ". Please sign in to continue.";
+      // Send the email with the temporary password
+      $subject = "Password Reset";
+      $message = "Your temporary password is: $temporaryPassword";
+      $headers = "From: your_email@example.com";
+
+      if (mail($email, $subject, $message, $headers)) {
+        $error = "An email with the temporary password has been sent to your email address.";
+      } else {
+        $error = "Failed to send the email. Please try again later.";
+      }
     } else {
-      $error = "There was an error. Please ensure all fields are filled and try again";
+      $error = "There was an error resetting your password. Please try again later.";
     }
   } else {
-    $error = "There was an error. Please ensure all fields are filled and try again";
+    $error = "Invalid userID or email. Please check your details and try again.";
   }
 }
 ?>
@@ -73,10 +83,10 @@ if (isset($_POST['submit'])) {
       <p>Welcome to Coast to Cow Consumer!</p>
     </div>
     <div class="div3">
-      <input type="text" placeholder="User ID">
+      <input type="text" name="UserID" placeholder="User ID">
     </div>
     <div class="div4">
-      <input type="email" placeholder="Email">
+      <input type="email" name="Email" placeholder="Email">
     </div>
     <div class="div5">
     <input type="hidden" name="submit" value="Reset Password">
