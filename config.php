@@ -1,6 +1,6 @@
 <?php
 
-include 'credentials.php';
+include 'utils/credentials.php';
 
 try {
   $conn = new PDO("mysql:host=$servername;dbname=$dbname;port=25060", $username, $password);
