@@ -84,6 +84,6 @@ body {
   border-radius: 5px;
   padding: 0.5em 1em;
 }
-#signin .button-div button:focus {
+#signin .button-div button:hover {
   cursor: pointer;
 }/*# sourceMappingURL=signup.css.map */
