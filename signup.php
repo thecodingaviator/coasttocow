@@ -4,7 +4,7 @@ session_start();
 include "config.php";
 
 if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true){
-    header("Location: https://www.google.com");
+    header("Location: dashboard.php");
     exit();
 }
 
@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) {
 
         if ($result) {
             $_SESSION['logged_in'] = true;
-            header("Location: https://www.google.com");
+            header("Location: dashboard.php");
             exit();
         } else {
             $error = "There was an error. Please ensure all fields are filled and try again";
