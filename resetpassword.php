@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 include "config.php";
 
 function generateTemporaryPassword()
@@ -13,41 +15,46 @@ function generateTemporaryPassword()
   return $temporaryPassword;
 }
 
+if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true){
+    header("Location: https://www.google.com");
+    exit();
+}
+
 if (isset($_POST['submit'])) {
-  $userID = $_POST['UserID'];
-  $email = $_POST['Email'];
+    $userID = $_POST['UserID'];
+    $email = $_POST['Email'];
 
-  $sql = "SELECT UserPassword FROM C3UserNameAndPassword WHERE UserId = ? AND UIdSU = ?";
-  $stmt = $conn->prepare($sql);
-  $stmt->execute([$userID, $email]);
-  $password = $stmt->fetchColumn();
-
-  if ($password) {
-    // Generate a temporary password
-    $temporaryPassword = generateTemporaryPassword();
-
-    // Update the user's password with the temporary password
-    $sql = "UPDATE C3UserNameAndPassword SET UserPassword = ? WHERE UserId = ? AND UIdSU = ?";
+    $sql = "SELECT UserPassword FROM C3UserNameAndPassword WHERE UserId = ? AND UIdSU = ?";
     $stmt = $conn->prepare($sql);
-    $result = $stmt->execute([hash('sha256', $temporaryPassword), $userID, $email]);
+    $stmt->execute([$userID, $email]);
+    $password = $stmt->fetchColumn();
 
-    if ($result) {
-      // Send the email with the temporary password
-      $subject = "Password Reset";
-      $message = "Your temporary password is: $temporaryPassword";
-      $headers = "From: your_email@example.com";
+    if ($password) {
+        // Generate a temporary password
+        $temporaryPassword = generateTemporaryPassword();
 
-      if (mail($email, $subject, $message, $headers)) {
-        $error = "An email with the temporary password has been sent to your email address.";
-      } else {
-        $error = "Failed to send the email. Please try again later.";
-      }
+        // Update the user's password with the temporary password
+        $sql = "UPDATE C3UserNameAndPassword SET UserPassword = ? WHERE UserId = ? AND UIdSU = ?";
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute([hash('sha256', $temporaryPassword), $userID, $email]);
+
+        if ($result) {
+            // Send the email with the temporary password
+            $subject = "Password Reset";
+            $message = "Your temporary password is: $temporaryPassword";
+            $headers = "From: your_email@example.com";
+
+            if (mail($email, $subject, $message, $headers)) {
+                $error = "An email with the temporary password has been sent to your email address.";
+            } else {
+                $error = "Failed to send the email. Please try again later.";
+            }
+        } else {
+            $error = "There was an error resetting your password. Please try again later.";
+        }
     } else {
-      $error = "There was an error resetting your password. Please try again later.";
+        $error = "Invalid userID or email. Please check your details and try again.";
     }
-  } else {
-    $error = "Invalid userID or email. Please check your details and try again.";
-  }
 }
 ?>
 
@@ -55,48 +62,48 @@ if (isset($_POST['submit'])) {
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coast To Cow Consumer</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coast To Cow Consumer</title>
 
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/universal.css">
-  <link rel="stylesheet" href="css/resetpassword.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/universal.css">
+    <link rel="stylesheet" href="css/resetpassword.css">
 
 </head>
 
 <body>
-<?php if (!empty($error)): ?>
+    <?php if (!empty($error)): ?>
     <div class="error-div">
-      <p id="error-message">
-        <?php echo $error; ?>
-      </p>
+        <p id="error-message">
+            <?php echo $error; ?>
+        </p>
     </div>
-  <?php endif; ?>
-  <form action="" method="POST" name="reset">
-  <div id="signin">
-    <div class="div1">
-      <h1>Reset Password</h1>
-    </div>
-    <div class="div2">
-      <p>Welcome to Coast to Cow Consumer!</p>
-    </div>
-    <div class="div3">
-      <input type="text" name="UserID" placeholder="User ID">
-    </div>
-    <div class="div4">
-      <input type="email" name="Email" placeholder="Email">
-    </div>
-    <div class="div5">
-    <input type="hidden" name="submit" value="Reset Password">
-      <button type="submit" name="submit" id="submit-button">Reset Password</button>
-    </div>
-    <div class="div6">
-      <a href="index.php" rel="noopener noreferrer">Sign In</a>
-    </div>
-  </div>
-</form>
+    <?php endif; ?>
+    <form action="" method="POST" name="reset">
+        <div id="signin">
+            <div class="div1">
+                <h1>Reset Password</h1>
+            </div>
+            <div class="div2">
+                <p>Welcome to Coast to Cow Consumer!</p>
+            </div>
+            <div class="div3">
+                <input type="text" name="UserID" placeholder="User ID">
+            </div>
+            <div class="div4">
+                <input type="email" name="Email" placeholder="Email" autocomplete="email">
+            </div>
+            <div class="div5">
+                <input type="hidden" name="submit" value="Reset Password">
+                <button type="submit" name="submit" id="submit-button">Reset Password</button>
+            </div>
+            <div class="div6">
+                <a href="index.php" rel="noopener noreferrer">Sign In</a>
+            </div>
+        </div>
+    </form>
 </body>
 
 </html>
