@@ -25,11 +25,11 @@ if (isset($_POST['logout'])) {
 
 <nav>
     <div>
-        <h1>Coast to Cow</h1>
+        <h1>Coast to Cow Consumer</h1>
     </div>
     <ul>
-        <li><a href="page1.php">Page 1</a></li>
-        <li><a href="page2.php">Page 2</a></li>
+        <li><a href="dashboard.php">Dashboard</a></li>
+        <li><a href="submit.php">Submit</a></li>
         <li><a href="page3.php">Page 3</a></li>
     </ul>
     <form action="" method="POST" name="logoutForm">
