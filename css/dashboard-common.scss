@@ -45,6 +45,7 @@ body {
     grid-area: main;
   }
 }
+
 .content {
   width: 95%;
   margin: 0 auto;
@@ -54,9 +55,7 @@ body {
   min-height: 89vh;
   padding: 0.5vh 1.5vw;
   background: #fbfaf4;
-  overflow: auto;
 }
-
 
 .content-wrapper {
   width: 100%;
@@ -66,7 +65,7 @@ body {
 
 /* Hide the default scrollbar */
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 2px;
   background-color: #f5f5f5;
   overscroll-behavior: none;
 }

@@ -81,36 +81,36 @@ if (isset($_POST['submit'])) {
           <div class="parent">
             <div class="div-1">
               <label for="dataset_name"></label>
-              <input type="text" id="dataset_name" name="dataset_name" required placeholder="Dataset name"><br>
+              <input type="text" id="dataset_name" name="dataset_name"  placeholder="Dataset name"><br>
             </div>
 
             <div class="div-2">
               <label for="dataset_description"></label>
-              <textarea id="dataset_description" name="dataset_description" required
+              <textarea id="dataset_description" name="dataset_description" 
                 placeholder="Dataset description"></textarea><br>
             </div>
 
             <div class="div-3">
               <label for="contact_email"></label>
-              <input type="email" id="contact_email" name="contact_email" required
+              <input type="email" id="contact_email" name="contact_email" 
                 placeholder="Primary contact email"><br>
             </div>
 
             <div class="div-4">
               <label for="contact_first_name"></label>
-              <input type="text" id="contact_first_name" name="contact_first_name" required
+              <input type="text" id="contact_first_name" name="contact_first_name" 
                 placeholder="Primary contact first name"><br>
             </div>
 
             <div class="div-5">
               <label for="contact_last_name"></label>
-              <input type="text" id="contact_last_name" name="contact_last_name" required
+              <input type="text" id="contact_last_name" name="contact_last_name" 
                 placeholder="Primary contact last name"><br>
             </div>
 
             <div class="div-6">
               <label for="institution"></label>
-              <input type="text" id="institution" name="institution" required placeholder="Institution"><br>
+              <input type="text" id="institution" name="institution"  placeholder="Institution"><br>
             </div>
 
             <div class="div-7">
@@ -120,7 +120,7 @@ if (isset($_POST['submit'])) {
 
             <div class="div-8">
             <label for="database_location"></label>
-              <input type="text" id="database_location" name="database_location" required
+              <input type="text" id="database_location" name="database_location" 
                 placeholder="Database location"><br>
             </div>
 

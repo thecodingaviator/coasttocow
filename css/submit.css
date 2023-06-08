@@ -16,7 +16,8 @@ nav ul li:nth-of-type(2) a {
   width: 100%;
   height: 100%;
 }
-.parent > div > input, .parent > div > textarea {
+.parent > div > input,
+.parent > div > textarea {
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 5px;
@@ -46,7 +47,8 @@ nav ul li:nth-of-type(2) a {
   justify-content: flex-start;
   align-items: center;
 }
-.parent .div-7 label, .parent .div-7 input[type=checkbox] {
+.parent .div-7 label,
+.parent .div-7 input[type=checkbox] {
   width: initial;
   height: initial;
 }
@@ -77,9 +79,8 @@ nav ul li:nth-of-type(2) a {
 .parent .div-14 > input {
   width: 30%;
   height: 100%;
-  border: 2px solid #000;
-  color: #000;
-  background-color: transparent;
+  border: 1px solid #ccc;
   border-radius: 5px;
+  padding: 5px;
   cursor: pointer;
 }/*# sourceMappingURL=submit.css.map */

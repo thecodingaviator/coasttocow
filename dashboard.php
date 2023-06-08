@@ -18,12 +18,12 @@ if (isset($_POST['submit'])) {
 
     if ($result) {
         $tableOutput = "<table>";
-        $tableOutput .= "<tr><th>Dataset Name</th><th>Description</th><th>Contact Email</th><th>Contact First Name</th><th>Contact Last Name</th><th>Institution</th><th>Database Location</th><th>GitHub Location</th><th>Other Location</th><th>IRB</th><th>README</th><th>Data Dictionary</th><th>Notes</th></tr>";
+        $tableOutput .= "<tr><th>Name</th><th>Description</th><th>Email</th><th>First Name</th><th>Last Name</th><th>Institution</th><th>Location</th><th>Location</th><th>Other Location</th><th>IRB</th><th>README</th><th>Data Dictionary</th><th>Notes</th></tr>";
 
         foreach ($result as $row) {
             $tableOutput .= "<tr>";
             $tableOutput .= "<td>" . $row['dataset_name_short'] . "</td>";
-            $tableOutput .= "<td>" . $row['dataset_description'] . "</td>";
+            $tableOutput .= "<td><p>" . $row['dataset_description'] . "</p></td>";
             $tableOutput .= "<td>" . $row['dataset_primary_contact_email'] . "</td>";
             $tableOutput .= "<td>" . $row['dataset_primary_contact_first_name'] . "</td>";
             $tableOutput .= "<td>" . $row['dataset_primary_contact_last_name'] . "</td>";
@@ -31,7 +31,7 @@ if (isset($_POST['submit'])) {
             $tableOutput .= "<td>" . $row['dataset_location_database'] . "</td>";
             $tableOutput .= "<td>" . $row['dataset_location_github'] . "</td>";
             $tableOutput .= "<td>" . $row['dataset_location_other'] . "</td>";
-            $tableOutput .= "<td>" . $row['dataset_IRB'] . "</td>";
+            $tableOutput .= "<td>" . ($row['dataset_IRB'] == '0' ? 'No' : 'Yes') . "</td>";
             $tableOutput .= "<td>" . $row['dataset_README'] . "</td>";
             $tableOutput .= "<td>" . $row['datset_data_dictionary'] . "</td>";
             $tableOutput .= "<td>" . $row['dataset_notes'] . "</td>";
@@ -39,8 +39,6 @@ if (isset($_POST['submit'])) {
         }
 
         $tableOutput .= "</table>";
-    } else {
-        $error = '<p>No results found.</p>';
     }
 }
 ?>
@@ -73,8 +71,9 @@ if (isset($_POST['submit'])) {
         <?php include "navbar.php"; ?>
         <div class="content-wrapper">
             <div class="content">
+                <div class="scrollable-content">
                 <div class="dashboard-top">
-                    <h1>Dashboard</h1>
+                    <h1>Data Dashboard</h1>
                     <?php if (!empty($num_results)): ?>
                             <?php echo $num_results; ?>
                     <?php endif; ?>
@@ -104,6 +103,7 @@ if (isset($_POST['submit'])) {
 
                 <?php echo $tableOutput; ?>
 
+                </div>
             </div>
         </div>
     </div>
