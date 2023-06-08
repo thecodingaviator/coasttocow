@@ -25,7 +25,7 @@ if (isset($_POST['logout'])) {
 
 <nav>
     <div>
-        <h1>Coast to Cow Consumer</h1>
+        <h1>Coast to Cow</h1>
     </div>
     <ul>
         <li><a href="dashboard.php">Dashboard</a></li>
