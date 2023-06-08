@@ -41,6 +41,7 @@ if (isset($_POST['submit'])) {
   ]);
 
   if ($result) {
+    header("Location: submit.php");
   } else {
     $error = '<p>Error submitting the dataset. Please try again.</p>';
   }

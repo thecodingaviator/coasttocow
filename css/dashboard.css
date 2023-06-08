@@ -1,4 +1,44 @@
 nav ul li:nth-of-type(1) a {
-  color: #3c652f;
   font-weight: bolder;
+}
+
+.content > * {
+  margin-top: 10px;
+}
+.content table {
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+.content table th,
+.content table td {
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+.content table th {
+  background-color: #f2f2f2;
+}
+
+.dashboard-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-gap: 10px;
+}
+.dashboard-top .results-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.search-div {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-rows: 1fr;
+  grid-gap: 10px;
+}
+.search-div select,
+.search-div input {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
 }/*# sourceMappingURL=dashboard.css.map */

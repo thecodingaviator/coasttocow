@@ -8,12 +8,6 @@ body {
   background-color: white;
 }
 
-.content-wrapper {
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
 .wrapper-background {
   position: fixed;
   top: 0;
@@ -24,7 +18,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url("../utils/background.svg") center no-repeat;
+  background: #08203e;
   background-size: cover;
 }
 
@@ -38,23 +32,53 @@ body {
   position: relative;
   z-index: 1;
 }
-
+.wrapper > * {
+  overflow: auto;
+}
 .wrapper > nav {
   grid-area: sidebar;
 }
-
 .wrapper > .content-wrapper {
   grid-area: main;
 }
 
 .content {
-  width: 90%;
+  width: 95%;
   margin: 0 auto;
   margin-top: 5vh;
   margin-bottom: 5vh;
   border-radius: 20px;
   min-height: 89vh;
-  box-shadow: lightgray 0px 5px 10px -3px;
   padding: 0.5vh 1.5vw;
   background: #fbfaf4;
+  overflow: auto;
+}
+
+.content-wrapper {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Hide the default scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  background-color: #f5f5f5;
+  overscroll-behavior: none;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 20px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 20px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
 }/*# sourceMappingURL=dashboard-common.css.map */

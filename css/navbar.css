@@ -1,19 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Lexend+Deca&family=Poppins&display=swap");
 @import 'normalize.css';
 nav {
-  background-color: #fff;
   overflow: hidden;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 3fr 1fr;
   grid-template-areas: "logo" "menu" "logout";
   padding: 5vh 2vw;
+  padding-right: 0;
+  overflow: hidden !important;
   font-family: "Poppins";
   width: 100%;
   min-height: 100vh;
   margin: 0 auto;
   background-color: transparent;
-  color: black;
+  color: #fff;
 }
 nav div {
   grid-area: logo;
@@ -41,7 +42,7 @@ nav ul li {
 nav ul a {
   text-align: center;
   text-decoration: none;
-  color: #000;
+  color: #fff;
   font-weight: 500;
   font-size: 1.25em;
 }
