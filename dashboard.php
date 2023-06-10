@@ -81,7 +81,7 @@ if (isset($_POST['submit'])) {
 
                 <form action="" method="POST">
                     <div class="search-div">
-                        <select name="search_field" id="search_field">
+                        <select name="search_field" id="search_field" required>
                             <option value="dataset_description">Description</option>
                             <option value="dataset_name_short">Dataset Name</option>
                             <option value="dataset_primary_contact_email">Contact Email</option>
