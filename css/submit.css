@@ -2,6 +2,10 @@ nav ul li:nth-of-type(2) a {
   font-weight: bolder;
 }
 
+.content > * {
+  padding-bottom: 10px;
+}
+
 .parent {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -19,7 +23,6 @@ nav ul li:nth-of-type(2) a {
 .parent > div > input,
 .parent > div > textarea {
   border: 1px solid #ccc;
-  border-radius: 5px;
   padding: 5px;
 }
 .parent .div-1 {
@@ -79,8 +82,10 @@ nav ul li:nth-of-type(2) a {
 .parent .div-14 > input {
   width: 30%;
   height: 100%;
-  border: 1px solid #ccc;
-  border-radius: 5px;
   padding: 5px;
   cursor: pointer;
+  border-radius: 0;
+  border: 0;
+  color: #fff;
+  background-color: #4ace73;
 }/*# sourceMappingURL=submit.css.map */
