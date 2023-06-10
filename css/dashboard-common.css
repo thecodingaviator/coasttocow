@@ -52,6 +52,9 @@ body {
   padding: 0.5vh 1.5vw;
   background: #fbfaf4;
 }
+.content h1 {
+  color: #4f4f4f;
+}
 
 .content-wrapper {
   width: 100%;
