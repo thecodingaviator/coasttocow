@@ -19,6 +19,19 @@ if (isset($_POST['logout'])) {
     header("Location: index.php");
     exit();
 }
+
+// Get user's name
+$userID = $_SESSION['user_id'];
+$sql = "SELECT FirstName, LastName FROM C3SignUp WHERE U_Id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->execute([substr($userID, 2)]);
+
+// Get the first row of the result
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// Get the first name and last name
+$firstName = $result['FirstName'];
+$lastName = $result['LastName'];
 ?>
 
 <link rel="stylesheet" href="css/navbar.css">
@@ -26,6 +39,7 @@ if (isset($_POST['logout'])) {
 <nav>
     <div>
         <h1>Coast to Cow</h1>
+        <p><?php echo $firstName . ' ' . $lastName ?></p>
     </div>
     <ul>
         <li><a href="dashboard.php">Dashboard</a></li>

@@ -21,6 +21,7 @@ if (isset($_POST['submit'])) {
     $result = $stmt->fetchColumn();
 
     if($result == $password) {
+        $_SESSION['user_id'] = $userID;
         $_SESSION['logged_in'] = true;
         header("Location: dashboard.php");
         exit();

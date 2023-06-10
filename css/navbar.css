@@ -24,6 +24,11 @@ nav h1 {
   text-align: center;
   transform: scale(1.1);
 }
+nav p {
+  width: 100%;
+  text-align: center;
+  font-size: 1.25em;
+}
 nav ul {
   list-style-type: none;
   margin: 0;
