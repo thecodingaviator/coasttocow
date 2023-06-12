@@ -1,0 +1,55 @@
+nav ul li:nth-of-type(3) a {
+  font-weight: bolder;
+}
+
+.content > * {
+  padding-bottom: 10px;
+}
+
+.dashboard-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-gap: 10px;
+
+  .results-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+}
+
+.parent {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  grid-column-gap: 3vw;
+  grid-row-gap: 2.1vh;
+
+  >div {
+    width: 100%;
+
+    >* {
+      width: 100%;
+      height: 100%;
+    }
+
+    >input,
+    >textarea {
+      border: 1px solid #ccc;
+      padding: 5px;
+    }
+
+    >input[type="submit"] {
+      width: 30%;
+    }
+  }
+
+  .div9 {
+    grid-column: 1 / 3;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+}

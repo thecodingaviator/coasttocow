@@ -35,16 +35,17 @@ $lastName = $result['LastName'];
 ?>
 
 <link rel="stylesheet" href="css/navbar.css">
+<link rel="stylesheet" href="css/normalize.css">
 
 <nav>
     <div>
         <h1>Coast to Cow</h1>
-        <p><?php echo $firstName . ' ' . $lastName ?></p>
+        <p><?php echo 'Hi, ' . $firstName . ' ' . $lastName . '!' ?></p>
     </div>
     <ul>
         <li><a href="dashboard.php">Dashboard</a></li>
         <li><a href="submit.php">Submit</a></li>
-        <li><a href="page3.php">Page 3</a></li>
+        <li><a href="modify.php">Edit Profile</a></li>
     </ul>
     <form action="" method="POST" name="logoutForm">
         <button type="submit" name="logout">Logout</button>

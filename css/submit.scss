@@ -96,15 +96,8 @@ nav ul li:nth-of-type(2) a {
     flex-direction: row;
     justify-content: space-around;
 
-    >input {
+    input[type="submit"] {
       width: 30%;
-      height: 100%;
-      padding: 5px;
-      cursor: pointer;
-      border-radius: 0;
-      border: 0;
-      color: #fff;
-      background-color: #4ace73;
     }
   }
 }

@@ -61,6 +61,21 @@ body {
   margin: 0 auto;
 }
 
+input[type=submit] {
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 0;
+  border: 0;
+  color: #fff;
+  background-color: #4ace73;
+  transition: background-color 0.4s ease-in-out;
+}
+input[type=submit]:hover {
+  background-color: #3db768;
+}
+
 /* Hide the default scrollbar */
 ::-webkit-scrollbar {
   width: 2px;

@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
 
     if ($result) {
         $tableOutput = "<table>";
-        $tableOutput .= "<tr><th>Name</th><th>Description</th><th>Email</th><th>First Name</th><th>Last Name</th><th>Institution</th><th>Location</th><th>Location</th><th>Other Location</th><th>IRB</th><th>README</th><th>Data Dictionary</th><th>Notes</th></tr>";
+        $tableOutput .= "<tr><th>Name</th><th>Description</th><th>Email</th><th>First Name</th><th>Last Name</th><th>Institution</th><th>Location</th><th>GitHub Location</th><th>Other Location</th><th>IRB</th><th>README</th><th>Data Dictionary</th><th>Notes</th></tr>";
 
         foreach ($result as $row) {
             $tableOutput .= "<tr>";
@@ -72,36 +72,36 @@ if (isset($_POST['submit'])) {
         <div class="content-wrapper">
             <div class="content">
                 <div class="scrollable-content">
-                <div class="dashboard-top">
-                    <h1>Data Dashboard</h1>
-                    <?php if (!empty($num_results)): ?>
+                    <div class="dashboard-top">
+                        <h1>Data Dashboard</h1>
+                        <?php if (!empty($num_results)): ?>
                             <?php echo $num_results; ?>
-                    <?php endif; ?>
-                </div>
-
-                <form action="" method="POST">
-                    <div class="search-div">
-                        <select name="search_field" id="search_field" required>
-                            <option value="dataset_description">Description</option>
-                            <option value="dataset_name_short">Dataset Name</option>
-                            <option value="dataset_primary_contact_email">Contact Email</option>
-                            <option value="dataset_primary_contact_first_name">Contact First Name</option>
-                            <option value="dataset_primary_contact_last_name">Contact Last Name</option>
-                            <option value="dataset_institution">Institution</option>
-                            <option value="dataset_location_database">Database Location</option>
-                            <option value="dataset_location_github">GitHub Location</option>
-                            <option value="dataset_location_other">Other Location</option>
-                            <option value="dataset_IRB">IRB</option>
-                            <option value="dataset_README">README</option>
-                            <option value="datset_data_dictionary">Data Dictionary</option>
-                            <option value="dataset_notes">Notes</option>
-                        </select>
-                        <input type="text" name="search_value" placeholder="Value">
-                        <input type="submit" name="submit" value="Search">
+                        <?php endif; ?>
                     </div>
-                </form>
 
-                <?php echo $tableOutput; ?>
+                    <form action="" method="POST">
+                        <div class="search-div">
+                            <select name="search_field" id="search_field" required>
+                                <option value="dataset_description">Description</option>
+                                <option value="dataset_name_short">Dataset Name</option>
+                                <option value="dataset_primary_contact_email">Contact Email</option>
+                                <option value="dataset_primary_contact_first_name">Contact First Name</option>
+                                <option value="dataset_primary_contact_last_name">Contact Last Name</option>
+                                <option value="dataset_institution">Institution</option>
+                                <option value="dataset_location_database">Database Location</option>
+                                <option value="dataset_location_github">GitHub Location</option>
+                                <option value="dataset_location_other">Other Location</option>
+                                <option value="dataset_IRB">IRB</option>
+                                <option value="dataset_README">README</option>
+                                <option value="datset_data_dictionary">Data Dictionary</option>
+                                <option value="dataset_notes">Notes</option>
+                            </select>
+                            <input type="text" name="search_value" placeholder="Value">
+                            <input type="submit" name="submit" value="Search">
+                        </div>
+                    </form>
+
+                    <?php echo $tableOutput; ?>
 
                 </div>
             </div>
