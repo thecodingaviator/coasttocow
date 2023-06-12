@@ -7,6 +7,8 @@ $num_results = "";
 if (isset($_POST['submit'])) {
     $searchField = $_POST['search_field'];
     $searchValue = $_POST['search_value'];
+    $num_results = "";
+    $tableOutput = "";
 
     $sql = "SELECT * FROM C3DataMaster WHERE $searchField = :search_value";
     $stmt = $conn->prepare($sql);
