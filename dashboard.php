@@ -5,14 +5,14 @@ $error = "";
 $num_results = "";
 
 if (isset($_POST['submit'])) {
-    $searchField = $_POST['search_field'];
     $searchValue = $_POST['search_value'];
     $num_results = "";
     $tableOutput = "";
 
-    $sql = "SELECT * FROM C3DataMaster WHERE $searchField = :search_value";
-    $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':search_value', $searchValue);
+    $query = "SELECT * FROM C3DataMaster $searchValue";
+    // substring to remove the AND clause
+    $query = substr($query, 0, -4);
+    $stmt = $conn->prepare($query);
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -41,6 +41,9 @@ if (isset($_POST['submit'])) {
         }
 
         $tableOutput .= "</table>";
+
+        // Clear the search field
+        $_POST['search_value'] = "";
     }
 }
 ?>
@@ -83,23 +86,35 @@ if (isset($_POST['submit'])) {
 
                     <form action="" method="POST">
                         <div class="search-div">
-                            <select name="search_field" id="search_field" required>
-                                <option value="dataset_description">Description</option>
-                                <option value="dataset_name_short">Dataset Name</option>
-                                <option value="dataset_primary_contact_email">Contact Email</option>
-                                <option value="dataset_primary_contact_first_name">Contact First Name</option>
-                                <option value="dataset_primary_contact_last_name">Contact Last Name</option>
-                                <option value="dataset_institution">Institution</option>
-                                <option value="dataset_location_database">Database Location</option>
-                                <option value="dataset_location_github">GitHub Location</option>
-                                <option value="dataset_location_other">Other Location</option>
-                                <option value="dataset_IRB">IRB</option>
-                                <option value="dataset_README">README</option>
-                                <option value="datset_data_dictionary">Data Dictionary</option>
-                                <option value="dataset_notes">Notes</option>
-                            </select>
-                            <input type="text" name="search_value" placeholder="Value">
-                            <input type="submit" name="submit" value="Search">
+                            <div class="div1">
+                                <select name="search_field" id="search_field" required>
+                                    <option value="dataset_description">Description</option>
+                                    <option value="dataset_name_short">Dataset Name</option>
+                                    <option value="dataset_primary_contact_email">Email</option>
+                                    <option value="dataset_primary_contact_first_name">First Name</option>
+                                    <option value="dataset_primary_contact_last_name">Last Name</option>
+                                    <option value="dataset_institution">Institution</option>
+                                    <option value="dataset_location_database">Database Location</option>
+                                    <option value="dataset_location_github">GitHub Location</option>
+                                    <option value="dataset_location_other">Other Location</option>
+                                    <option value="dataset_IRB">IRB</option>
+                                    <option value="dataset_README">README</option>
+                                    <option value="datset_data_dictionary">Data Dictionary</option>
+                                    <option value="dataset_notes">Notes</option>
+                                </select>
+                            </div>
+                            <div class="div2">
+                                <input type="text" name="search_options" id="search_options" placeholder="Value">
+                            </div>
+                            <div class="div3">
+                                <button type="button" id="add-search-option">Insert</button>
+                            </div>
+                            <div class="div4">
+                                <input type="text" name="search_value" id="search_value" value="WHERE " required>
+                            </div>
+                            <div class="div5">
+                                <input type="submit" name="submit" value="Search">
+                            </div>
                         </div>
                     </form>
 
@@ -109,6 +124,17 @@ if (isset($_POST['submit'])) {
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById("add-search-option").addEventListener("click", function() {
+            var searchField = document.getElementById("search_field");
+            var searchOptions = document.getElementById("search_options");
+            var searchValue = document.getElementById("search_value");
+
+            // construct SQL query
+            searchValue.value += searchField.value + " = '" + searchOptions.value + "' AND ";
+        });
+    </script>
 </body>
 
 </html>

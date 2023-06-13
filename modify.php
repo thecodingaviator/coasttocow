@@ -115,7 +115,7 @@ if (isset($_POST['submit'])) {
               <input type="text" placeholder="Last Name" name="LastName" value="<?php echo $last_name; ?>" required>
             </div>
             <div class="div3">
-              <input type="email" placeholder="Email" name="Email" value="<?php echo $email; ?>" required>
+              <input type="email" placeholder="Email" name="Email" value="<?php echo $email; ?>" readonly required>
             </div>
             <div class="div4">
               <input type="text" placeholder="Phone Number" name="PhoneNumber" value="<?php echo $phone; ?>">
