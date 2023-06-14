@@ -19,6 +19,7 @@ nav ul li:nth-of-type(1) a {
 .content table {
   table-layout: fixed;
   border-collapse: collapse;
+  min-width: 100%;
 }
 .content table tr > td {
   color: #4f4f4f;
