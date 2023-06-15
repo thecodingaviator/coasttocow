@@ -78,6 +78,17 @@ nav ul li:nth-of-type(1) a {
     cursor: pointer;
   }
 
+  .div5, .div6 {
+    button {
+      background-color: #fdfd96;
+      color: #000;
+
+      &:hover {
+        background-color: #f7f7a2 !important;
+      }
+    }
+  }
+
   .div1 {
     grid-area: 1 / 1 / 2 / 2;
   }
@@ -95,10 +106,18 @@ nav ul li:nth-of-type(1) a {
   }
 
   .div5 {
-    grid-area: 2 / 1 / 3 / 5;
+    grid-area: 2 / 1 / 3 / 2;
   }
 
   .div6 {
+    grid-area: 2 / 2 / 3 / 3;
+  }
+
+  .div7 {
+    grid-area: 2 / 3 / 3 / 5;
+  }
+
+  .div8 {
     grid-area: 2 / 5 / 3 / 6;
   }
 }

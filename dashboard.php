@@ -159,24 +159,30 @@ if (isset($_POST['submit'])) {
                                         <option value='datset_data_dictionary' <?php if (isset($_POST['search_field']) && $_POST['search_field'] == 'datset_data_dictionary')
                                             echo 'selected'; ?>>
                                             datset_data_dictionary</option>
-                                        <option value='dataset_notes' <?php if (isset($_POST['search_field']) && $_POST['search_field'] == 'dataset_notes')
-                                            echo 'selected'; ?>>dataset_notes
+                                        <option value='dataset_notes'>dataset_notes
                                         </option>
                                     </select>
                                 </div>
                                 <div class="div3">
-                                    <input type="text" name="search_options" id="search_options" placeholder="Value"
+                                    <input type="text" name="search_options" id="search_options" placeholder="Operator + Value"
+                                        pattern="^(=|<>|<|<=|>|>=|LIKE|IN|BETWEEN|IS NULL|IS NOT NULL).+"
                                         value="<?php echo isset($_POST['search_options']) ? $_POST['search_options'] : ''; ?>">
                                 </div>
                                 <div class="div4">
                                     <button type="button" id="add-search-option">Insert</button>
                                 </div>
                                 <div class="div5">
-                                    <input type="text" name="search_value" id="search_value"
+                                    <button type="button" id="clear-search-options">Clear</button>
+                                </div>
+                                <div class="div6">
+                                    <button type="button" id="backspace-search-options">Backspace</button>
+                                </div>
+                                <div class="div7">
+                                    <input type="text" name="search_value" id="search_value" readonly
                                         value="<?php echo isset($_POST['search_value']) ? $_POST['search_value'] : 'WHERE '; ?>"
                                         required>
                                 </div>
-                                <div class="div6">
+                                <div class="div8">
                                     <input type="submit" name="submit" value="Search">
                                 </div>
                             </div>
@@ -184,7 +190,6 @@ if (isset($_POST['submit'])) {
                     </div>
 
                     <?php echo $tableOutput; ?>
-                    <?php echo $query; ?>
 
                 </div>
             </div>
@@ -209,6 +214,28 @@ if (isset($_POST['submit'])) {
             xhr.send();
         }
 
+        // if user clicks 7 times in 5 seconds on #search_value, make it editable
+        var searchValue = document.getElementById("search_value");
+        var searchValueClicks = 0;
+        var searchValueClicksTimeout = null;
+
+        searchValue.addEventListener("click", function () {
+            searchValueClicks++;
+
+            if (searchValueClicks === 7) {
+                searchValueClicks = 0;
+                searchValueClicksTimeout = null;
+                searchValue.readOnly = false;
+            }
+
+            if (searchValueClicksTimeout === null) {
+                searchValueClicksTimeout = setTimeout(function () {
+                    searchValueClicks = 0;
+                    searchValueClicksTimeout = null;
+                }, 5000);
+            }
+        });
+
         document.getElementById("add-search-option").addEventListener("click", function () {
             var searchField = document.getElementById("search_field");
             var searchOptions = document.getElementById("search_options");
@@ -221,18 +248,40 @@ if (isset($_POST['submit'])) {
             var searchOptionsValue = searchOptions.value.trim();
             var searchOptionsValueIsNumber = !isNaN(searchOptionsValue);
 
-            // Check if searchOptionsValue is a number
-            if (searchOptionsValueIsNumber) {
-                searchValue.value += searchField.value + " = " + searchOptionsValue + " AND ";
+            searchValue.value += searchField.value + "" + searchOptionsValue + " AND ";
+
+        });
+
+        document.getElementById("clear-search-options").addEventListener("click", function () {
+            var searchValue = document.getElementById("search_value");
+            searchValue.value = "WHERE ";
+        });
+
+        document.getElementById("backspace-search-options").addEventListener("click", function () {
+            var searchValue = document.getElementById("search_value");
+            
+            if (searchValue.value === "WHERE ") {
+                return;
             }
-            // Check if searchOptionsValue is a comparison operation
-            else if (/^[<>]=?\d+$/.test(searchOptionsValue)) {
-                searchValue.value += searchField.value + " " + searchOptionsValue + " AND ";
+
+            var searchValueArray = searchValue.value.split(" ");
+
+            if (searchValueArray.length === 2 | searchValueArray.length === 3) {
+                searchValue.value = "WHERE ";
+                return;
             }
-            // Treat searchOptionsValue as a string
-            else {
-                searchValue.value += searchField.value + " = '" + searchOptionsValue + "' AND ";
+
+            // else go to last AND and remove it and everything before it till the previous and or WHERE
+            var lastAndIndex = searchValue.value.lastIndexOf("AND");
+            var previousAndIndex = searchValue.value.lastIndexOf("AND", lastAndIndex - 1);
+            var whereIndex = searchValue.value.lastIndexOf("WHERE");
+
+            if (previousAndIndex === -1) {
+                searchValue.value = "WHERE ";
+                return;
             }
+
+            searchValue.value = searchValue.value.substring(0, previousAndIndex + 3);
         });
 
         document.getElementById("search_table").addEventListener("change", function () {
