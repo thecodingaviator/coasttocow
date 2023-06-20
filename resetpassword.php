@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include "config.php";
+include "utils/config.php";
 
 function generateTemporaryPassword()
 {

@@ -1,5 +1,5 @@
 <?php
-include "config.php";
+include "utils/config.php";
 
 $error = "";
 $num_results = "";
@@ -135,6 +135,9 @@ if (isset($_POST['submit'])) {
                                 <div class="div8">
                                     <input type="submit" name="submit" value="Search">
                                 </div>
+                                <div class="div9">
+    <button type="button" name="download" id="download-csv">Download CSV</button>
+</div>
                             </div>
                         </form>
                     </div>
@@ -239,6 +242,27 @@ if (isset($_POST['submit'])) {
         document.addEventListener("DOMContentLoaded", function () {
             updateTable(document.getElementById("search_table"));
         });
+
+        document.getElementById("download-csv").addEventListener("click", function () {
+    var form = document.createElement("form");
+    form.method = "POST";
+    form.action = "utils/export_csv.php";
+    form.style.display = "none";
+
+    var input = document.createElement("input");
+    input.name = "search_value";
+    input.value = document.getElementById("search_value").value;
+    form.appendChild(input);
+
+    var inputTable = document.createElement("input");
+    inputTable.name = "search_table";
+    inputTable.value = document.getElementById("search_table").value;
+    form.appendChild(inputTable);
+
+    document.body.appendChild(form);
+    form.submit();
+});
+
     </script>
 </body>
 

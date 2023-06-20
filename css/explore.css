@@ -11,6 +11,7 @@
   position: sticky;
   top: 0;
   left: 0;
+  width: 100%;
 }
 .content table {
   table-layout: fixed;
@@ -44,7 +45,7 @@
 .search-div {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   grid-gap: 10px;
 }
 .search-div select,
@@ -63,11 +64,13 @@
   background-color: #4ace73;
   cursor: pointer;
 }
-.search-div .div5 button, .search-div .div6 button {
+.search-div .div5 button,
+.search-div .div6 button {
   background-color: #fdfd96;
   color: #000;
 }
-.search-div .div5 button:hover, .search-div .div6 button:hover {
+.search-div .div5 button:hover,
+.search-div .div6 button:hover {
   background-color: #f7f7a2 !important;
 }
 .search-div .div1 {
@@ -89,8 +92,11 @@
   grid-area: 2/2/3/3;
 }
 .search-div .div7 {
-  grid-area: 2/3/3/5;
+  grid-area: 2/3/3/6;
 }
 .search-div .div8 {
-  grid-area: 2/5/3/6;
+  grid-area: 3/4/4/6;
+}
+.search-div .div9 {
+  grid-area: 3/1/4/3;
 }/*# sourceMappingURL=explore.css.map */

@@ -13,6 +13,7 @@
       position: sticky;
       top: 0;
       left: 0;
+      width: 100%;
     }
   }
 
@@ -53,7 +54,7 @@
 .search-div {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   grid-gap: 10px;
 
   select,
@@ -74,7 +75,8 @@
     cursor: pointer;
   }
 
-  .div5, .div6 {
+  .div5,
+  .div6 {
     button {
       background-color: #fdfd96;
       color: #000;
@@ -110,10 +112,14 @@
   }
 
   .div7 {
-    grid-area: 2 / 3 / 3 / 5;
+    grid-area: 2 / 3 / 3 / 6;
   }
 
   .div8 {
-    grid-area: 2 / 5 / 3 / 6;
+    grid-area: 3 / 4 / 4 / 6;
+  }
+
+  .div9 {
+    grid-area: 3 / 1 / 4 / 3;
   }
 }
