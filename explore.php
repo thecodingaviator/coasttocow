@@ -110,20 +110,6 @@ if (isset($_POST['submit'])) {
                                 </div>
                                 <div class="div2">
                                     <select name="search_field" id="search_field" required>
-                                        <option value='dataset_description'>dataset_description</option>
-                                        <option value='dataset_name_short'>dataset_name_short</option>
-                                        <option value='dataset_primary_contact_email'>dataset_primary_contact_email</option>
-                                        <option value='dataset_primary_contact_first_name'>dataset_primary_contact_first_name</option>
-                                        <option value='dataset_primary_contact_last_name'>dataset_primary_contact_last_name</option>
-                                        <option value='dataset_institution'>dataset_institution</option>
-                                        <option value='dataset_location_database'>dataset_location_database</option>
-                                        <option value='dataset_location_github'>dataset_location_github</option>
-                                        <option value='dataset_location_other'>dataset_location_other</option>
-                                        <option value='dataset_IRB'>dataset_IRB</option>
-                                        <option value='dataset_README'>dataset_README</option>
-                                        <option value='datset_data_dictionary'>datset_data_dictionary</option>
-                                        <option value='dataset_notes'>dataset_notes
-                                        </option>
                                     </select>
                                 </div>
                                 <div class="div3">
