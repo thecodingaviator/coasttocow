@@ -38,16 +38,41 @@ $lastName = $result['LastName'];
 <link rel="stylesheet" href="css/normalize.css">
 
 <nav>
-    <div>
+    <div class="logo-div">
         <h1>Coast to Cow</h1>
-        <p><?php echo 'Hi, ' . $firstName . ' ' . $lastName . '!' ?></p>
     </div>
     <ul>
         <li><a href="dashboard.php">Dashboard</a></li>
         <li><a href="submit.php">Submit</a></li>
-        <li><a href="modify.php">Edit Profile</a></li>
     </ul>
-    <form action="" method="POST" name="logoutForm">
-        <button type="submit" name="logout">Logout</button>
-    </form>
+    <div class="profile-dropdown">
+        <ul>
+            <li>
+                <a href="#">
+                    <?php echo $firstName . ' ' . $lastName ?>
+                    <span class="arrow">&#9662;</span>
+                    <script>
+                        const dropdown = document.querySelector('.profile-dropdown');
+                        const arrow = document.querySelector('.arrow');
+
+                        dropdown.addEventListener('mouseover', () => {
+                            arrow.style.transform = 'rotate(180deg)';
+                        });
+
+                        dropdown.addEventListener('mouseout', () => {
+                            arrow.style.transform = 'rotate(0deg)';
+                        });
+                    </script>
+                </a>
+                <ul>
+                    <li><a href="modify.php">Edit Profile</a></li>
+                    <li>
+                        <form action="" method="POST" name="logoutForm">
+                            <button type="submit" name="logout">Logout</button>
+                        </form>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
 </nav>
