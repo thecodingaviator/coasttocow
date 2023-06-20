@@ -1,4 +1,6 @@
 <?php
+include "config.php";
+
 session_start();
 
 // Check if the user is not logged in, redirect to login page
@@ -39,10 +41,14 @@ $lastName = $result['LastName'];
 
 <nav>
     <div class="logo-div">
-        <h1>Coast to Cow</h1>
+        <h1>
+            <a href="dashboard.php">
+            Coast to Cow
+            </a>
+        </h1>
     </div>
     <ul>
-        <li><a href="dashboard.php">Dashboard</a></li>
+        <li><a href="explore.php">Explore</a></li>
         <li><a href="submit.php">Submit</a></li>
     </ul>
     <div class="profile-dropdown">

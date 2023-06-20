@@ -28,9 +28,27 @@ nav .profile-dropdown {
   width: 100%;
   position: relative;
 }
+nav .profile-dropdown > ul {
+  height: 100%;
+}
+nav .profile-dropdown > ul > li {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+}
+nav .profile-dropdown > ul > li > a {
+  color: #08203e;
+  margin: 0 5px;
+  margin-left: 11px;
+}
 nav h1 {
   text-align: center;
   margin: 0;
+}
+nav h1 a {
+  font-size: 1em;
 }
 nav ul {
   list-style: none;
@@ -63,7 +81,7 @@ nav button {
 nav ul ul {
   display: none;
   position: absolute;
-  top: calc(100% + 2px);
+  top: calc(100% - 1px);
   left: 0;
   background-color: #fff;
   width: 100%;
@@ -105,6 +123,5 @@ nav .logo-div {
 }
 nav .arrow {
   display: inline-block;
-  margin-left: 5px;
-  transition: transform 0.3s;
+  transition: transform 0.5s ease-in-out;
 }/*# sourceMappingURL=navbar.css.map */

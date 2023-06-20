@@ -1,0 +1,96 @@
+.content > div > * {
+  margin-bottom: 10px;
+}
+.content .scrollable-content {
+  padding-bottom: 20px;
+  overflow: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+.content .scrollable-content .sticky-top {
+  position: sticky;
+  top: 0;
+  left: 0;
+}
+.content table {
+  table-layout: fixed;
+  border-collapse: collapse;
+  min-width: 100%;
+}
+.content table tr > td {
+  color: #4f4f4f;
+}
+.content table th,
+.content table td {
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+.content table th {
+  background-color: #f2f2f2;
+}
+
+.dashboard-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-gap: 10px;
+}
+.dashboard-top .results-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.search-div {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 10px;
+}
+.search-div select,
+.search-div input,
+.search-div button {
+  border: 1px solid #ccc;
+  padding: 5px;
+  height: 100%;
+  width: 100%;
+}
+.search-div button,
+.search-div input[type=submit] {
+  border-radius: 0;
+  border: 0;
+  color: #fff;
+  background-color: #4ace73;
+  cursor: pointer;
+}
+.search-div .div5 button, .search-div .div6 button {
+  background-color: #fdfd96;
+  color: #000;
+}
+.search-div .div5 button:hover, .search-div .div6 button:hover {
+  background-color: #f7f7a2 !important;
+}
+.search-div .div1 {
+  grid-area: 1/1/2/2;
+}
+.search-div .div2 {
+  grid-area: 1/2/2/3;
+}
+.search-div .div3 {
+  grid-area: 1/3/2/5;
+}
+.search-div .div4 {
+  grid-area: 1/5/2/6;
+}
+.search-div .div5 {
+  grid-area: 2/1/3/2;
+}
+.search-div .div6 {
+  grid-area: 2/2/3/3;
+}
+.search-div .div7 {
+  grid-area: 2/3/3/5;
+}
+.search-div .div8 {
+  grid-area: 2/5/3/6;
+}/*# sourceMappingURL=explore.css.map */
