@@ -97,74 +97,38 @@ if (isset($_POST['submit'])) {
                             <div class="search-div">
                                 <div class="div1">
                                     <select name="search_table" id="search_table" required>
-                                        <option value="C3DataMaster" <?php if (isset($_POST['search_table']) && $_POST['search_table'] == 'C3DataMaster')
-                                            echo 'selected'; ?>>DataMaster
-                                        </option>
-                                        <option value="C3AnalysisGrain" <?php if (isset($_POST['search_table']) && $_POST['search_table'] == 'C3AnalysisGrain')
-                                            echo 'selected'; ?>>AnalysisGrain
-                                        </option>
-                                        <option value="C3AnalysisDryAE" <?php if (isset($_POST['search_table']) && $_POST['search_table'] == 'C3AnalysisDryAE')
-                                            echo 'selected'; ?>>AnalysisDryAE
-                                        </option>
-                                        <option value="C3AnalysisManure" <?php if (isset($_POST['search_table']) && $_POST['search_table'] == 'C3AnalysisManure')
-                                            echo 'selected'; ?>>
-                                            AnalysisManure</option>
-                                        <option value="C3AnalysisOther" <?php if (isset($_POST['search_table']) && $_POST['search_table'] == 'C3AnalysisOther')
-                                            echo 'selected'; ?>>AnalysisOther
-                                        </option>
-                                        <option value="C3AnalysisTMR" <?php if (isset($_POST['search_table']) && $_POST['search_table'] == 'C3AnalysisTMR')
-                                            echo 'selected'; ?>>AnalysisTMR
-                                        </option>
-                                        <option value="C3AnalysisUnrecognized" <?php if (isset($_POST['search_table']) && $_POST['search_table'] == 'C3AnalysisUnrecognized')
-                                            echo 'selected'; ?>>
-                                            AnalysisUnrecognized</option>
-                                        <option value="C3Macro" <?php if (isset($_POST['search_table']) && $_POST['search_table'] == 'C3Macro')
-                                            echo 'selected'; ?>>Macro</option>
-                                        <option value="C3TFA" <?php if (isset($_POST['search_table']) && $_POST['search_table'] == 'C3TFA')
-                                            echo 'selected'; ?>>TFA</option>
+                                        <option value="C3DataMaster">DataMaster</option>
+                                        <option value="C3AnalysisGrain">AnalysisGrain</option>
+                                        <option value="C3AnalysisDryAE">AnalysisDryAE</option>
+                                        <option value="C3AnalysisManure">AnalysisManure</option>
+                                        <option value="C3AnalysisOther">AnalysisOther</option>
+                                        <option value="C3AnalysisTMR">AnalysisTMR</option>
+                                        <option value="C3AnalysisUnrecognized">AnalysisUnrecognized</option>
+                                        <option value="C3Macro">Macro</option>
+                                        <option value="C3TFA">TFA</option>
                                     </select>
                                 </div>
                                 <div class="div2">
                                     <select name="search_field" id="search_field" required>
-                                        <option value='dataset_description' <?php if (isset($_POST['search_field']) && $_POST['search_field'] == 'dataset_description')
-                                            echo 'selected'; ?>>
-                                            dataset_description</option>
-                                        <option value='dataset_name_short' <?php if (isset($_POST['search_field']) && $_POST['search_field'] == 'dataset_name_short')
-                                            echo 'selected'; ?>>
-                                            dataset_name_short</option>
-                                        <option value='dataset_primary_contact_email' <?php if (isset($_POST['search_field']) && $_POST['search_field'] == 'dataset_primary_contact_email')
-                                            echo 'selected'; ?>>dataset_primary_contact_email</option>
-                                        <option value='dataset_primary_contact_first_name' <?php if (isset($_POST['search_field']) && $_POST['search_field'] == 'dataset_primary_contact_first_name')
-                                            echo 'selected'; ?>>dataset_primary_contact_first_name</option>
-                                        <option value='dataset_primary_contact_last_name' <?php if (isset($_POST['search_field']) && $_POST['search_field'] == 'dataset_primary_contact_last_name')
-                                            echo 'selected'; ?>>dataset_primary_contact_last_name</option>
-                                        <option value='dataset_institution' <?php if (isset($_POST['search_field']) && $_POST['search_field'] == 'dataset_institution')
-                                            echo 'selected'; ?>>
-                                            dataset_institution</option>
-                                        <option value='dataset_location_database' <?php if (isset($_POST['search_field']) && $_POST['search_field'] == 'dataset_location_database')
-                                            echo 'selected'; ?>>
-                                            dataset_location_database</option>
-                                        <option value='dataset_location_github' <?php if (isset($_POST['search_field']) && $_POST['search_field'] == 'dataset_location_github')
-                                            echo 'selected'; ?>>
-                                            dataset_location_github</option>
-                                        <option value='dataset_location_other' <?php if (isset($_POST['search_field']) && $_POST['search_field'] == 'dataset_location_other')
-                                            echo 'selected'; ?>>
-                                            dataset_location_other</option>
-                                        <option value='dataset_IRB' <?php if (isset($_POST['search_field']) && $_POST['search_field'] == 'dataset_IRB')
-                                            echo 'selected'; ?>>dataset_IRB
-                                        </option>
-                                        <option value='dataset_README' <?php if (isset($_POST['search_field']) && $_POST['search_field'] == 'dataset_README')
-                                            echo 'selected'; ?>>dataset_README
-                                        </option>
-                                        <option value='datset_data_dictionary' <?php if (isset($_POST['search_field']) && $_POST['search_field'] == 'datset_data_dictionary')
-                                            echo 'selected'; ?>>
-                                            datset_data_dictionary</option>
+                                        <option value='dataset_description'>dataset_description</option>
+                                        <option value='dataset_name_short'>dataset_name_short</option>
+                                        <option value='dataset_primary_contact_email'>dataset_primary_contact_email</option>
+                                        <option value='dataset_primary_contact_first_name'>dataset_primary_contact_first_name</option>
+                                        <option value='dataset_primary_contact_last_name'>dataset_primary_contact_last_name</option>
+                                        <option value='dataset_institution'>dataset_institution</option>
+                                        <option value='dataset_location_database'>dataset_location_database</option>
+                                        <option value='dataset_location_github'>dataset_location_github</option>
+                                        <option value='dataset_location_other'>dataset_location_other</option>
+                                        <option value='dataset_IRB'>dataset_IRB</option>
+                                        <option value='dataset_README'>dataset_README</option>
+                                        <option value='datset_data_dictionary'>datset_data_dictionary</option>
                                         <option value='dataset_notes'>dataset_notes
                                         </option>
                                     </select>
                                 </div>
                                 <div class="div3">
-                                    <input type="text" name="search_options" id="search_options" placeholder="Operator + Value"
+                                    <input type="text" name="search_options" id="search_options"
+                                        placeholder="Operator + Value"
                                         pattern="^(=|<>|<|<=|>|>=|LIKE|IN|BETWEEN|IS NULL|IS NOT NULL).+"
                                         value="<?php echo isset($_POST['search_options']) ? $_POST['search_options'] : ''; ?>">
                                 </div>
@@ -222,7 +186,7 @@ if (isset($_POST['submit'])) {
         searchValue.addEventListener("click", function () {
             searchValueClicks++;
 
-            if (searchValueClicks === 7) {
+            if (searchValueClicks === 5) {
                 searchValueClicks = 0;
                 searchValueClicksTimeout = null;
                 searchValue.readOnly = false;
@@ -259,7 +223,7 @@ if (isset($_POST['submit'])) {
 
         document.getElementById("backspace-search-options").addEventListener("click", function () {
             var searchValue = document.getElementById("search_value");
-            
+
             if (searchValue.value === "WHERE ") {
                 return;
             }
