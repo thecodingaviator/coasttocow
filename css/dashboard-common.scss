@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto');
-
 :root {
   --global-black: #0a0908;
   --global-white: #fcfcfc;
@@ -35,11 +33,7 @@ body {
 .content {
   min-height: 89vh;
   padding: 0.5vh 1.5vw;
-  background: #fbfaf4;
-
-  h1 {
-    color: #4f4f4f;
-  }
+  background: var(--global-white);
 }
 
 .content-wrapper {

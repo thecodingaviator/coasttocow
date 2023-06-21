@@ -6,12 +6,12 @@
 
   .dash-button {
     width: 20%;
-    background-color: var(--global-white);
+    background-color: #d6d6d6;
     
     transition: background-color 0.3s ease;
 
     &:hover {
-      background-color: var(--global-white);
+      background-color: #bfbfbf;
     }
 
     a {

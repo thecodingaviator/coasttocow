@@ -8,13 +8,13 @@ nav {
   grid-template-areas:
     "logo menu logout";
   font-family: 'Poppins', sans-serif;
-  width: 100%;
-  height: 150px;
-  margin: 0 auto;
-  padding: 50px 1.5vw;
-  background-color: transparent;
-  color: var(--global-white);
+  height: fit-content;
+  margin: 0 1.5vw;
+  padding: 50px 0;
+  color: var(--global-black);
   box-sizing: border-box;
+  background: var(--global-white);
+  margin-bottom: 5vh;
 
   div {
     grid-area: logo;
@@ -85,10 +85,10 @@ nav {
   button {
     text-align: center;
     text-decoration: none;
-    color: var(--global-white);
     font-weight: 500;
     font-size: 1.5em;
     display: inline-block;
+    color: var(--global-black);
   }
 
   ul ul {
@@ -110,7 +110,6 @@ nav {
 
       a {
         padding: 10px 10%;
-        color: var(--global-black);
         display: inline-block;
         font-size: medium;
       }
