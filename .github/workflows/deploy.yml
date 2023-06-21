@@ -16,9 +16,10 @@ jobs:
       - name: Deploy files
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
-          username: 'root'
-          server: '${{ secrets.SERVER_IP }}'
+          username: '${{ secrets.SERVER_LOGIN }}'
+          server: 'db.coastcowconsumer.com'
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
           local_path: './*'
-          remote_path: '/var/www/react-app'
+          remote_path: '/var/www/html'
           sftpArgs: '-o ConnectTimeout=5'
+          sftp_only: 'yes'
