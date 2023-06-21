@@ -1,1 +1,13 @@
-/*# sourceMappingURL=dashboard.css.map */
+.button-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1rem;
+}
+.button-grid-4 .dash-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button-grid-4 .dash-button a {
+  text-decoration: none;
+}/*# sourceMappingURL=dashboard.css.map */

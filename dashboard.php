@@ -31,7 +31,13 @@ include "utils/config.php";
         <div class="content-wrapper">
             <div class="content">
                 <div class="scrollable-content">
-                    
+                    <h1>Dashboard</h1>
+                    <div class="button-grid-4">
+                        <div class="dash-button"><a href="explore.php">Explore</a></div>
+                        <div class="dash-button"><a href="submit.php">Submit</a></div>
+                        <div class="dash-button"><a href="#">Templates</a></div>
+                        <div class="dash-button"><a href="modify.php">Edit Profile</a></div>
+                    </div>
                 </div>
             </div>
         </div>
