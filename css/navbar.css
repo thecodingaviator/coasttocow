@@ -11,7 +11,7 @@ nav {
   margin: 0 auto;
   padding: 50px 1.5vw;
   background-color: transparent;
-  color: #fff;
+  color: var(--global-white);
   box-sizing: border-box;
 }
 nav div {
@@ -36,7 +36,7 @@ nav .profile-dropdown > ul > li {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fff;
+  background-color: var(--global-white);
 }
 nav .profile-dropdown > ul > li > a {
   color: #08203e;
@@ -73,7 +73,7 @@ nav a,
 nav button {
   text-align: center;
   text-decoration: none;
-  color: #fff;
+  color: var(--global-white);
   font-weight: 500;
   font-size: 1.5em;
   display: inline-block;
@@ -83,7 +83,7 @@ nav ul ul {
   position: absolute;
   top: calc(100% - 1px);
   left: 0;
-  background-color: #fff;
+  background-color: var(--global-white);
   width: 100%;
   z-index: 1;
 }
@@ -96,7 +96,7 @@ nav ul ul li:hover {
 }
 nav ul ul li a {
   padding: 10px 10%;
-  color: #000;
+  color: var(--global-black);
   display: inline-block;
   font-size: medium;
 }

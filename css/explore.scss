@@ -70,8 +70,8 @@
   input[type=submit] {
     border-radius: 0;
     border: 0;
-    color: #fff;
-    background-color: #4ace73;
+    color: var(--global-white);
+    background-color: var(--global-green);
     cursor: pointer;
   }
 
@@ -79,7 +79,7 @@
   .div6 {
     button {
       background-color: #fdfd96;
-      color: #000;
+      color: var(--global-black);
 
       &:hover {
         background-color: #f7f7a2 !important;

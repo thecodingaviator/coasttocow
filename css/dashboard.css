@@ -6,16 +6,16 @@
 }
 .button-grid-4 .dash-button {
   width: 20%;
-  background-color: #f0f0f0;
+  background-color: var(--global-white);
   transition: background-color 0.3s ease;
 }
 .button-grid-4 .dash-button:hover {
-  background-color: #d0d0d0;
+  background-color: var(--global-white);
 }
 .button-grid-4 .dash-button a {
   text-decoration: none;
   text-align: center;
-  color: #000;
+  color: var(--global-black);
   display: grid;
   grid-template-rows: 2fr 1fr;
   width: 100%;

@@ -5,7 +5,8 @@
   --global-white: #fcfcfc;
   --global-grey: #50514f;
   --global-blue: #228cd8;
-  --global-green: #65b891;
+  --global-green: #4ace73;
+  --global-green-hover: #3db768;
 }
 
 * {
@@ -15,7 +16,7 @@
 
 body {
   margin: 0;
-  background-color: white;
+  background-color: var(--global-white);
 }
 
 .wrapper-background {
@@ -54,12 +55,12 @@ input[type="submit"], button[type="button"] {
   cursor: pointer;
   border-radius: 0;
   border: 0;
-  color: #fff;
-  background-color: #4ace73;
+  color: var(--global-white);
+  background-color: var(--global-green);
   transition: background-color 0.4s ease-in-out;
 
   &:hover {
-    background-color: #3db768 !important;
+    background-color: var(--global-green-hover) !important;
   }
 }
 

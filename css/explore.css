@@ -60,14 +60,14 @@
 .search-div input[type=submit] {
   border-radius: 0;
   border: 0;
-  color: #fff;
-  background-color: #4ace73;
+  color: var(--global-white);
+  background-color: var(--global-green);
   cursor: pointer;
 }
 .search-div .div5 button,
 .search-div .div6 button {
   background-color: #fdfd96;
-  color: #000;
+  color: var(--global-black);
 }
 .search-div .div5 button:hover,
 .search-div .div6 button:hover {
