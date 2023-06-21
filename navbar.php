@@ -50,6 +50,8 @@ $lastName = $result['LastName'];
     <ul>
         <li><a href="explore.php">Explore</a></li>
         <li><a href="submit.php">Submit</a></li>
+        <li><a href="#">Templates</a></li>
+        <li><a href="#">GitHub</a></li>
     </ul>
     <div class="profile-dropdown">
         <ul>
