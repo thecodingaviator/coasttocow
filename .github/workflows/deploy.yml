@@ -18,8 +18,9 @@ jobs:
         with:
           username: '${{ secrets.SERVER_LOGIN }}'
           server: 'db.coastcowconsumer.com'
+          port: '25060'
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-          local_path: './*'
+          local_path: '../*'
           remote_path: '/var/www/html'
           sftpArgs: '-o ConnectTimeout=5'
           sftp_only: 'yes'
