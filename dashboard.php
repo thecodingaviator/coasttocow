@@ -40,7 +40,7 @@ include "utils/config.php";
                             <a href="submit.php"><i><img src="utils/icons/paste.svg" alt="Submit Icon"></i>Submit</a>
                         </div>
                         <div class="dash-button">
-                            <a href="#"><i><img src="utils/icons/file_lines.svg" alt="Template Icon"></i>Templates</a>
+                            <a href="templates.php"><i><img src="utils/icons/file_lines.svg" alt="Template Icon"></i>Templates</a>
                         </div>
                         <div class="dash-button">
                             <a href="modify.php"><i><img src="utils/icons/gear.svg" alt="Gear Icon"></i>Edit Profile</a>
