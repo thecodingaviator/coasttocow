@@ -34,7 +34,7 @@ include "utils/config.php";
       <div class="content">
         <h1>Submit a Dataset</h1>
         <div class="dataset-submission">
-          p>Drive API Quickstart</p>
+          <p>Drive API Quickstart</p>
 
           <!--Add buttons to initiate auth sequence and sign out-->
           <button id="authorize_button" onclick="handleAuthClick()">Authorize</button>
@@ -49,7 +49,7 @@ include "utils/config.php";
             /* exported handleSignoutClick */
 
             // TODO(developer): Set to client ID and API key from the Developer Console
-            const CLIENT_ID = = '<?php echo $drive_clientID ?>';
+            const CLIENT_ID = '<?php echo $drive_clientID ?>';
             const API_KEY = '<?php echo $drive_APIkey ?>';
 
             // Discovery doc URL for APIs used by the quickstart
