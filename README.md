@@ -20,17 +20,43 @@ The **CoastCowConsumer Data Site** is a web application designed to provide user
 
 ## File List
 
-The following files are included in this repository:
+### `dashboard.php`
 
-- `dashboard.php`: Represents the main dashboard page.
-- `explore.php`: Represents the explore page for data exploration and searching.
-- `index.php`: Represents the landing page or home page of the application.
-- `modify.php`: Represents a page for modifying or editing data or settings.
-- `navbar.php`: Represents a navigation bar component used across multiple pages.
-- `resetpassword.php`: Represents a password reset page.
-- `signup.php`: Represents a signup page for account registration.
-- `submit.php`: Represents a dataset submission page.
-- `templates.php`: Represents a page displaying available templates for download.
+This file represents the main dashboard page of the application. It provides a user interface that displays relevant information, data visualizations, and navigation options for the user. The dashboard serves as a centralized hub where users can access various features and functionalities of the application.
+
+### `explore.php`
+
+The `explore.php` file represents the explore page of the application. It allows users to explore and search for specific data within the application. It provides a user interface where users can input search criteria, apply filters, and view search results. The explore page enables users to interact with the data in a meaningful way.
+
+### `index.php`
+
+The `index.php` file represents the landing page or home page of the application. It serves as the initial entry point for users accessing the application. The landing page typically provides a brief overview of the application, its features, and any promotional or informational content.
+
+### `modify.php`
+
+The `modify.php` file represents a page where users can modify or edit data or settings within the application. It provides a user interface that allows users to update existing information, change preferences, or perform other modifications based on the application's functionality. The modify page enables users to make changes to their data or settings as needed.
+
+### `navbar.php`
+
+The `navbar.php` file represents a reusable component that generates the navigation bar for the application. It is included across multiple pages to provide consistent navigation options for users. The navigation bar typically includes links or buttons to access different sections, features, or pages within the application.
+
+### `resetpassword.php`
+
+The `resetpassword.php` file represents a password reset page. It provides a user interface where users can initiate the process of resetting their password in case they have forgotten it or need to change it. The page typically prompts users to enter their email address or username and follows a series of steps to verify the user's identity and allow them to reset their password.
+
+### `signup.php`
+
+The `signup.php` file represents a signup page for account registration. It provides a user interface where new users can create an account by providing their personal information, such as name, email, password, contact details, and other required fields. The signup page typically includes form validation to ensure the accuracy and completeness of the provided information.
+
+### `submit.php`
+
+The `submit.php` file represents a dataset submission page. It allows users to upload and submit datasets to the application. The page typically provides a user interface where users can select a file to upload, specify relevant details about the dataset, and submit it for processing or storage within the application. The submit page enables users to contribute their data to the application's database or system.
+
+### `templates.php`
+
+The `templates.php` file represents a page that displays available templates for download. It provides a user interface where users can browse and access predefined templates or files. The templates page typically includes links or buttons to download the templates, which can be used as starting points or examples for specific tasks or document formats.
+
+Please note that the specific functionality and implementation details of each file may vary depending on the application's requirements and design.
 
 ## Usage
 
