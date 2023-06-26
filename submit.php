@@ -1,7 +1,3 @@
-<?php
-include "utils/config.php";
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,6 +35,21 @@ include "utils/config.php";
             <button id="signout_button" onclick="handleSignoutClick()">Sign Out</button>
             <form id="upload_form" enctype="multipart/form-data">
               <input type="file" id="file_input" name="file_input">
+              <div>
+                <label>
+                  <input type="radio" name="folder_selection" value="analysis" checked> Analysis
+                </label>
+              </div>
+              <div>
+                <label>
+                  <input type="radio" name="folder_selection" value="macro"> Macro
+                </label>
+              </div>
+              <div>
+                <label>
+                  <input type="radio" name="folder_selection" value="fatty_acids"> Fatty Acids
+                </label>
+              </div>
               <input type="button" value="Upload" onclick="handleFileUpload()">
             </form>
           </div>
@@ -49,7 +60,6 @@ include "utils/config.php";
       </div>
     </div>
   </div>
-
 
   <script type="text/javascript">
     /* exported gapiLoaded */
@@ -154,28 +164,50 @@ include "utils/config.php";
     }
 
     /**
+     * Get the selected folder ID based on radio button selection.
+     */
+    function getSelectedFolderId() {
+      const folderSelection = document.querySelector('input[name="folder_selection"]:checked');
+      let folderId;
+
+      if (folderSelection) {
+        const value = folderSelection.value;
+        if (value === 'analysis') {
+          folderId = '1DDPpLVPx2IK6WKtS2uclE5l20VUItOYP';
+        } else if (value === 'macro') {
+          folderId = '1uRxaoFcShtLgweFuIRLdEuTNqwolNiOE';
+        } else if (value === 'fatty_acids') {
+          folderId = '1HTCUDwi';
+        }
+      }
+
+      return folderId;
+    }
+
+    /**
      * Upload file to Drive.
      */
     async function uploadFile(file) {
-      // const folderId = '1h8zU6mQ8qy5SfOTYPN8xX5S4caV4Copv';
+      const folderId = getSelectedFolderId();
+      if (!folderId) {
+        console.error('Please select a folder.');
+        return;
+      }
+
       const response = await gapi.client.drive.files.create({
-        'name': file.name,
-        'mimeType': file.type,
-        // 'parents': [folderId],
+        resource: {
+          name: file.name,
+          parents: [folderId],
+          driveId: '0ABU_pocBghzEUk9PVA'
+        },
+        media: {
+          mimeType: file.type,
+          body: file
+        }
       });
 
       const fileID = response.result.id;
-      console.log(fileID);
-
-      const token = gapi.client.getToken().access_token;
-
-      await fetch(`https://www.googleapis.com/upload/drive/v3/files/${fileID}?uploadType=media`, {
-        method: 'PATCH',
-        headers: new Headers({ 'Authorization': `Bearer ${token}` }),
-        body: file,
-      });
-
-      console.log('Uploaded!');
+      console.log('File uploaded successfully. File ID:', fileID);
     }
 
     function handleFileUpload() {
@@ -183,6 +215,8 @@ include "utils/config.php";
       const file = fileInput.files[0];
       if (file) {
         uploadFile(file);
+      } else {
+        console.error('Please select a file.');
       }
     }
   </script>
