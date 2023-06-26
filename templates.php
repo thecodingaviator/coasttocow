@@ -35,7 +35,7 @@ include "utils/config.php";
           <div class="card">
             <div class="card-content">
               <a href="pdfs/sample1.pdf" download>
-                <img src="images/pdf-icon.png" alt="PDF Icon">
+                <img src="images/pdf-img.png" alt="PDF Icon">
                 <p>Template 1</p>
               </a>
             </div>
@@ -43,7 +43,7 @@ include "utils/config.php";
           <div class="card">
             <div class="card-content">
               <a href="pdfs/sample2.pdf" download>
-                <img src="images/pdf-icon.png" alt="PDF Icon">
+                <img src="images/pdf-img.png" alt="PDF Icon">
                 <p>Template 2</p>
               </a>
             </div>
