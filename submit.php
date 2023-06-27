@@ -39,6 +39,21 @@ include "utils/config.php";
             <button id="signout_button" onclick="handleSignoutClick()">Sign Out</button>
             <form id="upload_form" enctype="multipart/form-data">
               <input type="file" id="file_input" name="file_input">
+              <div>
+                <label>
+                  <input type="radio" name="folder_selection" value="analysis" checked> Analysis
+                </label>
+              </div>
+              <div>
+                <label>
+                  <input type="radio" name="folder_selection" value="macro"> Macro
+                </label>
+              </div>
+              <div>
+                <label>
+                  <input type="radio" name="folder_selection" value="fatty_acids"> Fatty Acids
+                </label>
+              </div>
               <input type="button" value="Upload" onclick="handleFileUpload()">
             </form>
           </div>
