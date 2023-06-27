@@ -157,11 +157,12 @@ include "utils/config.php";
      * Upload file to Drive.
      */
     async function uploadFile(file) {
-      // const folderId = '1h8zU6mQ8qy5SfOTYPN8xX5S4caV4Copv';
+      const folderId = '1h8zU6mQ8qy5SfOTYPN8xX5S4caV4Copv';
       const response = await gapi.client.drive.files.create({
         'name': file.name,
         'mimeType': file.type,
-        // 'parents': [folderId],
+        'parents': [folderId],
+        'supportsAllDrives': true,
       });
 
       const fileID = response.result.id;
