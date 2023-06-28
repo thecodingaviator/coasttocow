@@ -1,4 +1,6 @@
 <?php
+//Uploads file to google drive using service account defined in credentials.php
+
 require_once __DIR__ . '/vendor/autoload.php';
 include "utils/config.php";
 
@@ -14,15 +16,17 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
   if(isset($_FILES['file_input']) && $_FILES['file_input']['error'] == 0) {
     $file = $_FILES['file_input'];
     $folder_selection = $_POST['folder_selection'];
+    echo "Selected folder: " . $folder_selection . "<br>";
 
     // Get the ID of the selected folder
     $folder_id = $folder_ids[$folder_selection];
+    echo "Folder ID: " . $folder_id . "<br>";
 
-    // Make sure to sanitize and validate the folder selection and file details before using them
+    // TODO: validate the folder selection and file details before using them
 
     $fileMetadata = new Google_Service_Drive_DriveFile([
       'name' => $file['name'],
-      'parents' => [$folder_id]
+      // 'parents' => [$folder_id] // Not supported in shared drives
     ]);
 
     $content = file_get_contents($file['tmp_name']);
@@ -30,10 +34,18 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $driveFile = $service->files->create($fileMetadata, [
       'data' => $content,
       'uploadType' => 'multipart',
-      'fields' => 'id'
+      'fields' => 'id',
+      'supportsAllDrives' => true // Required for shared drives
     ]);
 
-    echo "The file has been uploaded to Drive with ID: " . $driveFile->id;
+    // Move the file to the shared drive
+    $emptyFileMetadata = new Google_Service_Drive_DriveFile();
+    $movedFile = $service->files->update($driveFile->id, $emptyFileMetadata, [
+      'addParents' => $folder_id,
+      'supportsAllDrives' => true // Required for shared drives
+    ]);
+
+    echo "The file has been uploaded to Drive with ID: " . $movedFile->id;
   }
 }
 ?>

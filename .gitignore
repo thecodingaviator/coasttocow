@@ -2,3 +2,7 @@
 */credentials.php
 */c3-testing-389115-f39fd8b05d5d.json
 */variables.js
+composer.phar
+composer.json
+composer.lock
+vendor
