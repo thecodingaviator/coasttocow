@@ -11,8 +11,8 @@
   <meta http-equiv="Cross-Origin-Embedder-Policy" content="unsafe-none">
   <title>C3 | Submit</title>
 
-  <link rel="stylesheet" href="css/dashboard-common.css">
-  <link rel="stylesheet" href="css/submit.css">
+  <link rel="stylesheet" href="utils/css/dashboard-common.css">
+  <link rel="stylesheet" href="utils/css/submit.css">
 </head>
 
 <body>
@@ -60,7 +60,7 @@
       </div>
     </div>
   </div>
-  <script src="js/submit.js"></script>
+  <script src="utils/js/submit.js"></script>
 </body>
 
 </html>

@@ -39,9 +39,9 @@ if (isset($_POST['submit'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coast To Cow Consumer</title>
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/universal.css">
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="utils/css/normalize.css">
+    <link rel="stylesheet" href="utils/css/universal.css">
+    <link rel="stylesheet" href="utils/css/index.css">
     <script>
         function submitForm() {
             document.forms["signup"].submit();

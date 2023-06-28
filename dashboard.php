@@ -11,8 +11,8 @@ include "utils/config.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>C3 | Dashboard</title>
 
-    <link rel="stylesheet" href="css/dashboard-common.css">
-    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="utils/css/dashboard-common.css">
+    <link rel="stylesheet" href="utils/css/dashboard.css">
 </head>
 
 <body>

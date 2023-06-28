@@ -66,8 +66,8 @@ if (isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>C3 | Explorer</title>
 
-    <link rel="stylesheet" href="css/dashboard-common.css">
-    <link rel="stylesheet" href="css/explore.css">
+    <link rel="stylesheet" href="utils/css/dashboard-common.css">
+    <link rel="stylesheet" href="utils/css/explore.css">
 </head>
 
 <body>

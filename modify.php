@@ -81,8 +81,8 @@ if (isset($_POST['submit'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>C3 | Edit Profile</title>
 
-  <link rel="stylesheet" href="css/dashboard-common.css">
-  <link rel="stylesheet" href="css/modify.css">
+  <link rel="stylesheet" href="utils/css/dashboard-common.css">
+  <link rel="stylesheet" href="utils/css/modify.css">
 </head>
 
 <body>
