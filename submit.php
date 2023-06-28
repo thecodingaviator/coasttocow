@@ -60,77 +60,8 @@
       </div>
     </div>
   </div>
-
-
   <script type="text/javascript">
-    // Update the following constants with your service account information
-    const SERVICE_ACCOUNT_EMAIL = '<?php echo $service_email; ?>';
-    const KEY_FILE_PATH = '<?php echo $service_keyfile; ?>';
-
-    let gapiInited = false;
-
-    document.getElementById('file_input').addEventListener('change', handleFileSelection);
-
-    /**
-     * Handle file selection.
-     */
-    function handleFileSelection() {
-      const fileInput = document.getElementById('file_input');
-      const file = fileInput.files[0];
-      if (file) {
-        handleFileUpload(file);
-      }
-    }
-
-    /**
-     * Upload file to Drive.
-     */
-    async function uploadFile(file, folderId) {
-      const formData = new FormData();
-      formData.append('file', file);
-
-      const response = await fetch(`/upload-file.php?folderId=${folderId}`, {
-        method: 'POST',
-        body: formData,
-      });
-
-      const data = await response.json();
-      if (data.success) {
-        console.log('File uploaded successfully. File ID:', data.fileId);
-      } else {
-        console.error('Error uploading file:', data.error);
-      }
-    }
-
-    /**
-     * Handle file upload.
-     */
-    function handleFileUpload() {
-      const folderSelection = document.querySelector('input[name="folder_selection"]:checked');
-      let folderId;
-
-      if (folderSelection) {
-        const value = folderSelection.value;
-        if (value === 'analysis') {
-          folderId = '<?php echo $analysis_folder_id; ?>';
-        } else if (value === 'macro') {
-          folderId = '<?php echo $macro_folder_id; ?>';
-        } else if (value === 'fatty_acids') {
-          folderId = '<?php echo $fatty_acids_folder_id; ?>';
-        }
-      }
-
-      if (!folderId) {
-        console.error('Please select a folder.');
-        return;
-      }
-
-      const fileInput = document.getElementById('file_input');
-      const file = fileInput.files[0];
-      if (file) {
-        uploadFile(file, folderId);
-      }
-    }
+    <script src="js/submit.js"></script>
   </script>
 </body>
 
