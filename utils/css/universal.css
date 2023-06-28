@@ -4,7 +4,7 @@ html, body {
   background-color: #093545;
   --primary-white: #FFF;
   --primary-green: #20D7DF;
-  color: var(--primary-white);
+  color: var(background-color);
   font-family: "Lexend Deca", sans-serif;
   box-sizing: border-box;
   font-weight: 400 !important;
