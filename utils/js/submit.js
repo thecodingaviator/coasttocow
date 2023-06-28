@@ -8,7 +8,7 @@ function handleFileUpload() {
     var form = document.getElementById('upload_form');
     var formData = new FormData(form);
     //get form data submitted and give it to upload.php
-    fetch('upload.php', {
+    fetch('../../upload.php', {
       method: 'POST',
       body: formData
     })
