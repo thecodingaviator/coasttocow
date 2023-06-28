@@ -65,7 +65,6 @@ nav li {
   position: relative;
 }
 nav li:hover ul {
-  color: --primary-green;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
