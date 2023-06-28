@@ -48,9 +48,9 @@ $lastName = $result['LastName'];
         </h1>
     </div>
     <ul>
+        <li><a href="templates.php">Templates</a></li>
         <li><a href="explore.php">Explore</a></li>
         <li><a href="submit.php">Submit</a></li>
-        <li><a href="templates.php">Templates</a></li>
         <li><a href="https://github.com/coast-cow-consumer">GitHub</a></li>
     </ul>
     <div class="profile-dropdown">

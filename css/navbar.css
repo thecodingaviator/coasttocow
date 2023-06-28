@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Lexend+Deca&family=Poppins&display=swap");
 @import 'normalize.css';
+@import 'universal.css';
 nav {
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
@@ -64,6 +65,7 @@ nav li {
   position: relative;
 }
 nav li:hover ul {
+  color: --primary-green;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
