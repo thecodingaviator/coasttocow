@@ -60,9 +60,7 @@
       </div>
     </div>
   </div>
-  <script type="text/javascript">
-    <script src="js/submit.js"></script>
-  </script>
+  <script src="js/submit.js"></script>
 </body>
 
 </html>
