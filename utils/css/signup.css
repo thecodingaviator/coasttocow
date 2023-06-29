@@ -3,4 +3,97 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+#signin {
+  max-width: 300px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 0.5em;
+}
+#signin > div {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: 7vh;
+}
+#signin > div > *:not(a) {
+  width: 100%;
+  text-align: center;
+  margin: 0;
+}
+#signin .div1 {
+  grid-area: 1/1/2/3;
+}
+#signin .div1 h1 {
+  font-size: 64px;
+}
+#signin .div1 {
+  grid-area: 1/1/2/3;
+  margin-bottom: 0.8em;
+}
+#signin .div2 {
+  grid-area: 2/1/3/2;
+}
+#signin .div3 {
+  grid-area: 2/2/3/3;
+}
+#signin .div4 {
+  grid-area: 3/1/4/3;
+}
+#signin .div5 {
+  grid-area: 4/1/5/3;
+}
+#signin .div6 {
+  grid-area: 5/1/6/3;
+}
+#signin .div7 {
+  grid-area: 6/1/7/2;
+}
+#signin .div8 {
+  grid-area: 6/2/7/3;
+}
+#signin .div8 select {
+  width: 100%;
+  height: 3em;
+  border-radius: 5px;
+  border: 0;
+  font-size: 14px;
+  background-color: #224957;
+  color: var(--primary-white);
+  text-align: left;
+}
+#signin .div9 {
+  grid-area: 7/1/8/3;
+}
+#signin .div10 {
+  grid-area: 8/1/9/3;
+  margin-top: -0.8em;
+}
+#signin .input-div input:focus {
+  outline: none;
+  border: 0;
+}
+#signin .input-div input {
+  text-align: left;
+  padding-left: 15px;
+  height: 3em;
+  border-radius: 5px;
+  border: 0;
+  font-size: 14px;
+  background-color: #224957;
+  color: var(--primary-white);
+}
+#signin .button-div > button {
+  background-color: var(--primary-green);
+  color: var(--primary-white);
+  border: none;
+  border-radius: 5px;
+  padding: 0.5em 1em;
+}
+#signin .button-div button:hover {
+  cursor: pointer;
 }/*# sourceMappingURL=signup.css.map */

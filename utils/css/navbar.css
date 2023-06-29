@@ -13,6 +13,9 @@ nav {
   color: var(--global-black);
   box-sizing: border-box;
   background: var(--global-white);
+  border-radius: 0 0 8px 8px;
+  margin-left: 0;
+  margin-right: 0;
   margin-bottom: 5vh;
 }
 nav div {

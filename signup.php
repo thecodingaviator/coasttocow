@@ -3,7 +3,7 @@ session_start();
 
 include "utils/config.php";
 
-if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true){
+if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
   header("Location: dashboard.php");
   exit();
 }
@@ -100,7 +100,18 @@ if (isset($_POST['submit'])) {
         <input type="text" placeholder="Title" name="JobTitle" required>
       </div>
       <div class="div8 input-div">
-        <input type="text" placeholder="Institution" name="Institution" required>
+        <select id="institution" name="institution" required>
+          <option value="">Select an option</option>
+          <option value="Bigelow">Bigelow</option>
+          <option value="Clarkson University">Clarkson University</option>
+          <option value="Colby College">Colby College</option>
+          <option value="Cornell University">Cornell University</option>
+          <option value="Syracuse University">Syracuse University</option>
+          <option value="Miner Institute">Miner Institute</option>
+          <option value="UNH">UNH</option>
+          <option value="UVM">UVM</option>
+          <option value="Wolf's Neck Center">Wolf's Neck Center</option>
+        </select>
       </div>
       <div class="div9 button-div">
         <input type="hidden" name="submit" value="Sign Up!">

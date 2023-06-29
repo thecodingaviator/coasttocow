@@ -46,6 +46,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     ]);
 
     echo "The file has been uploaded to Drive with ID: " . $movedFile->id;
+
+    // Store file ID in session variable
+    $_SESSION['file_id'] = $movedFile->id;
   }
 }
 ?>
