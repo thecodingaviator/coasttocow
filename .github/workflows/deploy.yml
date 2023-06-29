@@ -16,6 +16,14 @@ jobs:
       - name: Setup Composer
         uses: php-actions/composer@v6
 
+      - name: Write credentials file
+        uses: "DamianReeves/write-file-action@master"
+        with:
+          path: utils/credentials.php
+          write-mode: overwrite
+          contents: |
+            ${{ secrets.CREDENTIALS }}
+
       - name: Deploy files
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
