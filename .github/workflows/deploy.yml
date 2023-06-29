@@ -13,14 +13,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
-
       - name: Setup Composer
         uses: php-actions/composer@v6
-
-      - name: Install dependencies
-        run: composer install --prefer-dist --no-progress
 
       - name: Deploy files
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
