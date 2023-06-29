@@ -13,11 +13,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Set permissions
-        run: chmod -R 755 ${{ github.workspace }}/vendor
-
       - name: Setup Composer
         uses: php-actions/composer@v6
+
+      - name: Set permissions
+        run: chmod -R 755 ${{ github.workspace }}/vendor
 
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
