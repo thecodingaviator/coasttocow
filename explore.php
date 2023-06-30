@@ -19,7 +19,6 @@ if (isset($_POST['submit'])) {
     if (substr($query, -6) == "WHERE ") {
         $query = substr($query, 0, -6);
     }
-
     $stmt = $conn->prepare($query);
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -40,12 +39,22 @@ if (isset($_POST['submit'])) {
         $tableOutput .= '</thead>';
         $tableOutput .= '<tbody>';
 
+        // Check if "free_download" column exists
+        $hasFreeDownloadColumn = isset($result[0]['free_download']);
+
         // Generate table rows
         foreach ($result as $row) {
             $tableOutput .= '<tr>';
 
-            foreach ($row as $value) {
-                $tableOutput .= '<td>' . $value . '</td>';
+            // Iterate through each column
+            foreach ($row as $columnName => $value) {
+                if ($columnName === 'unique_name' && $hasFreeDownloadColumn && isset($row['free_download']) && $row['free_download'] === '1') {
+                    $uniqueName = $row['unique_name'];
+                    $file_id = $row['file_id'];
+                    $tableOutput .= '<td><a href="download.php?name=' . $file_id . '">' . $uniqueName . '</a></td>';
+                } else {
+                    $tableOutput .= '<td>' . $value . '</td>';
+                }
             }
 
             $tableOutput .= '</tr>';
@@ -99,13 +108,6 @@ if (isset($_POST['submit'])) {
                                     <select name="search_table" id="search_table" required>
                                         <option value="C3DataMasterTest">DataMasterTest</option>
                                         <option value="C3AnalysisGrain">AnalysisGrain</option>
-                                        <option value="C3AnalysisDryAE">AnalysisDryAE</option>
-                                        <option value="C3AnalysisManure">AnalysisManure</option>
-                                        <option value="C3AnalysisOther">AnalysisOther</option>
-                                        <option value="C3AnalysisTMR">AnalysisTMR</option>
-                                        <option value="C3AnalysisUnrecognized">AnalysisUnrecognized</option>
-                                        <option value="C3Macro">Macro</option>
-                                        <option value="C3TFA">TFA</option>
                                     </select>
                                 </div>
                                 <div class="div2">
@@ -136,8 +138,8 @@ if (isset($_POST['submit'])) {
                                     <input type="submit" name="submit" value="Search">
                                 </div>
                                 <div class="div9">
-    <button type="button" name="download" id="download-csv">Download CSV</button>
-</div>
+                                    <button type="button" name="download" id="download-csv">Download CSV</button>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -244,24 +246,24 @@ if (isset($_POST['submit'])) {
         });
 
         document.getElementById("download-csv").addEventListener("click", function () {
-    var form = document.createElement("form");
-    form.method = "POST";
-    form.action = "utils/export_csv.php";
-    form.style.display = "none";
+            var form = document.createElement("form");
+            form.method = "POST";
+            form.action = "utils/export_csv.php";
+            form.style.display = "none";
 
-    var input = document.createElement("input");
-    input.name = "search_value";
-    input.value = document.getElementById("search_value").value;
-    form.appendChild(input);
+            var input = document.createElement("input");
+            input.name = "search_value";
+            input.value = document.getElementById("search_value").value;
+            form.appendChild(input);
 
-    var inputTable = document.createElement("input");
-    inputTable.name = "search_table";
-    inputTable.value = document.getElementById("search_table").value;
-    form.appendChild(inputTable);
+            var inputTable = document.createElement("input");
+            inputTable.name = "search_table";
+            inputTable.value = document.getElementById("search_table").value;
+            form.appendChild(inputTable);
 
-    document.body.appendChild(form);
-    form.submit();
-});
+            document.body.appendChild(form);
+            form.submit();
+        });
 
     </script>
 </body>

@@ -29,23 +29,25 @@ if (isset($_POST['submitMeta'])) {
   $dataset_name = $_POST['dataset_name'];
   $dataset_description = $_POST['dataset_description'];
   $social_science = $_POST['social_science_data'];
-  $social_science = $social_science == 'yes' ? 1 : 0;
+  $social_science = $social_science == 'Yes' ? 1 : 0;
   $natural_science_in_vivo = $_POST['natural_science_in_vivo'];
-  $natural_science_in_vivo = $natural_science_in_vivo == 'yes' ? 1 : 0;
+  $natural_science_in_vivo = $natural_science_in_vivo == 'Yes' ? 1 : 0;
   $natural_science_in_vitro = $_POST['natural_science_in_vitro'];
-  $natural_science_in_vitro = $natural_science_in_vitro == 'yes' ? 1 : 0;
+  $natural_science_in_vitro = $natural_science_in_vitro == 'Yes' ? 1 : 0;
   $raw_dataset = $_POST['raw_dataset'];
-  $raw_dataset = $raw_dataset == 'yes' ? 1 : 0;
+  $raw_dataset = $raw_dataset == 'Yes' ? 1 : 0;
   $published_dataset = $_POST['published_dataset'];
-  $published_dataset = $published_dataset == 'yes' ? 1 : 0;
+  $published_dataset = $published_dataset == 'Yes' ? 1 : 0;
   $readme = $_POST['readme'];
-  $readme = $readme == 'yes' ? 1 : 0;
+  $readme = $readme == 'Yes' ? 1 : 0;
   $irb = $_POST['irb'];
-  $irb = $irb == 'yes' ? 1 : 0;
+  $irb = $irb == 'Yes' ? 1 : 0;
   $data_dictionary = $_POST['data_dictionary'];
-  $data_dictionary = $data_dictionary == 'yes' ? 1 : 0;
+  $data_dictionary = $data_dictionary == 'Yes' ? 1 : 0;
   $publication = $_POST['dataset_publication'];
-  $publication = $publication == 'yes' ? 1 : 0;
+  $publication = $publication == 'Yes' ? 1 : 0;
+  $free_download = $_POST['free_download'];
+  $free_download = $free_download == 'Yes' ? 1 : 0;
   $link_data_set = $_POST['link_data_set'];
   $link_readme = $_POST['link_readme'];
   $link_github = $_POST['link_github'];
@@ -83,6 +85,7 @@ if (isset($_POST['submitMeta'])) {
     $_SESSION['irb'] = $irb;
     $_SESSION['data_dictionary'] = $data_dictionary;
     $_SESSION['publication'] = $publication;
+    $_SESSION['free_download'] = $free_download;
     $_SESSION['link_data_set'] = $link_data_set;
     $_SESSION['link_readme'] = $link_readme;
     $_SESSION['link_github'] = $link_github;
@@ -293,6 +296,20 @@ if (isset($_POST['submitMeta'])) {
                     <div>
                       <label>
                         <input type="radio" name="dataset_publication" value="No" required> No
+                      </label>
+                    </div>
+                  </div>
+
+                  <div>
+                    <p>Do you want the dataset to be downloaded freely? *</p>
+                    <div>
+                      <label>
+                        <input type="radio" name="free_download" value="Yes" required> Yes
+                      </label>
+                    </div>
+                    <div>
+                      <label>
+                        <input type="radio" name="free_download" value="No" required> No
                       </label>
                     </div>
                   </div>

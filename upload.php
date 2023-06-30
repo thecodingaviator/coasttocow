@@ -30,9 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $file_ext = pathinfo($file['name'], PATHINFO_EXTENSION);
 
     $fileMetadata = new Google_Service_Drive_DriveFile([
-      // session $unique-name
+      // session $unique_name
       'name' => $_SESSION['unique_name'] . "." . $file_ext,
-      // 'parents' => [$folder_id] // Not supported in shared drives
     ]);
 
     $content = file_get_contents($file['tmp_name']);
@@ -67,6 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $irb = $_SESSION['irb'];
     $data_dictionary = $_SESSION['data_dictionary'];
     $publication = $_SESSION['publication'];
+    $free_download = $_SESSION['free_download'];
     $link_data_set = $_SESSION['link_data_set'];
     $link_readme = $_SESSION['link_readme'];
     $link_github = $_SESSION['link_github'];
@@ -80,9 +80,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $file_id = $_SESSION['file_id'];
 
     $sql = "INSERT INTO `C3DataMasterTest` (`unique_name`, `dataset_name`, `dataset_description`, `social_science`, `natural_science_in_vivo`, `natural_science_in_vitro`,
-     `raw_dataset`, `published_dataset`, `readme`, `irb`, `data_dictionary`, `publication`, `link_data_set`, `link_readme`, `link_github`, `link_other`, `link_data_dictionary`,
+     `raw_dataset`, `published_dataset`, `readme`, `irb`, `data_dictionary`, `publication`, `free_download`, `link_data_set`, `link_readme`, `link_github`, `link_other`, `link_data_dictionary`,
       `agree_terms`, `email`, `last_name`, `first_name`, `institution`, `file_id`) VALUES (
-      ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+      ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
 
     try {
@@ -99,6 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $irb,
         $data_dictionary,
         $publication,
+        $free_download,
         $link_data_set,
         $link_readme,
         $link_github,
@@ -125,6 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       unset($_SESSION['irb']);
       unset($_SESSION['data_dictionary']);
       unset($_SESSION['publication']);
+      unset($_SESSION['free_download']);
       unset($_SESSION['link_data_set']);
       unset($_SESSION['link_readme']);
       unset($_SESSION['link_github']);
