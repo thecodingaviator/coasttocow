@@ -17,6 +17,9 @@
   table-layout: fixed;
   border-collapse: collapse;
   min-width: 100%;
+  box-sizing: content-box;
+  border: 1px solid #ccc;
+  margin-right: 1px;
 }
 .content table tr > td {
   color: #4f4f4f;
