@@ -1,39 +1,44 @@
-diff --git a/dashboard.php b/dashboard.php
-index b9e79ce..254894c 100644
---- a/dashboard.php
-+++ b/dashboard.php
-@@ -37,7 +37,7 @@ include "utils/config.php";
-                             <a href="templates.php"><i><img src="utils/icons/file_lines.svg" alt="Template Icon"></i>Templates</a>
-                         </div>
-                         <div class="dash-button">
--                            <a href="explore.php"><i><img src="utils/icons/magnifying_glass.svg" alt="Explore Icon"></i>Explore</a>
-+                            <a href="explore_dash.php"><i><img src="utils/icons/magnifying_glass.svg" alt="Explore Icon"></i>Explore</a>
-                         </div>
-                         <div class="dash-button">
-                             <a href="submit.php"><i><img src="utils/icons/paste.svg" alt="Submit Icon"></i>Submit</a>
-diff --git a/explore.php b/explore.php
-index 3f69f7f..aca1894 100644
---- a/explore.php
-+++ b/explore.php
-@@ -88,7 +88,7 @@ if (isset($_POST['submit'])) {
-                 <div class="scrollable-content">
-                     <div class="sticky-top">
-                         <div class="dashboard-top">
--                            <h1>Data Explorer</h1>
-+                            <h1>DairyOne Explorer</h1>
-                             <?php if (!empty($num_results)): ?>
-                                 <?php echo $num_results; ?>
-                             <?php endif; ?>
-diff --git a/navbar.php b/navbar.php
-index c2930a4..0cbe9aa 100644
---- a/navbar.php
-+++ b/navbar.php
-@@ -49,7 +49,7 @@ $lastName = $result['LastName'];
-     </div>
-     <ul>
-         <li><a href="templates.php">Templates</a></li>
--        <li><a href="explore.php">Explore</a></li>
-+        <li><a href="explore_dash.php">Explore</a></li>
-         <li><a href="submit.php">Submit</a></li>
-         <li><a href="https://github.com/coast-cow-consumer">GitHub</a></li>
-     </ul>
+diff --git a/changes.patch b/changes.patch
+index 5b1e792..e69de29 100644
+--- a/changes.patch
++++ b/changes.patch
+@@ -1,39 +0,0 @@
+-diff --git a/dashboard.php b/dashboard.php
+-index b9e79ce..254894c 100644
+---- a/dashboard.php
+-+++ b/dashboard.php
+-@@ -37,7 +37,7 @@ include "utils/config.php";
+-                             <a href="templates.php"><i><img src="utils/icons/file_lines.svg" alt="Template Icon"></i>Templates</a>
+-                         </div>
+-                         <div class="dash-button">
+--                            <a href="explore.php"><i><img src="utils/icons/magnifying_glass.svg" alt="Explore Icon"></i>Explore</a>
+-+                            <a href="explore_dash.php"><i><img src="utils/icons/magnifying_glass.svg" alt="Explore Icon"></i>Explore</a>
+-                         </div>
+-                         <div class="dash-button">
+-                             <a href="submit.php"><i><img src="utils/icons/paste.svg" alt="Submit Icon"></i>Submit</a>
+-diff --git a/explore.php b/explore.php
+-index 3f69f7f..aca1894 100644
+---- a/explore.php
+-+++ b/explore.php
+-@@ -88,7 +88,7 @@ if (isset($_POST['submit'])) {
+-                 <div class="scrollable-content">
+-                     <div class="sticky-top">
+-                         <div class="dashboard-top">
+--                            <h1>Data Explorer</h1>
+-+                            <h1>DairyOne Explorer</h1>
+-                             <?php if (!empty($num_results)): ?>
+-                                 <?php echo $num_results; ?>
+-                             <?php endif; ?>
+-diff --git a/navbar.php b/navbar.php
+-index c2930a4..0cbe9aa 100644
+---- a/navbar.php
+-+++ b/navbar.php
+-@@ -49,7 +49,7 @@ $lastName = $result['LastName'];
+-     </div>
+-     <ul>
+-         <li><a href="templates.php">Templates</a></li>
+--        <li><a href="explore.php">Explore</a></li>
+-+        <li><a href="explore_dash.php">Explore</a></li>
+-         <li><a href="submit.php">Submit</a></li>
+-         <li><a href="https://github.com/coast-cow-consumer">GitHub</a></li>
+-     </ul>

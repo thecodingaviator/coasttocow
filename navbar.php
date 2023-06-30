@@ -43,7 +43,7 @@ $lastName = $result['LastName'];
     <div class="logo-div">
         <h1>
             <a href="dashboard.php">
-            Coast to Cow
+                <span class="logo">C<span>³</span></span>
             </a>
         </h1>
     </div>
