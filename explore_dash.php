@@ -9,10 +9,10 @@ include "utils/config.php";
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>C3 | Dashboard</title>
+    <title>C3 | Explore</title>
 
     <link rel="stylesheet" href="utils/css/dashboard-common.css">
-    <link rel="stylesheet" href="utils/css/dashboard.css">
+    <link rel="stylesheet" href="utils/css/explore_dash.css">
 </head>
 
 <body>
@@ -31,19 +31,13 @@ include "utils/config.php";
         <div class="content-wrapper">
             <div class="content">
                 <div class="scrollable-content">
-                    <h1>Dashboard</h1>
-                    <div class="button-grid-4">
+                    <h1>Explore</h1>
+                    <div class="button-grid-2">
                         <div class="dash-button">
-                            <a href="templates.php"><i><img src="utils/icons/file_lines.svg" alt="Template Icon"></i>Templates</a>
+                            <a href="explore.php"><i><img src="utils/icons/dairyOne_logo.png" alt="DairyOne Icon"></i>Explore DairyOne Data</a>
                         </div>
                         <div class="dash-button">
-                            <a href="explore_dash.php"><i><img src="utils/icons/magnifying_glass.svg" alt="Explore Icon"></i>Explore</a>
-                        </div>
-                        <div class="dash-button">
-                            <a href="submit.php"><i><img src="utils/icons/paste.svg" alt="Submit Icon"></i>Submit</a>
-                        </div>
-                        <div class="dash-button">
-                            <a href="modify.php"><i><img src="utils/icons/gear.svg" alt="Gear Icon"></i>Edit Profile</a>
+                            <a href="other_data.php"><i><img src="utils/icons/magnifying_glass.svg " alt="Explore Icon"></i>Placeholder</a>
                         </div>
                     </div>
                 </div>
