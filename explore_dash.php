@@ -54,7 +54,7 @@ $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                     <div class="chart-container">
                         <header>
-                            <h2>Average AsFed and DM by Component Type From AnalysisTMR</h2>
+                            <h2>Average DairyOne AsFed and DM by Component Type From AnalysisTMR</h2>
                         </header>
                         <canvas id="myChart"></canvas>
                     </div>
