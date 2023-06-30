@@ -12,7 +12,7 @@ $client->setScopes(['https://www.googleapis.com/auth/drive.file']);
 
 $service = new Google_Service_Drive($client);
 
-if($_SERVER['REQUEST_METHOD'] == 'POST') {
+if($_SERVER['REQUEST_METHOD'] === 'POST') {
   if(isset($_FILES['file_input']) && $_FILES['file_input']['error'] == 0) {
     $file = $_FILES['file_input'];
     $folder_selection = $_POST['folder_selection'];
@@ -50,5 +50,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Store file ID in session variable
     $_SESSION['file_id'] = $movedFile->id;
   }
+}
+else{
+  echo "No file uploaded";
 }
 ?>
