@@ -75,4 +75,15 @@ input[type=submit], button[type=button] {
 }
 input[type=submit]:hover, button[type=button]:hover {
   background-color: var(--global-green-hover) !important;
+}
+
+.error-div {
+  background-color: #ffe0e0;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+#error-message {
+  color: #ff0000;
+  font-weight: bold;
 }/*# sourceMappingURL=dashboard-common.css.map */

@@ -16,7 +16,6 @@ $service = new Google_Service_Drive($client);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if (isset($_FILES['file_input']) && $_FILES['file_input']['error'] == 0) {
-    
     $file = $_FILES['file_input'];
     $folder_selection = $_POST['folder_selection'];
     echo "Selected folder: " . $folder_selection . "<br>";
@@ -51,8 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       'addParents' => $folder_id,
       'supportsAllDrives' => true // Required for shared drives
     ]);
-
-    $error = 'You can see the file at <a href="https://drive.google.com/file/d/' . $movedFile->id . '/view?usp=sharing">https://drive.google.com/file/d/' . $movedFile->id . '/view?usp=sharing</a>';
 
     // Store file ID in session variable
     $_SESSION['file_id'] = $movedFile->id;
@@ -114,6 +111,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $institution,
         $file_id
       ]);
+
+      // Delete session variables except for user id
+      unset($_SESSION['unique_name']);
+      unset($_SESSION['dataset_name']);
+      unset($_SESSION['dataset_description']);
+      unset($_SESSION['social_science']);
+      unset($_SESSION['natural_science_in_vivo']);
+      unset($_SESSION['natural_science_in_vitro']);
+      unset($_SESSION['raw_dataset']);
+      unset($_SESSION['published_dataset']);
+      unset($_SESSION['readme']);
+      unset($_SESSION['irb']);
+      unset($_SESSION['data_dictionary']);
+      unset($_SESSION['publication']);
+      unset($_SESSION['link_data_set']);
+      unset($_SESSION['link_readme']);
+      unset($_SESSION['link_github']);
+      unset($_SESSION['link_other']);
+      unset($_SESSION['link_data_dictionary']);
+
+      // Redirect to success page
+      header("Location: submit.php");
+
     } catch (PDOException $e) {
       $error = "Error submitting dataset. Please try again.";
       $error = $e->getMessage();
