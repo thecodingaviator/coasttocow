@@ -1,6 +1,7 @@
 <?php include "utils/config.php";
 
 session_start();
+$_SESSION['session_name'] = session_name();
 
 $error = "";
 $metaSubmitted = false;
@@ -52,7 +53,6 @@ if (isset($_POST['submitMeta'])) {
   $link_data_dictionary = $_POST['link_data_dictionary'];
   $agree_terms = $_POST['agree_terms'];
   $agree_terms = $agree_terms == 'on' ? 'Accepted' : 'Not Accepted';
-  $file_id = $_SESSION['file_id'];
 
   // create unique name for dataset based on dataset name
   $unique_name = preg_replace('/[^A-Za-z0-9\-]/', '', $dataset_name);
@@ -93,7 +93,8 @@ if (isset($_POST['submitMeta'])) {
     $_SESSION['last_name'] = $last_name;
     $_SESSION['first_name'] = $first_name;
     $_SESSION['institution'] = $institution;
-    $_SESSION['file_id'] = $file_id;
+
+    $_SESSION['file_link'] = null;
 
     $metaSubmitted = true;
   }

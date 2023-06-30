@@ -1,10 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap");
 html, body {
-  background-color: #03183f;
+  background-color: #093545;
   --primary-white: #FFF;
   --primary-green: #20D7DF;
-  --primary-blue: #003356;
-  color: var(black);
+  color: var(--primary-white);
   font-family: "Lexend Deca", sans-serif;
   box-sizing: border-box;
   font-weight: 400 !important;

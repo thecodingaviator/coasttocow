@@ -97,7 +97,7 @@ if (isset($_POST['submit'])) {
                             <div class="search-div">
                                 <div class="div1">
                                     <select name="search_table" id="search_table" required>
-                                        <option value="C3DataMaster">DataMaster</option>
+                                        <option value="C3DataMasterTest">DataMasterTest</option>
                                         <option value="C3AnalysisGrain">AnalysisGrain</option>
                                         <option value="C3AnalysisDryAE">AnalysisDryAE</option>
                                         <option value="C3AnalysisManure">AnalysisManure</option>
