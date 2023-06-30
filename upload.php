@@ -16,6 +16,7 @@ $service = new Google_Service_Drive($client);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if (isset($_FILES['file_input']) && $_FILES['file_input']['error'] == 0) {
+    
     $file = $_FILES['file_input'];
     $folder_selection = $_POST['folder_selection'];
     echo "Selected folder: " . $folder_selection . "<br>";
@@ -26,9 +27,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // TODO: validate the folder selection and file details before using them
 
+    // Get file extension
+    $file_ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+
     $fileMetadata = new Google_Service_Drive_DriveFile([
       // session $unique-name
-      'name' => $_SESSION['unique_name'],
+      'name' => $_SESSION['unique_name'] . "." . $file_ext,
       // 'parents' => [$folder_id] // Not supported in shared drives
     ]);
 
@@ -48,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       'supportsAllDrives' => true // Required for shared drives
     ]);
 
-    echo "The file has been uploaded to Drive with ID: " . $movedFile->id;
+    $error = 'You can see the file at <a href="https://drive.google.com/file/d/' . $movedFile->id . '/view?usp=sharing">https://drive.google.com/file/d/' . $movedFile->id . '/view?usp=sharing</a>';
 
     // Store file ID in session variable
     $_SESSION['file_id'] = $movedFile->id;
@@ -113,7 +117,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } catch (PDOException $e) {
       $error = "Error submitting dataset. Please try again.";
       $error = $e->getMessage();
+      error_log($error);
     }
+  }
+  else {
+    error_log("Error uploading file: " . $_FILES['file_input']['error']);
   }
 }
 ?>
