@@ -37,7 +37,7 @@ include "utils/config.php";
                             <a href="templates.php"><i><img src="utils/icons/file_lines.svg" alt="Template Icon"></i>Templates</a>
                         </div>
                         <div class="dash-button">
-                            <a href="explore.php"><i><img src="utils/icons/magnifying_glass.svg" alt="Explore Icon"></i>Explore</a>
+                            <a href="explore_dash.php"><i><img src="utils/icons/magnifying_glass.svg" alt="Explore Icon"></i>Explore</a>
                         </div>
                         <div class="dash-button">
                             <a href="submit.php"><i><img src="utils/icons/paste.svg" alt="Submit Icon"></i>Submit</a>

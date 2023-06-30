@@ -88,7 +88,7 @@ if (isset($_POST['submit'])) {
                 <div class="scrollable-content">
                     <div class="sticky-top">
                         <div class="dashboard-top">
-                            <h1>Data Explorer</h1>
+                            <h1>DairyOne Explorer</h1>
                             <?php if (!empty($num_results)): ?>
                                 <?php echo $num_results; ?>
                             <?php endif; ?>
