@@ -32,7 +32,9 @@ if (isset($_POST['submit'])) {
 
         // Generate table headers
         foreach ($result[0] as $columnName => $value) {
-            $tableOutput .= '<th>' . $columnName . '</th>';
+            if ($columnName !== 'file_id') { // Exclude the 'file_id' column
+                $tableOutput .= '<th>' . $columnName . '</th>';
+            }
         }
 
         $tableOutput .= '</tr>';
@@ -52,7 +54,8 @@ if (isset($_POST['submit'])) {
                     $uniqueName = $row['unique_name'];
                     $file_id = $row['file_id'];
                     $tableOutput .= '<td><a href="download.php?name=' . $file_id . '">' . $uniqueName . '</a></td>';
-                } else {
+                } elseif ($columnName !== 'file_id') {
+                    // Exclude the 'file_id' column
                     $tableOutput .= '<td>' . $value . '</td>';
                 }
             }
