@@ -2,5 +2,7 @@
 */credentials.php
 */c3-testing-*.json
 */variables.js
-
+composer.json
+composer.lock
+composer.phar
 vendor
