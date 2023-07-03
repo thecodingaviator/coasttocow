@@ -80,8 +80,8 @@ $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 {
                     label: 'Average DM',
                     data: <?php echo json_encode(array_column($data, 'AverageDM')); ?>,
-                    backgroundColor: 'rgba(192, 75, 192, 0.2)',
-                    borderColor: 'rgba(192, 75, 192, 1)',
+                    backgroundColor: 'rgba(38, 70, 156, 0.2)',
+                    borderColor: 'rgba(38, 70, 156, 1)',
                     borderWidth: 1
                 }]
             },
