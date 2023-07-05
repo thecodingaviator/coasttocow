@@ -1,8 +1,9 @@
 <?php
 include "utils/config.php";
 
-session_start();
-
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+  }
 // Check if the user is not logged in, redirect to login page
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     header("Location: index.php");
@@ -51,7 +52,7 @@ $lastName = $result['LastName'];
         <li><a href="templates.php">Templates</a></li>
         <li><a href="explore_dash.php">Explore</a></li>
         <li><a href="submit.php">Submit</a></li>
-        <li><a href="https://github.com/coast-cow-consumer">GitHub</a></li>
+        <li><a href="https://github.com/coast-cow-consumer" target="_blank" rel="noopener noreferrer">GitHub</a></li>
     </ul>
     <div class="profile-dropdown">
         <ul>

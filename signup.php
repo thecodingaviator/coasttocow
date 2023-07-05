@@ -39,6 +39,22 @@ if (isset($_POST['submit'])) {
 
     if ($result) {
       $_SESSION['logged_in'] = true;
+      $_SESSION['user_id'] = $U_Id;
+
+      // Send email with confirmation and user ID
+      $to = $email;
+      $subject = "Account Confirmation";
+      $message = "Thank you for signing up! Your user ID is: $U_Id";
+      $headers = "From: your_email@example.com"; // Replace with your own email address
+
+      // Uncomment the following line to send the email
+      if (mail($to, $subject, $message, $headers)) {
+        $_SESSION['email_sent'] = true;
+      } else {
+        $_SESSION['email_sent'] = false;
+      }
+      // Set a session variable to indicate that the email was sent
+
       header("Location: dashboard.php");
       exit();
     } else {
@@ -78,29 +94,32 @@ if (isset($_POST['submit'])) {
   <?php endif; ?>
   <form action="" method="POST" name="signup">
     <div id="signin">
-      <div class="div1">
-        <h1>Sign Up</h1>
+      <div class="heading-div">
+        <h1>Create a C3 Data Repository Account</h1>
       </div>
-      <div class="div2 input-div">
+      <div class="conditions-div">
+        <p>By creating a C3 Data Repository Account you are confirming that you are part of the C3 Project and will abide by the terms and conditions surrounding data sharing and use.</p>
+      </div>
+      <div class="div2">
         <input type="text" placeholder="First Name" name="FirstName" required>
       </div>
-      <div class="div3 input-div">
+      <div class="div3">
         <input type="text" placeholder="Last Name" name="LastName" required>
       </div>
-      <div class="div4 input-div">
+      <div class="div4">
         <input type="email" placeholder="Email" name="Email" required>
       </div>
-      <div class="div5 input-div">
+      <div class="div5">
         <input type="password" placeholder="Password" name="Password" required>
       </div>
-      <div class="div6 input-div">
+      <div class="div6">
         <input type="text" placeholder="Phone Number" name="PhoneNumber">
       </div>
-      <div class="div7 input-div">
+      <div class="div7">
         <input type="text" placeholder="Title" name="JobTitle" required>
       </div>
-      <div class="div8 input-div">
-        <select id="institution" name="institution" required>
+      <div class="div8">
+        <select id="institution" name="Institution" required>
           <option value="">Select an option</option>
           <option value="Bigelow">Bigelow</option>
           <option value="Clarkson University">Clarkson University</option>
@@ -113,7 +132,7 @@ if (isset($_POST['submit'])) {
           <option value="Wolf's Neck Center">Wolf's Neck Center</option>
         </select>
       </div>
-      <div class="div9 button-div">
+      <div class="div9">
         <input type="hidden" name="submit" value="Sign Up!">
         <button type="submit" name="submit" id="submit-button">Sign Up</button>
       </div>

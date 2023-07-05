@@ -1,5 +1,23 @@
 <?php
 include "utils/config.php";
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+  }
+
+// Check if the user is not logged in, redirect to login page
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+  header("Location: index.php");
+  exit();
+}
+
+// Check if email was sent
+$emailSent = false;
+if (isset($_SESSION['email_sent']) && $_SESSION['email_sent'] === true) {
+  $emailSent = true;
+  // Unset the session variable to avoid displaying the notification multiple times
+  unset($_SESSION['email_sent']);
+}
 ?>
 
 <!DOCTYPE html>
@@ -30,6 +48,12 @@ include "utils/config.php";
         <?php include "navbar.php"; ?>
         <div class="content-wrapper">
             <div class="content">
+                <?php if ($emailSent): ?>
+                    <div class="notification">
+                        Notice: An Email containing your UserID has been sent to your email address. 
+                        This will be your login id.
+                    </div>
+                <?php endif; ?>
                 <div class="scrollable-content">
                     <h1>Dashboard</h1>
                     <div class="button-grid-4">

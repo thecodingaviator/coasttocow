@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
         header("Location: dashboard.php");
         exit();
     } else {
-        $error = "There was an error. Please ensure all fields are filled correctly and try again";
+        $error = "Due to either a wrong user name or incorrect password we are unable to log you in. \nPlease check that all fields are filled correctly and try again. \nIf you are unable to login in please contact kara.kugelmeyer@colby.edu";
     }
 }
 ?>
@@ -61,10 +61,10 @@ if (isset($_POST['submit'])) {
     <form action="" method="POST" name="signup">
         <div id="signin">
             <div class="div1">
-                <h1>Sign In!</h1>
+                <p>Welcome to Coast to Cow Consumer Data Repository!</p>
             </div>
-            <div class="div2">
-                <p>Welcome to Coast to Cow Consumer!</p>
+            <div class="heading">
+                <h1>Sign in to Data Repository</h1>
             </div>
             <div class="div3">
                 <input type="text" placeholder="User ID" name="UserID">
