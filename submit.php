@@ -1,6 +1,9 @@
 <?php include "utils/config.php";
 
-session_start();
+
+if (session_status() === PHP_SESSION_NONE) {
+  session_start();
+}
 $_SESSION['session_name'] = session_name();
 
 $error = "";
