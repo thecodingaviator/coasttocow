@@ -337,15 +337,6 @@ To install and set up the **CoastCowConsumer Data Repository**:
 4. Set up the database and import any required schema or sample data if provided.
 5. Once the environment is properly set up, access the application by running a local server and navigating to the appropriate URL.
 
-## Contributing
-
-Contributions to the **CoastCowConsumer Data Repository** are welcome! If you'd like to contribute, please follow these steps:
-
-1. Fork the repository and create a new branch for your contribution.
-2. Make your changes and ensure that they are properly tested.
-3. Commit and push your changes to your forked repository.
-4. Submit a pull request detailing the changes you've made and any relevant information.
-
 ## License
 
 The **CoastCowConsumer Data Repository** is released under the MIT License. See the [LICENSE](LICENSE) file for more details.
