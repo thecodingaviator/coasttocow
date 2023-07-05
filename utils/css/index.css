@@ -32,11 +32,11 @@ body {
 #signin .div1 p {
   font-size: 20px;
 }
-#signin .heading {
+#signin .div2, #signin .heading {
   grid-area: 2/1/3/3;
 }
-#signin .heading h1 {
-  font-size: 15px;
+#signin .div2 p, #signin .heading p {
+  font-size: 20px;
 }
 #signin .div3 {
   grid-area: 3/1/4/3;

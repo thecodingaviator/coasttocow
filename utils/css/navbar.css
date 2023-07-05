@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Lexend+Deca&family=Poppins&display=swap");
 @import 'normalize.css';
 nav {
@@ -121,24 +122,19 @@ nav form button {
 nav form button:hover {
   color: rgb(255, 57, 57);
 }
-nav a:hover{
-  color: #2093df;
-}
 nav .logo-div {
   grid-area: logo;
 }
-nav .arrow {
-  display: inline-block;
-  transition: transform 0.5s ease-in-out;
-}/*# sourceMappingURL=navbar.css.map */
-/*make the font size bigger for both parts of logo*/
-.logo {
+nav .logo {
   color: #093545; /* Change the color of the letter 'C' */
   /*make the letter C bold*/
   font-weight: bold;
   font-size: 2em;
 }
-
-.logo span {
+nav .logo span {
   color: #2093df; /* Change the color of the superscript '³' */
 }
+nav .arrow {
+  display: inline-block;
+  transition: transform 0.5s ease-in-out;
+}/*# sourceMappingURL=navbar.css.map */
