@@ -1,17 +1,18 @@
 <?php
 include "utils/config.php";
 
+// Check if the session is not already started, start a new session
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
-  }
-
-// Check if the user is not logged in, redirect to login page
-if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-  header("Location: index.php");
-  exit();
 }
 
-// Check if email was sent
+// Check if the user is not logged in, redirect to the login page
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+  header("Location: index.php"); // Redirect the user to index.php
+  exit(); // Stop executing the rest of the code
+}
+
+// Check if an email was sent
 $emailSent = false;
 if (isset($_SESSION['email_sent']) && $_SESSION['email_sent'] === true) {
   $emailSent = true;
