@@ -71,10 +71,10 @@ if (isset($_POST['submit'])) {
     <form action="" method="POST" name="signup">
         <div id="signin">
             <div class="div1">
-                <p>Welcome to Coast to Cow Consumer Data Repository!</p>
+                <h2>Welcome to Coast to Cow Consumer Data Repository!</h2>
             </div>
-            <div class="heading">
-                <h1>Sign in to Data Repository</h1>
+            <div class="div2">
+                <h2>Sign in to C3 Data Repository</h2>
             </div>
             <div class="div3">
                 <input type="text" placeholder="User ID" name="UserID">
