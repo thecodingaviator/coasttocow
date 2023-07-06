@@ -3,7 +3,7 @@ include "utils/config.php";
 
 session_start();
 
-if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true){
+if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     header("Location: dashboard.php");
     exit();
 }
@@ -20,7 +20,7 @@ if (isset($_POST['submit'])) {
     $stmt->execute([$userID]);
     $result = $stmt->fetchColumn();
 
-    if($result == $password) {
+    if ($result == $password) {
         $_SESSION['user_id'] = $userID;
         $_SESSION['logged_in'] = true;
         header("Location: dashboard.php");
@@ -47,16 +47,17 @@ if (isset($_POST['submit'])) {
             document.forms["signup"].submit();
         }
     </script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 
 </head>
 
 <body>
     <?php if (!empty($error)): ?>
-    <div class="error-div">
-        <p id="error-message">
-            <?php echo $error; ?>
-        </p>
-    </div>
+        <div class="error-div">
+            <p id="error-message">
+                <?php echo $error; ?>
+            </p>
+        </div>
     <?php endif; ?>
     <form action="" method="POST" name="signup">
         <div id="signin">
@@ -74,7 +75,8 @@ if (isset($_POST['submit'])) {
             </div>
             <div class="div5">
                 <input type="hidden" name="submit" value="Sign In">
-                <button type="submit" name="submit" id="submit-button">Sign In</button>
+                <button type="submit" name="submit" id="submit-button" class="g-recaptcha"
+                    data-sitekey="6Ldwz_4mAAAAAKRah5m5XW6LMZJUMq4QvEbAu2kB">Sign In</button>
             </div>
             <div class="div6">
                 <a href="signup.php" rel="noopener noreferrer">Sign Up</a>

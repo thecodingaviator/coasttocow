@@ -1,5 +1,6 @@
 <?php
 // Downloads file from Google Drive using service account defined in credentials.php
+// Touching anything in this file breaks it. Do not touch. - Parth and Gordon
 
 require_once __DIR__ . '/vendor/autoload.php';
 include "utils/config.php";

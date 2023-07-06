@@ -79,6 +79,10 @@ input[type="submit"], button[type="button"] {
   }
 }
 
+input[type="text"]:read-only {
+  background-color: #f5f5f5;
+}
+
 // /* Hide the default scrollbar */
 // ::-webkit-scrollbar {
 //   width: 2px;
