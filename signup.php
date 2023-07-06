@@ -95,28 +95,29 @@ if (isset($_POST['submit'])) {
   <form action="" method="POST" name="signup">
     <div id="signin">
       <div class="heading-div">
-        <h1>Create a C3 Data Repository Account</h1>
+        <h2>Create a C3 Data Repository Account</h2>
       </div>
       <div class="conditions-div">
-        <p>By creating a C3 Data Repository Account you are confirming that you are part of the C3 Project and will abide by the terms and conditions surrounding data sharing and use.</p>
+        <p>By creating a C3 Data Repository Account you are confirming that you are part of the C3 Project and will abide by the terms and conditions surrounding data sharing and use.
+        </p>
       </div>
       <div class="div2">
-        <input type="text" placeholder="First Name" name="FirstName" required>
+        <input type="text" placeholder=" First Name" name="FirstName" required>
       </div>
       <div class="div3">
-        <input type="text" placeholder="Last Name" name="LastName" required>
+        <input type="text" placeholder=" Last Name" name="LastName" required>
       </div>
       <div class="div4">
-        <input type="email" placeholder="Email" name="Email" required>
+        <input type="email" placeholder=" Email" name="Email" required>
       </div>
       <div class="div5">
-        <input type="password" placeholder="Password" name="Password" required>
+        <input type="password" placeholder=" Password" name="Password" required>
       </div>
       <div class="div6">
-        <input type="text" placeholder="Phone Number" name="PhoneNumber">
+        <input type="text" placeholder=" Phone Number" name="PhoneNumber">
       </div>
       <div class="div7">
-        <input type="text" placeholder="Title" name="JobTitle" required>
+        <input type="text" placeholder=" Title" name="JobTitle" required>
       </div>
       <div class="div8">
         <select id="institution" name="Institution" required>
@@ -132,7 +133,7 @@ if (isset($_POST['submit'])) {
           <option value="Wolf's Neck Center">Wolf's Neck Center</option>
         </select>
       </div>
-      <div class="div9">
+      <div class="button-div">
         <input type="hidden" name="submit" value="Sign Up!">
         <button type="submit" name="submit" id="submit-button">Sign Up</button>
       </div>
