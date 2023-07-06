@@ -73,6 +73,9 @@ body {
 #signin .div5 button:hover {
   cursor: pointer;
 }
+#signin .div5 > div {
+  width: 0;
+}
 #signin .div6 {
   grid-area: 6/1/7/2;
   justify-content: left;

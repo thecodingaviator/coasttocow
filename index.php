@@ -9,6 +9,21 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
 }
 
 if (isset($_POST['submit'])) {
+    if (isset($_POST['g-recaptcha-response'])) {
+        $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
+        $recaptcha_response = $_POST['g-recaptcha-response'];
+
+        // Make and decode POST request:
+        $recaptcha = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret_key . '&response=' . $recaptcha_response);
+        $recaptcha = json_decode($recaptcha);
+
+        // Take action based on the score returned:
+        if ($recaptcha->score < 0.3) {
+            $error = "reCAPTCHA verification failed.";
+            return;
+        }
+    }
+
     $userID = $_POST['UserID'];
     $password = $_POST['Password'];
 
@@ -42,12 +57,6 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="utils/css/normalize.css">
     <link rel="stylesheet" href="utils/css/universal.css">
     <link rel="stylesheet" href="utils/css/index.css">
-    <script>
-        function submitForm() {
-            document.forms["signup"].submit();
-        }
-    </script>
-    <script src='https://www.google.com/recaptcha/api.js'></script>
 
 </head>
 
@@ -74,9 +83,9 @@ if (isset($_POST['submit'])) {
                 <input type="password" placeholder="Password" name="Password">
             </div>
             <div class="div5">
+                <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
                 <input type="hidden" name="submit" value="Sign In">
-                <button type="submit" name="submit" id="submit-button" class="g-recaptcha"
-                    data-sitekey="6Ldwz_4mAAAAAKRah5m5XW6LMZJUMq4QvEbAu2kB">Sign In</button>
+                <button type="submit" name="submit" id="submit-button">Sign In</button>
             </div>
             <div class="div6">
                 <a href="signup.php" rel="noopener noreferrer">Sign Up</a>
@@ -86,6 +95,14 @@ if (isset($_POST['submit'])) {
             </div>
         </div>
     </form>
+    <script src="https://www.google.com/recaptcha/api.js?render=6Ldwz_4mAAAAAKRah5m5XW6LMZJUMq4QvEbAu2kB"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('6Ldwz_4mAAAAAKRah5m5XW6LMZJUMq4QvEbAu2kB', { action: 'submit' }).then(function (token) {
+                document.getElementById('g-recaptcha-response').value = token;
+            });
+        });
+    </script>
 </body>
 
 </html>

@@ -86,6 +86,10 @@ body {
     button:hover {
       cursor: pointer;
     }
+
+    >div {
+      width: 0;
+    }
   }
 
   .div6 {
