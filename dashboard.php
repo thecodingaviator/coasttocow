@@ -57,20 +57,6 @@ if (isset($_SESSION['email_sent']) && $_SESSION['email_sent'] === true) {
                 <?php endif; ?>
                 <div class="scrollable-content">
                     <h1>Dashboard</h1>
-                    <div class="button-grid-4">
-                        <div class="dash-button">
-                            <a href="templates.php"><i><img src="utils/icons/file_lines.svg" alt="Template Icon"></i>Templates</a>
-                        </div>
-                        <div class="dash-button">
-                            <a href="explore_dash.php"><i><img src="utils/icons/magnifying_glass.svg" alt="Explore Icon"></i>Explore</a>
-                        </div>
-                        <div class="dash-button">
-                            <a href="submit.php"><i><img src="utils/icons/paste.svg" alt="Submit Icon"></i>Submit</a>
-                        </div>
-                        <div class="dash-button">
-                            <a href="modify.php"><i><img src="utils/icons/gear.svg" alt="Gear Icon"></i>Edit Profile</a>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

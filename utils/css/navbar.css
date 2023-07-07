@@ -3,14 +3,14 @@
 @import 'normalize.css';
 nav {
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
-  grid-template-rows: 1fr;
-  grid-template-areas: "logo menu logout";
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 1fr 0.5fr 0.5fr;
+  grid-template-areas:
+    ". logo logout"
+    "menu menu menu";
   font-family: "Poppins", sans-serif;
-  height: -moz-fit-content;
   height: fit-content;
   margin: 0 1.5vw;
-  padding: 50px 0;
   color: var(--global-black);
   box-sizing: border-box;
   background: var(--global-white);
@@ -19,23 +19,37 @@ nav {
   margin-right: 0;
   margin-bottom: 5vh;
 }
-nav div {
+
+nav .logo-div {
   grid-area: logo;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  grid-area: menu;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
 nav .profile-dropdown {
   grid-area: logout;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-  width: 100%;
   position: relative;
+  font-size: 12px;
 }
+
 nav .profile-dropdown > ul {
   height: 100%;
 }
+
 nav .profile-dropdown > ul > li {
   height: 100%;
   display: flex;
@@ -43,11 +57,14 @@ nav .profile-dropdown > ul > li {
   align-items: center;
   background-color: var(--global-white);
 }
+
 nav .profile-dropdown > ul > li > a {
   color: #08203e;
   margin: 0 5px;
   margin-left: 11px;
 }
+
+
 nav h1 {
   text-align: center;
   margin: 0;
@@ -133,6 +150,10 @@ nav .logo {
 }
 nav .logo span {
   color: #2093df; /* Change the color of the superscript '³' */
+}
+nav .repo {
+  font-weight: bold;
+  font-size: 1.3em;
 }
 nav .arrow {
   display: inline-block;
