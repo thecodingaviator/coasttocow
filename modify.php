@@ -3,67 +3,105 @@ include "utils/config.php";
 
 session_start();
 
-$error = "";
-$update_status = "";
-$email_error = "";
+if (!isset($_SESSION['user_id'])) {
+    header("Location: index.php"); // Redirect to login page if the user is not authenticated
+    exit();
+}
 
-$first_name = ""; // Initialize the variable here
+$user_id = $_SESSION['user_id'];
+$U_id = substr($user_id, 2);
 
-if (isset($_POST['submit'])) {
+$sql = "SELECT * FROM C3SignUp WHERE U_Id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->execute([$U_id]);
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$email = $result['Email'];
+$phone = $result['PhoneNumber'];
+$title = $result['JobTitle'];
+$first_name = $result['FirstName'];
+$last_name = $result['LastName'];
+$institution = $result['Institution'];
+
+
+function updateUserInfo($email, $phone, $title, $password, $conn){
   $user_id = $_SESSION['user_id'];
-  $U_Id = substr($user_id, 2);
-
-  $current_password = $_POST['CurrentPassword'];
-  $new_password = $_POST['NewPassword'];
-
-  // Hash password using SHA-256
-  $current_password = hash('sha256', $current_password);
-  $new_password = hash('sha256', $new_password);
+  $U_id = substr($user_id, 2);
 
   $sql = "SELECT UserPassword FROM C3UserNameAndPassword WHERE UserId = ?";
   $stmt = $conn->prepare($sql);
   $stmt->execute([$user_id]);
   $result = $stmt->fetchColumn();
 
-  if ($result == $current_password) {
-    // Update password
-    $sql = "UPDATE `C3UserNameAndPassword` SET `UserPassword`=?,`UIdSU`=? WHERE UserId = ?";
+  if (password_verify($password, $result)){
+    $sql = "UPDATE C3SignUp SET Email = ?, PhoneNumber = ?, JobTitle = ? WHERE U_Id = ?";
     $stmt = $conn->prepare($sql);
-    $result = $stmt->execute([$new_password, $email, $user_id]);
-
-    if ($result) {
-      $_SESSION['logged_in'] = true;
-      $update_status = "<div class='results-container'><p>Profile updated successfully</p></div>";
-    } else {
-      $update_status = "<div class='results-container'><p>Failed to update password</p></div>";
-    }
-  } else {
-    $update_status = "<div class='results-container'><p>Current password is incorrect. Try again</p></div>";
-  }
-} else {
-  $user_id = $_SESSION['user_id'];
-  $U_Id = substr($user_id, 2);
-
-  $sql = "SELECT * FROM C3SignUp WHERE U_Id = ?";
-  $stmt = $conn->prepare($sql);
-  $stmt->execute([$U_Id]);
-  $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-  if ($user) {
-    $first_name = $user['FirstName'];
-    $last_name = $user['LastName'];
-    $email = $user['Email'];
-    $phone = $user['PhoneNumber'];
-    $title = $user['JobTitle'];
-    $institution = $user['Institution'];
-  } else {
-    $error = "User data not found. Please contact the administrator if you think this is wrong.";
-  }
+    $result = $stmt->execute([$email, $phone, $title, $U_id]);
+    return $result;
+  } 
+  return false;
 }
+
+function updatePassword($current_pass, $new_pass, $conn){
+  $user_id = $_SESSION['user_id'];
+
+  $sql = "SELECT UserPassword FROM C3UserNameAndPassword WHERE UserId = ?";
+  $stmt = $conn->prepare($sql);
+  $stmt->execute([$user_id]);
+  $result = $stmt->fetchColumn();
+
+  if (password_verify($current_pass, $result)){
+    $new_pass_hash = password_hash($new_pass, PASSWORD_DEFAULT);
+    $sql = "UPDATE C3UserNameAndPassword SET UserPassword = ? WHERE UserId = ?";
+    $stmt = $conn->prepare($sql);
+    $result = $stmt->execute([$new_pass_hash, $user_id]);
+    return $result;
+  }
+  return false;
+}
+
+function main($conn){
+  $update_status_internal = "";
+  $error_internal = "";
+
+  if (isset($_POST['update_user_info'])){
+    $email = $_POST['Email'];
+    $phone = $_POST['PhoneNumber'];
+    $title = $_POST['JobTitle'];
+    $password = $_POST['CurrentPassword'];
+    $result = updateUserInfo($email, $phone, $title, $password, $conn);
+    if ($result){
+      $update_status_internal = "User info updated successfully!";
+    } else {
+      $update_status_internal = "User info update failed!";
+      $error_internal = "Error occurred updating user information. Please check password and try again!";
+    }
+  } 
+  else if (isset($_POST['update_password'])){
+    $current_pass = $_POST['CurrentPassword'];
+    $new_pass = $_POST['NewPassword'];
+    $result = updatePassword($current_pass, $new_pass, $conn);
+    if ($result){
+      $update_status_internal = "Password updated successfully!";
+    } else {
+      $update_status_internal = "Password update failed!";
+      $error_internal = "Error occurred updating password. Please check current password and try again!";
+    }
+  }
+  $out = array(
+    "update_status" => $update_status_internal,
+    "error" => $error_internal
+  );
+  return $out;
+}
+
+$output = main($conn);
+$update_status = $output['update_status'];
+$error = $output['error'];
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
