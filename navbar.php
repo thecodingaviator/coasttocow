@@ -55,6 +55,7 @@ $lastName = $result['LastName'];
         <li><a href="explore_dash.php">Explore</a></li>
         <li><a href="https://github.com/coast-cow-consumer" target="_blank" rel="noopener noreferrer">GitHub</a></li>
     </ul>
+    <div class="welcome-row">Welcome to the C3 Data Repository. This platform serves as a central hub for participants of the C3 Grant, facilitating sharing and exploration of data generated during the C3 project.</div> 
     <div class="profile-dropdown">
         <ul>
             <li>
