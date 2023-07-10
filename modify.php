@@ -4,47 +4,38 @@ include "utils/config.php";
 session_start();
 
 $error = "";
+$update_status = "";
+$email_error = "";
+
+$first_name = ""; // Initialize the variable here
 
 if (isset($_POST['submit'])) {
-  $first_name = $_POST['FirstName'];
-  $last_name = $_POST['LastName'];
-  $email = $_POST['Email'];
-  $old_password = $_POST['CurrentPassword'];
-  $new_password = $_POST['NewPassword'];
-  $phone = $_POST['PhoneNumber'];
-  $title = $_POST['JobTitle'];
-  $institution = $_POST['Institution'];
-
-  // Hash password using SHA-256
-  $old_password = hash('sha256', $old_password);
-  $new_password = hash('sha256', $new_password);
-
   $user_id = $_SESSION['user_id'];
   $U_Id = substr($user_id, 2);
+
+  $current_password = $_POST['CurrentPassword'];
+  $new_password = $_POST['NewPassword'];
+
+  // Hash password using SHA-256
+  $current_password = hash('sha256', $current_password);
+  $new_password = hash('sha256', $new_password);
 
   $sql = "SELECT UserPassword FROM C3UserNameAndPassword WHERE UserId = ?";
   $stmt = $conn->prepare($sql);
   $stmt->execute([$user_id]);
   $result = $stmt->fetchColumn();
 
-  if ($result == $old_password) {
-    $sql = "UPDATE `C3SignUp` SET `FirstName`=?,`LastName`=?,`Email`=?,`PhoneNumber`=?,`JobTitle`=?,`Institution`=? WHERE U_Id = ?";
+  if ($result == $current_password) {
+    // Update password
+    $sql = "UPDATE `C3UserNameAndPassword` SET `UserPassword`=?,`UIdSU`=? WHERE UserId = ?";
     $stmt = $conn->prepare($sql);
-    $result = $stmt->execute([$first_name, $last_name, $email, $phone, $title, $institution, $U_Id]);
+    $result = $stmt->execute([$new_password, $email, $user_id]);
 
-    if ($result && $new_password != "") {
-      $sql = "UPDATE `C3UserNameAndPassword` SET `UserPassword`=?,`UIdSU`=? WHERE UserId = ?";
-      $stmt = $conn->prepare($sql);
-      $result = $stmt->execute([$new_password, $email, $user_id]);
-
-      if ($result) {
-        $_SESSION['logged_in'] = true;
-        $update_status = "<div class='results-container'><p>Profile and password updated successfully</p></div>";
-      } else {
-        $update_status = "<div class='results-container'><p>Failed to update password. Profile edited successfully</p></div>";
-      }
-    } else {
+    if ($result) {
+      $_SESSION['logged_in'] = true;
       $update_status = "<div class='results-container'><p>Profile updated successfully</p></div>";
+    } else {
+      $update_status = "<div class='results-container'><p>Failed to update password</p></div>";
     }
   } else {
     $update_status = "<div class='results-container'><p>Current password is incorrect. Try again</p></div>";
@@ -69,9 +60,7 @@ if (isset($_POST['submit'])) {
     $error = "User data not found. Please contact the administrator if you think this is wrong.";
   }
 }
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -118,17 +107,21 @@ if (isset($_POST['submit'])) {
               <input type="email" placeholder="Email" name="Email" value="<?php echo $email; ?>" required>
             </div>
             <div class="div4">
-              <input type="text" placeholder="Phone Number" name="PhoneNumber" value="<?php echo $phone; ?>">
+              <input type="email" placeholder="Confirm Email" name="ConfirmEmail" required>
+              <?php if (!empty($email_error)): ?>
+                <div class="popup">
+                  <span class="popuptext" id="popup"><?php echo $email_error; ?></span>
+                </div>
+              <?php endif; ?>
             </div>
             <div class="div5">
-              <input type="text" placeholder="Title" name="JobTitle" value="<?php echo $title; ?>" required>
+              <input type="text" placeholder="Phone Number" name="PhoneNumber" value="<?php echo $phone; ?>">
             </div>
             <div class="div6">
-              <input type="text" placeholder="Institution" name="Institution" value="<?php echo $institution; ?>"
-                readonly required>
+              <input type="text" placeholder="Title" name="JobTitle" value="<?php echo $title; ?>" required>
             </div>
             <div class="div7">
-              <input type="password" placeholder="New Password" name="NewPassword">
+              <input type="text" placeholder="Institution" name="Institution" value="<?php echo $institution; ?>" readonly required>
             </div>
             <div class="div8">
               <input type="password" placeholder="Current Password" name="CurrentPassword" required autocomplete="email">
@@ -138,6 +131,23 @@ if (isset($_POST['submit'])) {
             </div>
           </div>
         </form>
+
+        <div class="change-password">
+          <h2>Change Password</h2>
+          <form action="" method="POST">
+            <div class="parent">
+              <div class="div8">
+                <input type="password" placeholder="Current Password" name="CurrentPassword" required>
+              </div>
+              <div class="div7">
+                <input type="password" placeholder="New Password" name="NewPassword" required>
+              </div>
+              <div class="div9">
+                <input type="submit" name="submit" value="Change Password">
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
