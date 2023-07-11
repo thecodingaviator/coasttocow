@@ -51,7 +51,7 @@ $lastName = $result['LastName'];
     </div>
     <ul class=nav-list>
         <li><a href="templates.php">Templates</a></li>
-        <li><a href="submit.php">Submit</a></li>
+        <li><a href="record-dash.php">Record</a></li>
         <li><a href="explore_dash.php">Explore</a></li>
         <li><a href="https://github.com/coast-cow-consumer" target="_blank" rel="noopener noreferrer">GitHub</a></li>
     </ul>

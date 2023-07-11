@@ -1,0 +1,71 @@
+.content > * {
+    padding-bottom: 10px;
+  }
+  
+  label {
+    color: black;
+  }
+  label[for=agree_terms] {
+    display: inline-block !important;
+    margin-bottom: 0;
+  }
+  
+  /* Style for the form */
+  #intake-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+  }
+  
+  /* Style for form fields */
+  #intake-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  #intake-form input[type=text],
+  #intake-form input[type=email],
+  #intake-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+  
+  #intake-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+    margin-bottom: 15px;
+    -moz-appearance: none;
+         appearance: none;
+    -webkit-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8"><path d="M4 5L0 0h8L4 5zM0 8h8L4 3 0 8z" fill="%23333"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 10px;
+  }
+  
+  /* Style for submit button */
+  #intake-form input[type=submit] {
+    background-color: #4285f4;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  #intake-form input[type=submit]:hover {
+    background-color: #0d8bf5;
+  }/*# sourceMappingURL=submit.css.map */
