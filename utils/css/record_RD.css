@@ -15,7 +15,7 @@ label[for=agree_terms] {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f5f5f5;
+  background-color: var(--global-back-gray);
   border-radius: 8px;
 }
 

@@ -25,7 +25,7 @@ include "utils/config.php";
         <div class="content-wrapper">
             <div class="content">
                 <div class="scrollable-content">
-                    <h2>Record</h2>
+                    <h1>Record</h1>
                     <div class="button-grid-2">
                         <div class="dash-button">
                             <a href="record_DO.php"><i><img src="utils/icons/dairyOne_logo.png" alt="DairyOne Icon"></i>DairyOne Data</a>
