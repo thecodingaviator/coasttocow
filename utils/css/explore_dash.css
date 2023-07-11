@@ -11,13 +11,13 @@
   
   .button-grid-2 .dash-button {
     width: 45%;
-    background-color: #d6d6d6;
+    background-color: var(--global-blue-gray);
     transition: background-color 0.3s ease;
     border-radius: 12px;
   }
   
   .button-grid-2 .dash-button:hover {
-    background-color: #bfbfbf;
+    background-color: var(--global-blue-gray-hover );
   }
   
   .button-grid-2 .dash-button a {

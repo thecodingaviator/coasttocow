@@ -13,7 +13,7 @@ nav {
   margin: 0 1.5vw;
   color: var(--global-black);
   box-sizing: border-box;
-  background: var(--global-white);
+  background: var(--global-light-blue);
   border-radius: 0 0 8px 8px;
   margin-left: 0;
   margin-right: 0;
@@ -58,7 +58,7 @@ nav .profile-dropdown > ul > li {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--global-white);
+  background-color: var(--global-light-blue);
 }
 
 nav .profile-dropdown > ul > li > a {
@@ -108,7 +108,7 @@ nav ul ul {
   position: absolute;
   top: calc(100% - 1px);
   left: 0;
-  background-color: var(--global-white);
+  background-color: var(--global-light-blue);
   width: 100%;
   z-index: 1;
 }
@@ -117,7 +117,7 @@ nav ul ul li {
   width: 100%;
 }
 nav ul ul li:hover {
-  background-color: #eee;
+  background-color: var(--global-light-blue);
 }
 nav ul ul li a {
   padding: 10px 10%;
@@ -146,7 +146,7 @@ nav .logo-div {
   grid-area: logo;
 }
 nav .logo {
-  color: #093545; /* Change the color of the letter 'C' */
+  color: var(--global-black); /* Change the color of the letter 'C' */
   /*make the letter C bold*/
   font-weight: bold;
   font-size: 2em;

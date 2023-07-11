@@ -58,7 +58,7 @@ body {
 }
 #signin #signin .div3 input:focus,
 #signin #signin .div4 input:focus {
-  outline: none;
+  outline: 2px solid var(--primary-black);
   border: 0;
 }
 #signin .div5 {
