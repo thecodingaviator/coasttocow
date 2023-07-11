@@ -54,8 +54,7 @@ body {
   border-radius: 5px;
   border: 0;
   font-size: 14px;
-  background-color: #224957;
-  color: var(--primary-white);
+  color: var( --primary-black);
 }
 #signin #signin .div3 input:focus,
 #signin #signin .div4 input:focus {
@@ -67,7 +66,7 @@ body {
 }
 #signin .div5 > button {
   background-color: var(--primary-green);
-  color: var(--primary-white);
+  color: var(--primary-black);
   border: none;
   border-radius: 5px;
   padding: 0.5em 1em;
