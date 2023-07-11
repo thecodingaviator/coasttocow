@@ -56,8 +56,9 @@ if (isset($_SESSION['email_sent']) && $_SESSION['email_sent'] === true) {
                     </div>
                 <?php endif; ?>
                 <div class="scrollable-content">
-                    <h1>Dashboard</h1>
+                    <h2>Dashboard</h2>
                 </div>
+                <div class="welcome-row">Welcome to the C3 Data Repository. This platform serves as a central hub for participants of the C3 Grant, facilitating sharing and exploration of data generated during the C3 project.</div> 
             </div>
         </div>
     </div>

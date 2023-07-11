@@ -5,16 +5,17 @@
   --global-blue: #228cd8;
   --global-green: #4ace73;
   --global-green-hover: #3db768;
+  --global-light-blue: #85d5f2;
 }
 
 * {
-  font-family: "Poppins";
+  font-family: Arial, Helvetica, sans-serif;
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  background-color: var(--global-white);
+  background-color: var(--global-light-blue);
 }
 
 .wrapper-background {

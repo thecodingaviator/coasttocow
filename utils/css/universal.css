@@ -1,14 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ariel&display=swap");
 html, body {
-  background-color: #56adcc;
+  background-color: #a2daeec2;
   --primary-white: #faeff0;
   --primary-green: #20D7DF;
   --primary-green-hover: #1AC7D0;
   --primary-black: #191919;
   color: var(--primary-black);
-  font-family: "Lexend Deca", sans-serif;
   box-sizing: border-box;
   font-weight: 400 !important;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 body {

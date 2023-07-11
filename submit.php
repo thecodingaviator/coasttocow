@@ -137,7 +137,7 @@ if (isset($_POST['submitMeta'])) {
     <?php include "navbar.php"; ?>
     <div class="content-wrapper">
       <div class="content">
-        <h1>Submit a Dataset</h1>
+        <h1>Submit Research Data</h1>
         <div class="dataset-submission">
           <div class="enter-data">
             <div class="dataset-submission">
@@ -248,7 +248,7 @@ if (isset($_POST['submitMeta'])) {
                   </div>
 
                   <div>
-                    <p>Readme? *</p>
+                    <p>ReadMe? *</p>
                     <div>
                       <label>
                         <input type="radio" name="readme" value="Yes" required> Yes

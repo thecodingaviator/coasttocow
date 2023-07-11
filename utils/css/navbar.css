@@ -4,12 +4,11 @@
 nav {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows: 1fr 0.9fr 0.5fr;
+  grid-template-rows: 1fr 0.9fr;
   grid-template-areas:
     ". logo logout"
-    "menu menu menu"
-    "welcome welcome welcome";
-  font-family: "Poppins", sans-serif;
+    "menu menu menu";
+  font-family: "Arial", sans-serif;
   height: fit-content;
   margin: 0 1.5vw;
   color: var(--global-black);
@@ -37,17 +36,8 @@ nav ul {
   align-items: center;
   justify-content: space-around;
 }
-
-nav .welcome-row {
-  grid-area: welcome;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: --global-white; /* Set background color */
-  padding: 10px; /* Add padding */
-  font-size: 0.9em; /* Adjust font size */
-  text-align: center; /* Center align the text */
-  color: var(--global-black); /* Set text color */
+nav .nav-list > li > a{
+  font-size: 1.2em;
 }
 
 nav .profile-dropdown {
