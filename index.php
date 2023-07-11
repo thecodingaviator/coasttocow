@@ -17,10 +17,12 @@ if (isset($_POST['submit'])) {
         $recaptcha = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret_key . '&response=' . $recaptcha_response);
         $recaptcha = json_decode($recaptcha);
 
-        // Take action based on the score returned:
-        if ($recaptcha->score < 0.3) {
-            $error = "reCAPTCHA verification failed.";
-            return;
+        // if reCAPTCHA has a proerty score
+        if ($recaptcha->score >= 0.5) {
+            // Verified - send email
+        } else {
+            // Not verified - show form error
+            $error = "Due to either a wrong user name or incorrect password we are unable to log you in. \nPlease check that all fields are filled correctly and try again. \nIf you are unable to login in please contact";
         }
     }
 

@@ -94,6 +94,14 @@ if (isset($_POST['submit'])) {
         <p> </p>
     </div>
     <div class="wrapper">
+        <div id="downloadModal" class="modal">
+            <div class="modal-content">
+                <p>In downloading this data I agree to the terms.....</p>
+                <button id="confirmDownload">Confirm Download</button>
+                <button id="cancelDownload">Exit</button>
+            </div>
+        </div>
+
         <?php include "navbar.php"; ?>
         <div class="content-wrapper">
             <div class="content">
@@ -249,6 +257,12 @@ if (isset($_POST['submit'])) {
         });
 
         document.getElementById("download-csv").addEventListener("click", function () {
+            // Show the modal
+            document.getElementById('downloadModal').style.display = "block";
+        });
+
+        // Confirm Download button event
+        document.getElementById("confirmDownload").addEventListener("click", function () {
             var form = document.createElement("form");
             form.method = "POST";
             form.action = "utils/export_csv.php";
@@ -266,6 +280,15 @@ if (isset($_POST['submit'])) {
 
             document.body.appendChild(form);
             form.submit();
+
+            // Hide the modal
+            document.getElementById('downloadModal').style.display = "none";
+        });
+
+        // Cancel Download button event
+        document.getElementById("cancelDownload").addEventListener("click", function () {
+            // Hide the modal
+            document.getElementById('downloadModal').style.display = "none";
         });
 
     </script>
