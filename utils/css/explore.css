@@ -144,4 +144,27 @@
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
+  position: relative;
+}
+
+.modal-content button {
+  border-radius: 0;
+  border: 0;
+  color: var(--global-white);
+  background-color: var(--global-green);
+  cursor: pointer;
+}
+
+.modal-content #exitModal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 18px;
+  background-color: transparent;
+  color: #000;
+  cursor: pointer;
+}
+
+.modal-content #exitModal:hover {
+  color: red;
 }

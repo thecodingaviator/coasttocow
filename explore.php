@@ -98,7 +98,7 @@ if (isset($_POST['submit'])) {
             <div class="modal-content">
                 <p>In downloading this data I agree to the terms.....</p>
                 <button id="confirmDownload">Confirm Download</button>
-                <button id="cancelDownload">Exit</button>
+                <button id="exitModal">X</button>
             </div>
         </div>
 
@@ -286,7 +286,7 @@ if (isset($_POST['submit'])) {
         });
 
         // Cancel Download button event
-        document.getElementById("cancelDownload").addEventListener("click", function () {
+        document.getElementById("exitModal").addEventListener("click", function () {
             // Hide the modal
             document.getElementById('downloadModal').style.display = "none";
         });
