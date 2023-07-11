@@ -51,11 +51,6 @@ if (isset($_POST['submitMeta'])) {
   $publication = $publication == 'Yes' ? 1 : 0;
   $free_download = $_POST['free_download'];
   $free_download = $free_download == 'Yes' ? 1 : 0;
-  $link_data_set = $_POST['link_data_set'];
-  $link_readme = $_POST['link_readme'];
-  $link_github = $_POST['link_github'];
-  $link_other = $_POST['link_other'];
-  $link_data_dictionary = $_POST['link_data_dictionary'];
   $agree_terms = $_POST['agree_terms'];
   $agree_terms = $agree_terms == 'on' ? 'Accepted' : 'Not Accepted';
 
@@ -89,11 +84,6 @@ if (isset($_POST['submitMeta'])) {
     $_SESSION['data_dictionary'] = $data_dictionary;
     $_SESSION['publication'] = $publication;
     $_SESSION['free_download'] = $free_download;
-    $_SESSION['link_data_set'] = $link_data_set;
-    $_SESSION['link_readme'] = $link_readme;
-    $_SESSION['link_github'] = $link_github;
-    $_SESSION['link_other'] = $link_other;
-    $_SESSION['link_data_dictionary'] = $link_data_dictionary;
     $_SESSION['agree_terms'] = $agree_terms;
     $_SESSION['email'] = $email;
     $_SESSION['last_name'] = $last_name;
@@ -116,10 +106,10 @@ if (isset($_POST['submitMeta'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Cross-Origin-Opener-Policy" content="unsafe-none">
   <meta http-equiv="Cross-Origin-Embedder-Policy" content="unsafe-none">
-  <title>C3 | Submit</title>
+  <title>C3 | Record</title>
 
   <link rel="stylesheet" href="utils/css/dashboard-common.css">
-  <link rel="stylesheet" href="utils/css/submit.css">
+  <link rel="stylesheet" href="utils/css/record_RD.css">
 </head>
 
 <body>
@@ -137,7 +127,7 @@ if (isset($_POST['submitMeta'])) {
     <?php include "navbar.php"; ?>
     <div class="content-wrapper">
       <div class="content">
-        <h1>Submit a Dataset</h1>
+        <h1>Record Research Data</h1>
         <div class="dataset-submission">
           <div class="enter-data">
             <div class="dataset-submission">
@@ -248,7 +238,7 @@ if (isset($_POST['submitMeta'])) {
                   </div>
 
                   <div>
-                    <p>Readme? *</p>
+                    <p>ReadMe? *</p>
                     <div>
                       <label>
                         <input type="radio" name="readme" value="Yes" required> Yes
@@ -304,33 +294,18 @@ if (isset($_POST['submitMeta'])) {
                   </div>
 
                   <div>
-                    <p>Do you want the dataset to be downloaded freely? *</p>
+                    <p>Do you want to make a submit your data to the database, or make a record of your data? *</p>
                     <div>
                       <label>
-                        <input type="radio" name="free_download" value="Yes" required> Yes
+                        <input type="radio" name="free_download" value="Yes" required> Submit (Free Download to C3 Contributors)
                       </label>
                     </div>
                     <div>
                       <label>
-                        <input type="radio" name="free_download" value="No" required> No
+                        <input type="radio" name="free_download" value="No" required> Record (Contributors must contact you to access data)
                       </label>
                     </div>
                   </div>
-
-                  <label for="link_data_set">Link to Data Set</label>
-                  <input type="text" id="link_data_set" name="link_data_set">
-
-                  <label for="link_readme">Link to README</label>
-                  <input type="text" id="link_readme" name="link_readme">
-
-                  <label for="link_github">Link to GitHub</label>
-                  <input type="text" id="link_github" name="link_github">
-
-                  <label for="link_other">Other Links</label>
-                  <input type="text" id="link_other" name="link_other">
-
-                  <label for="link_data_dictionary">Link to Data Dictionary</label>
-                  <input type="text" id="link_data_dictionary" name="link_data_dictionary">
 
                   <p>Legal Text</p>
 

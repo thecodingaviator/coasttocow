@@ -24,6 +24,18 @@
   padding: 0.5rem 1rem;
   grid-row-gap: 10px;
 }
+
+.welcome-row{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: --global-white; /* Set background color */
+  padding: 7px; /* Add padding */
+  font-size: 0.9em; /* Adjust font size */
+  text-align: center; /* Center align the text */
+  color: var(--global-black); /* Set text color */
+}
+
 .button-grid-4 .dash-button i, .button-grid-4 .dash-button img {
   width: 2rem;
   height: 2rem;
