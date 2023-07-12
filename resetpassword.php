@@ -84,10 +84,7 @@ if (isset($_POST['submit'])) {
     <form action="" method="POST" name="reset">
         <div id="signin">
             <div class="div1">
-                <h1>Reset Password</h1>
-            </div>
-            <div class="div2">
-                <p>Welcome to Coast to Cow Consumer!</p>
+                <h2> Reset Password </h2>
             </div>
             <div class="div3">
                 <input type="text" name="UserID" placeholder="User ID">
