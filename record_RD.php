@@ -93,8 +93,14 @@ if (isset($_POST['submitMeta'])) {
     $_SESSION['file_link'] = null;
 
     $metaSubmitted = true;
+    $_SESSION['update'] = "Sucessfully Recorded Metadata. an email will be sent to you to confirm this submission";
+  }
+  if (isset($_POST['free_download']) && $_POST['free_download'] == 'No') {
+    header('Location: confirmation.php');
+    exit();
   }
 }
+
 ?>
 
 <!DOCTYPE html>

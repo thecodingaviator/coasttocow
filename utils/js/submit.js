@@ -17,16 +17,3 @@ function handleFileUpload() {
     });
 }
 
-function changeTab(event, tabId) {
-  // Hide all tab content
-  var tabs = document.getElementsByClassName("tab");
-  for (var i = 0; i < tabs.length; i++) {
-    tabs[i].style.display = "none";
-  }
-
-  // Show the selected tab content
-  document.getElementById(tabId).style.display = "block";
-
-  // Prevent the default link behavior
-  event.preventDefault();
-}
