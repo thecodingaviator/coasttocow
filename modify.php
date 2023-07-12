@@ -9,56 +9,108 @@ $email_error = "";
 
 $first_name = ""; // Initialize the variable here
 
-if (isset($_POST['submit'])) {
+//get data from db about user currently logged in
+$user_id = $_SESSION['user_id'];
+$U_Id = substr($user_id, 2);
+
+//get user's current info
+$sql = "SELECT * FROM C3SignUp WHERE U_Id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->execute([$U_Id]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+if (!$user) {
+  $error = "User not found";
+} else {
+  //set local vars
+  $first_name = $user['FirstName'];
+  $last_name = $user['LastName'];
+  $email = $user['Email'];
+  $phone = $user['PhoneNumber'];
+  $title = $user['JobTitle'];
+  $institution = $user['Institution'];
+}
+
+function changeUserInfo($password, $email, $phone, $title, $conn)
+{
   $user_id = $_SESSION['user_id'];
   $U_Id = substr($user_id, 2);
 
-  $current_password = $_POST['CurrentPassword'];
-  $new_password = $_POST['NewPassword'];
-
-  // Hash password using SHA-256
-  $current_password = hash('sha256', $current_password);
-  $new_password = hash('sha256', $new_password);
-
+  //retrieve user's current pass from db
   $sql = "SELECT UserPassword FROM C3UserNameAndPassword WHERE UserId = ?";
   $stmt = $conn->prepare($sql);
   $stmt->execute([$user_id]);
   $result = $stmt->fetchColumn();
 
-  if ($result == $current_password) {
-    // Update password
-    $sql = "UPDATE `C3UserNameAndPassword` SET `UserPassword`=?,`UIdSU`=? WHERE UserId = ?";
+  //check if current pass matches user's input
+  if ($result == $password) {
+    // Update user info
+    $sql = "UPDATE `C3SignUp` SET `Email`=?,`PhoneNumber`=?,`JobTitle`=? WHERE U_Id = ?";
     $stmt = $conn->prepare($sql);
-    $result = $stmt->execute([$new_password, $email, $user_id]);
+    $result = $stmt->execute([$email, $phone, $title, $U_Id]);
 
     if ($result) {
       $_SESSION['logged_in'] = true;
+      global $update_status;
       $update_status = "<div class='results-container'><p>Profile updated successfully</p></div>";
     } else {
+      global $update_status;
+      $update_status = "<div class='results-container'><p>Failed to update profile, please contact admin.</p></div>";
+    }
+  } else {
+    global $update_status;
+    $update_status = "<div class='results-container'><p>Current password is incorrect. Try again</p></div>";
+  }
+}
+
+function updatePassword($current_password, $new_password, $conn)
+{
+  //retrieve user info
+  $user_id = $_SESSION['user_id'];
+  $U_Id = substr($user_id, 2);
+  //get user's current pass
+  $sql = "SELECT UserPassword FROM C3UserNameAndPassword WHERE UserId = ?";
+  $stmt = $conn->prepare($sql);
+  $stmt->execute([$user_id]);
+  $result = $stmt->fetchColumn();
+  //check if pass matches user's input
+  if ($result == $current_password) {
+    // Update password
+    $sql = "UPDATE `C3UserNameAndPassword` SET `UserPassword`=? WHERE UserId = ?";
+    $stmt = $conn->prepare($sql);
+    $result = $stmt->execute([$new_password, $user_id]);
+
+    if ($result) {
+      $_SESSION['logged_in'] = true;
+      global $update_status;
+      $update_status = "<div class='results-container'><p>Password updated successfully</p></div>";
+    } else {
+      global $update_status;
       $update_status = "<div class='results-container'><p>Failed to update password</p></div>";
     }
   } else {
+    global $update_status;
     $update_status = "<div class='results-container'><p>Current password is incorrect. Try again</p></div>";
   }
-} else {
-  $user_id = $_SESSION['user_id'];
-  $U_Id = substr($user_id, 2);
+}
 
-  $sql = "SELECT * FROM C3SignUp WHERE U_Id = ?";
-  $stmt = $conn->prepare($sql);
-  $stmt->execute([$U_Id]);
-  $user = $stmt->fetch(PDO::FETCH_ASSOC);
+//in case where user info is updated:
+if (isset($_POST['submit'])) {
+  $password = $_POST['Password'];
+  $password = hash('sha256', $password);
+  $email = $_POST['Email'];
+  $phone = $_POST['PhoneNumber'];
+  $title = $_POST['JobTitle'];
 
-  if ($user) {
-    $first_name = $user['FirstName'];
-    $last_name = $user['LastName'];
-    $email = $user['Email'];
-    $phone = $user['PhoneNumber'];
-    $title = $user['JobTitle'];
-    $institution = $user['Institution'];
-  } else {
-    $error = "User data not found. Please contact the administrator if you think this is wrong.";
-  }
+  changeUserInfo($password, $email, $phone, $title, $conn);
+}
+if (isset($_POST['change_password'])) {
+  $current_password = $_POST['CurrentPassword'];
+  $new_password = $_POST['NewPassword'];
+  //encrypt both passwords
+  $current_password = hash('sha256', $current_password);
+  $new_password = hash('sha256', $new_password);
+
+  updatePassword($current_password, $new_password, $conn);
 }
 ?>
 <!DOCTYPE html>
@@ -124,7 +176,7 @@ if (isset($_POST['submit'])) {
               <input type="text" placeholder="Institution" name="Institution" value="<?php echo $institution; ?>" readonly required>
             </div>
             <div class="div8">
-              <input type="password" placeholder="Current Password" name="CurrentPassword" required autocomplete="email">
+              <input type="password" placeholder="Current Password" name="Password" required autocomplete="email">
             </div>
             <div class="div9">
               <input type="submit" name="submit" value="Edit Profile">
@@ -143,7 +195,7 @@ if (isset($_POST['submit'])) {
                 <input type="password" placeholder="New Password" name="NewPassword" required>
               </div>
               <div class="div9">
-                <input type="submit" name="submit" value="Change Password">
+                <input type="submit" name="change_password" value="Change Password">
               </div>
             </div>
           </form>
