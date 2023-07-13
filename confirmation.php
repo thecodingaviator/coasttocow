@@ -5,16 +5,9 @@ include "utils/config.php";
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-
-// Check if the user is not logged in, redirect to the login page
-if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-  header("Location: index.php"); // Redirect the user to index.php
-  exit(); // Stop executing the rest of the code
-}
-
 // Check if an email was sent
 $emailSent = false;
-if (isset($_SESSION['update']) && $_SESSION['email_sent'] === true) {
+if (isset($_SESSION['email_sent']) && $_SESSION['email_sent'] == true) {
   $emailSent = true;
   // Unset the session variable to avoid displaying the notification multiple times
   unset($_SESSION['email_sent']);
@@ -28,20 +21,13 @@ if (isset($_SESSION['update']) && $_SESSION['email_sent'] === true) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>C3 | Dashboard</title>
+    <title>C3 | Confirmation</title>
 
     <link rel="stylesheet" href="utils/css/dashboard-common.css">
     <link rel="stylesheet" href="utils/css/dashboard.css">
 </head>
 
 <body>
-    <?php if (!empty($error)): ?>
-        <div class="error-div">
-            <p id="error-message">
-                <?php echo $error; ?>
-            </p>
-        </div>
-    <?php endif; ?>
     <div class="wrapper-background">
         <p> </p>
     </div>
@@ -49,11 +35,19 @@ if (isset($_SESSION['update']) && $_SESSION['email_sent'] === true) {
         <?php include "navbar.php"; ?>
         <div class="content-wrapper">
             <div class="content">
-                <?php if ($emailSent): ?>
-                    <div class="notification">
-                        <?php echo $_SESSION['update']; ?>
-                    </div>
-                <?php endif; ?>
+                <?php // Retrieve and display the debugging messages
+                    if (isset($_SESSION['update']) && !empty($_SESSION['update'])) {
+                        echo "<h1>Confirmation:</h1>";
+                        foreach ($_SESSION['update'] as $message) {
+                            echo "<p>$message</p>";
+                        }
+
+                        // Clear the debug_messages array if needed
+                        // unset($_SESSION['debug_messages']);
+                    } else {
+                        echo "<p>No debugging messages found.</p>";
+                    }
+                ?>
             </div>
         </div>
     </div>
