@@ -26,7 +26,6 @@ if (isset($_POST['submit'])) {
     $num_results = "<div class='results-container'><p>" . count($result) . " result(s) found</p></div>";
 
     if ($result) {
-        // Store the data as an array of associative arrays
         $data = $result;
     }
 }
@@ -112,7 +111,7 @@ if (isset($_POST['submit'])) {
                                         required>
                                 </div>
                                 <div class="div8">
-                                    <input type="submit" name="submit" value="Search">
+                                    <input type="submit" name="submit" id="submit-button" value="Search">
                                 </div>
                                 <div class="div9">
                                     <button type="button" name="download" id="download-csv">Download CSV</button>
@@ -121,7 +120,7 @@ if (isset($_POST['submit'])) {
                         </form>
                     </div>
 
-                    <?php echo $tableOutput; ?>
+                    <div id="myGrid" style="height: 500px; width: 100%;" class="ag-theme-alpine"></div>
                 </div>
             </div>
         </div>
@@ -153,13 +152,86 @@ if (isset($_POST['submit'])) {
             var searchFieldSelect = document.getElementById("search_field");
             try {
                 var innerHTML = await getFields();
-                console.log(innerHTML);
                 searchFieldSelect.innerHTML = innerHTML;
             } catch (error) {
                 console.error("Error fetching fields: ", error);
             }
         }
 
+        let tableColumns = [];
+
+        function createTableColumns() {
+            var jsonData = document.getElementById("jsonData").value;
+            var jsonDataArray = JSON.parse(jsonData);
+
+            if (jsonDataArray.length === 0) {
+                return;
+            }
+
+            var firstRow = jsonDataArray[0];
+
+            for (var key in firstRow) {
+                var columnDef = {
+                    headerName: key,
+                    field: key,
+                    sortable: true,
+                    filter: true,
+                    resizable: true,
+                    flex: 1,
+                    minWidth: 150,
+                    maxWidth: 300,
+                    hide: key === "file_id",
+                };
+
+                // Check if file_id column exists and current key is unique_name
+                if ('file_id' in firstRow && key === 'unique_name') {
+                    columnDef.cellRenderer = function (params) {
+                        var fileId = params.data.file_id;
+                        var freeDownload = params.data.free_download;
+
+                        // Check if file_id exists and free_download is 1
+                        if (freeDownload == 1) {
+                            return `<a href="download.php?name=${fileId}" target="_blank" rel="noopener noreferrer">${params.value}</a>`;
+                        } else {
+                            return params.value;
+                        }
+                    };
+                }
+
+                tableColumns.push(columnDef);
+            }
+        }
+
+        function createTable() {
+            createTableColumns();
+
+            var jsonData = document.getElementById("jsonData").value;
+            var jsonDataArray = JSON.parse(jsonData);
+
+            if (jsonDataArray.length === 0) {
+                return;
+            }
+
+            var gridOptions = {
+                columnDefs: tableColumns,
+                rowData: jsonDataArray,
+                pagination: true,
+                paginationPageSize: 10,
+                rowSelection: "multiple",
+                enableBrowserTooltips: true,
+                onGridReady: function (params) {
+                    params.api.sizeColumnsToFit();
+                },
+            };
+
+            var gridDiv = document.querySelector("#myGrid");
+            new agGrid.Grid(gridDiv, gridOptions);
+        }
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            createTable();
+        });
 
         // if user clicks 7 times in 5 seconds on #search_value, make it editable
         var searchValue = document.getElementById("search_value");
