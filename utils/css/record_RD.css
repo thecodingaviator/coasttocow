@@ -10,6 +10,15 @@ label[for=agree_terms] {
   margin-bottom: 0;
 }
 
+.radio-filetype {
+  display: flex;
+  gap: 10px;
+  flex-direction: row;
+}
+.radio-filetype div {
+  margin-right: 15px;
+}
+
 /* Style for the form */
 #intake-form {
   max-width: 600px;
@@ -25,6 +34,11 @@ label[for=agree_terms] {
   margin-bottom: 8px;
   font-weight: bold;
 }
+
+.type_label {
+  margin-top: 15px;
+}
+
 
 #intake-form input[type=text],
 #intake-form input[type=email],

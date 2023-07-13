@@ -73,27 +73,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $first_name = $_SESSION['first_name'];
     $institution = $_SESSION['institution'];
     $file_id = $_SESSION['file_id'];
+    $keywords = $_SESSION['keywords'];
+    $num_files_set = $_SESSION['num_files_set'];
+    $file_ext = $_SESSION['file_ext'];
+    $link_github_repo = $_SESSION['link_github_repo'];
 
     $sql = "INSERT INTO `C3DataMasterTest` (`unique_name`, `dataset_name`, `dataset_description`, `social_science`, `natural_science_in_vivo`, `natural_science_in_vitro`,
-     `raw_dataset`, `published_dataset`, `readme`, `irb`, `data_dictionary`, `publication`, `free_download`,`agree_terms`, `email`, `last_name`, `first_name`, `institution`, `file_id`) VALUES (
-      ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+     `raw_dataset`, `published_dataset`, `readme`, `irb`, `data_dictionary`, `publication`, `free_download`,`keywords`,`num_files_set`,`file_ext`,`link_github_repo`,`agree_terms`, `email`, `last_name`, `first_name`, `institution`, `file_id`) VALUES (
+      ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
 
     try {
       $stmt->execute([
-        $unique_name,
-        $dataset_name,
-        $dataset_description,
-        $social_science,
+        $unique_name,//
+        $dataset_name,//
+        $dataset_description,//
+        $social_science,//
         $natural_science_in_vivo,
-        $natural_science_in_vitro,
-        $raw_dataset,
-        $published_dataset,
-        $readme,
-        $irb,
-        $data_dictionary,
-        $publication,
-        $free_download,
+        $natural_science_in_vitro,//
+        $raw_dataset,//
+        $published_dataset,//
+        $readme,//
+        $irb,//
+        $data_dictionary,//
+        $publication,//
+        $free_download,//
+        $keywords,
+        $num_files_set,
+        $file_ext,
+        $link_github_repo,
         $agree_terms,
         $email,
         $last_name,
@@ -116,9 +124,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       unset($_SESSION['data_dictionary']);
       unset($_SESSION['publication']);
       unset($_SESSION['free_download']);
+      unset($_SESSION['keywords']);
+      unset($_SESSION['num_files_set']);
+      unset($_SESSION['file_ext']);
+      unset($_SESSION['link_github_repo']);
 
       // Redirect to success page
-      header("Location: submit.php");
+      header("Location: confirmation.php");
 
     } catch (PDOException $e) {
       $error = "Error submitting dataset. Please try again.";
