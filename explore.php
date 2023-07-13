@@ -3,7 +3,7 @@ include "utils/config.php";
 
 $error = "";
 $num_results = "";
-$tableOutput = "";
+$data = array();
 
 if (isset($_POST['submit'])) {
     $searchValue = $_POST['search_value'];
@@ -26,45 +26,8 @@ if (isset($_POST['submit'])) {
     $num_results = "<div class='results-container'><p>" . count($result) . " result(s) found</p></div>";
 
     if ($result) {
-        $tableOutput .= '<table>';
-        $tableOutput .= '<thead>';
-        $tableOutput .= '<tr>';
-
-        // Generate table headers
-        foreach ($result[0] as $columnName => $value) {
-            if ($columnName !== 'file_id') { // Exclude the 'file_id' column
-                $tableOutput .= '<th>' . $columnName . '</th>';
-            }
-        }
-
-        $tableOutput .= '</tr>';
-        $tableOutput .= '</thead>';
-        $tableOutput .= '<tbody>';
-
-        // Check if "free_download" column exists
-        $hasFreeDownloadColumn = isset($result[0]['free_download']);
-
-        // Generate table rows
-        foreach ($result as $row) {
-            $tableOutput .= '<tr>';
-
-            // Iterate through each column
-            foreach ($row as $columnName => $value) {
-                if ($columnName === 'unique_name' && $hasFreeDownloadColumn && isset($row['free_download']) && $row['free_download'] === '1') {
-                    $uniqueName = $row['unique_name'];
-                    $file_id = $row['file_id'];
-                    $tableOutput .= '<td><a href="download.php?name=' . $file_id . '">' . $uniqueName . '</a></td>';
-                } elseif ($columnName !== 'file_id') {
-                    // Exclude the 'file_id' column
-                    $tableOutput .= '<td>' . $value . '</td>';
-                }
-            }
-
-            $tableOutput .= '</tr>';
-        }
-
-        $tableOutput .= '</tbody>';
-        $tableOutput .= '</table>';
+        // Store the data as an array of associative arrays
+        $data = $result;
     }
 }
 ?>
@@ -80,9 +43,12 @@ if (isset($_POST['submit'])) {
 
     <link rel="stylesheet" href="utils/css/dashboard-common.css">
     <link rel="stylesheet" href="utils/css/explore.css">
+    <script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
+    <script src="utils/js/ag-grid.js"></script>
 </head>
 
 <body>
+    <input type="hidden" id="jsonData" value='<?php echo json_encode($data); ?>'>
     <?php if (!empty($error)): ?>
         <div class="error-div">
             <p id="error-message">
@@ -162,22 +128,38 @@ if (isset($_POST['submit'])) {
     </div>
 
     <script>
-        function updateTable(e) {
-            var searchTable = e.value;
-            var searchFieldSelect = document.getElementById("search_field");
+        function getFields() {
+            return new Promise((resolve, reject) => {
+                var searchTable = document.getElementById("search_table").value;
 
-            // Make an AJAX request to fetch new select options
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    var options = xhr.responseText;
-                    searchFieldSelect.innerHTML = options;
-                }
-            };
+                // Make an AJAX request to fetch new select options
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            resolve(xhr.responseText);
+                        } else {
+                            reject(xhr.status);
+                        }
+                    }
+                };
 
-            xhr.open("GET", "utils/getFields.php?searchTable=" + searchTable, true);
-            xhr.send();
+                xhr.open("GET", "utils/getFields.php?searchTable=" + searchTable, true);
+                xhr.send();
+            });
         }
+
+        async function updateTable(e) {
+            var searchFieldSelect = document.getElementById("search_field");
+            try {
+                var innerHTML = await getFields();
+                console.log(innerHTML);
+                searchFieldSelect.innerHTML = innerHTML;
+            } catch (error) {
+                console.error("Error fetching fields: ", error);
+            }
+        }
+
 
         // if user clicks 7 times in 5 seconds on #search_value, make it editable
         var searchValue = document.getElementById("search_value");
