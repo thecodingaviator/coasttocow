@@ -82,6 +82,7 @@ if (isset($_POST['submit'])) {
                                 <div class="div1">
                                     <select name="search_table" id="search_table" required>
                                         <option value="C3DataMasterTest">DataMasterTest</option>
+                                        <option value="C3DataMaster">DataMaster</option>
                                         <option value="C3AnalysisGrain">AnalysisGrain</option>
                                     </select>
                                 </div>
@@ -246,6 +247,11 @@ if (isset($_POST['submit'])) {
             createTable();
         });
 
+        document.addEventListener("search_table", function () {
+            tableColumns = [];
+            createTable();
+        });
+
         // if user clicks 7 times in 5 seconds on #search_value, make it editable
         var searchValue = document.getElementById("search_value");
         var searchValueClicks = 0;
@@ -319,6 +325,7 @@ if (isset($_POST['submit'])) {
         document.getElementById("search_table").addEventListener("change", function () {
             updateTable(document.getElementById("search_table"));
         });
+
         document.addEventListener("DOMContentLoaded", function () {
             updateTable(document.getElementById("search_table"));
         });
