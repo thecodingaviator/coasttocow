@@ -43,7 +43,6 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="utils/css/dashboard-common.css">
     <link rel="stylesheet" href="utils/css/explore.css">
     <script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
-    <script src="utils/js/ag-grid.js"></script>
 </head>
 
 <body>
@@ -127,6 +126,9 @@ if (isset($_POST['submit'])) {
     </div>
 
     <script>
+        let gridOptions = {};
+        let gridApi = null;
+
         function getFields() {
             return new Promise((resolve, reject) => {
                 var searchTable = document.getElementById("search_table").value;
@@ -164,6 +166,8 @@ if (isset($_POST['submit'])) {
             var jsonData = document.getElementById("jsonData").value;
             var jsonDataArray = JSON.parse(jsonData);
 
+            console.log(jsonData);
+
             if (jsonDataArray.length === 0) {
                 return;
             }
@@ -190,7 +194,7 @@ if (isset($_POST['submit'])) {
                         var freeDownload = params.data.free_download;
 
                         // Check if file_id exists and free_download is 1
-                        if (freeDownload == 1) {
+                        if (fileId && freeDownload == 1) {
                             return `<a href="download.php?name=${fileId}" target="_blank" rel="noopener noreferrer">${params.value}</a>`;
                         } else {
                             return params.value;
@@ -208,11 +212,19 @@ if (isset($_POST['submit'])) {
             var jsonData = document.getElementById("jsonData").value;
             var jsonDataArray = JSON.parse(jsonData);
 
+            console.log(jsonDataArray);
+
             if (jsonDataArray.length === 0) {
                 return;
             }
 
-            var gridOptions = {
+            // Check if previous instance exists, if so, destroy it
+            if (gridApi !== null) {
+                gridApi.destroy();
+                tableColumns = []; // Clear the columns
+            }
+
+            gridOptions = {
                 columnDefs: tableColumns,
                 rowData: jsonDataArray,
                 pagination: true,
@@ -220,6 +232,7 @@ if (isset($_POST['submit'])) {
                 rowSelection: "multiple",
                 enableBrowserTooltips: true,
                 onGridReady: function (params) {
+                    gridApi = params.api;
                     params.api.sizeColumnsToFit();
                 },
             };
@@ -228,8 +241,8 @@ if (isset($_POST['submit'])) {
             new agGrid.Grid(gridDiv, gridOptions);
         }
 
-
         document.addEventListener("DOMContentLoaded", function () {
+            tableColumns = [];
             createTable();
         });
 
@@ -344,7 +357,6 @@ if (isset($_POST['submit'])) {
             // Hide the modal
             document.getElementById('downloadModal').style.display = "none";
         });
-
     </script>
 </body>
 
