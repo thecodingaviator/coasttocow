@@ -1,11 +1,98 @@
 <?php include "utils/config.php";
 
+function fieldsToDataMasterSQL($conn){
+  // Retrieve variables from session
+  $unique_name = $_SESSION['unique_name'];
+  $dataset_name = $_SESSION['dataset_name'];
+  $dataset_description = $_SESSION['dataset_description'];
+  $social_science = $_SESSION['social_science'];
+  $natural_science_in_vivo = $_SESSION['natural_science_in_vivo'];
+  $natural_science_in_vitro = $_SESSION['natural_science_in_vitro'];
+  $raw_dataset = $_SESSION['raw_dataset'];
+  $published_dataset = $_SESSION['published_dataset'];
+  $readme = $_SESSION['readme'];
+  $irb = $_SESSION['irb'];
+  $data_dictionary = $_SESSION['data_dictionary'];
+  $publication = $_SESSION['publication'];
+  $free_download = $_SESSION['free_download'];
+  $agree_terms = $_SESSION['agree_terms'];
+  $email = $_SESSION['email'];
+  $last_name = $_SESSION['last_name'];
+  $first_name = $_SESSION['first_name'];
+  $institution = $_SESSION['institution'];
+  $file_id = $_SESSION['file_id'];
+  $keywords = $_SESSION['keywords'];
+  $num_files_set = $_SESSION['num_files_set'];
+  $file_ext = $_SESSION['file_ext'];
+  $link_github_repo = $_SESSION['link_github_repo'];
+
+  $sql = "INSERT INTO `C3DataMasterTest` (`unique_name`, `dataset_name`, `dataset_description`, `social_science`, `natural_science_in_vivo`, `natural_science_in_vitro`,
+   `raw_dataset`, `published_dataset`, `readme`, `irb`, `data_dictionary`, `publication`, `free_download`,`keywords`,`num_files_set`,`file_ext`,`link_github_repo`,`agree_terms`, `email`, `last_name`, `first_name`, `institution`, `file_id`) VALUES (
+    ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+  $stmt = $conn->prepare($sql);
+
+  try {
+    $stmt->execute([
+      $unique_name,//
+      $dataset_name,//
+      $dataset_description,//
+      $social_science,//
+      $natural_science_in_vivo,
+      $natural_science_in_vitro,//
+      $raw_dataset,//
+      $published_dataset,//
+      $readme,//
+      $irb,//
+      $data_dictionary,//
+      $publication,//
+      $free_download,//
+      $keywords,
+      $num_files_set,
+      $file_ext,
+      $link_github_repo,
+      $agree_terms,
+      $email,
+      $last_name,
+      $first_name,
+      $institution,
+      $file_id
+    ]);
+
+    // Delete session variables except for user id
+    unset($_SESSION['unique_name']);
+    unset($_SESSION['dataset_name']);
+    unset($_SESSION['dataset_description']);
+    unset($_SESSION['social_science']);
+    unset($_SESSION['natural_science_in_vivo']);
+    unset($_SESSION['natural_science_in_vitro']);
+    unset($_SESSION['raw_dataset']);
+    unset($_SESSION['published_dataset']);
+    unset($_SESSION['readme']);
+    unset($_SESSION['irb']);
+    unset($_SESSION['data_dictionary']);
+    unset($_SESSION['publication']);
+    unset($_SESSION['free_download']);
+    unset($_SESSION['keywords']);
+    unset($_SESSION['num_files_set']);
+    unset($_SESSION['file_ext']);
+    unset($_SESSION['link_github_repo']);
+
+    // Redirect to success page
+    header("Location: confirmation.php");
+
+  } catch (PDOException $e) {
+    $error = "Error submitting dataset. Please try again.";
+    $error = $e->getMessage();
+    error_log($error);
+  }
+  return $error;
+}
 
 if (session_status() === PHP_SESSION_NONE) {
   session_start();
 }
 $_SESSION['session_name'] = session_name();
-
+$_SESSION['update'] = [];
 $error = "";
 $metaSubmitted = false;
 
@@ -53,6 +140,10 @@ if (isset($_POST['submitMeta'])) {
   $free_download = $free_download == 'Yes' ? 1 : 0;
   $agree_terms = $_POST['agree_terms'];
   $agree_terms = $agree_terms == 'on' ? 'Accepted' : 'Not Accepted';
+  $keywords = $_POST['keywords'];
+  $num_files_set = $_POST['num_files_set'];
+  $file_ext = $_POST['file_ext'];
+  $link_github_repo = $_POST['link_github_repo'];
 
   // create unique name for dataset based on dataset name
   $unique_name = preg_replace('/[^A-Za-z0-9\-]/', '', $dataset_name);
@@ -89,13 +180,20 @@ if (isset($_POST['submitMeta'])) {
     $_SESSION['last_name'] = $last_name;
     $_SESSION['first_name'] = $first_name;
     $_SESSION['institution'] = $institution;
-
+    // Save new variables as session variables
+    $_SESSION['keywords'] = $keywords;
+    $_SESSION['num_files_set'] = $num_files_set;
+    $_SESSION['file_ext'] = $file_ext;
+    $_SESSION['link_github_repo'] = $link_github_repo;
+    $_SESSION['file_id'] = null;
     $_SESSION['file_link'] = null;
 
     $metaSubmitted = true;
-    $_SESSION['update'] = "Sucessfully Recorded Metadata. an email will be sent to you to confirm this submission";
+    $error = fieldsToDataMasterSQL($conn);
+    $_SESSION['update'][] = "Sucessfully Recorded Metadata. an email will be sent to you to confirm this submission";
+    $_SESSION['update'][] = $error;
   }
-  if (isset($_POST['free_download']) && $_POST['free_download'] == 'No') {
+  if (isset($_POST['free_download']) && $_POST['free_download'] == 'No' && $metaSubmitted) {
     header('Location: confirmation.php');
     exit();
   }
@@ -172,6 +270,34 @@ if (isset($_POST['submitMeta'])) {
 
                   <label for="dataset_description">Dataset Description *</label>
                   <textarea id="dataset_description" name="dataset_description" rows="6" required></textarea>
+                  <label for="keywords">Keywords *</label>
+                  <input type="text" id="keywords" name="keywords" required>
+
+                  <label for="num_files_set">Number of Files *</label>
+                  <input type="number" id="num_files_set" name="num_files_set" min="1" required>
+                
+                  <label class = type_label>Select file extension *</label>
+                  <div class = "radio-filetype">
+                    <div>
+                      <input type="radio" id="pdf" name="file_ext" value=".pdf" required>
+                      <label for="pdf">.pdf</label>
+                    </div>
+                    <div>
+                      <input type="radio" id="csv" name="file_ext" value=".csv" required>
+                      <label for="csv">.csv</label>
+                    </div>
+                    <div>
+                      <input type="radio" id="docx" name="file_ext" value=".docx" required>
+                      <label for="docx">.docx</label>
+                    </div>
+                    <div>
+                      <input type="radio" id="xls" name="file_ext" value=".xls" required>
+                      <label for="xls">.xls</label>
+                    </div>
+                  </div>
+
+                  <label for="link_github_repo">GitHub Repository Link </label>
+                  <input type="text" id="link_github_repo" name="link_github_repo">
 
                   <div>
                     <p>Is the data classified as Social Science data? *</p>
@@ -300,10 +426,10 @@ if (isset($_POST['submitMeta'])) {
                   </div>
 
                   <div>
-                    <p>Do you want to make a submit your data to the database, or make a record of your data? *</p>
+                    <p>Do you want to make a submit your data to the database or make a record of your data? *</p>
                     <div>
                       <label>
-                        <input type="radio" name="free_download" value="Yes" required> Submit (Free Download to C3 Contributors)
+                        <input type="radio" name="free_download" value="Yes" required> Submit (Open Download to C3 Contributors)
                       </label>
                     </div>
                     <div>
