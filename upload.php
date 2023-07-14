@@ -53,84 +53,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Store file ID in session variable
     $_SESSION['file_id'] = $movedFile->id;
 
-    // Retrieve variables from session
+    // Retrieve unique name from session
     $unique_name = $_SESSION['unique_name'];
-    $dataset_name = $_SESSION['dataset_name'];
-    $dataset_description = $_SESSION['dataset_description'];
-    $social_science = $_SESSION['social_science'];
-    $natural_science_in_vivo = $_SESSION['natural_science_in_vivo'];
-    $natural_science_in_vitro = $_SESSION['natural_science_in_vitro'];
-    $raw_dataset = $_SESSION['raw_dataset'];
-    $published_dataset = $_SESSION['published_dataset'];
-    $readme = $_SESSION['readme'];
-    $irb = $_SESSION['irb'];
-    $data_dictionary = $_SESSION['data_dictionary'];
-    $publication = $_SESSION['publication'];
-    $free_download = $_SESSION['free_download'];
-    $agree_terms = $_SESSION['agree_terms'];
-    $email = $_SESSION['email'];
-    $last_name = $_SESSION['last_name'];
-    $first_name = $_SESSION['first_name'];
-    $institution = $_SESSION['institution'];
+    
+    // insert file id into database at unique name
     $file_id = $_SESSION['file_id'];
-    $keywords = $_SESSION['keywords'];
-    $num_files_set = $_SESSION['num_files_set'];
-    $file_ext = $_SESSION['file_ext'];
-    $link_github_repo = $_SESSION['link_github_repo'];
 
-    $sql = "INSERT INTO `C3DataMasterTest` (`unique_name`, `dataset_name`, `dataset_description`, `social_science`, `natural_science_in_vivo`, `natural_science_in_vitro`,
-     `raw_dataset`, `published_dataset`, `readme`, `irb`, `data_dictionary`, `publication`, `free_download`,`keywords`,`num_files_set`,`file_ext`,`link_github_repo`,`agree_terms`, `email`, `last_name`, `first_name`, `institution`, `file_id`) VALUES (
-      ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "UPDATE `C3DataMasterTest` SET `file_id`=? WHERE unique_name = ?";
     $stmt = $conn->prepare($sql);
 
     try {
-      $stmt->execute([
-        $unique_name,//
-        $dataset_name,//
-        $dataset_description,//
-        $social_science,//
-        $natural_science_in_vivo,
-        $natural_science_in_vitro,//
-        $raw_dataset,//
-        $published_dataset,//
-        $readme,//
-        $irb,//
-        $data_dictionary,//
-        $publication,//
-        $free_download,//
-        $keywords,
-        $num_files_set,
-        $file_ext,
-        $link_github_repo,
-        $agree_terms,
-        $email,
-        $last_name,
-        $first_name,
-        $institution,
-        $file_id
-      ]);
+      $stmt->execute([$file_id]);
 
       // Delete session variables except for user id
       unset($_SESSION['unique_name']);
-      unset($_SESSION['dataset_name']);
-      unset($_SESSION['dataset_description']);
-      unset($_SESSION['social_science']);
-      unset($_SESSION['natural_science_in_vivo']);
-      unset($_SESSION['natural_science_in_vitro']);
-      unset($_SESSION['raw_dataset']);
-      unset($_SESSION['published_dataset']);
-      unset($_SESSION['readme']);
-      unset($_SESSION['irb']);
-      unset($_SESSION['data_dictionary']);
-      unset($_SESSION['publication']);
-      unset($_SESSION['free_download']);
-      unset($_SESSION['keywords']);
-      unset($_SESSION['num_files_set']);
-      unset($_SESSION['file_ext']);
-      unset($_SESSION['link_github_repo']);
-
       // Redirect to success page
       header("Location: confirmation.php");
+      exit();
 
     } catch (PDOException $e) {
       $error = "Error submitting dataset. Please try again.";

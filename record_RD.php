@@ -1,30 +1,31 @@
 <?php include "utils/config.php";
 
-function fieldsToDataMasterSQL($conn){
+function fieldsToDataMasterSQL($conn, $post_data, $user_id){
+  $error = "";
   // Retrieve variables from session
-  $unique_name = $_SESSION['unique_name'];
-  $dataset_name = $_SESSION['dataset_name'];
-  $dataset_description = $_SESSION['dataset_description'];
-  $social_science = $_SESSION['social_science'];
-  $natural_science_in_vivo = $_SESSION['natural_science_in_vivo'];
-  $natural_science_in_vitro = $_SESSION['natural_science_in_vitro'];
-  $raw_dataset = $_SESSION['raw_dataset'];
-  $published_dataset = $_SESSION['published_dataset'];
-  $readme = $_SESSION['readme'];
-  $irb = $_SESSION['irb'];
-  $data_dictionary = $_SESSION['data_dictionary'];
-  $publication = $_SESSION['publication'];
-  $free_download = $_SESSION['free_download'];
-  $agree_terms = $_SESSION['agree_terms'];
-  $email = $_SESSION['email'];
-  $last_name = $_SESSION['last_name'];
-  $first_name = $_SESSION['first_name'];
-  $institution = $_SESSION['institution'];
-  $file_id = $_SESSION['file_id'];
-  $keywords = $_SESSION['keywords'];
-  $num_files_set = $_SESSION['num_files_set'];
-  $file_ext = $_SESSION['file_ext'];
-  $link_github_repo = $_SESSION['link_github_repo'];
+  $unique_name = $post_data['unique_name'];
+  $dataset_name = $post_data['dataset_name'];
+  $dataset_description = $post_data['dataset_description'];
+  $social_science = $post_data['social_science_data'];
+  $natural_science_in_vivo = $post_data['natural_science_in_vivo'];
+  $natural_science_in_vitro = $post_data['natural_science_in_vitro'];
+  $raw_dataset = $post_data['raw_dataset'];
+  $published_dataset = $post_data['published_dataset'];
+  $readme = $post_data['readme'];
+  $irb = $post_data['irb'];
+  $data_dictionary = $post_data['data_dictionary'];
+  $publication = $post_data['dataset_publication'];
+  $free_download = $post_data['free_download'];
+  $agree_terms = $post_data['agree_terms'];
+  $email = $post_data['email'];
+  $last_name = $post_data['primary_last_name'];
+  $first_name = $post_data['primary_first_name'];
+  $institution = $post_data['institution'];
+  $file_id = null;
+  $keywords = $post_data['keywords'];
+  $num_files_set = $post_data['num_files_set'];
+  $file_ext = $post_data['file_ext'];
+  $link_github_repo = $post_data['link_github_repo'];
 
   $sql = "INSERT INTO `C3DataMasterTest` (`unique_name`, `dataset_name`, `dataset_description`, `social_science`, `natural_science_in_vivo`, `natural_science_in_vitro`,
    `raw_dataset`, `published_dataset`, `readme`, `irb`, `data_dictionary`, `publication`, `free_download`,`keywords`,`num_files_set`,`file_ext`,`link_github_repo`,`agree_terms`, `email`, `last_name`, `first_name`, `institution`, `file_id`) VALUES (
@@ -58,27 +59,6 @@ function fieldsToDataMasterSQL($conn){
       $file_id
     ]);
 
-    // Delete session variables except for user id
-    unset($_SESSION['unique_name']);
-    unset($_SESSION['dataset_name']);
-    unset($_SESSION['dataset_description']);
-    unset($_SESSION['social_science']);
-    unset($_SESSION['natural_science_in_vivo']);
-    unset($_SESSION['natural_science_in_vitro']);
-    unset($_SESSION['raw_dataset']);
-    unset($_SESSION['published_dataset']);
-    unset($_SESSION['readme']);
-    unset($_SESSION['irb']);
-    unset($_SESSION['data_dictionary']);
-    unset($_SESSION['publication']);
-    unset($_SESSION['free_download']);
-    unset($_SESSION['keywords']);
-    unset($_SESSION['num_files_set']);
-    unset($_SESSION['file_ext']);
-    unset($_SESSION['link_github_repo']);
-
-    // Redirect to success page
-    header("Location: confirmation.php");
 
   } catch (PDOException $e) {
     $error = "Error submitting dataset. Please try again.";
@@ -111,48 +91,17 @@ if($user) {
 }
 
 if (isset($_POST['submitMeta'])) {
-
-  $email = $_POST['email'];
-  $last_name = $_POST['primary_last_name'];
-  $first_name = $_POST['primary_first_name'];
-  $institution = $_POST['institution'];
-  $dataset_name = $_POST['dataset_name'];
-  $dataset_description = $_POST['dataset_description'];
-  $social_science = $_POST['social_science_data'];
-  $social_science = $social_science == 'Yes' ? 1 : 0;
-  $natural_science_in_vivo = $_POST['natural_science_in_vivo'];
-  $natural_science_in_vivo = $natural_science_in_vivo == 'Yes' ? 1 : 0;
-  $natural_science_in_vitro = $_POST['natural_science_in_vitro'];
-  $natural_science_in_vitro = $natural_science_in_vitro == 'Yes' ? 1 : 0;
-  $raw_dataset = $_POST['raw_dataset'];
-  $raw_dataset = $raw_dataset == 'Yes' ? 1 : 0;
-  $published_dataset = $_POST['published_dataset'];
-  $published_dataset = $published_dataset == 'Yes' ? 1 : 0;
-  $readme = $_POST['readme'];
-  $readme = $readme == 'Yes' ? 1 : 0;
-  $irb = $_POST['irb'];
-  $irb = $irb == 'Yes' ? 1 : 0;
-  $data_dictionary = $_POST['data_dictionary'];
-  $data_dictionary = $data_dictionary == 'Yes' ? 1 : 0;
-  $publication = $_POST['dataset_publication'];
-  $publication = $publication == 'Yes' ? 1 : 0;
-  $free_download = $_POST['free_download'];
-  $free_download = $free_download == 'Yes' ? 1 : 0;
-  $agree_terms = $_POST['agree_terms'];
-  $agree_terms = $agree_terms == 'on' ? 'Accepted' : 'Not Accepted';
-  $keywords = $_POST['keywords'];
-  $num_files_set = $_POST['num_files_set'];
-  $file_ext = $_POST['file_ext'];
-  $link_github_repo = $_POST['link_github_repo'];
+  $post_data = $_POST;
 
   // create unique name for dataset based on dataset name
-  $unique_name = preg_replace('/[^A-Za-z0-9\-]/', '', $dataset_name);
+  $unique_name = preg_replace('/[^A-Za-z0-9\-]/', '', $post_data['dataset_name']);
   $unique_name = strtolower($unique_name);
   $unique_name = str_replace(' ', '-', $unique_name);
   $unique_name = $unique_name . '-' . uniqid();
 
   // save unique name as session variable
   $_SESSION['unique_name'] = $unique_name;
+  $post_data['unique_name'] = $unique_name;
 
   // check if dataset name already exists
   $sql = "SELECT * FROM C3DataMasterTest WHERE unique_name = ?";
@@ -162,38 +111,15 @@ if (isset($_POST['submitMeta'])) {
   if ($stmt->rowCount() > 0) {
     $error = "Dataset name already exists. Please try again.";
   } else {
-    // Save all variables as session variables
-    $_SESSION['dataset_name'] = $dataset_name;
-    $_SESSION['dataset_description'] = $dataset_description;
-    $_SESSION['social_science'] = $social_science;
-    $_SESSION['natural_science_in_vivo'] = $natural_science_in_vivo;
-    $_SESSION['natural_science_in_vitro'] = $natural_science_in_vitro;
-    $_SESSION['raw_dataset'] = $raw_dataset;
-    $_SESSION['published_dataset'] = $published_dataset;
-    $_SESSION['readme'] = $readme;
-    $_SESSION['irb'] = $irb;
-    $_SESSION['data_dictionary'] = $data_dictionary;
-    $_SESSION['publication'] = $publication;
-    $_SESSION['free_download'] = $free_download;
-    $_SESSION['agree_terms'] = $agree_terms;
-    $_SESSION['email'] = $email;
-    $_SESSION['last_name'] = $last_name;
-    $_SESSION['first_name'] = $first_name;
-    $_SESSION['institution'] = $institution;
-    // Save new variables as session variables
-    $_SESSION['keywords'] = $keywords;
-    $_SESSION['num_files_set'] = $num_files_set;
-    $_SESSION['file_ext'] = $file_ext;
-    $_SESSION['link_github_repo'] = $link_github_repo;
-    $_SESSION['file_id'] = null;
+
     $_SESSION['file_link'] = null;
 
     $metaSubmitted = true;
-    $error = fieldsToDataMasterSQL($conn);
+    $error = fieldsToDataMasterSQL($conn, $post_data, $user_id);
     $_SESSION['update'][] = "Sucessfully Recorded Metadata. an email will be sent to you to confirm this submission";
     $_SESSION['update'][] = $error;
   }
-  if (isset($_POST['free_download']) && $_POST['free_download'] == 'No' && $metaSubmitted) {
+  if (isset($_POST['free_download']) && $_POST['free_download'] == 0 && $metaSubmitted) {
     header('Location: confirmation.php');
     exit();
   }
@@ -303,12 +229,12 @@ if (isset($_POST['submitMeta'])) {
                     <p>Is the data classified as Social Science data? *</p>
                     <div>
                       <label>
-                        <input type="radio" name="social_science_data" value="Yes" required> Yes
+                        <input type="radio" name="social_science_data" value=1 required> Yes
                       </label>
                     </div>
                     <div>
                       <label>
-                        <input type="radio" name="social_science_data" value="No" required> No
+                        <input type="radio" name="social_science_data" value=0 required> No
                       </label>
                     </div>
                   </div>
@@ -317,12 +243,12 @@ if (isset($_POST['submitMeta'])) {
                     <p>Is the data classified as Natural Science and represents in vivo experiments? *</p>
                     <div>
                       <label>
-                        <input type="radio" name="natural_science_in_vivo" value="Yes" required> Yes
+                        <input type="radio" name="natural_science_in_vivo" value=1 required> Yes
                       </label>
                     </div>
                     <div>
                       <label>
-                        <input type="radio" name="natural_science_in_vivo" value="No" required> No
+                        <input type="radio" name="natural_science_in_vivo" value=0 required> No
                       </label>
                     </div>
                   </div>
@@ -331,12 +257,12 @@ if (isset($_POST['submitMeta'])) {
                     <p>Is the data classified as Natural Science and represents in vitro experiments? *</p>
                     <div>
                       <label>
-                        <input type="radio" name="natural_science_in_vitro" value="Yes" required> Yes
+                        <input type="radio" name="natural_science_in_vitro" value=1 required> Yes
                       </label>
                     </div>
                     <div>
                       <label>
-                        <input type="radio" name="natural_science_in_vitro" value="No" required> No
+                        <input type="radio" name="natural_science_in_vitro" value=0 required> No
                       </label>
                     </div>
                   </div>
@@ -345,12 +271,12 @@ if (isset($_POST['submitMeta'])) {
                     <p>Is this data Raw Dataset? *</p>
                     <div>
                       <label>
-                        <input type="radio" name="raw_dataset" value="Yes" required> Yes
+                        <input type="radio" name="raw_dataset" value=1 required> Yes
                       </label>
                     </div>
                     <div>
                       <label>
-                        <input type="radio" name="raw_dataset" value="No" required> No
+                        <input type="radio" name="raw_dataset" value=0 required> No
                       </label>
                     </div>
                   </div>
@@ -359,12 +285,12 @@ if (isset($_POST['submitMeta'])) {
                     <p>Published Dataset? *</p>
                     <div>
                       <label>
-                        <input type="radio" name="published_dataset" value="Yes" required> Yes
+                        <input type="radio" name="published_dataset" value=1 required> Yes
                       </label>
                     </div>
                     <div>
                       <label>
-                        <input type="radio" name="published_dataset" value="No" required> No
+                        <input type="radio" name="published_dataset" value=0 required> No
                       </label>
                     </div>
                   </div>
@@ -373,12 +299,12 @@ if (isset($_POST['submitMeta'])) {
                     <p>ReadMe? *</p>
                     <div>
                       <label>
-                        <input type="radio" name="readme" value="Yes" required> Yes
+                        <input type="radio" name="readme" value=1 required> Yes
                       </label>
                     </div>
                     <div>
                       <label>
-                        <input type="radio" name="readme" value="No" required> No
+                        <input type="radio" name="readme" value=0 required> No
                       </label>
                     </div>
                   </div>
@@ -387,12 +313,12 @@ if (isset($_POST['submitMeta'])) {
                     <p>IRB? *</p>
                     <div>
                       <label>
-                        <input type="radio" name="irb" value="Yes" required> Yes
+                        <input type="radio" name="irb" value=1 required> Yes
                       </label>
                     </div>
                     <div>
                       <label>
-                        <input type="radio" name="irb" value="No" required> No
+                        <input type="radio" name="irb" value=0 required> No
                       </label>
                     </div>
                   </div>
@@ -401,12 +327,12 @@ if (isset($_POST['submitMeta'])) {
                     <p>Data Dictionary? *</p>
                     <div>
                       <label>
-                        <input type="radio" name="data_dictionary" value="Yes" required> Yes
+                        <input type="radio" name="data_dictionary" value=1 required> Yes
                       </label>
                     </div>
                     <div>
                       <label>
-                        <input type="radio" name="data_dictionary" value="No" required> No
+                        <input type="radio" name="data_dictionary" value=0 required> No
                       </label>
                     </div>
                   </div>
@@ -415,12 +341,12 @@ if (isset($_POST['submitMeta'])) {
                     <p>Dataset related to publication? *</p>
                     <div>
                       <label>
-                        <input type="radio" name="dataset_publication" value="Yes" required> Yes
+                        <input type="radio" name="dataset_publication" value=1 required> Yes
                       </label>
                     </div>
                     <div>
                       <label>
-                        <input type="radio" name="dataset_publication" value="No" required> No
+                        <input type="radio" name="dataset_publication" value=0 required> No
                       </label>
                     </div>
                   </div>
@@ -429,12 +355,12 @@ if (isset($_POST['submitMeta'])) {
                     <p>Do you want to make a submit your data to the database or make a record of your data? *</p>
                     <div>
                       <label>
-                        <input type="radio" name="free_download" value="Yes" required> Submit (Open Download to C3 Contributors)
+                        <input type="radio" name="free_download" value=1 required> Submit (Open Download to C3 Contributors)
                       </label>
                     </div>
                     <div>
                       <label>
-                        <input type="radio" name="free_download" value="No" required> Record (Contributors must contact you to access data)
+                        <input type="radio" name="free_download" value=0 required> Record (Contributors must contact you to access data)
                       </label>
                     </div>
                   </div>
