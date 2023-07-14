@@ -9,9 +9,7 @@ function fieldsToDataMasterSQL($conn, $post_data, $user_id){
   $social_science = $post_data['social_science_data'];
   $natural_science_in_vivo = $post_data['natural_science_in_vivo'];
   $natural_science_in_vitro = $post_data['natural_science_in_vitro'];
-  $raw_dataset = $post_data['raw_dataset'];
   $published_dataset = $post_data['published_dataset'];
-  $readme = $post_data['readme'];
   $irb = $post_data['irb'];
   $data_dictionary = $post_data['data_dictionary'];
   $publication = $post_data['dataset_publication'];
@@ -24,12 +22,12 @@ function fieldsToDataMasterSQL($conn, $post_data, $user_id){
   $file_id = null;
   $keywords = $post_data['keywords'];
   $num_files_set = $post_data['num_files_set'];
-  $file_ext = $post_data['file_ext'];
   $link_github_repo = $post_data['link_github_repo'];
 
-  $sql = "INSERT INTO `C3DataMasterTest` (`unique_name`, `dataset_name`, `dataset_description`, `social_science`, `natural_science_in_vivo`, `natural_science_in_vitro`,
-   `raw_dataset`, `published_dataset`, `readme`, `irb`, `data_dictionary`, `publication`, `free_download`,`keywords`,`num_files_set`,`file_ext`,`link_github_repo`,`agree_terms`, `email`, `last_name`, `first_name`, `institution`, `file_id`) VALUES (
-    ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+  $sql = "INSERT INTO `C3DataMasterTest` (`unique_name`, `dataset_name`, `dataset_description`, `social_science`, 
+  `natural_science_in_vivo`, `natural_science_in_vitro`, `published_dataset`, `irb`, `data_dictionary`, `publication`,
+  `free_download`,`keywords`,`num_files_set`,`link_github_repo`,`agree_terms`, `email`, `last_name`, `first_name`, `institution`, `file_id`) VALUES (
+  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
   $stmt = $conn->prepare($sql);
 
   try {
@@ -40,16 +38,13 @@ function fieldsToDataMasterSQL($conn, $post_data, $user_id){
       $social_science,//
       $natural_science_in_vivo,
       $natural_science_in_vitro,//
-      $raw_dataset,//
       $published_dataset,//
-      $readme,//
       $irb,//
       $data_dictionary,//
       $publication,//
       $free_download,//
       $keywords,
       $num_files_set,
-      $file_ext,
       $link_github_repo,
       $agree_terms,
       $email,
@@ -213,27 +208,7 @@ if (isset($_SESSION['file_uploaded'])){
                   <label for="num_files_set">Number of Files *</label>
                   <input type="number" id="num_files_set" name="num_files_set" min="1" required>
                 
-                  <label class = type_label>Select file extension *</label>
-                  <div class = "radio-filetype">
-                    <div>
-                      <input type="radio" id="pdf" name="file_ext" value=".pdf" required>
-                      <label for="pdf">.pdf</label>
-                    </div>
-                    <div>
-                      <input type="radio" id="csv" name="file_ext" value=".csv" required>
-                      <label for="csv">.csv</label>
-                    </div>
-                    <div>
-                      <input type="radio" id="docx" name="file_ext" value=".docx" required>
-                      <label for="docx">.docx</label>
-                    </div>
-                    <div>
-                      <input type="radio" id="xls" name="file_ext" value=".xls" required>
-                      <label for="xls">.xls</label>
-                    </div>
-                  </div>
-
-                  <label for="link_github_repo">GitHub Repository Link </label>
+                  <label for="link_github_repo" class = "repo">GitHub Repository Link </label>
                   <input type="text" id="link_github_repo" name="link_github_repo">
 
                   <div>
@@ -279,20 +254,6 @@ if (isset($_SESSION['file_uploaded'])){
                   </div>
 
                   <div>
-                    <p>Is this data Raw Dataset? *</p>
-                    <div>
-                      <label>
-                        <input type="radio" name="raw_dataset" value=1 required> Yes
-                      </label>
-                    </div>
-                    <div>
-                      <label>
-                        <input type="radio" name="raw_dataset" value=0 required> No
-                      </label>
-                    </div>
-                  </div>
-
-                  <div>
                     <p>Published Dataset? *</p>
                     <div>
                       <label>
@@ -302,20 +263,6 @@ if (isset($_SESSION['file_uploaded'])){
                     <div>
                       <label>
                         <input type="radio" name="published_dataset" value=0 required> No
-                      </label>
-                    </div>
-                  </div>
-
-                  <div>
-                    <p>ReadMe? *</p>
-                    <div>
-                      <label>
-                        <input type="radio" name="readme" value=1 required> Yes
-                      </label>
-                    </div>
-                    <div>
-                      <label>
-                        <input type="radio" name="readme" value=0 required> No
                       </label>
                     </div>
                   </div>
@@ -366,20 +313,17 @@ if (isset($_SESSION['file_uploaded'])){
                     <p>Do you want to make a submit your data to the database or make a record of your data? *</p>
                     <div>
                       <label>
-                        <input type="radio" name="free_download" value=1 required> Submit (Open Download to C3 Contributors)
+                        <input type="radio" name="free_download" value=1 required> Submit data into the database for sharing
                       </label>
                     </div>
                     <div>
                       <label>
-                        <input type="radio" name="free_download" value=0 required> Record (Contributors must contact you to access data)
-                      </label>
+                        <input type="radio" name="free_download" value=0 required> Record metadata only, contributors must contact you to access data
                     </div>
                   </div>
-
-                  <p>Legal Text</p>
-
+                  <p>By checking this box I am confirming that I am providing a ReadMe file with my data (submit or contact)*</p>
                   <input type="checkbox" id="agree_terms" name="agree_terms" required>
-                  <label for="agree_terms">By checking the box, you are agreeing to the text above in full *</label>
+                  <label for="agree_terms">I agree</label>
 
                   <input type="submit" name="submitMeta" value="Submit">
                 </form>
