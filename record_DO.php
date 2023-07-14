@@ -119,7 +119,7 @@ if (isset($_POST['submitMeta'])) {
   <title>C3 | Submit</title>
 
   <link rel="stylesheet" href="utils/css/dashboard-common.css">
-  <link rel="stylesheet" href="utils/css/submit.css">
+  <link rel="stylesheet" href="utils/css/record_DO.css">
 </head>
 
 <body>
