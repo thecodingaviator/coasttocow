@@ -68,14 +68,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       // Delete session variables except for user id
       unset($_SESSION['unique_name']);
       unset($_SESSION['file_id']);
-      // Redirect to success page
-      header("Location: confirmation.php");
-      exit();
+      $_SESSION['file_uploaded'] = true;
 
     } catch (PDOException $e) {
       $error = "Error submitting dataset. Please try again.";
       $error = $e->getMessage();
       error_log($error, 0); // Print error to SAPI log
+      $_SESSION['file_uploaded'] = false;
       echo $error; // Print error to the developer console
     }
   }
