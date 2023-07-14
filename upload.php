@@ -1,6 +1,11 @@
 <?php
 //Uploads file to google drive using service account defined in credentials.php
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+
 session_start();
 
 require_once __DIR__ . '/vendor/autoload.php';
@@ -25,7 +30,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo "Folder ID: " . $folder_id . "<br>";
 
     // TODO: validate the folder selection and file details before using them
-
     // Get file extension
     $file_ext = pathinfo($file['name'], PATHINFO_EXTENSION);
 
@@ -33,23 +37,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       // session $unique_name
       'name' => $_SESSION['unique_name'] . "." . $file_ext,
     ]);
-
     $content = file_get_contents($file['tmp_name']);
-
+    echo "got file contents" . "<br>";
     $driveFile = $service->files->create($fileMetadata, [
       'data' => $content,
       'uploadType' => 'multipart',
       'fields' => 'id',
       'supportsAllDrives' => true // Required for shared drives
     ]);
-
     // Move the file to the shared drive
     $emptyFileMetadata = new Google_Service_Drive_DriveFile();
     $movedFile = $service->files->update($driveFile->id, $emptyFileMetadata, [
       'addParents' => $folder_id,
       'supportsAllDrives' => true // Required for shared drives
     ]);
-
+    echo "File ID: " . $movedFile->id . "<br>";
     // Store file ID in session variable
     $_SESSION['file_id'] = $movedFile->id;
 
@@ -59,14 +61,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // insert file id into database at unique name
     $file_id = $_SESSION['file_id'];
 
+    echo "File ID: " . $file_id . "<br>";
     $sql = "UPDATE `C3DataMasterTest` SET `file_id`=? WHERE unique_name = ?";
     $stmt = $conn->prepare($sql);
 
     try {
-      $stmt->execute([$file_id]);
+      $stmt->execute([$file_id, $unique_name]);
 
       // Delete session variables except for user id
       unset($_SESSION['unique_name']);
+      unset($_SESSION['file_id']);
       // Redirect to success page
       header("Location: confirmation.php");
       exit();
@@ -74,7 +78,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } catch (PDOException $e) {
       $error = "Error submitting dataset. Please try again.";
       $error = $e->getMessage();
-      error_log($error);
+      error_log($error, 0); // Print error to SAPI log
+      echo $error; // Print error to the developer console
     }
   }
   else {
