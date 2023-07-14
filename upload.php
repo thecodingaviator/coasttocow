@@ -38,7 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       'name' => $_SESSION['unique_name'] . "." . $file_ext,
     ]);
     $content = file_get_contents($file['tmp_name']);
-    echo "got file contents" . "<br>";
     $driveFile = $service->files->create($fileMetadata, [
       'data' => $content,
       'uploadType' => 'multipart',
@@ -51,7 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       'addParents' => $folder_id,
       'supportsAllDrives' => true // Required for shared drives
     ]);
-    echo "File ID: " . $movedFile->id . "<br>";
     // Store file ID in session variable
     $_SESSION['file_id'] = $movedFile->id;
 
@@ -61,7 +59,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // insert file id into database at unique name
     $file_id = $_SESSION['file_id'];
 
-    echo "File ID: " . $file_id . "<br>";
     $sql = "UPDATE `C3DataMasterTest` SET `file_id`=? WHERE unique_name = ?";
     $stmt = $conn->prepare($sql);
 
