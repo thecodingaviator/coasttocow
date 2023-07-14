@@ -126,10 +126,11 @@ if (isset($_POST['submitMeta'])) {
 }
 if (isset($_SESSION['file_uploaded'])){
   if ($_SESSION['file_uploaded'] == true) {
-    $_SESSION['file_uploaded'] = false;
+    unset($_SESSION['file_uploaded']);
     $_SESSION['update'][] = "Sucessfully Uploaded File";
   }
   else {
+    unset($_SESSION['file_uploaded']);
     $_SESSION['update'][] = "Error Uploading File, please contact administrator";
   }
   header('Location: confirmation.php');
