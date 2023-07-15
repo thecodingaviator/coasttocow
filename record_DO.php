@@ -17,7 +17,7 @@ $stmt = $conn->prepare($sql);
 $stmt->execute([$U_Id]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if($user) {
+if ($user) {
   $email = $user['Email'];
   $last_name = $user['LastName'];
   $first_name = $user['FirstName'];
@@ -142,7 +142,8 @@ if (isset($_POST['submitMeta'])) {
           <div class="enter-data">
             <div class="dataset-submission">
               <div class="upload-file">
-                <p>Please attach your DairyOne PDF here to submit it to the database. The metadata will be recorded from the file.</p>
+                <p>Please attach your DairyOne PDF here to submit it to the database. The metadata will be recorded from
+                  the file.</p>
                 <form id="upload_form" enctype="multipart/form-data">
                   <input type="file" id="file_input" name="file_input">
                   <div>

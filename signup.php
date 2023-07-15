@@ -21,7 +21,7 @@ if (isset($_POST['submit'])) {
   $password = hash('sha256', $password);
 
   $sql = "INSERT INTO `C3SignUp`(`FirstName`, `LastName`, `Email`, `PhoneNumber`, `JobTitle`, `Institution`) 
-      VALUES (?, ?, ?, ?, ?, ?)";
+    VALUES (?, ?, ?, ?, ?, ?)";
   $stmt = $conn->prepare($sql);
   $result = $stmt->execute([$first_name, $last_name, $email, $phone, $title, $institution]);
 
@@ -98,7 +98,8 @@ if (isset($_POST['submit'])) {
         <h2>Create a C3 Data Repository Account</h2>
       </div>
       <div class="conditions-div">
-        <p>By creating a C3 Data Repository Account you are confirming that you are part of the C3 Project and will abide by the terms and conditions surrounding data sharing and use.
+        <p>By creating a C3 Data Repository Account you are confirming that you are part of the C3 Project and will
+          abide by the terms and conditions surrounding data sharing and use.
         </p>
       </div>
       <div class="div2">

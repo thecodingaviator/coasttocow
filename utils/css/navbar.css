@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Lexend+Deca&family=Poppins&display=swap");
 @import 'normalize.css';
+
 nav {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
@@ -36,7 +37,8 @@ nav ul {
   align-items: center;
   justify-content: space-around;
 }
-nav .nav-list > li > a{
+
+nav .nav-list>li>a {
   font-size: 1.2em;
 }
 
@@ -49,11 +51,11 @@ nav .profile-dropdown {
   font-size: 12px;
 }
 
-nav .profile-dropdown > ul {
+nav .profile-dropdown>ul {
   height: 100%;
 }
 
-nav .profile-dropdown > ul > li {
+nav .profile-dropdown>ul>li {
   height: 100%;
   display: flex;
   justify-content: center;
@@ -61,7 +63,7 @@ nav .profile-dropdown > ul > li {
   background-color: var(--global-light-blue);
 }
 
-nav .profile-dropdown > ul > li > a {
+nav .profile-dropdown>ul>li>a {
   color: #08203e;
   margin: 0 5px;
   margin-left: 11px;
@@ -72,9 +74,11 @@ nav h1 {
   text-align: center;
   margin: 0;
 }
+
 nav h1 a {
   font-size: 1em;
 }
+
 nav ul {
   list-style: none;
   margin: 0;
@@ -85,9 +89,11 @@ nav ul {
   align-items: center;
   justify-content: space-around;
 }
+
 nav li {
   position: relative;
 }
+
 nav li:hover ul {
   display: flex;
   flex-wrap: wrap;
@@ -95,6 +101,7 @@ nav li:hover ul {
   justify-content: center;
   align-items: center;
 }
+
 nav a,
 nav button {
   text-align: center;
@@ -104,6 +111,7 @@ nav button {
   display: inline-block;
   color: var(--global-black);
 }
+
 nav ul ul {
   display: none;
   position: absolute;
@@ -113,22 +121,27 @@ nav ul ul {
   width: 100%;
   z-index: 1;
 }
+
 nav ul ul li {
   height: 100%;
   width: 100%;
 }
+
 nav ul ul li:hover {
   background-color: var(--global-light-blue);
 }
+
 nav ul ul li a {
   padding: 10px 10%;
   display: inline-block;
   font-size: medium;
 }
+
 nav form {
   width: 100%;
   height: 100%;
 }
+
 nav form button {
   border: none;
   background: none;
@@ -140,26 +153,36 @@ nav form button {
   display: inline-block;
   padding: 10px 10%;
 }
+
 nav form button:hover {
   color: rgb(255, 57, 57);
 }
+
 nav .logo-div {
   grid-area: logo;
 }
+
 nav .logo {
-  color: var(--global-black); /* Change the color of the letter 'C' */
+  color: var(--global-black);
+  /* Change the color of the letter 'C' */
   /*make the letter C bold*/
   font-weight: bold;
   font-size: 2em;
 }
+
 nav .logo span {
-  color: #2093df; /* Change the color of the superscript '³' */
+  color: #2093df;
+  /* Change the color of the superscript '³' */
 }
+
 nav .repo {
   font-weight: bold;
   font-size: 1.3em;
 }
+
 nav .arrow {
   display: inline-block;
   transition: transform 0.5s ease-in-out;
-}/*# sourceMappingURL=navbar.css.map */
+}
+
+/*# sourceMappingURL=navbar.css.map */
