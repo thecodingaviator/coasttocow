@@ -150,10 +150,12 @@ if (isset($_POST['change_password'])) {
         <form action="" method="POST">
           <div class="parent">
             <div class="div1">
-              <input type="text" placeholder="First Name" name="FirstName" value="<?php echo $first_name; ?>" readonly required>
+              <input type="text" placeholder="First Name" name="FirstName" value="<?php echo $first_name; ?>" readonly
+                required>
             </div>
             <div class="div2">
-              <input type="text" placeholder="Last Name" name="LastName" value="<?php echo $last_name; ?>" readonly required>
+              <input type="text" placeholder="Last Name" name="LastName" value="<?php echo $last_name; ?>" readonly
+                required>
             </div>
             <div class="div3">
               <input type="email" placeholder="Email" name="Email" value="<?php echo $email; ?>" required>
@@ -162,7 +164,9 @@ if (isset($_POST['change_password'])) {
               <input type="email" placeholder="Confirm Email" name="ConfirmEmail" required>
               <?php if (!empty($email_error)): ?>
                 <div class="popup">
-                  <span class="popuptext" id="popup"><?php echo $email_error; ?></span>
+                  <span class="popuptext" id="popup">
+                    <?php echo $email_error; ?>
+                  </span>
                 </div>
               <?php endif; ?>
             </div>
@@ -173,7 +177,8 @@ if (isset($_POST['change_password'])) {
               <input type="text" placeholder="Title" name="JobTitle" value="<?php echo $title; ?>" required>
             </div>
             <div class="div7">
-              <input type="text" placeholder="Institution" name="Institution" value="<?php echo $institution; ?>" readonly required>
+              <input type="text" placeholder="Institution" name="Institution" value="<?php echo $institution; ?>"
+                readonly required>
             </div>
             <div class="div8">
               <input type="password" placeholder="Current Password" name="Password" required autocomplete="email">

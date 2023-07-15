@@ -1,6 +1,7 @@
 <?php include "utils/config.php";
 
-function fieldsToDataMasterSQL($conn, $post_data, $user_id){
+function fieldsToDataMasterSQL($conn, $post_data, $user_id)
+{
   $error = "";
   // Retrieve variables from session
   $unique_name = $post_data['unique_name'];
@@ -32,17 +33,17 @@ function fieldsToDataMasterSQL($conn, $post_data, $user_id){
 
   try {
     $stmt->execute([
-      $unique_name,//
-      $dataset_name,//
-      $dataset_description,//
-      $social_science,//
+      $unique_name, //
+      $dataset_name, //
+      $dataset_description, //
+      $social_science, //
       $natural_science_in_vivo,
-      $natural_science_in_vitro,//
-      $published_dataset,//
-      $irb,//
-      $data_dictionary,//
-      $publication,//
-      $free_download,//
+      $natural_science_in_vitro, //
+      $published_dataset, //
+      $irb, //
+      $data_dictionary, //
+      $publication, //
+      $free_download, //
       $keywords,
       $num_files_set,
       $link_github_repo,
@@ -79,7 +80,7 @@ $stmt = $conn->prepare($sql);
 $stmt->execute([$U_Id]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if($user) {
+if ($user) {
   $email = $user['Email'];
   $last_name = $user['LastName'];
   $first_name = $user['FirstName'];
@@ -119,12 +120,11 @@ if (isset($_POST['submitMeta'])) {
     exit();
   }
 }
-if (isset($_SESSION['file_uploaded'])){
+if (isset($_SESSION['file_uploaded'])) {
   if ($_SESSION['file_uploaded'] == true) {
     unset($_SESSION['file_uploaded']);
     $_SESSION['update'][] = "Sucessfully Uploaded File";
-  }
-  else {
+  } else {
     unset($_SESSION['file_uploaded']);
     $_SESSION['update'][] = "Error Uploading File, please contact administrator";
   }
@@ -167,21 +167,21 @@ if (isset($_SESSION['file_uploaded'])){
         <div class="dataset-submission">
           <div class="enter-data">
             <div class="dataset-submission">
-              <div class="enter-data" style="<?php echo $metaSubmitted?'display: none;':''; ?>">
+              <div class="enter-data" style="<?php echo $metaSubmitted ? 'display: none;' : ''; ?>">
                 <form id="intake-form" action="" method="POST">
                   <h2>C3 Data Master Intake Form</h2>
                   <p><em>* Indicates required question</em></p>
 
                   <label for="email">Email *</label>
-                  <input type="email" id="email" name="email" value="<?php echo $email?>" required>
+                  <input type="email" id="email" name="email" value="<?php echo $email ?>" required>
 
                   <label for="primary_last_name">Primary Contact Last Name *</label>
-                  <input type="text" id="primary_last_name" name="primary_last_name" value="<?php echo $last_name?>"
-                  required>
+                  <input type="text" id="primary_last_name" name="primary_last_name" value="<?php echo $last_name ?>"
+                    required>
 
                   <label for="primary_first_name">Primary Contact First Name *</label>
-                  <input type="text" id="primary_first_name" name="primary_first_name" value="<?php echo $first_name?>"
-                  required>
+                  <input type="text" id="primary_first_name" name="primary_first_name" value="<?php echo $first_name ?>"
+                    required>
 
                   <label for="institution">Institution of Primary Contact *</label>
                   <select id="institution" name="institution" required>
@@ -207,8 +207,8 @@ if (isset($_SESSION['file_uploaded'])){
 
                   <label for="num_files_set">Number of Files *</label>
                   <input type="number" id="num_files_set" name="num_files_set" min="1" required>
-                
-                  <label for="link_github_repo" class = "repo">GitHub Repository Link </label>
+
+                  <label for="link_github_repo" class="repo">GitHub Repository Link </label>
                   <input type="text" id="link_github_repo" name="link_github_repo">
 
                   <div>
@@ -313,15 +313,18 @@ if (isset($_SESSION['file_uploaded'])){
                     <p>Do you want to make a submit your data to the database or make a record of your data? *</p>
                     <div>
                       <label>
-                        <input type="radio" name="free_download" value=1 required> Submit data into the database for sharing
+                        <input type="radio" name="free_download" value=1 required> Submit data into the database for
+                        sharing
                       </label>
                     </div>
                     <div>
                       <label>
-                        <input type="radio" name="free_download" value=0 required> Record metadata only, contributors must contact you to access data
+                        <input type="radio" name="free_download" value=0 required> Record metadata only, contributors
+                        must contact you to access data
                     </div>
                   </div>
-                  <p>By checking this box I am confirming that I am providing a ReadMe file with my data (submit or contact)*</p>
+                  <p>By checking this box I am confirming that I am providing a ReadMe file with my data (submit or
+                    contact)*</p>
                   <input type="checkbox" id="agree_terms" name="agree_terms" required>
                   <label for="agree_terms">I agree</label>
 
@@ -329,7 +332,7 @@ if (isset($_SESSION['file_uploaded'])){
                 </form>
               </div>
 
-              <div class="upload-file" style="<?php echo $metaSubmitted?'display: initial;':'display: none;'; ?>">
+              <div class="upload-file" style="<?php echo $metaSubmitted ? 'display: initial;' : 'display: none;'; ?>">
                 <form id="upload_form" enctype="multipart/form-data">
                   <input type="file" id="file_input" name="file_input">
                   <div>

@@ -3,7 +3,7 @@ include "utils/config.php";
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
-  }
+}
 // Check if the user is not logged in, redirect to login page
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     header("Location: index.php");
@@ -45,7 +45,7 @@ $lastName = $result['LastName'];
         <h1>
             <a href="dashboard.php">
                 <span class="logo">C<span>³</span></span>
-                <span class="repo">Data Repository</span>  <!-- New class for "Data Repository" -->
+                <span class="repo">Data Repository</span> <!-- New class for "Data Repository" -->
             </a>
         </h1>
     </div>

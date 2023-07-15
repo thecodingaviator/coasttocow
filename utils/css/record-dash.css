@@ -1,42 +1,41 @@
 .button-grid-2 {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .new-section {
-    margin-top: 25px; 
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
 }
-  
-  .button-grid-2 .dash-button {
-    width: 45%;
-    background-color: #d6d6d6;
-    transition: background-color 0.3s ease;
-    border-radius: 12px;
-  }
-  
-  .button-grid-2 .dash-button:hover {
-    background-color: #bfbfbf;
-  }
-  
-  .button-grid-2 .dash-button a {
-    text-decoration: none;
-    text-align: center;
-    color: var(--global-black);
-    display: grid;
-    grid-template-rows: 2fr 1fr;
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-    padding: 0.5rem 1rem;
-    grid-row-gap: 10px;
-  }
-  
-  .button-grid-2 .dash-button i,
-  .button-grid-2 .dash-button img {
-    width: 2rem;
-    height: 2rem;
-    margin: 0 auto;
-  }
-  
+
+.new-section {
+  margin-top: 25px;
+}
+
+.button-grid-2 .dash-button {
+  width: 45%;
+  background-color: #d6d6d6;
+  transition: background-color 0.3s ease;
+  border-radius: 12px;
+}
+
+.button-grid-2 .dash-button:hover {
+  background-color: #bfbfbf;
+}
+
+.button-grid-2 .dash-button a {
+  text-decoration: none;
+  text-align: center;
+  color: var(--global-black);
+  display: grid;
+  grid-template-rows: 2fr 1fr;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0.5rem 1rem;
+  grid-row-gap: 10px;
+}
+
+.button-grid-2 .dash-button i,
+.button-grid-2 .dash-button img {
+  width: 2rem;
+  height: 2rem;
+  margin: 0 auto;
+}

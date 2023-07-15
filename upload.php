@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Retrieve unique name from session
     $unique_name = $_SESSION['unique_name'];
-    
+
     // insert file id into database at unique name
     $file_id = $_SESSION['file_id'];
 
@@ -77,8 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $_SESSION['file_uploaded'] = false;
       echo $error; // Print error to the developer console
     }
-  }
-  else {
+  } else {
     error_log("Error uploading file: " . $_FILES['file_input']['error']);
   }
 }

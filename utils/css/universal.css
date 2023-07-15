@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   background-color: #a2daeec2;
   --primary-white: #faeff0;
   --primary-green: #20D7DF;
@@ -14,11 +15,14 @@ body {
   width: 100%;
   min-height: 100vh;
 }
+
 body a {
   text-decoration: none;
   color: var(--primary-black);
 }
 
-body > div {
+body>div {
   margin: 0 auto;
-}/*# sourceMappingURL=universal.css.map */
+}
+
+/*# sourceMappingURL=universal.css.map */
