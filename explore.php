@@ -49,7 +49,7 @@ include "utils/config.php";
                   <option value="C3AnalysisGrain">AnalysisGrain</option>
                 </select>
                 <input type="submit" name="submit" value="Search">
-                <button type="button" name="download" id="download-csv">Download Table CSV</button>
+                <button type="button" name="download" id="download-csv">Download CSV</button>
               </div>
             </form>
           </div>
@@ -62,4 +62,4 @@ include "utils/config.php";
   <script src="utils/js/explore.js"></script>
 </body>
 
-</html>x
+</html>
