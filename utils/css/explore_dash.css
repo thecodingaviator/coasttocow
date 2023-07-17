@@ -39,3 +39,24 @@
   height: 2rem;
   margin: 0 auto;
 }
+
+/* Add custom styles for the grid layout */
+.grid-container {
+  width: 50%; /* Set the width to occupy half the page */
+  margin: 0 auto; /* Center align the container */
+  padding: 20px; /* Add some padding */}
+  
+/*when grid implement, uncomment*/
+/* .grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+ /* grid-gap: 20px; /* Adjust the gap between grid items */
+/*} */
+
+.grid-container header {
+  text-align: center;
+}
+
+.chart-container {
+  width: 100%; /* Each chart container occupies full width of its grid cell */
+}
