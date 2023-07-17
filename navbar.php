@@ -45,14 +45,15 @@ $lastName = $result['LastName'];
         <h1>
             <a href="dashboard.php">
                 <span class="logo">C<span>³</span></span>
-                <span class="repo">Data Repository</span> <!-- New class for "Data Repository" -->
+                <span class="repo">Data Repository</span>
             </a>
         </h1>
     </div>
     <ul class=nav-list>
         <li><a href="templates.php">Templates</a></li>
-        <li><a href="record-dash.php">Record</a></li>
+        <li><a href="record_dash.php">Record</a></li>
         <li><a href="explore_dash.php">Explore</a></li>
+        <li><a href="seaweed.php">Seaweed ID</a></li>
         <li><a href="https://github.com/coast-cow-consumer" target="_blank" rel="noopener noreferrer">GitHub</a></li>
     </ul>
     <div class="profile-dropdown">

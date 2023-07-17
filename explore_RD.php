@@ -9,7 +9,7 @@ include "utils/config.php";
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>C3 | Explorer</title>
+  <title>C3 | Explore</title>
 
   <link rel="stylesheet" href="utils/css/dashboard-common.css">
   <link rel="stylesheet" href="utils/css/explore.css">
