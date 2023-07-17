@@ -1,4 +1,4 @@
-<?php
+<?php include "utils/config.php";
 //Uploads file to google drive using service account defined in credentials.php
 
 ini_set('display_errors', 1);
