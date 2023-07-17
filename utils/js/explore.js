@@ -100,9 +100,14 @@ document.querySelector('#searchForm').addEventListener('submit', function (event
 
       // Create the grid
       new agGrid.Grid(document.querySelector('#my-grid'), gridOptions);
-      gridOptions.api.sizeColumnsToFit({
-        defaultMinWidth: 150,
+
+      // Auto-size all columns
+      const allColumnIds = [];
+      gridOptions.columnApi.getColumns().forEach((column) => {
+        allColumnIds.push(column.getId());
       });
+
+      gridOptions.columnApi.autoSizeColumns(allColumnIds, true);
 
       // Clear any previous error
       errorDiv.style.display = 'none';
