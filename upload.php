@@ -20,6 +20,7 @@ $client->setScopes(['https://www.googleapis.com/auth/drive.file']);
 $service = new Google_Service_Drive($client);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  echo ((isset($_FILES['file_input'])) . ($_FILES['file_input']['error'] == 0));
   if (isset($_FILES['file_input']) && $_FILES['file_input']['error'] == 0) {
     $file = $_FILES['file_input'];
     $folder_selection = $_POST['folder_selection'];
