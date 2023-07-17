@@ -127,8 +127,8 @@ nav ul ul li {
   width: 100%;
 }
 
-nav ul ul li:hover {
-  background-color: var(--global-light-blue);
+nav ul li a:hover {
+  color: var(--global-blue);
 }
 
 nav ul ul li a {
