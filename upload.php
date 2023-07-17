@@ -1,4 +1,4 @@
-<?php include "utils/config.php";
+<?php
 //Uploads file to google drive using service account defined in credentials.php
 
 ini_set('display_errors', 1);
@@ -20,7 +20,6 @@ $client->setScopes(['https://www.googleapis.com/auth/drive.file']);
 $service = new Google_Service_Drive($client);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  echo ((isset($_FILES['file_input'])) . ($_FILES['file_input']['error'] == 0));
   if (isset($_FILES['file_input']) && $_FILES['file_input']['error'] == 0) {
     $file = $_FILES['file_input'];
     $folder_selection = $_POST['folder_selection'];
