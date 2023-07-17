@@ -66,6 +66,7 @@ $count = array_column($data, 'count');
       <div class="content">
         <div class="scrollable-content">
           <h1>Explore</h1>
+          <p>Use the explore page to view and download available data within the Coast to Cow to Consumer Grant. Click DairyOne Data to explore available data from DairyOne trials. Click C3 Research Data to explore all other data related to the project. </p>
           <div class="button-grid-2">
             <div class="dash-button">
               <a href="explore_DO.php"><i><img src="utils/icons/dairyOne_logo.png" alt="DairyOne Icon"></i>DairyOne
