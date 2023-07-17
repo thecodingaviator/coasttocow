@@ -337,17 +337,7 @@ if (isset($_SESSION['file_uploaded'])) {
                   <input type="file" id="file_input" name="file_input">
                   <div>
                     <label>
-                      <input type="radio" name="folder_selection" value="analysis" checked> Analysis
-                    </label>
-                  </div>
-                  <div>
-                    <label>
-                      <input type="radio" name="folder_selection" value="macro"> Macro
-                    </label>
-                  </div>
-                  <div>
-                    <label>
-                      <input type="radio" name="folder_selection" value="fatty_acids"> Fatty Acids
+                      <input type="radio" name="folder_selection" value="research" > Confirm you wish to upload research data
                     </label>
                   </div>
                   <input type="button" value="Upload" onclick="handleFileUpload()">
