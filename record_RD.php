@@ -333,7 +333,7 @@ if (isset($_SESSION['file_uploaded'])) {
               </div>
 
               <div class="upload-file" style="<?php echo $metaSubmitted ? 'display: initial;' : 'display: none;'; ?>">
-                <form id="upload_form" enctype="multipart/form-data">
+                <form id="upload_form" enctype="multipart/form-data" method = "POST">
                   <input type="file" id="file_input" name="file_input">
                   <div>
                     <label>
