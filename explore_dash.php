@@ -40,11 +40,11 @@ $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
           <h1>Explore</h1>
           <div class="button-grid-2">
             <div class="dash-button">
-              <a href="explore.php"><i><img src="utils/icons/dairyOne_logo.png" alt="DairyOne Icon"></i>DairyOne
+              <a href="explore_DO.php"><i><img src="utils/icons/dairyOne_logo.png" alt="DairyOne Icon"></i>DairyOne
                 Data</a>
             </div>
             <div class="dash-button">
-              <a href="other_data.php"><i><img src="utils/icons/magnifying_glass.svg " alt="Explore Icon"></i>C3
+              <a href="explore_RD.php"><i><img src="utils/icons/magnifying_glass.svg " alt="Explore Icon"></i>C3
                 Research Data</a>
             </div>
           </div>
