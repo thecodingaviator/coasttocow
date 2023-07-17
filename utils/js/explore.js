@@ -56,6 +56,13 @@ document.querySelector('#searchForm').addEventListener('submit', function (event
           field: key
         };
 
+        // Check if the column can be a number
+        if (data[0][key] != null && !isNaN(data[0][key])) {
+          column.type = 'numericColumn';
+          // Enable checking values using math comparison operators
+          column.filter = 'agNumberColumnFilter';
+        }
+
         if (key === 'unique_name') {
           column.cellRenderer = function (params) {
             if (params.data.free_download == 1) {
@@ -93,6 +100,9 @@ document.querySelector('#searchForm').addEventListener('submit', function (event
 
       // Create the grid
       new agGrid.Grid(document.querySelector('#my-grid'), gridOptions);
+      gridOptions.api.sizeColumnsToFit({
+        defaultMinWidth: 150,
+      });
 
       // Clear any previous error
       errorDiv.style.display = 'none';
