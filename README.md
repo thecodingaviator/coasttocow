@@ -33,6 +33,21 @@ The **CoastCowConsumer Data Repository** is a web application designed to provid
 
 ## File List
 
+### `confirmation.php`
+
+The `confirmation.php` file is responsible for displaying a confirmation page on the Coast to Cow Consumer Data Repository website. It provides feedback to the user based on certain conditions and includes HTML rendering and PHP logic.
+
+The main features of the `confirmation.php` file are as follows:
+
+- Email Notification: It checks if an email was sent by verifying the `$_SESSION['email_sent']` variable. If the variable is set to `true`, a notification is displayed on the confirmation page. The `$_SESSION['email_sent']` variable is then unset to prevent multiple notifications.
+- Content Display: Within the content section, the file retrieves and displays any debugging messages stored in the `$_SESSION['update']` variable. If debugging messages are present, they are shown with a heading. If no debugging messages are found, a message indicating their absence is displayed.
+
+Developers working on the `confirmation.php` file should consider the following:
+
+- Content: Consider adding relevant content to the confirmation page, such as project statistics, additional instructions, or any other pertinent information.
+
+---
+
 ### `dashboard.php`
 
 The `dashboard.php` file represents the dashboard page of the Coast to Cow Consumer Data Repository website. It provides an interface for logged-in users to access various features and functionalities.
@@ -55,6 +70,26 @@ Important considerations for future developers working on the dashboard page:
 - Content: In progress and undecided contents likely will pertain to project statistics or relevent information.
 
 ---
+### `download.php`
+
+The `download.php` file is responsible for downloading files from Google Drive using a service account defined in the `credentials.php` file. This file should not be modified unless you understand its intricacies.
+
+Here's an overview of the `download.php` file:
+
+- Google Drive API Setup: The file sets up the Google Drive API by configuring the service account credentials from the relevent json file and defining the required scopes for accessing and interacting with Google Drive files.
+- Handling File Download Requests: If the server receives a `GET` request and the `name` parameter is set, the file ID is extracted from the request. The file metadata, including the name and MIME type, is fetched using the Google Drive API.
+- Setting Download Headers: The appropriate headers for file download are set to instruct the browser on how to handle the file. This includes the content type, disposition, transfer encoding, and other relevant headers.
+- Downloading the File: The file content is fetched using the Google Drive API, and the content is outputted to the browser, triggering the file download.
+
+Important notes:
+
+- Do not modify the file unless you understand its purpose and implications.
+- Ensure that the `utils/c3-testing-389115-f39fd8b05d5d.json` file exists and contains the correct credentials for the Google Drive service account.
+- Verify the `vendor/autoload.php` path to include the required libraries properly.
+
+
+---
+
 
 ### `explore_dash.php`
 
@@ -78,26 +113,101 @@ Important considerations for future developers working on the explore page:
 
 ---
 
-### `explore.php`
+### `explore.js`
 
-The `explore.php` file represents the explore page of the Coast to Cow Consumer Data Repository website. It allows users to search and explore data from the MySQL database.
+The `explore.js` file provides JavaScript functionality for the explore page (`explore_DO.php`) of the Coast to Cow Consumer Data Repository website. It handles data retrieval, display, and downloading using the ag-Grid library.
 
-The file structure follows the standard PHP file format, starting with the `<?php` opening tag. It includes a combination of PHP statements and HTML markup, with PHP code enclosed within `<?php` and `?>` tags.
+Here's an overview of the `explore.js` file:
 
-The main functionalities of the `explore.php` file include:
+- Error Handling: The file defines variables to display error messages in the `errorDiv` and `errorMessage` elements.
 
-- Database interaction: The file retrieves data from the MySQL database based on the user's search criteria. It prepares a query using the search table and value provided by the user and executes it using a prepared statement. The resulting data is stored in the `$result` variable.
-- HTML rendering: The file defines the structure and presentation of the explore page using HTML markup. It includes a navigation bar (`navbar.php`), a search form with options to select the search table and field, and an input for the search value. The search results are displayed in a table format.
-- Table generation: The file generates an HTML table dynamically based on the search results. It iterates over the result data and generates table headers and rows dynamically. The table headers exclude the 'file_id' column, and the rows exclude the 'file_id' column and generate a link to download the file if the 'free_download' column is set to 1.
+- Search Form Submission: The file adds an event listener to the search form (`#searchForm`) to handle form submissions. It retrieves the selected search table value and sends a GET request to the `/utils/getTableData.php` endpoint with the search table as a parameter.
 
-Important considerations for future developers working on the explore page:
+- Handling Server Response: The file processes the server response in the `xhr.onload` callback function. It checks the response status, parses the JSON data, and displays the number of results found in the `resultsContainer` element.
 
-- Security: Ensure that the overall website implements strong security measures, including user authentication and authorization checks for accessing sensitive data or performing specific actions.
-- Configuration: The file includes `utils/config.php` at the beginning, indicating the presence of a configuration file. Review the configuration file to ensure sensitive information like database connection details is properly protected.
-- Styling: The file references CSS files (`dashboard-common.css`, `explore.css`) for styling. Modify these files to customize the appearance of the explore page if needed.
-- Navigation: The file includes a navigation bar (`navbar.php`) that may contain links to other pages or functionality. Review and modify the navigation bar as necessary to reflect the structure of the website.
-- Search functionality: Customize the search form options, fields, and search criteria based on the specific requirements of the Coast to Cow Consumer Data Repository website.
-- Data retrieval: Modify the query and data retrieval logic to fetch the desired data from the MySQL database. Adjust the table headers and row generation code based on the structure of the retrieved data.
+- Modifying Data for Display: The file modifies the retrieved data if it contains specific properties (`free_download` and `file_id`). It converts the `unique_name` property into a link if `free_download` is set to 1 and removes the `free_download` and `file_id` properties from each row.
+
+- Generating Column Names and Configuring ag-Grid: The file generates column names for the ag-Grid based on the retrieved data. It checks the column's data type and enables numeric column filtering if applicable. If the column name is `unique_name`, a custom cell renderer is assigned to render the link for downloadable files.
+
+- Creating and Updating ag-Grid: The file creates and updates the ag-Grid using the generated column names and data. It sets pagination, auto-sizing columns, and defines default column settings.
+
+- Handling Error Conditions: The file handles error conditions in the `xhr.onerror` callback function and displays the appropriate error message.
+
+- Downloading Data as CSV: The file adds an event listener to the download button (`#download-csv`) to trigger the download of the ag-Grid data as a CSV file. It checks if data is populated, creates a download link, and triggers the download.
+
+- Modal Handling: The file adds event listeners to the confirm and cancel buttons of the download modal (`downloadModal`). It confirms the download by converting the ag-Grid data to CSV and triggers the download. It also cancels the download by hiding the modal.
+
+Important considerations for future developers working on the `explore.js` file:
+
+- Customize error handling to suit your requirements and provide meaningful error messages to users.
+
+- Modify the form submission handler to handle additional search parameters or modify the search functionality.
+
+- Customize the data modification and column generation logic based on the structure and requirements of your data.
+
+- Customize ag-Grid configuration and functionality to match the desired display and interaction requirements.
+
+- Modify the download functionality to handle different file formats or additional data processing requirements.
+
+---
+
+### `explore_DO.php`
+
+The `explore_DO.php` file is used for exploring data related to the Dairy One trials on the Coast to Cow Consumer Data Repository website. It provides a user interface to search and view data stored in the database.
+
+Here's an overview of the `explore_DO.php` file:
+
+- PHP Inclusion: The file includes the `utils/config.php` file to access any necessary configurations or dependencies.
+
+- HTML Structure: The file defines the structure of the explore page using HTML markup. It includes a title, CSS stylesheets, and JavaScript libraries.
+
+- Modal Dialog: The file includes a modal dialog element (`downloadModal`) that displays a data disclaimer message. Users are required to confirm their agreement before downloading data.
+
+- Navigation Bar: The file includes the `navbar.php` file, which typically contains a navigation bar with links to different sections of the website.
+
+- Content Display: The main content section includes a search form and a results container. Users can select a search table, submit the form, and view the results in an ag-Grid-based table (`my-grid`). The table is initially hidden (`style="display: none;"`) and will be populated dynamically.
+
+- JavaScript: The file includes the `utils/js/explore.js` JavaScript file, which likely contains functionality for handling search submissions, displaying search results, and handling interactions with the ag-Grid table.
+
+Important considerations for future developers working on the `explore_DO.php` file:
+
+- Ensure that the `utils/config.php` file is properly configured and contains necessary database connection details.
+
+- Review and modify the search form (`searchForm`) as needed to match the desired search functionality and available search tables.
+
+- Customize the `downloadModal` content and functionality to reflect the specific data usage policies and requirements of the Dairy One trials.
+
+- Modify the `explore.js` file (`utils/js/explore.js`) to enhance or modify the functionality of the explore page, such as handling search requests and interacting with the ag-Grid table.
+
+---
+
+### `explore_RD.php`
+
+The `explore_RD.php` file serves the same function as `explore_DO.php` but is designed for exploring all other submitted data, not just Dairy One trials, on the Coast to Cow Consumer Data Repository website.
+
+Here's an overview of the `explore_RD.php` file:
+
+- PHP Inclusion: The file includes the `utils/config.php` file to access any necessary configurations or dependencies.
+
+- HTML Structure: The file defines the structure of the explore page using HTML markup. It includes a title, CSS stylesheets, and JavaScript libraries.
+
+- Modal Dialog: The file includes a modal dialog element (`downloadModal`) that displays a data disclaimer message. Users are required to confirm their agreement before downloading data.
+
+- Navigation Bar: The file includes the `navbar.php` file, which typically contains a navigation bar with links to different sections of the website.
+
+- Content Display: The main content section includes a search form and a results container. Users can select a search table, submit the form, and view the results in an ag-Grid-based table (`my-grid`). The table is initially hidden (`style="display: none;"`) and will be populated dynamically.
+
+- JavaScript: The file includes the `utils/js/explore.js` JavaScript file, which likely contains functionality for handling search submissions, displaying search results, and handling interactions with the ag-Grid table.
+
+Important considerations for future developers working on the `explore_RD.php` file:
+
+- Ensure that the `utils/config.php` file is properly configured and contains necessary database connection details.
+
+- Review and modify the search form (`searchForm`) as needed to match the desired search functionality and available search tables. In this case, the options include "DataMasterTest" and "AnalysisGrain".
+
+- Customize the `downloadModal` content and functionality to reflect the specific data usage policies and requirements for exploring other submitted data.
+
+- Modify the `explore.js` file (`utils/js/explore.js`) to enhance or modify the functionality of the explore page, such as handling search requests and interacting with the ag-Grid table.
 
 ---
 
@@ -215,6 +325,11 @@ Important considerations for future developers working on the password reset fun
 - Email template: Customize the email subject and message to match the desired content and formatting for the password reset email.
 
 ---
+###  `seaweed.php`
+
+Under construction, will incorporate a new seaweed id so a user can track the flow of a seaweed sample within the C3 project.
+
+---
 
 ### `signup.php`
 
@@ -325,9 +440,9 @@ To use the **CoastCowConsumer Data Repository**:
 The **CoastCowConsumer Data Repository** has the following dependencies:
 
 - PHP: The server-side scripting language used for building the application.
-- Database: The application likely requires a database for storing and retrieving data. Ensure that the database is properly set up and configured.
+- Database: The application likely requires a database for storing and retrieving data. If the user wishes to use the C3 database to work on their data, they must obtain credentials from an administrator.  This can be found at utils/credentials.php and includes API keys, folder ID's, server and database credentials.
 - CSS: Cascading Style Sheets (CSS) are used for styling the application's user interface.
-- Other dependencies: The application may require additional libraries, frameworks, or APIs depending on its specific functionality. Please refer to the individual files and their associated documentation for any additional dependencies.
+- Other dependencies: `"phpmailer/phpmailer": ^6.8 , "google/apiclient": ^2.0`
 
 ## Installation
 
@@ -338,6 +453,19 @@ To install and set up the **CoastCowConsumer Data Repository**:
 3. Ensure that the file permissions are correctly set to allow the application to run.
 4. Set up the database and import any required schema or sample data if provided.
 5. Once the environment is properly set up, access the application by running a local server and navigating to the appropriate URL.
+
+    ### Configuring Composer
+
+    If one plans to localhost the repository, the user is responsible for managing their own packages to confirm proper functionality
+
+    We recommend the user uses composer for their file management. Composer is a dependency management tool for PHP programming. It is designed to simplify the process of managing dependencies, libraries, and packages in PHP projects. Composer allows developers to easily declare the libraries and dependencies their project requires and handles the installation and management of those dependencies.
+    This way, we can confirm that libaries are all compatible and do not need to worry about managing this.
+    Here's a quick tutorial on how and where to install [composer](https://getcomposer.org/doc/01-basic-usage.md)
+
+    Once one has composer installed, they should create or update their composer.json file to include: `"phpmailer/phpmailer": ^6.8` and ` "google/apiclient": ^2.0` as well as any additional non-native installations (libraries, APIs, other software).
+    Now, the user just needs to run php composer.phar update.  More about this is included in the composer tutorial.
+
+
 
 ## License
 
