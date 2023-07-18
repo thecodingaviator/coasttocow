@@ -2,6 +2,8 @@
 
 This repository contains the source code for the **CoastCowConsumer Data Repository**. Created by [@thecodingaviator](https://github.com/thecodingaviator) and [@gordoncd](https://github.com/gordoncd).
 
+[![deploy](https://github.com/thecodingaviator/coasttocow/actions/workflows/deploy.yml/badge.svg)](https://github.com/thecodingaviator/coasttocow/actions/workflows/deploy.yml)
+
 ## Table of Contents
 
 - [Acknowledgements](#acknowledgements)
