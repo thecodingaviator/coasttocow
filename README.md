@@ -2,8 +2,6 @@
 
 This repository contains the source code for the **CoastCowConsumer Data Repository**. Created by [@thecodingaviator](https://github.com/thecodingaviator) and [@gordoncd](https://github.com/gordoncd).
 
-[![deploy](https://github.com/thecodingaviator/coasttocow/actions/workflows/deploy.yml/badge.svg)](https://github.com/thecodingaviator/coasttocow/actions/workflows/deploy.yml)
-
 ## Table of Contents
 
 - [Acknowledgements](#acknowledgements)
@@ -35,7 +33,7 @@ The **CoastCowConsumer Data Repository** is a web application designed to provid
 
 ### `confirmation.php`
 
-The `confirmation.php` file is responsible for displaying a confirmation page on the Coast to Cow Consumer Data Repository website. It provides feedback to the user based on certain conditions and includes HTML rendering and PHP logic.
+`confirmation.php` is responsible for displaying a confirmation page on the Coast to Cow Consumer Data Repository website. It provides feedback to the user based on certain conditions and includes HTML rendering and PHP logic.
 
 The main features of the `confirmation.php` file are as follows:
 
@@ -50,7 +48,7 @@ Developers working on the `confirmation.php` file should consider the following:
 
 ### `dashboard.php`
 
-The `dashboard.php` file represents the dashboard page of the Coast to Cow Consumer Data Repository website. It provides an interface for logged-in users to access various features and functionalities.
+`dashboard.php` represents the dashboard page of the Coast to Cow Consumer Data Repository website. It provides an interface for logged-in users to access various features and functionalities.
 
 The file structure follows the standard PHP file format, starting with the `<?php` opening tag. It includes a combination of PHP statements and HTML markup, with PHP code enclosed within `<?php` and `?>` tags.
 
@@ -72,7 +70,7 @@ Important considerations for future developers working on the dashboard page:
 ---
 ### `download.php`
 
-The `download.php` file is responsible for downloading files from Google Drive using a service account defined in the `credentials.php` file. This file should not be modified unless you understand its intricacies.
+`download.php` is responsible for downloading files from Google Drive using a service account defined in the `credentials.php` file. This file should not be modified unless you understand its intricacies.
 
 Here's an overview of the `download.php` file:
 
@@ -87,13 +85,11 @@ Important notes:
 - Ensure that the `utils/c3-testing-389115-f39fd8b05d5d.json` file exists and contains the correct credentials for the Google Drive service account.
 - Verify the `vendor/autoload.php` path to include the required libraries properly.
 
-
 ---
-
 
 ### `explore_dash.php`
 
-The `explore_dash.php` file represents the explore page of the Coast to Cow Consumer Data Repository website. It allows users to explore and visualize data from the MySQL database.
+`explore_dash.php` represents the explore page of the Coast to Cow Consumer Data Repository website. It allows users to explore and visualize data from the MySQL database.
 
 The file structure follows the standard PHP file format, starting with the `<?php` opening tag. It includes a combination of PHP statements and HTML markup, with PHP code enclosed within `<?php` and `?>` tags.
 
@@ -115,7 +111,7 @@ Important considerations for future developers working on the explore page:
 
 ### `explore.js`
 
-The `explore.js` file provides JavaScript functionality for the explore page (`explore_DO.php`) of the Coast to Cow Consumer Data Repository website. It handles data retrieval, display, and downloading using the ag-Grid library.
+`explore.js` provides JavaScript functionality for the explore page (`explore_DO.php`) of the Coast to Cow Consumer Data Repository website. It handles data retrieval, display, and downloading using the ag-Grid library.
 
 Here's an overview of the `explore.js` file:
 
@@ -153,7 +149,7 @@ Important considerations for future developers working on the `explore.js` file:
 
 ### `explore_DO.php`
 
-The `explore_DO.php` file is used for exploring data related to the Dairy One trials on the Coast to Cow Consumer Data Repository website. It provides a user interface to search and view data stored in the database.
+`explore_DO.php` is used for exploring data related to the Dairy One trials on the Coast to Cow Consumer Data Repository website. It provides a user interface to search and view data stored in the database.
 
 Here's an overview of the `explore_DO.php` file:
 
@@ -183,7 +179,7 @@ Important considerations for future developers working on the `explore_DO.php` f
 
 ### `explore_RD.php`
 
-The `explore_RD.php` file serves the same function as `explore_DO.php` but is designed for exploring all other submitted data, not just Dairy One trials, on the Coast to Cow Consumer Data Repository website.
+`explore_RD.php` serves the same function as `explore_DO.php` but is designed for exploring all other submitted data, not just Dairy One trials, on the Coast to Cow Consumer Data Repository website.
 
 Here's an overview of the `explore_RD.php` file:
 
@@ -213,7 +209,7 @@ Important considerations for future developers working on the `explore_RD.php` f
 
 ### `download.php`
 
-The `download.php` file handles the download of files from Google Drive using a service account defined in `credentials.php`. It is responsible for retrieving file metadata, setting appropriate headers for the file download, and downloading the file content.
+`download.php` handles the download of files from Google Drive using a service account defined in `credentials.php`. It is responsible for retrieving file metadata, setting appropriate headers for the file download, and downloading the file content.
 
 The file structure follows the standard PHP file format, starting with the `<?php` opening tag. It includes the necessary dependencies, such as the Google API client library, and includes the `utils/config.php` file.
 
@@ -226,7 +222,7 @@ Important considerations for future developers working on the download functiona
 
 - Security: Ensure that the file download functionality is secured and access is restricted to authorized users as per the website's authentication and authorization system.
 - File ID: The `download.php` file expects the file ID to be provided through the `name` parameter in the GET request. Modify the code as necessary to match the file ID parameter name used in the website's URL structure.
-- Configuration: The file includes the Google service account credentials file (`utils/c3-upload.json`) using `putenv()`. Ensure that the path to the credentials file is correct and matches the actual location of the file.
+- Configuration: The file includes the Google service account credentials file (`utils/c3-testing-389115-f39fd8b05d5d.json`) using `putenv()`. Ensure that the path to the credentials file is correct and matches the actual location of the file.
 - Google Drive API: Review and modify the required scopes based on the specific actions and access needed for file downloading from Google Drive.
 - Error handling: Consider adding appropriate error handling mechanisms to handle cases where the file is not found or the request is invalid.
 
@@ -234,7 +230,7 @@ Important considerations for future developers working on the download functiona
 
 ### `index.php`
 
-The `index.php` file serves as the homepage for the Coast to Cow Consumer Data Repository website. It handles user authentication and login functionality, allowing users to sign in to access their data.
+`index.php` serves as the homepage for the Coast to Cow Consumer Data Repository website. It handles user authentication and login functionality, allowing users to sign in to access their data.
 
 The file structure follows the standard PHP file format, starting with the `<?php` opening tag. It includes a combination of PHP statements and HTML markup, with PHP code enclosed within `<?php` and `?>` tags.
 
@@ -257,7 +253,7 @@ Important considerations for future developers working on the login page:
 
 ### `modify.php`
 
-The `modify.php` file is responsible for handling the editing of user profiles. It allows users to update their profile information, including email, phone number, job title, institution, and password. The file also handles the verification of the current password before allowing changes to be made.
+`modify.php` is responsible for handling the editing of user profiles. It allows users to update their profile information, including email, phone number, job title, institution, and password. The file also handles the verification of the current password before allowing changes to be made.
 
 The file structure follows the standard PHP file format, starting with the `<?php` opening tag. It includes the necessary dependencies, such as the `utils/config.php` file, and starts the session.
 
@@ -282,7 +278,7 @@ Important considerations for future developers working on the profile editing fu
 
 ### `navbar.php`
 
-The `navbar.php` file is responsible for rendering the navigation bar at the top of the web application. It includes links to different pages and provides user-related options, such as accessing the user's profile and logging out.
+`navbar.php` is responsible for rendering the navigation bar at the top of the web application. It includes links to different pages and provides user-related options, such as accessing the user's profile and logging out.
 
 The file starts with the `<?php` opening tag and includes the necessary dependencies, such as the `utils/config.php` file. It also starts the session.
 
@@ -304,7 +300,7 @@ Important considerations for future developers working on the navigation bar:
 
 ### `resetpassword.php`
 
-The `resetpassword.php` file handles the logic for resetting a user's password. It provides a form where users can enter their user ID and email to initiate the password reset process.
+`resetpassword.php` handles the logic for resetting a user's password. It provides a form where users can enter their user ID and email to initiate the password reset process.
 
 The file starts with the `<?php` opening tag and includes the necessary dependencies, such as the `utils/config.php` file. It also starts the session.
 
@@ -333,7 +329,7 @@ Under construction, will incorporate a new seaweed id so a user can track the fl
 
 ### `signup.php`
 
-The `signup.php` file handles the logic for user registration. It provides a form where users can enter their information to create a new account.
+`signup.php` handles the logic for user registration. It provides a form where users can enter their information to create a new account.
 
 The file starts with the `<?php` opening tag and includes the necessary dependencies, such as the `utils/config.php` file. It also starts the session.
 
@@ -357,7 +353,7 @@ Important considerations for future developers working on the registration funct
 
 ### `submit.php`
 
-The `submit.php` file handles the submission of a dataset by the user. It provides a form where users can enter metadata related to the dataset they want to submit.
+`submit.php` handles the submission of a dataset by the user. It provides a form where users can enter metadata related to the dataset they want to submit.
 
 The file starts with the `<?php` opening tag and includes the necessary dependencies, such as the `utils/config.php` file. It also starts the session.
 
@@ -383,7 +379,7 @@ Important considerations for future developers working on the dataset submission
 
 ### `templates.php`
 
-The `templates.php` file displays a list of templates available for download. It includes HTML markup to create a page layout with a header, content section, and a card container to display the templates.
+`templates.php` displays a list of templates available for download. It includes HTML markup to create a page layout with a header, content section, and a card container to display the templates.
 
 The file starts with the `<?php` opening tag and includes the necessary dependencies, such as the `utils/config.php` file.
 
@@ -404,13 +400,13 @@ Important considerations for future developers working on the templates function
 ---
 ### `upload.php`
 
-The `upload.php` file handles the file upload functionality to Google Drive using a service account defined in the `credentials.php` file.
+`upload.php` handles the file upload functionality to Google Drive using a service account defined in the `credentials.php` file.
 
 The file starts with the `<?php` opening tag and includes the necessary dependencies, such as the Google Drive client library (`autoload.php`) and the `utils/config.php` file.
 
 The main functionalities of the `upload.php` file include:
 
-- Google Drive setup: It sets up the Google Drive client using the service account credentials defined in `c3-upload.json`.
+- Google Drive setup: It sets up the Google Drive client using the service account credentials defined in `c3-testing-389115-f39fd8b05d5d.json`.
 - File upload: When the file upload form is submitted via POST request, the file is processed. The file details, such as the file name, folder selection, and file content, are obtained from the `$_FILES` and `$_POST` superglobal variables.
 - Google Drive API integration: The file is uploaded to Google Drive using the Google Drive API. The file is created with a unique name based on the session variable `unique_name` and is moved to the specified folder ID obtained from the `folder_ids` array.
 - Database insertion: After the file is successfully uploaded, the relevant metadata, along with the file ID, are stored in the database table `C3DataMasterTest`.
