@@ -461,7 +461,30 @@ To install and set up the **CoastCowConsumer Data Repository**:
     Once one has composer installed, they should create or update their composer.json file to include: `"phpmailer/phpmailer": ^6.8` and ` "google/apiclient": ^2.0` as well as any additional non-native installations (libraries, APIs, other software).
     Now, the user just needs to run php composer.phar update.  More about this is included in the composer tutorial.
 
+    ### Google Drive API
 
+    Google Drive API relies upon service accounts.  We create a service account attached to the project, and then we use the google drive api to tell that service account to do actions on the operational database.  This mostly involves file creation and movement.  We use fileID's to give the service account / API the direct location of the files to be operated on. If the service account associated with the project fails, and Gordon or Parth are not available, here are the steps to making a new account and integrating it with the given codebase.
+
+    1. **Set up a Google Cloud Project:**
+        - Go to the [Google Cloud Console ](console.cloud.google.com) and create a new project.
+        - Enable the Google Drive API for your project.
+        - Create credentials for the project, selecting "Service Account" as the account type.
+    1. **Create a Service Account:**
+        - In the Cloud Console, go to the "IAM & Admin" -> "Service Accounts" section.
+        - Click on "Create Service Account" and provide a name, ID, and description for the service account.
+        - Choose the appropriate role for the service account (e.g., Project Editor, Drive API access, etc.).
+        - Generate a new private key for the service account and download the JSON file containing the credentials. Keep this file secure.
+    
+    1. **Set up the Development Environment:**
+        - Install the required libraries or SDKs for your programming language (e.g., Google Client Library for Python).
+        - Import the necessary dependencies in your code.
+    
+    1. **Authenticate the Service Account:**
+        - Load the service account JSON file and create a client object using the provided credentials.
+        - Use the client object to authenticate requests made to the Google Drive API.
+        - replace the service account credentials in credentials.php with this new service account information.
+   
+    **Congrats! You should be good to go!**
 
 ## License
 
