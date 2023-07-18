@@ -26,6 +26,7 @@ include "utils/config.php";
       <div class="content">
         <div class="scrollable-content">
           <h1>Record</h1>
+          <p>Make a record of your data and optionally to upload for C3 contributors to access.  If you have DariyOne PDFs to upload, click DairyOne Data.  If you would like to make a record or upload other data, click C3 Research Data and fill out the record form.</p>
           <div class="button-grid-2">
             <div class="dash-button">
               <a href="record_DO.php"><i><img src="utils/icons/dairyOne_logo.png" alt="DairyOne Icon"></i>DairyOne

@@ -66,6 +66,7 @@ $count = array_column($data, 'count');
       <div class="content">
         <div class="scrollable-content">
           <h1>Explore</h1>
+          <p>Explore the data that has been uploaded to the C3 database.  If you would like to access available DairyOne Data, click DairyOne Data. If you would like to access any other available data, click C3 Research Data.</p>
           <div class="button-grid-2">
             <div class="dash-button">
               <a href="explore_DO.php"><i><img src="utils/icons/dairyOne_logo.png" alt="DairyOne Icon"></i>DairyOne
