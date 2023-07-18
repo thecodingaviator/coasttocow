@@ -64,7 +64,7 @@
   border: 1px solid #ccc;
   padding: 5px;
   height: 100%;
-  width: 28%;
+  width: clamp(30%, 31%, 33%);
 }
 
 .search-div button,

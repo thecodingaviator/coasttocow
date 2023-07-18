@@ -46,13 +46,14 @@ include "utils/config.php";
               <div class="search-div">
                 <select name="search_table" id="search_table" required>
                   <option value="C3DataMasterTest">DataMasterTest</option>
-                  <option value="C3AnalysisGrain">AnalysisGrain</option>
                 </select>
                 <input type="submit" name="submit" value="Search">
                 <button type="button" name="download" id="download-csv">Download CSV</button>
+                <br>
               </div>
             </form>
           </div>
+          <p>The purpose of the data master is to provide a comprehensive listing of datasets generated from C3 research. Some of these datasets can be downloaded from the C3 Database, while others can only be accessed by contacting the primary researcher.</p>
           <div id="my-grid" class="ag-theme-alpine" style="display: none;"></div>
         </div>
       </div>

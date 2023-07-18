@@ -45,7 +45,7 @@ include "utils/config.php";
             <form action="" id="searchForm" method="POST">
               <div class="search-div">
                 <select name="search_table" id="search_table" required>
-                  <option value="C3DataMasterTest">DataMasterTest</option>
+                  <option value="C3AnalysisGrain">AnalysisGrain</option>
                 </select>
                 <input type="submit" name="submit" value="Search">
                 <button type="button" name="download" id="download-csv">Download CSV</button>
