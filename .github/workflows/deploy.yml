@@ -16,8 +16,9 @@ jobs:
       - name: Deploy files
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
-          username: '${{ secrets.SERVER_LOGIN }}'
+          username: '${{ secrets.USER }}'
+          password: ${{ secrets.PASSWORD }}
           server: 'db.coastcowconsumer.com'
-          ssh_private_key: ${{ secrets.PARTHS_PRIVATE_KEY }}
+          ssh_private_key: 'if password is set, this will be ignored'
           remote_path: '/var/www/html'
           sftp_only: 'yes'
