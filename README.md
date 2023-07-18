@@ -116,7 +116,7 @@ Important considerations for future developers working on the download functiona
 
 - Security: Ensure that the file download functionality is secured and access is restricted to authorized users as per the website's authentication and authorization system.
 - File ID: The `download.php` file expects the file ID to be provided through the `name` parameter in the GET request. Modify the code as necessary to match the file ID parameter name used in the website's URL structure.
-- Configuration: The file includes the Google service account credentials file (`utils/c3-testing-389115-f39fd8b05d5d.json`) using `putenv()`. Ensure that the path to the credentials file is correct and matches the actual location of the file.
+- Configuration: The file includes the Google service account credentials file (`utils/c3-upload.json`) using `putenv()`. Ensure that the path to the credentials file is correct and matches the actual location of the file.
 - Google Drive API: Review and modify the required scopes based on the specific actions and access needed for file downloading from Google Drive.
 - Error handling: Consider adding appropriate error handling mechanisms to handle cases where the file is not found or the request is invalid.
 
@@ -295,7 +295,7 @@ The file starts with the `<?php` opening tag and includes the necessary dependen
 
 The main functionalities of the `upload.php` file include:
 
-- Google Drive setup: It sets up the Google Drive client using the service account credentials defined in `c3-testing-389115-f39fd8b05d5d.json`.
+- Google Drive setup: It sets up the Google Drive client using the service account credentials defined in `c3-upload.json`.
 - File upload: When the file upload form is submitted via POST request, the file is processed. The file details, such as the file name, folder selection, and file content, are obtained from the `$_FILES` and `$_POST` superglobal variables.
 - Google Drive API integration: The file is uploaded to Google Drive using the Google Drive API. The file is created with a unique name based on the session variable `unique_name` and is moved to the specified folder ID obtained from the `folder_ids` array.
 - Database insertion: After the file is successfully uploaded, the relevant metadata, along with the file ID, are stored in the database table `C3DataMasterTest`.

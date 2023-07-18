@@ -5,7 +5,7 @@
 require_once __DIR__ . '/vendor/autoload.php';
 include "utils/config.php";
 
-putenv('GOOGLE_APPLICATION_CREDENTIALS=utils/c3-testing-389115-f39fd8b05d5d.json');
+putenv('GOOGLE_APPLICATION_CREDENTIALS=utils/c3-upload.json');
 
 $client = new Google_Client();
 $client->useApplicationDefaultCredentials();
