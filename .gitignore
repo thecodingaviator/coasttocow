@@ -5,5 +5,4 @@
 composer.json
 composer.lock
 composer.phar
-vendor
 utils/credentials.php
