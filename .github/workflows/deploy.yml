@@ -17,7 +17,7 @@ jobs:
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
           username: 'gitactions'
-          password: ${{ secrets.SFTP_PASSWORD_ACTIONS }}
+          password: '${{ secrets.SFTP_PASSWORD_ACTIONS }}'
           server: 'db.coastcowconsumer.com'
           ssh_private_key: 'if password is set, this will be ignored'
           remote_path: '/var/www/html'
