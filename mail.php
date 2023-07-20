@@ -18,7 +18,7 @@ function sendMail($subject, $content, $recipient){
         $mail->Host       = 'smtp.gmail.com';                   
         $mail->SMTPAuth   = true;                            
         $mail->Username   = 'c3-database-repo@coastcowconsumer.com';                
-        $mail->Password   = '!!83~market~ROLL~table~55!!';                       
+        $mail->Password   = $mail_pass;                       
         $mail->SMTPSecure = 'tls';                             
         $mail->Port       = 587; 
      
