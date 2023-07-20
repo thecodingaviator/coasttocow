@@ -2,6 +2,7 @@
 session_start();
 
 include "utils/config.php";
+include "mail.php";
 
 if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
   header("Location: dashboard.php");
@@ -48,7 +49,7 @@ if (isset($_POST['submit'])) {
       $headers = "From: your_email@example.com"; // Replace with your own email address
 
       // Uncomment the following line to send the email
-      if (mail($to, $subject, $message, $headers)) {
+      if (sendMail($subject, $message, $to)) {
         $_SESSION['email_sent'] = true;
       } else {
         $_SESSION['email_sent'] = false;

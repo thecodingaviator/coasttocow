@@ -2,7 +2,7 @@
 session_start();
 
 include "utils/config.php";
-
+include "mail.php";
 function generateTemporaryPassword()
 {
   $length = 8;
@@ -42,18 +42,17 @@ if (isset($_POST['submit'])) {
       // Send the email with the temporary password
       $subject = "Password Reset";
       $message = "Your temporary password is: $temporaryPassword";
-      $headers = "From: your_email@example.com";
 
-      if (mail($email, $subject, $message, $headers)) {
-        $error = "An email with the temporary password has been sent to your email address.";
+      if (sendMail($subject, $message, $email)) {
+        $update = "An email with the temporary password has been sent to your email address.";
       } else {
-        $error = "Failed to send the email. Please try again later.";
+        $update = "Failed to send the email. Please try again later.";
       }
     } else {
-      $error = "There was an error resetting your password. Please try again later.";
+      $update = "There was an error resetting your password. Please try again later.";
     }
   } else {
-    $error = "Invalid userID or email. Please check your details and try again.";
+    $update = "Invalid userID or email. Please check your details and try again.";
   }
 }
 ?>
@@ -74,10 +73,10 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
-  <?php if (!empty($error)): ?>
+  <?php if (!empty($update)): ?>
     <div class="error-div">
       <p id="error-message">
-        <?php echo $error; ?>
+        <?php echo $update; ?>
       </p>
     </div>
   <?php endif; ?>
