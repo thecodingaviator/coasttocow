@@ -49,7 +49,7 @@ if (isset($_POST['submit'])) {
       $headers = "From: your_email@example.com"; // Replace with your own email address
 
       // Uncomment the following line to send the email
-      if (sendMail($subject, $message, $to)) {
+      if (sendMail($subject, $message, $to, $mail_pass)) {
         $_SESSION['email_sent'] = true;
       } else {
         $_SESSION['email_sent'] = false;

@@ -43,7 +43,7 @@ if (isset($_POST['submit'])) {
       $subject = "Password Reset";
       $message = "Your temporary password is: $temporaryPassword";
 
-      if (sendMail($subject, $message, $email)) {
+      if (sendMail($subject, $message, $email, $mail_pass)) {
         $update = "An email with the temporary password has been sent to your email address.";
       } else {
         $update = "Failed to send the email. Please try again later.";
