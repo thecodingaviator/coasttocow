@@ -1,4 +1,9 @@
 <?php
+// File: getTableData.php
+// Authors: Gordon Doore, Parth Parth\
+// Purpose: Get data from a table in SQL db for keyword search
+// Last modified: 04/05/2023
+
 include "config.php";
 
 $searchTable = $_GET['searchTable'];

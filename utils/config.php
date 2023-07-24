@@ -1,4 +1,8 @@
 <?php
+// File: config.php
+// Authors: Gordon Doore, Parth Parth
+// Purpose: Configuration file for the site
+// Last modified: 04/05/2023
 
 include 'credentials.php';
 
