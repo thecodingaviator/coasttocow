@@ -1,51 +1,61 @@
+/* Style for the 'content' element */
 .content {
-  text-align: center;
+  text-align: center; /* Center-align the text inside the 'content' element */
 }
 
+/* Style for the 'h1' element */
 h1 {
-  font-size: 24px;
-  margin-bottom: 20px;
+  font-size: 24px; /* Set the font size for the 'h1' element */
+  margin-bottom: 20px; /* Add margin at the bottom of the 'h1' element */
 }
 
+/* Style for the 'card-container' element */
 .card-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: flex; /* Use flexbox layout */
+  flex-wrap: wrap; /* Allow the cards to wrap to the next row when there's not enough space */
+  justify-content: center; /* Center the cards horizontally within the container */
 }
 
+/* Style for the 'card' element */
 .card {
-  width: 200px;
-  margin: 10px;
-  padding: 10px;
-  background-color: var(--global-blue-gray);
-  border-radius: 5px;
+  width: 200px; /* Set the width of the card */
+  margin: 10px; /* Add margin around the card */
+  padding: 10px; /* Add padding inside the card */
+  background-color: var(--global-blue-gray); /* Use custom CSS variable for background color */
+  border-radius: 5px; /* Add border-radius to create rounded corners for the card */
 }
 
+/* Style for the 'card' element when hovered */
 .card:hover {
-  transition: 0.3s ease-in-out;
-  background-color: var(--global-blue-gray-hover);
+  transition: 0.3s ease-in-out; /* Add a transition effect on hover */
+  background-color: var(--global-blue-gray-hover); /* Change the background color on hover using a custom CSS variable */
 }
 
+/* Style for the 'card-content' element */
 .card-content {
-  text-align: center;
+  text-align: center; /* Center-align the text inside the 'card-content' element */
 }
 
+/* Style for the anchor (link) elements inside 'card-content' */
 .card-content a {
-  text-decoration: none;
-  color: #333;
+  text-decoration: none; /* Remove underline from the links */
+  color: #333; /* Set the text color for the links */
 }
 
+/* Style for the anchor (link) elements inside 'card-content' when hovered */
 .card-content a:hover {
-  color: #000;
+  color: #000; /* Change the text color of the links on hover */
 }
 
+/* Style for the images inside 'card-content' */
 .card-content img {
-  width: 100px;
-  height: 100px;
-  margin-bottom: 10px;
+  width: 100px; /* Set the width of the images */
+  height: 100px; /* Set the height of the images */
+  margin-bottom: 10px; /* Add margin at the bottom of the images */
 }
 
+/* Style for the paragraphs inside 'card-content' */
 .card-content p {
-  font-size: 16px;
-  margin: 0;
+  font-size: 16px; /* Set the font size for the paragraphs */
+  margin: 0; /* Remove margin from the paragraphs */
 }

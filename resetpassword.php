@@ -8,7 +8,13 @@ session_start();
 
 include "utils/config.php";
 include "mail.php";
-function generateTemporaryPassword()
+
+/**
+ * Generates a temporary password consisting of 8 alphanumeric characters.
+ *
+ * @return string Returns a temporary password.
+ */
+function generateTemporaryPassword() : string
 {
   $length = 8;
   $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

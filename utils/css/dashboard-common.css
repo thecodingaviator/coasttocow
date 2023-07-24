@@ -1,101 +1,113 @@
+/* CSS Variables */
 :root {
-  --global-black: #0a0908;
-  --global-white: #fcfcfc;
-  --global-grey: #50514f;
-  --global-back-gray: #cbe1f0;
-  --global-blue-gray: #a2daeec2;
-  --global-blue-gray-hover: #8cc7d8;
-  --global-blue: #228cd8;
-  --global-green: #4ace73;
-  --global-green-hover: #3db768;
-  --global-light-blue: #e7f9ff;
+  --global-black: #0a0908;                 /* Black color */
+  --global-white: #fcfcfc;                 /* White color */
+  --global-grey: #50514f;                  /* Grey color */
+  --global-back-gray: #cbe1f0;             /* Background gray color */
+  --global-blue-gray: #a2daeec2;           /* Blue gray color with opacity */
+  --global-blue-gray-hover: #8cc7d8;       /* Blue gray color with opacity on hover */
+  --global-blue: #228cd8;                  /* Blue color */
+  --global-green: #4ace73;                 /* Green color */
+  --global-green-hover: #3db768;           /* Green color on hover */
+  --global-light-blue: #e7f9ff;            /* Light blue color */
 }
 
+/* Global Styles */
 * {
-  font-family: Arial, Helvetica, sans-serif;
-  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif; /* Default font family */
+  box-sizing: border-box;                   /* Box model includes borders and padding in the element's total width and height */
 }
 
+/* Body Styles */
 body {
-  margin: 0;
-  background-color: var(--global-light-blue);
+  margin: 0;                               /* Remove default body margin */
+  background-color: var(--global-light-blue); /* Set background color using the CSS variable */
 }
 
+/* Background Wrapper Styles */
 .wrapper-background {
-  position: fixed;
+  position: fixed;                         /* Fixed position so that it covers the entire viewport */
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: var(--global-blue-gray);
+  z-index: -1;                            /* Place it behind other elements */
+  display: flex;                          /* Flex container */
+  justify-content: center;               /* Center the content horizontally */
+  align-items: center;                   /* Center the content vertically */
+  background: var(--global-blue-gray);   /* Set background color using the CSS variable */
 }
 
+/* Content Styles */
 .content {
-  min-height: 89vh;
-  padding: 0.5vh 1.5vw;
-  background: var(--global-light-blue);
+  min-height: 89vh;                     /* Minimum height of the content */
+  padding: 0.5vh 1.5vw;                 /* Padding around the content */
+  background: var(--global-light-blue); /* Set background color using the CSS variable */
 }
 
+/* Content Wrapper Styles */
 .content-wrapper {
-  width: 100%;
-  padding: 0 1.5vw;
-  margin-bottom: 5vh;
+  width: 100%;                          /* Take up the full width */
+  padding: 0 1.5vw;                     /* Horizontal padding */
+  margin-bottom: 5vh;                   /* Bottom margin */
 }
 
-/* Style for wrapper */
+/* Wrapper Styles */
 .wrapper {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 20px;
+  max-width: 1000px;                   /* Maximum width of the wrapper */
+  margin: 0 auto;                      /* Center the wrapper horizontally */
+  padding: 0 20px;                     /* Horizontal padding */
 }
 
-/* Style for content wrapper */
+/* Content Wrapper Styles (repeated?) */
 .content-wrapper {
-  background-color: var(--global-light-blue);
-  border-radius: 8px;
-  margin-top: -20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: var(--global-light-blue); /* Set background color using the CSS variable */
+  border-radius: 8px;                         /* Rounded corners */
+  margin-top: -20px;                         /* Negative top margin to overlap the background wrapper */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);    /* Box shadow effect */
 }
 
-/* Style for content */
+/* Content Styles (repeated?) */
 .content {
-  margin-bottom: 40px;
+  margin-bottom: 40px;                       /* Bottom margin */
 }
 
+/* Button and Input Styles */
 input[type=submit], button[type=button] {
-  width: 100%;
-  height: 100%;
-  padding: 5px;
-  cursor: pointer;
-  border-radius: 0;
-  border: 0;
-  color: var(--global-white);
-  background-color: var(--global-green);
-  transition: background-color 0.4s ease-in-out;
+  width: 100%;                              /* Take up the full width */
+  height: 100%;                             /* Take up the full height */
+  padding: 5px;                             /* Padding inside the element */
+  cursor: pointer;                         /* Show a pointer cursor on hover */
+  border-radius: 0;                        /* No border radius */
+  border: 0;                               /* No border */
+  color: var(--global-white);              /* Text color using the CSS variable */
+  background-color: var(--global-green);   /* Background color using the CSS variable */
+  transition: background-color 0.4s ease-in-out; /* Smooth transition for background color change */
 }
 input[type=submit]:hover, button[type=button]:hover {
-  background-color: var(--global-green-hover) !important;
+  background-color: var(--global-green-hover) !important; /* Background color on hover using the CSS variable */
 }
 
+/* Read-only input styles */
 input[type=text]:-moz-read-only {
-  background-color: #f5f5f5;
+  background-color: #f5f5f5; /* Background color for read-only inputs in Mozilla Firefox */
 }
 
 input[type=text]:read-only {
-  background-color: #f5f5f5;
+  background-color: #f5f5f5; /* Background color for read-only inputs */
 }
 
+/* Error Div Styles */
 .error-div {
-  background-color: var(--global-light-blue);
-  padding: 10px;
-  margin-bottom: 15px;
+  background-color: var(--global-light-blue); /* Background color using the CSS variable */
+  padding: 10px;                              /* Padding inside the element */
+  margin-bottom: 15px;                        /* Bottom margin */
 }
 
+/* Error Message Styles */
 #error-message {
-  color: #ff0000;
-  font-weight: bold;
-}/*# sourceMappingURL=dashboard-common.css.map */
+  color: #ff0000;           /* Text color for error messages */
+  font-weight: bold;        /* Bold font weight */
+}
+
+/*# sourceMappingURL=dashboard-common.css.map */

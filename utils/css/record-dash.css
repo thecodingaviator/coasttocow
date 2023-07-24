@@ -1,41 +1,47 @@
+/* Style for a container with buttons arranged in a grid layout */
 .button-grid-2 {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
+  display: flex; /* Display flex container */
+  flex-wrap: wrap; /* Allow items to wrap to a new line when container width is limited */
+  justify-content: space-between; /* Distribute items with equal space between them */
+  align-items: center; /* Center items vertically within the container */
 }
 
+/* Style for a new section with top margin */
 .new-section {
-  margin-top: 25px;
+  margin-top: 25px; /* Add 25px top margin */
 }
 
+/* Style for buttons with the class 'dash-button' inside the container '.button-grid-2' */
 .button-grid-2 .dash-button {
-  width: 45%;
-  background-color: #d6d6d6;
-  transition: background-color 0.3s ease;
-  border-radius: 12px;
+  width: 45%; /* Set button width to occupy 45% of its container */
+  background-color: #d6d6d6; /* Set background color for the button */
+  transition: background-color 0.3s ease; /* Add smooth transition effect for background color */
+  border-radius: 12px; /* Add border-radius to create rounded corners */
 }
 
+/* Style for buttons with the class 'dash-button' when hovered */
 .button-grid-2 .dash-button:hover {
-  background-color: #bfbfbf;
+  background-color: #bfbfbf; /* Change background color on hover */
 }
 
+/* Style for links inside the buttons with the class 'dash-button' */
 .button-grid-2 .dash-button a {
-  text-decoration: none;
-  text-align: center;
-  color: var(--global-black);
-  display: grid;
-  grid-template-rows: 2fr 1fr;
-  width: 100%;
-  height: 100%;
-  margin: 0 auto;
-  padding: 0.5rem 1rem;
-  grid-row-gap: 10px;
+  text-decoration: none; /* Remove underline from links */
+  text-align: center; /* Center the text within the button */
+  color: var(--global-black); /* Use custom CSS variable for text color */
+  display: grid; /* Use grid layout for better control over content */
+  grid-template-rows: 2fr 1fr; /* Set grid template with 2 rows */
+  width: 100%; /* Set button width to occupy 100% of its container */
+  height: 100%; /* Set button height to occupy 100% of its container */
+  margin: 0 auto; /* Center the button horizontally using auto margins */
+  padding: 0.5rem 1rem; /* Add padding inside the button */
+  grid-row-gap: 10px; /* Set gap between grid rows */
 }
 
+/* Style for icons and images inside the buttons with the class 'dash-button' */
 .button-grid-2 .dash-button i,
 .button-grid-2 .dash-button img {
-  width: 2rem;
-  height: 2rem;
-  margin: 0 auto;
+  width: 2rem; /* Set width for icons and images */
+  height: 2rem; /* Set height for icons and images */
+  margin: 0 auto; /* Center icons and images horizontally using auto margins */
 }
