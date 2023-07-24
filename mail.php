@@ -1,4 +1,8 @@
 <?php
+// File: mail.php
+// Authors: Gordon Doore, Parth Parth
+// Purpose: Send emails with smtp using PHPMailer
+// Last modified: 07/24/2023
 include "utils/config.php";
 
 if (session_status() === PHP_SESSION_NONE) {

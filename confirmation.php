@@ -1,4 +1,9 @@
 <?php
+// File: confirmation.php
+// Authors: Gordon Doore, Parth Parth
+// Purpose: Confirmation page after upload/record a file
+// Last modified: 07/23/2023
+
 include "utils/config.php";
 
 // Check if the session is not already started, start a new session

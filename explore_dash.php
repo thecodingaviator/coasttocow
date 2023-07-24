@@ -1,4 +1,9 @@
 <?php
+// File: explore_dash.php
+// Authors: Gordon Doore, Parth Parth
+// Purpose: Dashboard for exploring the data in the database
+// Last modified: 07/24/2023
+
 include "utils/config.php";
 
 // Retrieve the number of entries in each table

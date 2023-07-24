@@ -1,5 +1,8 @@
 <?php include "utils/config.php";
-
+//File: record_DO.php
+//Authors: Gordon Doore, Parth Parth
+//Last modified: 07/24/2023
+//Purpose: Record DairyOne PDF file to operational drive
 
 if (session_status() === PHP_SESSION_NONE) {
   session_start();

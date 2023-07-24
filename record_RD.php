@@ -1,4 +1,8 @@
 <?php include "utils/config.php";
+//File: record_RD.php
+//Authors: Gordon Doore, Parth Parth
+//Last modified: 07/24/2023
+//Purpose: Record Research Data to operational drive
 
 function fieldsToDataMasterSQL($conn, $post_data, $user_id)
 {

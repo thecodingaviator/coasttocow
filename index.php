@@ -1,4 +1,8 @@
 <?php
+// File: index.php
+// Authors: Gordon Doore, Parth Parth
+// Purpose: Login page for the site
+// Last modified: 07/24/2023
 include "utils/config.php";
 
 session_start();

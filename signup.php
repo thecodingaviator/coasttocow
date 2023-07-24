@@ -1,4 +1,9 @@
 <?php
+// File: signup.php
+// Authors: Gordon Doore, Parth Parth
+// Purpose: Sign up page
+// Last modified: 07/24/2023
+
 session_start();
 
 include "utils/config.php";

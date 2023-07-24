@@ -1,4 +1,9 @@
 <?php
+// File: resetpassword.php
+// Authors: Gordon Doore, Parth Parth
+// Purpose: Reset password page
+// Last modified: 07/24/2023
+
 session_start();
 
 include "utils/config.php";

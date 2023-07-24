@@ -1,4 +1,8 @@
 <?php
+// File: templates.php
+// Authors: Gordon Doore, Parth Parth
+// Last modified: 07/24/2023
+// Purpose: Page for templates
 include "utils/config.php";
 ?>
 

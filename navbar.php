@@ -1,4 +1,9 @@
 <?php
+//File: navbar.php
+//Authors: Gordon Doore, Parth Parth
+//Purpose: Navigation bar for the site. Used on all pages
+//Last modified: 04/05/2021
+
 include "utils/config.php";
 
 if (session_status() === PHP_SESSION_NONE) {

@@ -1,4 +1,8 @@
 <?php
+// File: seaweed.php
+// Authors: Gordon Doore, Parth Parth
+// Last modified: 07/24/2023
+// Purpose: Page for seaweed ID tracking
 include "utils/config.php";
 ?>
 

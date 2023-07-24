@@ -1,4 +1,8 @@
 <?php
+// File: modify.php
+// Authors: Gordon Doore, Parth Parth
+// Last modified: 07/24/2023
+// Purpose: Edit user profile
 include "utils/config.php";
 
 session_start();

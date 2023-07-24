@@ -1,4 +1,8 @@
 <?php
+// File: explore_RD.php
+// Authors: Gordon Doore, Parth Parth
+// Purpose: Dashboard for exploring data html
+// Last modified: 07/24/2023
 include "utils/config.php";
 ?>
 

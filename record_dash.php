@@ -1,4 +1,9 @@
 <?php
+// File: record_dash.php
+// Authors: Gordon Doore, Parth Parth
+// Purpose: Dashboard for recording data
+// Last modified: 07/24/2023
+
 include "utils/config.php";
 
 ?>

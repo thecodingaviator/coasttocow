@@ -1,4 +1,9 @@
 <?php
+// File: upload.php
+// Authors: Gordon Doore, Parth Parth
+// Purpose: Uploads file to google drive using service account defined in credentials.php
+// Last modified: 07/24/2023
+
 //Uploads file to google drive using service account defined in credentials.php
 
 ini_set('display_errors', 1);

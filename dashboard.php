@@ -1,4 +1,8 @@
 <?php
+// File: dashboard.php
+// Authors: Gordon Doore, Parth Parth
+// Purpose: Dashboard for the site. Used on all pages
+// Last modified: 07/24/2023
 include "utils/config.php";
 
 // Check if the session is not already started, start a new session
