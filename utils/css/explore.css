@@ -1,137 +1,157 @@
+/* Apply margin-bottom of 10px to all direct children of .content>div */
 .content>div>* {
   margin-bottom: 10px;
 }
 
+/* Styles for scrollable content inside .content */
 .content .scrollable-content {
-  padding-bottom: 20px;
-  overflow: auto;
-  display: flex;
-  flex-wrap: wrap;
+  padding-bottom: 20px;   /* Add padding at the bottom */
+  overflow: auto;        /* Enable scrolling for content that overflows */
+  display: flex;        /* Use flexbox layout */
+  flex-wrap: wrap;     /* Allow content to wrap if necessary */
 }
 
+/* Sticky positioning for elements with .sticky-top class */
 .content .scrollable-content .sticky-top {
-  position: sticky;
-  top: 0;
-  left: 0;
-  width: 100%;
+  position: sticky;    /* Position element relative to the viewport */
+  top: 0;              /* Stick the element to the top */
+  left: 0;             /* Stick the element to the left */
+  width: 100%;        /* Take up the full width of its container */
 }
 
+/* Table styles inside .content */
 .content table {
-  table-layout: fixed;
-  border-collapse: collapse;
-  min-width: 100%;
-  box-sizing: content-box;
-  border: 1px solid #ccc;
-  margin-right: 1px;
+  table-layout: fixed;       /* Fix the table layout to evenly distribute columns */
+  border-collapse: collapse; /* Collapse table borders */
+  min-width: 100%;           /* Set minimum width to 100% */
+  box-sizing: content-box;  /* Set box-sizing to content-box */
+  border: 1px solid #ccc;  /* Add border around the table */
+  margin-right: 1px;      /* Set margin on the right to 1px */
 }
 
+/* Table cell styles inside .content table */
 .content table tr>td {
-  color: #4f4f4f;
+  color: #4f4f4f;    /* Set text color for table cells */
 }
 
+/* Table header and cell styles inside .content table */
 .content table th,
 .content table td {
-  padding: 8px;
-  border: 1px solid #ccc;
+  padding: 8px;     /* Set padding for table cells */
+  border: 1px solid #ccc; /* Add border for table cells */
 }
 
+/* Style for table header cells inside .content table */
 .content table th {
-  background-color: #f2f2f2;
+  background-color: #f2f2f2; /* Set background color for table header cells */
 }
 
+/* Styles for the dashboard top section */
 .dashboard-top {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
-  grid-gap: 10px;
+  display: grid; /* Use grid layout for the .dashboard-top container */
+  grid-template-columns: 1fr 1fr; /* Two columns with equal width */
+  grid-template-rows: 1fr; /* One row */
+  grid-gap: 10px; /* Gap between grid items */
 }
 
+/* Styles for the results container within .dashboard-top */
 .dashboard-top .results-container {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  display: flex; /* Use flexbox layout for .results-container */
+  align-items: center; /* Align items vertically in the center */
+  justify-content: flex-end; /* Align items to the end of the container */
 }
 
+/* Styles for the search div */
 .search-div {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: flex; /* Use flexbox layout for .search-div */
+  align-items: center; /* Align items vertically in the center */
+  justify-content: space-between; /* Space items evenly between */
 }
 
+/* Styles for select, input, and button elements within .search-div */
 .search-div select,
 .search-div input,
 .search-div button {
-  border: 1px solid #ccc;
-  padding: 5px;
-  height: 100%;
-  width: clamp(30%, 31%, 33%);
+  border: 1px solid #ccc; /* Add border to select, input, and button elements */
+  padding: 5px; /* Set padding for select, input, and button elements */
+  height: 100%; /* Set height to occupy full height */
+  width: clamp(30%, 31%, 33%); /* Set width using clamp to have a responsive width range */
 }
 
+/* Styles for buttons and input[type=submit] elements within .search-div */
 .search-div button,
 .search-div input[type=submit] {
-  border-radius: 0;
-  border: 0;
-  color: var(--global-white);
-  background-color: var(--global-green);
-  cursor: pointer;
+  border-radius: 0; /* Set border-radius to 0 */
+  border: 0; /* Remove default border */
+  color: var(--global-white); /* Set text color using the CSS variable */
+  background-color: var(--global-green); /* Set background color using the CSS variable */
+  cursor: pointer; /* Set cursor to pointer */
 }
 
+/* Modal styles */
 .modal {
-  display: none;
-  position: fixed;
-  z-index: 3;
-  padding-top: 100px;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.4);
+  display: none; /* Hide the modal by default */
+  position: fixed; /* Position the modal relative to the viewport */
+  z-index: 3; /* Set a high z-index to appear above other elements */
+  padding-top: 100px; /* Add top padding */
+  left: 0; /* Align to the left */
+  top: 0; /* Align to the top */
+  width: 100%; /* Take up the full width of the viewport */
+  height: 100%; /* Take up the full height of the viewport */
+  overflow: auto; /* Enable scrolling if content overflows */
+  background-color: rgb(0, 0, 0); /* Fallback background color for unsupported browsers */
+  background-color: rgba(0, 0, 0, 0.4); /* Background color with transparency for modern browsers */
 }
 
+/* Styles for the modal content */
 .modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-  position: relative;
+  background-color: #fefefe; /* Set background color for modal content */
+  margin: auto; /* Center the modal content horizontally */
+  padding: 20px; /* Add padding to the modal content */
+  border: 1px solid #888; /* Add border around the modal content */
+  width: 80%; /* Set the width of the modal content */
+  position: relative; /* Set position to relative for absolute positioning */
 }
 
+/* Styles for buttons within the modal content */
 .modal-content button {
-  border-radius: 0;
-  border: 0;
-  color: var(--global-white);
-  background-color: var(--global-green);
-  cursor: pointer;
+  border-radius: 0; /* Set border-radius to 0 for buttons in modal */
+  border: 0; /* Remove default border */
+  color: var(--global-white); /* Set text color using the CSS variable */
+  background-color: var(--global-green); /* Set background color using the CSS variable */
+  cursor: pointer; /* Set cursor to pointer */
 }
 
+/* Styles for the exitModal button within the modal content */
 .modal-content #exitModal {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 18px;
-  background-color: transparent;
-  color: #000;
-  cursor: pointer;
+  position: absolute; /* Position the exitModal button absolutely */
+  top: 10px; /* Set top position for the exitModal button */
+  right: 10px; /* Set right position for the exitModal button */
+  font-size: 18px; /* Set font size for the exitModal button */
+  background-color: transparent; /* Set background color to transparent */
+  color: #000; /* Set text color for the exitModal button */
+  cursor: pointer; /* Set cursor to pointer */
 }
 
+/* Styles for the exitModal button on hover */
 .modal-content #exitModal:hover {
-  color: red;
+  color: red; /* Set text color to red on hover */
 }
 
+/* Styles for the #my-grid element */
 #my-grid {
-  height: 100%;
-  width: 100%;
-  overflow: scroll;
+  height: 100%; /* Set height to occupy full height of its container */
+  width: 100%; /* Set width to occupy full width of its container */
+  overflow: scroll; /* Enable scrolling for #my-grid element */
 }
 
+/* Styles for scrollbar of #my-grid element */
 #my-grid::-webkit-scrollbar {
-  width: 0px;
-  background: transparent;
+  width: 0px; /* Set scrollbar width to 0 to hide the scrollbar */
+  background: transparent; /* Set background color of the scrollbar to transparent */
 }
 
+/* Styles for .error-div (Assuming it's for displaying error messages) */
 .error-div {
-  display: none;
+  display: none; /* Hide the error-div by default */
 }

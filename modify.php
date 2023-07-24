@@ -34,6 +34,19 @@ if (!$user) {
   $institution = $user['Institution'];
 }
 
+/**
+ * Updates a user's info in the database.
+ *
+ * @param string $password The user's password.
+ * @param string $email The user's new email.
+ * @param string $phone The user's new phone number.
+ * @param string $title The user's new job title.
+ * @param MySQLi $conn A MySQLi connection object to the database.
+ *
+ * @global string $update_status A message indicating the status of the profile update.
+ *
+ * @return void
+ */
 function changeUserInfo($password, $email, $phone, $title, $conn)
 {
   $user_id = $_SESSION['user_id'];
@@ -66,6 +79,17 @@ function changeUserInfo($password, $email, $phone, $title, $conn)
   }
 }
 
+/**
+ * Updates a user's password in the database.
+ *
+ * @param string $current_password The user's current password.
+ * @param string $new_password The user's new password.
+ * @param MySQLi $conn A MySQLi connection object to the database.
+ *
+ * @global string $update_status A message indicating the status of the password update.
+ *
+ * @return void
+ */
 function updatePassword($current_password, $new_password, $conn)
 {
   //retrieve user info

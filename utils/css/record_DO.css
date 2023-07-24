@@ -1,74 +1,79 @@
+/* Add padding-bottom for all direct children of elements with class 'content' */
 .content>* {
    padding-bottom: 10px;
 }
 
+/* Set text color to black for all 'label' elements */
 label {
    color: black;
 }
 
+/* Override styles for 'label' elements with 'for' attribute value 'agree_terms' */
 label[for=agree_terms] {
-   display: inline-block !important;
-   margin-bottom: 0;
+   display: inline-block !important; /* Override display to be inline-block */
+   margin-bottom: 0; /* Override margin-bottom to be 0 */
 }
 
-/* Style for the form */
+/* Style for the form with the id 'intake-form' */
 #intake-form {
-   max-width: 600px;
-   margin: 0 auto;
-   padding: 20px;
-   background-color: #f5f5f5;
-   border-radius: 8px;
+   max-width: 600px; /* Set maximum width for the form */
+   margin: 0 auto; /* Center the form horizontally using auto margins */
+   padding: 20px; /* Add padding around the form */
+   background-color: #f5f5f5; /* Set background color for the form */
+   border-radius: 8px; /* Add border-radius to create rounded corners */
 }
 
-/* Style for form fields */
+/* Style for 'label' elements within the form with id 'intake-form' */
 #intake-form label {
-   display: block;
-   margin-bottom: 8px;
-   font-weight: bold;
+   display: block; /* Set display to block for label elements */
+   margin-bottom: 8px; /* Add margin at the bottom of each label */
+   font-weight: bold; /* Set font-weight to bold for label elements */
 }
 
+/* Style for input fields and textarea within the form with id 'intake-form' */
 #intake-form input[type=text],
 #intake-form input[type=email],
 #intake-form textarea {
-   width: 100%;
-   padding: 10px;
-   border: 1px solid #ccc;
-   border-radius: 4px;
-   box-sizing: border-box;
-   font-size: 14px;
-   margin-bottom: 15px;
+   width: 100%; /* Set width to 100% to occupy full container width */
+   padding: 10px; /* Add padding inside the input fields and textarea */
+   border: 1px solid #ccc; /* Add a 1px border with color #ccc */
+   border-radius: 4px; /* Add border-radius to create rounded corners */
+   box-sizing: border-box; /* Include padding and border in the width calculation */
+   font-size: 14px; /* Set font size for input fields and textarea */
+   margin-bottom: 15px; /* Add margin at the bottom of each input field and textarea */
 }
 
+/* Style for select dropdown within the form with id 'intake-form' */
 #intake-form select {
-   width: 100%;
-   padding: 10px;
-   border: 1px solid #ccc;
-   border-radius: 4px;
-   box-sizing: border-box;
-   font-size: 14px;
-   margin-bottom: 15px;
-   -moz-appearance: none;
-   appearance: none;
-   -webkit-appearance: none;
+   width: 100%; /* Set width to 100% to occupy full container width */
+   padding: 10px; /* Add padding inside the select dropdown */
+   border: 1px solid #ccc; /* Add a 1px border with color #ccc */
+   border-radius: 4px; /* Add border-radius to create rounded corners */
+   box-sizing: border-box; /* Include padding and border in the width calculation */
+   font-size: 14px; /* Set font size for the select dropdown */
+   margin-bottom: 15px; /* Add margin at the bottom of the select dropdown */
+   -moz-appearance: none; /* Remove default styling for Firefox */
+   appearance: none; /* Remove default styling for other browsers */
+   -webkit-appearance: none; /* Remove default styling for WebKit-based browsers */
+   /* Use custom background image for the select dropdown */
    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8"><path d="M4 5L0 0h8L4 5zM0 8h8L4 3 0 8z" fill="%23333"/></svg>');
-   background-repeat: no-repeat;
-   background-position: right 8px center;
-   background-size: 10px;
+   background-repeat: no-repeat; /* Prevent background image from repeating */
+   background-position: right 8px center; /* Position the background image */
+   background-size: 10px; /* Set size of the background image */
 }
 
-/* Style for submit button */
+/* Style for the submit button within the form with id 'intake-form' */
 #intake-form input[type=submit] {
-   background-color: #4285f4;
-   color: #fff;
-   border: none;
-   border-radius: 4px;
-   padding: 12px 24px;
-   font-size: 16px;
-   cursor: pointer;
+   background-color: #4285f4; /* Set background color for the submit button */
+   color: #fff; /* Set text color for the submit button */
+   border: none; /* Remove border for the submit button */
+   border-radius: 4px; /* Add border-radius to create rounded corners */
+   padding: 12px 24px; /* Add padding inside the submit button */
+   font-size: 16px; /* Set font size for the submit button */
+   cursor: pointer; /* Change cursor to a pointer on hover */
 }
 
+/* Style for the submit button when hovered */
 #intake-form input[type=submit]:hover {
-   background-color: #0d8bf5;
+   background-color: #0d8bf5; /* Change background color on hover */
 }
-
-/*# sourceMappingURL=submit.css.map */

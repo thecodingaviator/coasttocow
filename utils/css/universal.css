@@ -1,28 +1,32 @@
+/* Set background color and custom CSS variables for primary colors */
 html,
 body {
-  background-color: #a2daeec2;
-  --primary-white: #faeff0;
-  --primary-green: #20D7DF;
-  --primary-green-hover: #1AC7D0;
-  --primary-black: #191919;
-  color: var(--primary-black);
-  box-sizing: border-box;
-  font-weight: 400 !important;
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #a2daeec2; /* Set the background color for the entire page */
+  --primary-white: #faeff0; /* Custom CSS variable for a primary white color */
+  --primary-green: #20D7DF; /* Custom CSS variable for a primary green color */
+  --primary-green-hover: #1AC7D0; /* Custom CSS variable for a darker green color on hover */
+  --primary-black: #191919; /* Custom CSS variable for a primary black color */
+  color: var(--primary-black); /* Set the text color for the entire page using the primary black color */
+  box-sizing: border-box; /* Use border-box box-sizing model for elements */
+  font-weight: 400 !important; /* Set the font weight for all elements with importance */
+  font-family: Arial, Helvetica, sans-serif; /* Set the default font family for the page */
 }
 
+/* Set the width and minimum height of the body */
 body {
-  width: 100%;
-  min-height: 100vh;
+  width: 100%; /* Set the body width to occupy the full width of the viewport */
+  min-height: 100vh; /* Set the minimum height of the body to fill the entire viewport */
 }
 
+/* Style for anchor (link) elements */
 body a {
-  text-decoration: none;
-  color: var(--primary-black);
+  text-decoration: none; /* Remove underline from all anchor (link) elements */
+  color: var(--primary-black); /* Set the text color for all anchor (link) elements using the primary black color */
 }
 
+/* Center align the immediate child div element within the body */
 body>div {
-  margin: 0 auto;
+  margin: 0 auto; /* Set margin to center the immediate child div element horizontally */
 }
 
 /*# sourceMappingURL=universal.css.map */

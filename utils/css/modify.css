@@ -1,93 +1,115 @@
+/* Apply padding-bottom of 10px to all direct children of .content */
 .content > * {
   padding-bottom: 10px;
 }
 
+/* Styles for the dashboard top section */
 .dashboard-top {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
-  grid-gap: 10px;
-}
-.dashboard-top .results-container {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  display: grid; /* Use grid layout for .dashboard-top container */
+  grid-template-columns: 1fr 1fr; /* Two columns with equal width */
+  grid-template-rows: 1fr; /* One row */
+  grid-gap: 10px; /* Gap between grid items */
 }
 
-.parent {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(9, auto);
-  grid-column-gap: 3vw;
-  grid-row-gap: 3vh;
+/* Styles for the results container within .dashboard-top */
+.dashboard-top .results-container {
+  display: flex; /* Use flexbox layout for .results-container */
+  align-items: center; /* Align items vertically in the center */
+  justify-content: flex-end; /* Align items to the end of the container */
 }
+
+/* Styles for the parent container */
+.parent {
+  display: grid; /* Use grid layout for .parent container */
+  grid-template-columns: repeat(2, 1fr); /* Two columns with equal width */
+  grid-template-rows: repeat(9, auto); /* Nine rows with auto height */
+  grid-column-gap: 3vw; /* Gap between grid columns */
+  grid-row-gap: 3vh; /* Gap between grid rows */
+}
+
+/* Styles for div elements inside the parent container */
 .parent > div {
-  width: 100%;
+  width: 100%; /* Set div width to 100% */
   padding: 10px; /* Add padding to the parent div */
   box-sizing: border-box; /* Include padding in the width calculation */
 }
+
+/* Styles for all elements inside div elements inside the parent container */
 .parent > div > * {
-  width: 100%;
-  height: 100%;
+  width: 100%; /* Set width to 100% */
+  height: 100%; /* Set height to 100% */
   box-sizing: border-box; /* Include padding in the width and height calculation */
 }
+
+/* Styles for input and textarea elements inside div elements inside the parent container */
 .parent > div > input,
 .parent > div > textarea {
-  border: 1px solid #ccc;
+  border: 1px solid #ccc; /* Add border to input and textarea elements */
   width: 100%; /* Make input and textarea elements take 100% width */
-  padding-top: 3px;
+  padding-top: 3px; /* Add padding to the top of input elements */
   height: auto; /* Set the height to auto to adjust based on content */
   box-sizing: border-box; /* Include padding in the width calculation */
 }
+
+/* Styles for input[type=submit] element inside div elements inside the parent container */
 .parent > div > input[type=submit] {
-  width: 20%; /* Remove the fixed width for submit button */
+  width: 20%; /* Set width of the submit button */
+  /* Note: The fixed width for the submit button might need adjustments based on design requirements */
 }
+
+/* Styles for div9 inside the parent container */
 .parent .div9 {
-  grid-column: 1/3;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-.parent .div9 > input{
-  border-color: --primary-white;
+  grid-column: 1/3; /* Position div9 across both grid columns */
+  display: flex; /* Use flexbox layout for div9 */
+  flex-direction: row; /* Arrange elements in a row */
+  justify-content: center; /* Center align elements horizontally */
+  align-items: center; /* Center align elements vertically */
 }
 
+/* Styles for input element inside div9 */
+.parent .div9 > input {
+  border-color: --primary-white; /* Border color using a CSS variable (note: --primary-white variable should be defined elsewhere) */
+}
+
+/* Styles for the popup container */
 .popup {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
+  position: relative; /* Set the position of the popup container */
+  display: inline-block; /* Display the popup as an inline-block element */
+  cursor: pointer; /* Set cursor to pointer for the popup */
 }
 
+/* Styles for the popuptext within the popup container */
 .popup .popuptext {
-  visibility: hidden;
-  width: 160px;
-  background-color: #555;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 8px 0;
-  position: absolute;
-  z-index: 1;
-  bottom: 125%;
-  left: 50%;
-  margin-left: -80px;
-  opacity: 0;
-  transition: opacity 0.3s;
+  visibility: hidden; /* Hide the popuptext by default */
+  width: 160px; /* Set the width of the popuptext */
+  background-color: #555; /* Set the background color of the popuptext */
+  color: #fff; /* Set the text color of the popuptext */
+  text-align: center; /* Center align text within the popuptext */
+  border-radius: 6px; /* Set border-radius for rounded corners */
+  padding: 8px 0; /* Add padding to the popuptext */
+  position: absolute; /* Position the popuptext absolutely */
+  z-index: 1; /* Set a higher z-index to appear above other elements */
+  bottom: 125%; /* Position the popuptext above the popup container */
+  left: 50%; /* Center the popuptext horizontally */
+  margin-left: -80px; /* Adjust the horizontal position of the popuptext */
+  opacity: 0; /* Set opacity to 0 (invisible) */
+  transition: opacity 0.3s; /* Add transition for opacity */
 }
 
+/* Styles for the arrow of the popuptext */
 .popup .popuptext::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #555 transparent transparent transparent;
+  content: ""; /* Create an empty content to add the arrow */
+  position: absolute; /* Position the arrow absolutely */
+  top: 100%; /* Position the arrow at the bottom of the popuptext */
+  left: 50%; /* Center the arrow horizontally */
+  margin-left: -5px; /* Adjust the horizontal position of the arrow */
+  border-width: 5px; /* Set the size of the arrow */
+  border-style: solid; /* Set border-style to create the arrow */
+  border-color: #555 transparent transparent transparent; /* Set border-color to create the arrow shape */
 }
 
+/* Styles for the popuptext when hovering over the popup container */
 .popup:hover .popuptext {
-  visibility: visible;
-  opacity: 1;
+  visibility: visible; /* Make the popuptext visible on hover */
+  opacity: 1; /* Set opacity to 1 (fully visible) on hover */
 }

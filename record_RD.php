@@ -4,6 +4,18 @@
 //Last modified: 07/24/2023
 //Purpose: Record Research Data to operational drive
 
+
+/**
+ * Inserts a new record into the `C3DataMasterTest` table in the database using the data from a form submission.
+ *
+ * @param MySQLi $conn The MySQLi connection object to the database.
+ * @param array $post_data The array of form data to be inserted into the database.
+ * @param string $user_id The user's id.
+ *
+ * @return string $error The error message, if any error occurred while inserting the data into the database. Empty if no errors occurred.
+ *
+ * @throws PDOException If there is an error executing the SQL statement.
+ */
 function fieldsToDataMasterSQL($conn, $post_data, $user_id)
 {
   $error = "";

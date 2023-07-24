@@ -16,6 +16,18 @@ require_once 'vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
+/**
+ * Sends an email using PHPMailer.
+ *
+ * @param string $subject: The subject of the email.
+ * @param string $content: The content of the email.
+ * @param string $recipient: The recipient's email address.
+ * @param string $password: The sender's email password.
+ *
+ * @return bool Returns true if the mail was successfully sent, false otherwise.
+ *
+ * @throws Exception If there is an error while sending the email.
+ */
 function sendMail($subject, $content, $recipient, $password){
     $mail = new PHPMailer(true);
     try {                                   

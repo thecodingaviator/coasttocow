@@ -1,188 +1,211 @@
+/* Set character encoding to UTF-8 */
 @charset "UTF-8";
+
+/* Import Google Fonts and normalize.css */
 @import url("https://fonts.googleapis.com/css2?family=Lexend+Deca&family=Poppins&display=swap");
 @import 'normalize.css';
 
+/* Styles for the navigation bar (nav) */
 nav {
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows: 1fr 0.9fr;
+  display: grid; /* Use grid layout for navigation bar */
+  grid-template-columns: 1fr 2fr 1fr; /* Three columns with different width ratios */
+  grid-template-rows: 1fr 0.9fr; /* Two rows with different height ratios */
   grid-template-areas:
-    ". logo logout"
+    ". logo logout" /* Define grid areas for the navigation bar */
     "menu menu menu";
-  font-family: "Arial", sans-serif;
-  height: fit-content;
-  margin: 0 1.5vw;
-  color: var(--global-black);
-  box-sizing: border-box;
-  background: var(--global-light-blue);
-  border-radius: 0 0 8px 8px;
-  margin-left: 0;
-  margin-right: 0;
-  margin-bottom: 5vh;
+  font-family: "Arial", sans-serif; /* Set font family for the navigation bar */
+  height: fit-content; /* Set the height to fit the content */
+  margin: 0 1.5vw; /* Set left and right margin with respect to viewport width */
+  color: var(--global-black); /* Use CSS variable for text color */
+  box-sizing: border-box; /* Include padding and border in the width calculation */
+  background: var(--global-light-blue); /* Use CSS variable for background color */
+  border-radius: 0 0 8px 8px; /* Set border radius for rounded corners */
+  margin-left: 0; /* Reset left margin */
+  margin-right: 0; /* Reset right margin */
+  margin-bottom: 5vh; /* Set bottom margin with respect to viewport height */
 }
 
+/* Styles for the logo-div inside the navigation bar */
 nav .logo-div {
-  grid-area: logo;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  grid-area: logo; /* Position logo-div in the grid */
+  display: flex; /* Use flexbox layout for logo-div */
+  align-items: center; /* Align items vertically in the center */
+  justify-content: center; /* Align items horizontally in the center */
 }
 
+/* Styles for the unordered list (menu) inside the navigation bar */
 nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  grid-area: menu;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
+  list-style: none; /* Remove list-style bullets */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  grid-area: menu; /* Position menu in the grid */
+  display: flex; /* Use flexbox layout for menu */
+  align-items: center; /* Align items vertically in the center */
+  justify-content: space-around; /* Space items evenly around the container */
 }
 
+/* Styles for anchor elements inside list items in the navigation bar */
 nav .nav-list>li>a {
-  font-size: 1.2em;
+  font-size: 1.2em; /* Set font size for anchor elements */
 }
 
+/* Styles for the profile-dropdown inside the navigation bar */
 nav .profile-dropdown {
-  grid-area: logout;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  position: relative;
-  font-size: 12px;
+  grid-area: logout; /* Position profile-dropdown in the grid */
+  display: flex; /* Use flexbox layout for profile-dropdown */
+  justify-content: flex-end; /* Align items to the end of the container */
+  align-items: center; /* Align items vertically in the center */
+  position: relative; /* Set position to relative for absolute positioning */
+  font-size: 12px; /* Set font size for profile-dropdown */
 }
 
+/* Styles for the unordered list inside the profile-dropdown */
 nav .profile-dropdown>ul {
-  height: 100%;
+  height: 100%; /* Set height of the unordered list to 100% */
 }
 
+/* Styles for list items inside the unordered list in the profile-dropdown */
 nav .profile-dropdown>ul>li {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--global-light-blue);
+  height: 100%; /* Set height of list items to 100% */
+  display: flex; /* Use flexbox layout for list items */
+  justify-content: center; /* Align items horizontally in the center */
+  align-items: center; /* Align items vertically in the center */
+  background-color: var(--global-light-blue); /* Use CSS variable for background color */
 }
 
+/* Styles for anchor elements inside list items in the profile-dropdown */
 nav .profile-dropdown>ul>li>a {
-  color: #08203e;
-  margin: 0 5px;
-  margin-left: 11px;
+  color: #08203e; /* Set color for anchor elements in the profile-dropdown */
+  margin: 0 5px; /* Set margin for anchor elements */
+  margin-left: 11px; /* Set left margin for anchor elements */
 }
 
-
+/* Styles for h1 element inside the navigation bar */
 nav h1 {
-  text-align: center;
-  margin: 0;
+  text-align: center; /* Center align text within h1 element */
+  margin: 0; /* Remove default margin */
 }
 
+/* Styles for anchor elements inside h1 element in the navigation bar */
 nav h1 a {
-  font-size: 1em;
+  font-size: 1em; /* Set font size for anchor elements inside h1 element */
 }
 
+/* Styles for nested unordered lists in the navigation bar */
 nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  padding-top: 10px;
-  grid-area: menu;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
+  list-style: none; /* Remove list-style bullets */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  padding-top: 10px; /* Set top padding for the nested unordered list */
+  grid-area: menu; /* Position nested unordered list in the grid */
+  display: flex; /* Use flexbox layout for nested unordered list */
+  align-items: center; /* Align items vertically in the center */
+  justify-content: space-around; /* Space items evenly around the container */
 }
 
+/* Styles for list items in the navigation bar */
 nav li {
-  position: relative;
+  position: relative; /* Set position to relative for absolute positioning */
 }
 
+/* Styles for the nested unordered list when hovering over a list item */
 nav li:hover ul {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display: flex; /* Display the nested unordered list on hover */
+  flex-wrap: wrap; /* Allow items to wrap within the container */
+  flex-direction: column; /* Stack items vertically */
+  justify-content: center; /* Align items vertically in the center */
+  align-items: center; /* Align items horizontally in the center */
 }
 
+/* Styles for anchor elements and buttons in the navigation bar */
 nav a,
 nav button {
-  text-align: center;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 1.5em;
-  display: inline-block;
-  color: var(--global-black);
+  text-align: center; /* Center align text within anchor elements and buttons */
+  text-decoration: none; /* Remove default text decoration */
+  font-weight: 500; /* Set font weight for anchor elements and buttons */
+  font-size: 1.5em; /* Set font size for anchor elements and buttons */
+  display: inline-block; /* Display anchor elements and buttons as inline-block elements */
+  color: var(--global-black); /* Use CSS variable for text color */
 }
 
+/* Styles for nested unordered lists in the navigation bar */
 nav ul ul {
-  display: none;
-  position: absolute;
-  top: calc(100% - 1px);
-  left: 0;
-  background-color: var(--global-light-blue);
-  width: 100%;
-  z-index: 1;
+  display: none; /* Hide nested unordered lists by default */
+  position: absolute; /* Position nested unordered lists absolutely */
+  top: calc(100% - 1px); /* Position nested unordered lists just below their parent list items */
+  left: 0; /* Align nested unordered lists to the left */
+  background-color: var(--global-light-blue); /* Use CSS variable for background color */
+  width: 100%; /* Set the width of nested unordered lists to 100% */
+  z-index: 1; /* Set z-index to appear above other elements */
 }
 
+/* Styles for list items in nested unordered lists */
 nav ul ul li {
-  height: 100%;
-  width: 100%;
+  height: 100%; /* Set height of list items in nested unordered lists to 100% */
+  width: 100%; /* Set width of list items in nested unordered lists to 100% */
 }
 
+/* Styles for anchor elements in nested unordered lists when hovering over their parent list items */
 nav ul li a:hover {
-  color: var(--global-blue);
+  color: var(--global-blue); /* Change text color on hover for anchor elements */
 }
 
+/* Styles for anchor elements in nested unordered lists */
 nav ul ul li a {
-  padding: 10px 10%;
-  display: inline-block;
-  font-size: medium;
+  padding: 10px 10%; /* Set padding for anchor elements in nested unordered lists */
+  display: inline-block; /* Display anchor elements as inline-block elements */
+  font-size: medium; /* Set font size for anchor elements in nested unordered lists */
 }
 
+/* Styles for form element inside the navigation bar */
 nav form {
-  width: 100%;
-  height: 100%;
+  width: 100%; /* Set form width to 100% */
+  height: 100%; /* Set form height to 100% */
 }
 
+/* Styles for button element inside the form in the navigation bar */
 nav form button {
-  border: none;
-  background: none;
-  color: rgb(236, 71, 71);
-  cursor: pointer;
-  transition: color 0.4s ease-in-out;
-  padding: 0;
-  font-size: medium;
-  display: inline-block;
-  padding: 10px 10%;
+  border: none; /* Remove border for form buttons */
+  background: none; /* Remove background for form buttons */
+  color: rgb(236, 71, 71); /* Set text color for form buttons */
+  cursor: pointer; /* Set cursor to pointer for form buttons */
+  transition: color 0.4s ease-in-out; /* Add transition for color change */
+  padding: 0; /* Remove default padding */
+  font-size: medium; /* Set font size for form buttons */
+  display: inline-block; /* Display form buttons as inline-block elements */
+  padding: 10px 10%; /* Set padding for form buttons */
 }
 
+/* Styles for button element inside the form when hovering */
 nav form button:hover {
-  color: rgb(255, 57, 57);
+  color: rgb(255, 57, 57); /* Change text color on hover for form buttons */
 }
 
+/* Styles for the logo-div inside the navigation bar */
 nav .logo-div {
-  grid-area: logo;
+  grid-area: logo; /* Position logo-div in the grid */
 }
 
+/* Styles for the logo inside the logo-div */
 nav .logo {
-  color: var(--global-black);
-  /* Change the color of the letter 'C' */
-  /*make the letter C bold*/
-  font-weight: bold;
-  font-size: 2em;
+  color: var(--global-black); /* Set text color for the logo */
+  font-weight: bold; /* Set font weight for the logo */
+  font-size: 2em; /* Set font size for the logo */
 }
 
+/* Styles for the span element inside the logo-div */
 nav .logo span {
-  color: #2093df;
-  /* Change the color of the superscript '³' */
+  color: #2093df; /* Change text color for the superscript '³' */
 }
 
+/* Styles for the repo element */
 nav .repo {
-  font-weight: bold;
-  font-size: 1.3em;
+  font-weight: bold; /* Set font weight for the repo element */
+  font-size: 1.3em; /* Set font size for the repo element */
 }
 
+/* Styles for the arrow element */
 nav .arrow {
-  display: inline-block;
-  transition: transform 0.5s ease-in-out;
+  display: inline-block; /* Display the arrow as an inline-block element */
+  transition: transform 0.5s ease-in-out; /* Add transition for the transform property */
 }
-
-/*# sourceMappingURL=navbar.css.map */
