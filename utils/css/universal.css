@@ -1,7 +1,7 @@
 /* Set background color and custom CSS variables for primary colors */
 html,
 body {
-  background-color: #a2daeec2; /* Set the background color for the entire page */
+  background-color: #a2daee; /* Set the background color for the entire page */
   --primary-white: #faeff0; /* Custom CSS variable for a primary white color */
   --primary-green: #20D7DF; /* Custom CSS variable for a primary green color */
   --primary-green-hover: #1AC7D0; /* Custom CSS variable for a darker green color on hover */
