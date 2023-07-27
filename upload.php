@@ -57,13 +57,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     ]);
     // Store file ID in session variable
     $_SESSION['file_id'] = $movedFile->id;
-
     // Retrieve unique name from session
     $unique_name = $_SESSION['unique_name'];
 
     // insert file id into database at unique name
     $file_id = $_SESSION['file_id'];
-
+  
+    // if isset($_SESSION['RD']){
+    if (isset($_SESSION['submitMeta'])){
     $sql = "UPDATE `C3DataMasterTest` SET `file_id`=? WHERE unique_name = ?";
     $stmt = $conn->prepare($sql);
 
@@ -81,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       error_log($error, 0); // Print error to SAPI log
       $_SESSION['file_uploaded'] = false;
       echo $error; // Print error to the developer console
-    }
+    }}
   } else {
     error_log("Error uploading file: " . $_FILES['file_input']['error']);
   }

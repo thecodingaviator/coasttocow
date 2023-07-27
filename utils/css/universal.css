@@ -5,6 +5,7 @@ body {
   --primary-white: #faeff0; /* Custom CSS variable for a primary white color */
   --primary-green: #20D7DF; /* Custom CSS variable for a primary green color */
   --primary-green-hover: #1AC7D0; /* Custom CSS variable for a darker green color on hover */
+  --primary-red: #ee6161; /* Custom CSS variable for a primary red color */
   --primary-black: #191919; /* Custom CSS variable for a primary black color */
   color: var(--primary-black); /* Set the text color for the entire page using the primary black color */
   box-sizing: border-box; /* Use border-box box-sizing model for elements */
