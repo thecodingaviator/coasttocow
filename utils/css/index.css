@@ -117,13 +117,23 @@ body {
   justify-content: right; /* Align content to the right */
 }
 
-/* The commented section below is currently disabled with '/*' at the beginning of each line
-   Uncomment it to enable the styles for #error-message p
-*/
+.error-div {
+  border-radius: 5px; /* Optional: Round the corners of the box */
+  padding: 10px; /* Add some padding inside the box */
+  width: 80%; /* Set the width of the box */
+  margin: 0 auto; /* Center the box on the page */
+}
 
-/*#error-message p {
-  /* put in grid, and text-align center 
-} */
+.error-div p {
 
-/* Add a source mapping comment for index.css.map */
-/*# sourceMappingURL=index.css.map */
+  color: var(--primary-red) !important; /* Set text color using the CSS variable */
+  font-size: 15px; /* Set font size for the paragraph */
+  margin-bottom: 20px;
+  padding: 0; /* Remove padding */
+  text-align: center; /* Center align text */
+  width: 100%; /* Set width to 100% */
+  height: 1em; /* Set height to 1em */
+  display: flex; /* Use flexbox layout */
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+}

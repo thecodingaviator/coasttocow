@@ -103,6 +103,7 @@ if ($user) {
 }
 
 if (isset($_POST['submitMeta'])) {
+  $_SESSION['submiMeta'] = true;
   $post_data = $_POST;
 
   // create unique name for dataset based on dataset name
