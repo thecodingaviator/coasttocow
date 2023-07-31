@@ -1,5 +1,6 @@
 .vscode
 */c3-upload.json
-composer.json
+composer.lock
+composer.phar
 /vendor
 utils/credentials.php
