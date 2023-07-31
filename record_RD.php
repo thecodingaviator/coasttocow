@@ -98,12 +98,13 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if ($user) {
   $email = $user['Email'];
+  $_SESSION['email'] = $email;
   $last_name = $user['LastName'];
   $first_name = $user['FirstName'];
 }
 
 if (isset($_POST['submitMeta'])) {
-  $_SESSION['submiMeta'] = true;
+  $_SESSION['submitMeta'] = true;
   $post_data = $_POST;
 
   // create unique name for dataset based on dataset name
@@ -129,24 +130,14 @@ if (isset($_POST['submitMeta'])) {
 
     $metaSubmitted = true;
     $error = fieldsToDataMasterSQL($conn, $post_data, $user_id);
-    $_SESSION['update'][] = "Sucessfully Recorded Metadata. an email will be sent to you to confirm this submission";
+    $_SESSION['update'][] = "Sucessfully Recorded Metadata. An email will be sent to you to confirm this submission";
     $_SESSION['update'][] = $error;
   }
   if (isset($_POST['free_download']) && $_POST['free_download'] == 0 && $metaSubmitted) {
     header('Location: confirmation.php');
     exit();
   }
-}
-if (isset($_SESSION['file_uploaded'])) {
-  if ($_SESSION['file_uploaded'] == true) {
-    unset($_SESSION['file_uploaded']);
-    $_SESSION['update'][] = "Sucessfully Uploaded File";
-  } else {
-    unset($_SESSION['file_uploaded']);
-    $_SESSION['update'][] = "Error Uploading File, please contact administrator";
-  }
-  header('Location: confirmation.php');
-  exit();
+
 }
 ?>
 

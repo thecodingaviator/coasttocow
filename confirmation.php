@@ -5,17 +5,17 @@
 // Last modified: 07/23/2023
 
 include "utils/config.php";
+include "mail.php";
 
 // Check if the session is not already started, start a new session
 if (session_status() === PHP_SESSION_NONE) {
   session_start();
 }
 // Check if an email was sent
-$emailSent = false;
-if (isset($_SESSION['email_sent']) && $_SESSION['email_sent'] == true) {
-  $emailSent = true;
-  // Unset the session variable to avoid displaying the notification multiple times
-  unset($_SESSION['email_sent']);
+
+if (isset($_SESSION['email']) && !isset($_SESSION['confirmation_mail'])) {
+  sendMail("File Uploaded", "Your file has been uploaded to the C3 Database Repo.", $_SESSION['email'], $mail_pass);
+  $_SESSION['confirmation_mail'] = true;
 }
 ?>
 
@@ -46,9 +46,7 @@ if (isset($_SESSION['email_sent']) && $_SESSION['email_sent'] == true) {
             foreach ($_SESSION['update'] as $message) {
               echo "<p>$message</p>";
             }
-
-            // Clear the debug_messages array if needed
-            // unset($_SESSION['debug_messages']);
+            unset($_SESSION['update']);
           } else {
             echo "<p>No debugging messages found.</p>";
           }

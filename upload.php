@@ -55,6 +55,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       'addParents' => $folder_id,
       'supportsAllDrives' => true // Required for shared drives
     ]);
+    //add notification update in session
+    $_SESSION['update'][] = "File uploaded to Google Drive";
     // Store file ID in session variable
     $_SESSION['file_id'] = $movedFile->id;
     // Retrieve unique name from session
@@ -62,15 +64,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // insert file id into database at unique name
     $file_id = $_SESSION['file_id'];
-  
-    // if isset($_SESSION['RD']){
+
     if (isset($_SESSION['submitMeta'])){
     $sql = "UPDATE `C3DataMasterTest` SET `file_id`=? WHERE unique_name = ?";
     $stmt = $conn->prepare($sql);
 
     try {
       $stmt->execute([$file_id, $unique_name]);
-
+      $_SESSION['update'][] = "File ID updated in database";
       // Delete session variables except for user id
       unset($_SESSION['unique_name']);
       unset($_SESSION['file_id']);
@@ -81,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $error = $e->getMessage();
       error_log($error, 0); // Print error to SAPI log
       $_SESSION['file_uploaded'] = false;
-      echo $error; // Print error to the developer console
+      $_SESSION['update'][] = $error;
     }}
   } else {
     error_log("Error uploading file: " . $_FILES['file_input']['error']);
