@@ -134,6 +134,7 @@ if (isset($_POST['submitMeta'])) {
     $_SESSION['update'][] = $error;
   }
   if (isset($_POST['free_download']) && $_POST['free_download'] == 0 && $metaSubmitted) {
+    $_SESSION['confirmation_file'] = true;
     header('Location: confirmation.php');
     exit();
   }
