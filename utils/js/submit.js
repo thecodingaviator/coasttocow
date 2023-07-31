@@ -11,8 +11,12 @@ function handleFileUpload() {
   //if it gets to upload, success will be printed
   .then(result => {
     console.log('Success:', result);
+    //redirect to confirm page only after upload.php has finished
+  
+    window.location.href = "confirmation.php"
   })
   .catch(error => {
     console.error('Error:', error);
   });
+
 }

@@ -45,10 +45,10 @@ function sendMail($subject, $content, $recipient, $password){
         $mail->Subject = $subject;
         $mail->Body    = $content;
         $mail->send();
-        echo "Mail has been sent successfully!";
+        $_SESSION['update'][] = "Message has been sent";
         return true;
     } catch (Exception $e) {
-        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        $_SESSION['update'][] = "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         return false;
     }
 }
