@@ -29,7 +29,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $file = $_FILES['file_input'];
     $folder_selection = $_POST['folder_selection'];
     echo "Selected folder: " . $folder_selection . "<br>";
-
+    if (!isset($_SESSION['unique_name'])){
+      $_SESSION['unique_name'] = $folder_selection .  '-' . uniqid();
+    }
     // Get the ID of the selected folder
     $folder_id = $folder_ids[$folder_selection];
     echo "Folder ID: " . $folder_id . "<br>";
@@ -59,6 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $_SESSION['update'][] = "File uploaded to Google Drive";
     // Store file ID in session variable
     $_SESSION['file_id'] = $movedFile->id;
+
     // Retrieve unique name from session
     $unique_name = $_SESSION['unique_name'];
 

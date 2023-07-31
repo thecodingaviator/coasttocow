@@ -26,19 +26,6 @@ if ($user) {
   $first_name = $user['FirstName'];
 }
 
-if (isset($_POST['file_attach'])){
-
-$dataset_name = $_POST['folder_selection'];
-
-// create unique name for dataset based on dataset name
-$unique_name = preg_replace('/[^A-Za-z0-9\-]/', '', $dataset_name);
-$unique_name = strtolower($unique_name);
-$unique_name = str_replace(' ', '-', $unique_name);
-$unique_name = $unique_name . '-' . uniqid();
-
-// save unique name as session variable
-$_SESSION['unique_name'] = $unique_name;
-}
 ?>
 
 <!DOCTYPE html>
