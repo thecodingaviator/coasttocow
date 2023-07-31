@@ -13,7 +13,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 // Check if an email was sent
 
-if (isset($_SESSION['email']) && isset($_SESSION['confirmation_mail'])) {
+if (isset($_SESSION['email'])) {
   sendMail("File Uploaded", "Your file has been uploaded to the C3 Database Repo.", $_SESSION['email'], $mail_pass);
   unset($_SESSION['email']);
 }
