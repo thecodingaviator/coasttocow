@@ -22,6 +22,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if ($user) {
   $email = $user['Email'];
+  $_SESSION['email'] = $email;
   $last_name = $user['LastName'];
   $first_name = $user['FirstName'];
 }

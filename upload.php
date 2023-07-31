@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $_SESSION['update'][] = "File uploaded to Google Drive";
     // Store file ID in session variable
     $_SESSION['file_id'] = $movedFile->id;
-
+    $_SESSION['confirmation'] = true;
     // Retrieve unique name from session
     $unique_name = $_SESSION['unique_name'];
 
