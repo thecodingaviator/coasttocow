@@ -169,6 +169,7 @@ if (isset($_POST['submitMeta'])) {
     <p> </p>
   </div>
   <div class="wrapper">
+    <?php include "loader.php"; ?>
     <?php include "navbar.php"; ?>
     <div class="content-wrapper">
       <div class="content">
