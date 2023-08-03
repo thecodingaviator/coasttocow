@@ -459,7 +459,7 @@ To install and set up the **CoastCowConsumer Data Repository**:
     Here's a quick tutorial on how and where to install [composer](https://getcomposer.org/doc/01-basic-usage.md)
 
     Once one has composer installed, they should create or update their composer.json file to include: `"phpmailer/phpmailer": ^6.8` and ` "google/apiclient": ^2.0` as well as any additional non-native installations (libraries, APIs, other software).
-    Now, the user just needs to run php composer.phar update.  More about this is included in the composer tutorial.
+    Now, the user just needs to run `php composer update` and/or `composer install`. If any of those commands fail, add `.phar` to `composer` to make the commands `php composer.phar update` and/or `composer.phar install` More about this is included in the composer tutorial.
 
     ### Google Drive API
 
