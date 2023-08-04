@@ -250,6 +250,46 @@ Important considerations for future developers working on the login page:
 - Error handling: Customize the error message or error handling behavior if needed. Review where the error message is assigned and how it is displayed in the HTML code.
 
 ---
+### `mail.php`
+
+`mail.php` handles sending emails using PHPMailer and SMTP.
+
+It includes the database config file `utils/config.php` and starts the session.
+
+The main features are:
+
+- `sendMail` function
+  - Accepts subject, content, recipient, password 
+  - Configures PHPMailer object with SMTP settings
+  - Sets from name, adds recipient
+  - Sends email 
+  - Returns true if sent successfully
+
+- Uses SMTP with Gmail
+  - SMTP host, port, username, password set
+  - Enables SMTP auth and TLS
+  
+- Error handling
+  - Catches PHPMailer exceptions
+  - Logs error messages to session
+
+The file depends on: 
+
+- PHPMailer library
+- Database credentials in `utils/config.php`
+
+Considerations:
+
+- Replace hardcoded SMTP credentials with config values
+- Add support for attachments
+- Customize message from name and email address
+- Template HTML emails instead of plain text
+- Queue emails instead of sending inline
+- Add alternative logging for errors
+
+Overall, `mail.php` provides a simple API to send transactional emails from PHP applications. Further improvements can be made to handle edge cases, retries, HTML formatting, etc.
+
+---
 
 ### `modify.php`
 
@@ -295,6 +335,83 @@ Important considerations for future developers working on the navigation bar:
 - Styling: Customize the CSS styles in the `navbar.css` file to match the desired appearance of the navigation bar.
 - User information retrieval: Review and modify the SQL statements and table/column names to match the actual database structure and naming conventions.
 - Session management: Ensure that session variables are properly initialized and destroyed to maintain secure and consistent user sessions.
+
+---
+### `record_dash.php`
+
+`record_dash.php` is a dashboard page for recording data. It allows users to select what kind of data they will submit and then redirects users to the appropriate submission page.
+
+---
+### `record_DO.php`
+
+`record_DO.php` is the dedicated page for user submission of DairyOne data.  This is separate because metadata extraction has been automated elsewhere in the workflow, and allows a more simple upload process compared to the research data workflow.
+
+The file has functionality as follows: 
+
+- User session management: 
+  - Checks if a session is already started and starts a new one if not
+  - Gets the user ID from the session
+  - Queries the database to get user details like email, first name, last name
+
+- File upload form:
+  - Allows selecting a folder to save the uploaded file
+  - Has radio buttons to pick between Analysis, Macro or Fatty Acids folders
+  - Upload button triggers JavaScript to handle the file upload
+
+- Error handling:
+  - Checks if any errors exist
+  - Displays errors in a div if present
+  
+- Page layout:
+  - Includes the navbar
+  - Main content with heading and file upload form
+  
+The `record_DO.php` file relies on:
+
+- `utils/config.php` - Database configuration
+- `utils/css/record_DO.css` - Stylesheet 
+- `utils/js/submit.js` - File upload handling
+- `navbar.php` - Navigation bar include
+
+Overall, `record_DO.php` provides the frontend and infrastructure to allow file uploads. The backend accesses the database through the called handleFileUpload() function in submit.js which relies on upload.php.
+
+---
+### `record_RD.php`
+
+`record_RD.php` allows users to submit research dataset metadata and upload files.
+
+It includes the database config file `utils/config.php` and initializes the user session. 
+
+The main features are:
+
+- Get user details from database like email, name
+- Metadata submission form
+  - Fields for dataset name, description, classification, keywords etc.
+  - Validation to check for existing dataset names
+  - Insert submission into `C3DataMasterTest` table
+  - Generate unique dataset name
+  - Email confirmation on submission
+- File upload
+  - Allow upload after metadata submitted
+  - Radio button to confirm research data upload
+  
+- Error handling for form submission
+
+- Page layout and styles
+
+The file relies on:
+
+- `utils/config.php` - Database credentials
+- `utils/css/record_RD.css` - Stylesheet
+- `utils/js/submit.js` - File upload handling
+- `navbar.php` - Navigation menu  
+
+Considerations:
+
+- Add more validation and sanitization for form data
+- Enhance UI/UX for forms and process
+
+Overall, `record_RD.php` provides the ability to collect metadata and files for research datasets. Further work needed to integrate file processing and access control for sharing the datasets/versioning.
 
 ---
 

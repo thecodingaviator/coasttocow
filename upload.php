@@ -69,24 +69,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $file_id = $_SESSION['file_id'];
 
     if (isset($_SESSION['submitMeta'])){
-    $sql = "UPDATE `C3DataMasterTest` SET `file_id`=? WHERE unique_name = ?";
-    $stmt = $conn->prepare($sql);
+      $sql = "UPDATE `C3DataMasterTest` SET `file_id`=? WHERE unique_name = ?";
+      $stmt = $conn->prepare($sql);
 
-    try {
-      $stmt->execute([$file_id, $unique_name]);
-      $_SESSION['update'][] = "File ID updated in database";
-      // Delete session variables except for user id
-      unset($_SESSION['unique_name']);
-      unset($_SESSION['file_id']);
-      $_SESSION['file_uploaded'] = true;
+      try {
+        $stmt->execute([$file_id, $unique_name]);
+        $_SESSION['update'][] = "File ID updated in database";
+        // Delete session variables except for user id
+        unset($_SESSION['unique_name']);
+        unset($_SESSION['file_id']);
+        $_SESSION['file_uploaded'] = true;
 
-    } catch (PDOException $e) {
-      $error = "Error submitting dataset. Please try again.";
-      $error = $e->getMessage();
-      error_log($error, 0); // Print error to SAPI log
-      $_SESSION['file_uploaded'] = false;
-      $_SESSION['update'][] = $error;
-    }}
+      } catch (PDOException $e) {
+        $error = "Error submitting dataset. Please try again.";
+        $error = $e->getMessage();
+        error_log($error, 0); // Print error to SAPI log
+        $_SESSION['file_uploaded'] = false;
+        $_SESSION['update'][] = $error;
+    }
+  }
   } else {
     error_log("Error uploading file: " . $_FILES['file_input']['error']);
   }
