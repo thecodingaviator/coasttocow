@@ -4,3 +4,4 @@ composer.lock
 composer.phar
 /vendor
 utils/credentials.php
+test*
