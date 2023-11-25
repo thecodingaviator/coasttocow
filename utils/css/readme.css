@@ -1,0 +1,55 @@
+/* Form Styles */
+#readme-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+#readme-form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+#readme-form input[type="text"],
+#readme-form input[type="month"],
+#readme-form select,
+#readme-form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+#readme-form input[type="submit"] {
+  background: #0056b3;
+  color: #fff;
+  border: 0;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#readme-form input[type="submit"]:hover {
+  background: #004494;
+}
+
+/* Checkbox Styles */
+#readme-form label input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.error-div {
+  background-color: #ffdddd;
+  border-left: 6px solid #f44336;
+  margin-bottom: 15px;
+  padding: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .wrapper {
+    width: 95%;
+  }
+}

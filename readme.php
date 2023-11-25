@@ -44,193 +44,156 @@
     <?php include "navbar.php"; ?>
     <div class="content-wrapper">
       <div class="content">
-        <h1>Record Readme</h1>
+        <h1>Readme Form</h1>
         <div class="dataset-submission">
           <div class="enter-data">
-            <div class="dataset-submission">
-              <div class="enter-data" style="<?php echo $metaSubmitted ? 'display: none;' : ''; ?>">
-                <form id="intake-form" action="" method="POST">
-                  <h2>C3 Data Master Intake Form</h2>
-                  <p><em>* Indicates required question</em></p>
+            <form id="readme-form" action="" method="POST">
+              <h2>Readme Dataset Submission Form</h2>
+              <p><em>* Indicates required question</em></p>
 
-                  <label for="email">Email *</label>
-                  <input type="email" id="email" name="email" value="<?php echo $email ?>" required>
+              <!-- General Information -->
+              <label for="creation_date">Creation Date (mm-yyyy) *</label>
+              <input type="month" id="creation_date" name="creation_date" required>
 
-                  <label for="primary_last_name">Primary Contact Last Name *</label>
-                  <input type="text" id="primary_last_name" name="primary_last_name" value="<?php echo $last_name ?>"
-                    required>
+              <!-- Subcommittee(s) -->
+              <label for="subcommittee">C3 Subcommittee(s) *</label>
+              <select id="subcommittee" name="subcommittee" required>
+                <option value="Algal Characteristics">Algal Characteristics</option>
+                <option value="Milk Yield/Quality & Animal Wellness">Milk Yield/Quality & Animal Wellness</option>
+                <option value="Natural Resources">Natural Resources</option>
+                <option value="Social/Environmental Implications">Social/Environmental Implications</option>
+                <option value="Life Cycle Assessment">Life Cycle Assessment</option>
+                <option value="Extension & Education">Extension & Education</option>
+                <option value="Database">Database</option>
+              </select>
 
-                  <label for="primary_first_name">Primary Contact First Name *</label>
-                  <input type="text" id="primary_first_name" name="primary_first_name" value="<?php echo $first_name ?>"
-                    required>
-
-                  <label for="institution">Institution of Primary Contact *</label>
-                  <select id="institution" name="institution" required>
-                    <option value="">Select an option</option>
-                    <option value="Bigelow">Bigelow</option>
-                    <option value="Clarkson University">Clarkson University</option>
-                    <option value="Colby College">Colby College</option>
-                    <option value="Cornell University">Cornell University</option>
-                    <option value="Syracuse University">Syracuse University</option>
-                    <option value="Miner Institute">Miner Institute</option>
-                    <option value="UNH">UNH</option>
-                    <option value="UVM">UVM</option>
-                    <option value="Wolf's Neck Center">Wolf's Neck Center</option>
-                  </select>
-
-                  <label for="dataset_name">Dataset Name (year_month_type_brief-description) *</label>
-                  <input type="text" id="dataset_name" name="dataset_name" required>
-
-                  <label for="dataset_description">Dataset Description *</label>
-                  <textarea id="dataset_description" name="dataset_description" rows="6" required></textarea>
-                  <label for="keywords">Keywords *</label>
-                  <input type="text" id="keywords" name="keywords" required>
-
-                  <label for="num_files_set">Number of Files *</label>
-                  <input type="number" id="num_files_set" name="num_files_set" min="1" required>
-
-                  <label for="link_github_repo" class="repo">GitHub Repository Link </label>
-                  <input type="text" id="link_github_repo" name="link_github_repo">
-
-                  <div>
-                    <p>Is the data classified as Social Science data? *</p>
-                    <div>
-                      <label>
-                        <input type="radio" name="social_science_data" value=1 required> Yes
-                      </label>
-                    </div>
-                    <div>
-                      <label>
-                        <input type="radio" name="social_science_data" value=0 required> No
-                      </label>
-                    </div>
-                  </div>
-
-                  <div>
-                    <p>Is the data classified as Natural Science and represents in vivo experiments? *</p>
-                    <div>
-                      <label>
-                        <input type="radio" name="natural_science_in_vivo" value=1 required> Yes
-                      </label>
-                    </div>
-                    <div>
-                      <label>
-                        <input type="radio" name="natural_science_in_vivo" value=0 required> No
-                      </label>
-                    </div>
-                  </div>
-
-                  <div>
-                    <p>Is the data classified as Natural Science and represents in vitro experiments? *</p>
-                    <div>
-                      <label>
-                        <input type="radio" name="natural_science_in_vitro" value=1 required> Yes
-                      </label>
-                    </div>
-                    <div>
-                      <label>
-                        <input type="radio" name="natural_science_in_vitro" value=0 required> No
-                      </label>
-                    </div>
-                  </div>
-
-                  <div>
-                    <p>Published Dataset? *</p>
-                    <div>
-                      <label>
-                        <input type="radio" name="published_dataset" value=1 required> Yes
-                      </label>
-                    </div>
-                    <div>
-                      <label>
-                        <input type="radio" name="published_dataset" value=0 required> No
-                      </label>
-                    </div>
-                  </div>
-
-                  <div>
-                    <p>IRB? *</p>
-                    <div>
-                      <label>
-                        <input type="radio" name="irb" value=1 required> Yes
-                      </label>
-                    </div>
-                    <div>
-                      <label>
-                        <input type="radio" name="irb" value=0 required> No
-                      </label>
-                    </div>
-                  </div>
-
-                  <div>
-                    <p>Data Dictionary? *</p>
-                    <div>
-                      <label>
-                        <input type="radio" name="data_dictionary" value=1 required> Yes
-                      </label>
-                    </div>
-                    <div>
-                      <label>
-                        <input type="radio" name="data_dictionary" value=0 required> No
-                      </label>
-                    </div>
-                  </div>
-
-                  <div>
-                    <p>Dataset related to publication? *</p>
-                    <div>
-                      <label>
-                        <input type="radio" name="dataset_publication" value=1 required> Yes
-                      </label>
-                    </div>
-                    <div>
-                      <label>
-                        <input type="radio" name="dataset_publication" value=0 required> No
-                      </label>
-                    </div>
-                  </div>
-
-                  <div>
-                    <p>Do you want to make a submit your data to the database or make a record of your data? *</p>
-                    <div>
-                      <label>
-                        <input type="radio" name="free_download" value=1 required> Submit data into the database for
-                        sharing
-                      </label>
-                    </div>
-                    <div>
-                      <label>
-                        <input type="radio" name="free_download" value=0 required> Record metadata only, contributors
-                        must contact you to access data
-                    </div>
-                  </div>
-                  <p>By checking this box I am confirming that I am providing a ReadMe file with my data (submit or
-                    contact)*</p>
-                  <input type="checkbox" id="agree_terms" name="agree_terms" required>
-                  <label for="agree_terms">I agree</label>
-
-                  <input type="submit" name="submitMeta" value="Submit">
-                </form>
+              <!-- Primary Contact -->
+              <!-- Doesn't work correctly yet -->
+              <label for="primary_contact">Primary Contact Name and Email *</label>
+              <div id="primary_contact_container">
+                <label for="author1">Author 1:</label>
+                <input type="text" id="primary_contact" class="primary_contact" name="primary_contact" required>
               </div>
+              <button type="button" id="add-author-btn">Add Another Author</button>
 
-              <div class="upload-file" style="<?php echo $metaSubmitted ? 'display: initial;' : 'display: none;'; ?>">
-                <form id="upload_form" enctype="multipart/form-data" method = "POST">
-                  <input type="file" id="file_input" name="file_input">
-                  <div>
-                    <label>
-                      <input type="radio" name="folder_selection" value="research" > Confirm you wish to upload research data
-                    </label>
-                  </div>
-                  <input type="button" value="Upload" onclick="handleFileUpload()">
-                </form>
-              </div>
-            </div>
+              <!-- Title/Sub-title -->
+              <label for="title">Title/Sub-title *</label>
+              <input type="text" id="title" name="title" required>
+
+              <!-- Creators/Authors and Institutions -->
+              <label for="creators">Creators/Authors Institutions *</label>
+              <label for="colbyCollege">
+                <input type="checkbox" id="colbyCollege" name="creators" value="Colby College"> Colby College
+              </label><br>
+
+              <label for="bigelowLaboratory">
+                <input type="checkbox" id="bigelowLaboratory" name="creators"
+                  value="Bigelow Laboratory for Ocean Sciences"> Bigelow Laboratory for Ocean Sciences
+              </label><br>
+
+              <label for="universityOfVermont">
+                <input type="checkbox" id="universityOfVermont" name="creators" value="University of Vermont">
+                University of Vermont
+              </label><br>
+
+              <label for="universityOfNewHampshire">
+                <input type="checkbox" id="universityOfNewHampshire" name="creators"
+                  value="University of New Hampshire"> University of New Hampshire
+              </label><br>
+
+              <label for="clarksonUniversity">
+                <input type="checkbox" id="clarksonUniversity" name="creators" value="Clarkson University"> Clarkson
+                University
+              </label><br>
+
+              <label for="syracuseUniversity">
+                <input type="checkbox" id="syracuseUniversity" name="creators" value="Syracuse University"> Syracuse
+                University
+              </label><br>
+
+              <label for="williamHMinerInstitute">
+                <input type="checkbox" id="williamHMinerInstitute" name="creators" value="William H. Miner Institute">
+                William H. Miner Institute
+              </label><br>
+
+              <label for="cornellCooperativeExtension">
+                <input type="checkbox" id="cornellCooperativeExtension" name="creators"
+                  value="Cornell Cooperative Extension"> Cornell Cooperative Extension
+              </label><br>
+
+              <label for="wolfesNeckCenter">
+                <input type="checkbox" id="wolfesNeckCenter" name="creators" value="Wolfe’s Neck Center"> Wolfe’s Neck
+                Center
+              </label><br>
+
+              <!-- Acknowledgements -->
+              <label for="acknowledgements">Acknowledgements</label>
+              <textarea id="acknowledgements" name="acknowledgements" rows="4" required></textarea>
+
+
+              <!-- Data Usage Agreement -->
+              <label for="data_usage_agreement">Data Usage Agreement *</label>
+              <textarea id="data_usage_agreement" name="data_usage_agreement" rows="4" required></textarea>
+
+              <!-- Associated Keywords -->
+              <label for="keywords">Associated Keywords *</label>
+              <input type="text" id="keywords" name="keywords" required>
+
+              <!-- Licensed Data -->
+              <label for="licensed_data">Licensed Data (Y/N) *</label>
+              <select id="licensed_data" name="licensed_data" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+
+              <!-- Methodological Information -->
+              <!-- <label for="methodology">Methodological Information *</label>
+              <textarea id="methodology" name="methodology" rows="6" required></textarea> -->
+
+              <!-- Data and File(s) Overview -->
+              <label for="data_overview">Data and File(s) Overview *</label>
+              <textarea id="data_overview" name="data_overview" rows="6" required></textarea>
+
+              <!-- Sharing and Access Information -->
+              <label for="sharing_access_info">Sharing and Access Information</label>
+              <textarea id="sharing_access_info" name="sharing_access_info" rows="4"></textarea>
+
+              <!-- Links to Publications -->
+              <label for="publications_links">Links to Publications That Cite or Use the Data</label>
+              <input type="text" id="publications_links" name="publications_links">
+
+              <!-- IRB and Other Compliance -->
+              <label for="irb_compliance">IRB Compliance (Y/N)</label>
+              <select id="irb_compliance" name="irb_compliance">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+
+              <!-- Dataset Change Log -->
+              <label for="change_log">Dataset Change Log</label>
+              <textarea id="change_log" name="change_log" rows="4"></textarea>
+
+              <!-- Data and File Overview -->
+              <label for="data_file_overview">Data and File Overview</label>
+              <textarea id="data_file_overview" name="data_file_overview" rows="6"></textarea>
+
+              <!-- File Names and Formats -->
+              <label for="file_names_formats">File Names and Formats</label>
+              <input type="text" id="file_names_formats" name="file_names_formats">
+
+              <!-- Methodological Information -->
+              <label for="methodological_info">Methodological Information</label>
+              <textarea id="methodological_info" name="methodological_info" rows="6"></textarea>
+
+              <!-- Additional Information -->
+              <label for="additional_info">Additional Information</label>
+              <textarea id="additional_info" name="additional_info" rows="4"></textarea>
+
+              <input type="submit" name="submitReadme" value="Submit">
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  <script src="utils/js/submit.js"></script>
+      <script src="utils/js/readme.js"></script>
 </body>
 
 </html>
