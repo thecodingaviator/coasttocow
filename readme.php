@@ -185,7 +185,7 @@
                <!--THIS NEEDS TO BE eXPANDED TO more FIELDS. -->
               <label for="methodological_info">Methodological Information</label>
               <textarea id="methodological_info" name="methodological_info" rows="6"></textarea>
-              <!--  INclude: tech for creation  -->
+              <!-- tech for creation  -->
               <!-- sample_collection_procedure -->
               <!-- environmental or experimental conditions for collection -->
               <!-- other info about how data was collected or obtained -->
