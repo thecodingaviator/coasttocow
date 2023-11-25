@@ -6,7 +6,7 @@
 
 
 /**
- *
+ * 
  *
  *
  */
@@ -182,8 +182,34 @@
               <input type="text" id="file_names_formats" name="file_names_formats">
 
               <!-- Methodological Information -->
+               <!--THIS NEEDS TO BE eXPANDED TO more FIELDS. -->
               <label for="methodological_info">Methodological Information</label>
               <textarea id="methodological_info" name="methodological_info" rows="6"></textarea>
+              <!--  INclude: tech for creation  -->
+              <!-- sample_collection_procedure -->
+              <!-- environmental or experimental conditions for collection -->
+              <!-- other info about how data was collected or obtained -->
+              <!-- cleaned data? -->
+              <!-- description on how data was cleaned / prepared for submission-->
+              <!-- QA procedures -->
+              <!-- key analytical methods -->
+              <!-- key softwares -->
+              <!-- key software addresses (where is software from) -->
+              <!-- other software information -->
+              <!-- dataset_change log -->
+          
+
+              <!-- File Information -->
+              <!-- file names -->
+              <!-- nameing conventions -->
+              <!-- file_creation_date -->
+              <!-- file_description -->
+              <!-- units of measurement -->
+              <!-- abbreviations used -->
+              <!-- description of abbreviations used -->
+              <!-- variables description -->
+              <!-- dependencies to use data -->
+              <!-- other_information -->
 
               <!-- Additional Information -->
               <label for="additional_info">Additional Information</label>
