@@ -177,8 +177,7 @@ if (isset($_POST['submitReadme'])) {
         <div class="dataset-submission">
           <div class="enter-data">
             <form id="readme-form" action="" method="POST">
-              <h2>Readme Dataset Submission Form</h2>
-              <p><em>* Indicates required question</em></p>
+              <p><em>* Indicates a required question</em></p>
 
               <!-- General Information -->
               <label for="creation_date">Creation Date (mm-dd-yyyy) *</label>
