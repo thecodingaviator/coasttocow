@@ -42,15 +42,15 @@ function fillForm() {
   }
 
   // Use AJAX to fetch data from the server and populate the form fields
-  // Example using Fetch API:
   fetch('/utils/getReadMeData.php?title=' + selectedTitle)
       .then(response => response.text())
       .then(data => {
-          document.getElementById('subcommittee').value = data.subcommittee;
-          document.getElementById('primary_contact').value = data.primary_contact;
+          data = JSON.parse(data);
+          document.getElementById('subcommittee').value = data["subcommittee"];
+          document.getElementById('primary_contact').value = data["primary_contact"];
 
           // Checkboxes for creators THIS LOOKS A BIT WRONG
-          var creators = document.getElementsByName('creators');
+          var creators = document.getElementsByName('institution');
           creators.forEach(creator => {
               creator.checked = data.creators.includes(creator.value);
           });

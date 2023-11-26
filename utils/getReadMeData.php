@@ -11,7 +11,7 @@ if ($conn->connect_error) {
 // Check if the 'title' parameter is set in the URL
 if (isset($_GET['title'])) {
     $confirm = ['title'=>$_GET['title']]; //['title'=>'some_title
-    echo json_encode($confirm);
+
     // Get the value of the 'title' parameter
     $selectedTitle = $_GET['title'];
     // Use prepared statement to prevent SQL injection
