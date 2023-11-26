@@ -13,6 +13,8 @@
 
 #readme-form input[type="text"],
 #readme-form input[type="month"],
+#readme-form input[type="number"],
+#readme-form input[type="url"],
 #readme-form select,
 #readme-form textarea {
   width: 100%;
