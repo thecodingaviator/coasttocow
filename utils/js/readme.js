@@ -11,6 +11,7 @@ function fillForm() {
   fetch('/utils/getReadMeData.php?title=' + selectedTitle)
     .then(response => response.text())
     .then(data => {
+      console.log(data);
       data = JSON.parse(data);
       document.getElementById('subcommittee').value = data["subcommittee"];
       document.getElementById('primary_contact').value = data["primary_contact"];

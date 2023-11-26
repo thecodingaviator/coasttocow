@@ -3,10 +3,6 @@
 //Last modified: 11/27/2023
 //Purpose: Get data from ReadMe Table in SQL db for filling form
 include "config.php";
-// Check the connection
-if ($conn->connect_error) {
-    die('Connection failed: ' . $mysqli->connect_error);
-}
 
 // Check if the 'title' parameter is set in the URL
 if (isset($_GET['title'])) {
