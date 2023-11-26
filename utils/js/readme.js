@@ -108,6 +108,12 @@ function fillForm() {
     .catch(error => console.error('Error:', error));
 }
 
+function attachFillFormEvent() {
+  var fillFormButton = document.getElementById('fill_from_title');
+  fillFormButton.removeEventListener('click', fillForm);
+  fillFormButton.addEventListener('click', fillForm);
+}
+
 function wrapAsterisks(element) {
   if (element.hasChildNodes()) {
     element.childNodes.forEach(child => {
@@ -124,6 +130,5 @@ function wrapAsterisks(element) {
 }
 
 // Initial call to attach the event to existing buttons
-attachRemoveAuthorEvent();
 attachFillFormEvent();
 wrapAsterisks(document.body);
