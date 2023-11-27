@@ -4,6 +4,29 @@
 //Last modified:
 //Purpose:
 
+if (session_status() === PHP_SESSION_NONE) {
+  session_start();
+}
+$_SESSION['session_name'] = session_name();
+
+$error = "";
+$metaSubmitted = false;
+
+$user_id = $_SESSION['user_id'];
+$U_Id = substr($user_id, 2);
+
+$sql = "SELECT * FROM C3SignUp WHERE U_Id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->execute([$U_Id]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if ($user) {
+  $email = $user['Email'];
+  $_SESSION['email'] = $email;
+  $last_name = $user['LastName'];
+  $first_name = $user['FirstName'];
+}
+
 
 /**
  * 
@@ -76,8 +99,23 @@
               </div>
               <button type="button" id="add-author-btn">Add Another Author</button>
 
-              <!-- Title/Sub-title -->
-              <label for="title">Title/Sub-title *</label>
+              <!-- Base your readme on an existing table: -->
+              <label for="selected_title">Base your readme on an existing table:</label>
+              <select id="selected_title" name="selected_title">
+                <option value="None">None</option>
+                <?php
+                $sql = "SELECT title_subtitle FROM C3ReadMeAT";
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                  while ($row = $result->fetch_assoc()) {
+                    echo "<option value='" . $row["title"] . "'>" . $row["title"] . "</option>";
+                  }
+                }
+                ?>
+              <input type="button" name="fill_from_title" value="Fill">
+
+              <!-- Title/Sub-title FOR SOME REASON THIS DOESN'T SHOW UP-->
+              <label for="title">Title/Subtitle *</label>
               <input type="text" id="title" name="title" required>
 
               <!-- Creators/Authors and Institutions -->
@@ -122,7 +160,7 @@
               </label><br>
 
               <label for="wolfesNeckCenter">
-                <input type="checkbox" id="wolfesNeckCenter" name="creators" value="Wolfe’s Neck Center"> Wolfe’s Neck
+                <input type="checkbox" id="wolfesNeckCenter" name="creators" value="Wolfe's Neck Center"> Wolfe's Neck
                 Center
               </label><br>
 
@@ -146,10 +184,6 @@
                 <option value="No">No</option>
               </select>
 
-              <!-- Methodological Information -->
-              <!-- <label for="methodology">Methodological Information *</label>
-              <textarea id="methodology" name="methodology" rows="6" required></textarea> -->
-
               <!-- Data and File(s) Overview -->
               <label for="data_overview">Data and File(s) Overview *</label>
               <textarea id="data_overview" name="data_overview" rows="6" required></textarea>
@@ -162,55 +196,85 @@
               <label for="publications_links">Links to Publications That Cite or Use the Data</label>
               <input type="text" id="publications_links" name="publications_links">
 
-              <!-- IRB and Other Compliance -->
-              <label for="irb_compliance">IRB Compliance (Y/N)</label>
-              <select id="irb_compliance" name="irb_compliance">
+              <!-- IACUC and Other Compliance THIS LIKELY NEEDS TO CHANGE TO INCLUDE IACUC-->
+              <label for="iacuc_compliance">IACUC,etc. (Y/N)</label>
+              <select id="iacuc_compliance" name="iacuc_compliance">
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
               </select>
+
+              <!-- Links to publicly accessible locations of the data -->
+              <label for="data_links">Links to Publicly Accessible Locations of the Data</label>
+              <input type="url" id="data_links" name="data_links" required>
+
+              <!-- Relationships to ancillary datasets -->
+              <label for="ancillary_relationships">Relationships to Ancillary Datasets</label>
+              <textarea id="ancillary_relationships" name="ancillary_relationships" rows="4" required></textarea>
+
+              <!-- GitHub link to any relevant code, libraries, etc... -->
+              <label for="github_link">GitHub Link to Relevant Code, Libraries, etc...</label>
+              <input type="url" id="github_link" name="github_link" required>
+
+              <!-- Number of files associated with this readme -->
+              <label for="num_files">Number of Files Associated with This Readme</label>
+              <input type="number" id="num_files" name="num_files" required>
 
               <!-- Dataset Change Log -->
               <label for="change_log">Dataset Change Log</label>
               <textarea id="change_log" name="change_log" rows="4"></textarea>
 
-              <!-- Data and File Overview -->
-              <label for="data_file_overview">Data and File Overview</label>
-              <textarea id="data_file_overview" name="data_file_overview" rows="6"></textarea>
-
-              <!-- File Names and Formats -->
-              <label for="file_names_formats">File Names and Formats</label>
-              <input type="text" id="file_names_formats" name="file_names_formats">
-
               <!-- Methodological Information -->
                <!--THIS NEEDS TO BE eXPANDED TO more FIELDS. -->
               <label for="methodological_info">Methodological Information</label>
-              <textarea id="methodological_info" name="methodological_info" rows="6"></textarea>
               <!-- tech for creation  -->
+              <label for="tech_for_creation">List of any relevant technologies (software, hardware, instruments, and versions) used in creating the data include standards and calibration information, if appropriate</label>
+              <textarea id="tech_for_creation" name="tech_for_creation" rows="6"></textarea>
               <!-- sample_collection_procedure -->
+              <label for="sample_collection_procedure">Sample collection, processing, analysis and/or submission procedures</label>
+              <!-- potentially change to numerical inputs for written stuff -->
+              <textarea id="sample_collection_procedure" name="sample_collection_procedure" rows="6"></textarea>              
               <!-- environmental or experimental conditions for collection -->
+              <label for="collection_conditions">Experimental & environmental conditions of collection</label>
+              <input type="text" id="collection_conditions" name="collection_conditions" rows="4">
               <!-- other info about how data was collected or obtained -->
+              <label for="other_collection">Other key information related to data collection or generation.</label>
+              <input type="text" id="other_collection" name="other_collection" rows="4">
               <!-- cleaned data? -->
+              <label for="cleaned_data">Cleaned Data? (Y/N)</label>
+              <select id="cleaned_data" name="cleaned_data">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
               <!-- description on how data was cleaned / prepared for submission-->
+              <label for="cleaning_methods">Descriptions of your methods used for data cleaning/processing</label>
+              <input type="text" id="cleaning_methods" name="cleaning_methods" rows="4">
               <!-- QA procedures -->
+              <label for="qa_procedures">Descriptions of your methods used for quality assurance of data</label>
+              <input type="text" id="qa_procedures" name="qa_procedures" rows="4">
               <!-- key analytical methods -->
+              <label for="key_analytic_methods">Your analytical methods, procedures, theories, etc used in analyzing data</label>
+              <input type="text" id="key_analytic_methods" name="key_analytic_methods" rows="4">
               <!-- key softwares -->
+              <label for="key_softwares">Softwares used in obtaining, cleaning, or analyzing data</label>
+              <input type="text" id="key_softwares" name="key_softwares" rows="4">
               <!-- key software addresses (where is software from) -->
+              <label for="key_software_address">If you put a software above, please include an address to the software/s you referenced</label>
+              <input type="text" id="key_software_address" name="key_software_address" rows="4">
               <!-- other software information -->
-              <!-- dataset_change log -->
-          
-
-              <!-- File Information -->
-              <!-- file names -->
+              <label for="other_software_info">Any other relevant information regarding software used?</label>
+              <input type="text" id="other_software_info" name="other_software_info" rows="4">
               <!-- nameing conventions -->
-              <!-- file_creation_date -->
-              <!-- file_description -->
-              <!-- units of measurement -->
+              <label for="naming_conventions">If you have important naming conventions, describe them</label>
+              <input type="text" id="naming_conventions" name="naming_conventions" rows="4">
               <!-- abbreviations used -->
-              <!-- description of abbreviations used -->
+              <label for="abbreviations_used">List any abbreviations in submitted file with their definition</label>
+              <input type="text" id="abbreviations_used" name="abbreviations_used" rows="4">
               <!-- variables description -->
+              <label for="variables_used">List any variables and describe them, please include any relevent units</label>
+              <input type="text" id="variables_used" name="variables_used" rows="4">
               <!-- dependencies to use data -->
-              <!-- other_information -->
-
+              <label for="dependencies">List any system dependencies to use this data</label>
+              <input type="text" id="dependencies" name="dependencies" rows="4">
               <!-- Additional Information -->
               <label for="additional_info">Additional Information</label>
               <textarea id="additional_info" name="additional_info" rows="4"></textarea>
