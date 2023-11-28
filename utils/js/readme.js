@@ -21,32 +21,42 @@ function attachRemoveAuthorEvent() {
   });
 }
 
+function attachFillFormEvent(){
+  var fillFormButton = document.getElementById('fill_from_title');
+  fillFormButton.removeEventListener('click', fillForm);
+  fillFormButton.addEventListener('click', fillForm);
+}
+
 function removeAuthor(event) {
   var authorDiv = event.target.parentNode;
   authorDiv.parentNode.removeChild(authorDiv);
 }
 
 function fillForm() {
-  var selectedTitle = document.getElementById('entryTitles').value;
+  
+  var selectedTitle = document.getElementById('selected_title').value;
+  //check if this even exists and throw if not
+  if (selectedTitle == "None") {
+    alert("Please select a title from the dropdown menu.");
+    return;
+  }
 
   // Use AJAX to fetch data from the server and populate the form fields
   // Example using Fetch API:
-  fetch('getData.php?title=' + selectedTitle)
-      .then(response => response.json())
+  fetch('/utils/getReadMeData.php?title=' + selectedTitle)
+      .then(response => response.text())
       .then(data => {
-          document.getElementById('creation_date').value = data.creation_date;
           document.getElementById('subcommittee').value = data.subcommittee;
           document.getElementById('primary_contact').value = data.primary_contact;
-          document.getElementById('title').value = data.title;
 
-          // Checkboxes for creators
+          // Checkboxes for creators THIS LOOKS A BIT WRONG
           var creators = document.getElementsByName('creators');
           creators.forEach(creator => {
               creator.checked = data.creators.includes(creator.value);
           });
 
           // Acknowledgements textarea
-          document.getElementById('acknowledgements').value = data.acknowledgements;
+          document.getElementById('acknowledgements').value = data.acknow;
 
           // Data Usage Agreement textarea
           document.getElementById('data_usage_agreement').value = data.data_usage_agreement;
@@ -58,58 +68,55 @@ function fillForm() {
           document.getElementById('licensed_data').value = data.licensed_data;
 
           // Data and File(s) Overview textarea
-          document.getElementById('data_overview').value = data.data_overview;
+          document.getElementById('data_overview').value = data.file_description;
 
           // Sharing and Access Information textarea
-          document.getElementById('sharing_access_info').value = data.sharing_access_info;
+          document.getElementById('sharing_access_info').value = data.sharing_access_info; //CHECK
 
           // Links to Publications input
-          document.getElementById('publications_links').value = data.publications_links;
+          document.getElementById('publications_links').value = data.publication_link;
 
           // IRB Compliance select
-          document.getElementById('irb_compliance').value = data.irb_compliance;
+          document.getElementById('iacuc_compliance').value = data.iacuc;
 
           //Public links to data
-          document.getElementById('data_links').value = data.data_links;
+          document.getElementById('data_links').value = data.alternate_available_link;
 
           //Ancillary Relationships
-          document.getElementById('ancillary_relationships').value = data.ancillary_relationships;
+          document.getElementById('ancillary_relationships').value = data.ancillary_link;
 
           //Github_link
           document.getElementById('github_link').value = data.github_link;
 
           //number of files num_files
-          document.getElementById('num_files').value = data.num_files;
+          document.getElementById('num_files').value = data.num_files_readme;
 
           // Dataset Change Log textarea
-          document.getElementById('change_log').value = data.change_log;
-
-          // Methodological Information textarea
-          document.getElementById('methodological_info').value = data.methodological_info;
+          document.getElementById('change_log').value = data.dataset_change_log;
 
           // Tech for Creation textarea
-          document.getElementById('tech_for_creation').value = data.tech_for_creation;
+          document.getElementById('tech_for_creation').value = data.technology_for_creation;
 
           // Sample Collection Procedure textarea
           document.getElementById('sample_collection_procedure').value = data.sample_collection_procedure;
 
           // Collection Conditions input
-          document.getElementById('collection_conditions').value = data.collection_conditions;
+          document.getElementById('collection_conditions').value = data.conditions_collection;
 
           // Other Collection input
-          document.getElementById('other_collection').value = data.other_collection;
+          document.getElementById('other_collection').value = data.data_collection_other;
 
           // Cleaned Data select
-          document.getElementById('cleaned_data').value = data.cleaned_data;
+          document.getElementById('cleaned_data').value = data.cleaned;
 
           // Cleaning Methods input
-          document.getElementById('cleaning_methods').value = data.cleaning_methods;
+          document.getElementById('cleaning_methods').value = data.cleaning_desc;
 
           // QA Procedures input
           document.getElementById('qa_procedures').value = data.qa_procedures;
 
           // Key Analytic Methods input
-          document.getElementById('key_analytic_methods').value = data.key_analytic_methods;
+          document.getElementById('key_analytic_methods').value = data.key_analytical_methods;
 
           // Key Softwares input
           document.getElementById('key_softwares').value = data.key_softwares;
@@ -118,25 +125,26 @@ function fillForm() {
           document.getElementById('key_software_address').value = data.key_software_address;
 
           // Other Software Info input
-          document.getElementById('other_software_info').value = data.other_software_info;
+          document.getElementById('other_software_info').value = data.other_software_information;
 
           // Naming Conventions input
           document.getElementById('naming_conventions').value = data.naming_conventions;
 
           // Abbreviations Used input
-          document.getElementById('abbreviations_used').value = data.abbreviations_used;
+          document.getElementById('abbreviations_used').value = data.abbreviations_definition;
 
           // Variables Used input
-          document.getElementById('variables_used').value = data.variables_used;
+          document.getElementById('variables_used').value = data.variables_description;
 
           // Dependencies input
           document.getElementById('dependencies').value = data.dependencies;
 
           // Additional Information textarea
-          document.getElementById('additional_info').value = data.additional_info;
+          document.getElementById('additional_info').value = data.other_information;
       })
       .catch(error => console.error('Error:', error));
 }
 
 // Initial call to attach the event to existing buttons
 attachRemoveAuthorEvent();
+attachFillFormEvent();

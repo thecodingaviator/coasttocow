@@ -4,13 +4,118 @@
 //Last modified:
 //Purpose:
 
+/**
+ * Inserts a new record into the `C3DataMasterTest` table in the database using the data from a form submission.
+ *
+ * @param MySQLi $conn The MySQLi connection object to the database.
+ * @param array $post_data The array of form data to be inserted into the database.
+ * @param string $user_id The user's id.
+ *
+ * @return string $error The error message, if any error occurred while inserting the data into the database. Empty if no errors occurred.
+ *
+ * @throws PDOException If there is an error executing the SQL statement.
+ */
+function fieldsToReadMeATSQL($conn, $post_data, $user_id)
+{
+  $error = "";
+  // Retrieve variables from session
+  $title = $post_data['title'];
+  $acknowledgements = $post_data['acknowledgements'];
+  $data_usage_agreement = $post_data['data_usage_agreement'];
+  $keywords = $post_data['keywords'];
+  $licensed_data = $post_data['licensed_data'];
+  $data_overview = $post_data['data_overview'];
+  $sharing_access_info = $post_data['sharing_access_info'];
+  $publications_links = $post_data['publications_links'];
+  $iacuc_compliance = $post_data['iacuc_compliance'];
+  $data_links = $post_data['data_links'];
+  $ancillary_relationships = $post_data['ancillary_relationships'];
+  $github_link = $post_data['github_link'];
+  $num_files = $post_data['num_files'];
+  $creation_date = $post_data['creation_date'];
+  $change_log = $post_data['change_log'];
+  $tech_for_creation = $post_data['tech_for_creation'];
+  $sample_collection_procedure = $post_data['sample_collection_procedure'];
+  $collection_conditions = $post_data['collection_conditions'];
+  $other_collection = $post_data['other_collection'];
+  $cleaned_data = $post_data['cleaned_data'];
+  $cleaning_methods = $post_data['cleaning_methods'];
+  $qa_procedures = $post_data['qa_procedures'];
+  $key_analytic_methods = $post_data['key_analytic_methods'];
+  $key_softwares = $post_data['key_softwares'];
+  $key_software_address = $post_data['key_software_address'];
+  $other_software_info = $post_data['other_software_info'];
+  $naming_conventions = $post_data['naming_conventions'];
+  $abbreviations_used = $post_data['abbreviations_used'];
+  $variables_used = $post_data['variables_used'];
+  $dependencies = $post_data['dependencies'];
+  $additional_info = $post_data['additional_info'];
+  $subcommittee = $post_data['subcommittee'];
+  $primary_contact = $post_data['primary_contact'];
+  $creators = $post_data['creators'];
+  $file_names = $post_data['file_names'];
+
+  //prepare query
+  $sql = "INSERT INTO `C3ReadMeAT` (`creation_date`,`subcommittee`,`primary_contact`,`title_subtitle`,`institution`,`acknow`,`data_usage_agreement`,`keywords`,`licensed_data`,`iacuc`,`alternate_available_link`,`ancillary_link`,`publication_link`,`github_link`,`technology_for_creation`,`sample_collection_procedure`,`conditions_collection`,`data_collection_other`,`cleaning_desc`,`qa_procedures`,`key_analytical_methods`,`key_softwares`,`key_software_address`,`other_software_information`,`dataset_change_log`,`num_files_readme`,`cleaned`,`file_names`,`naming_conventions`,`file_description`,`abbreviations_definition`,`variables_description`,`dependencies`,`other_information`) VALUES (
+  ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+  $stmt = $conn->prepare($sql);
+
+  try {
+    $stmt->execute([
+      //variables
+      $creation_date,
+      $subcommittee,
+      $primary_contact,
+      $title,
+      $creators,
+      $acknowledgements,
+      $data_usage_agreement,
+      $keywords,
+      $licensed_data,
+      $iacuc_compliance,
+      $data_links,
+      $ancillary_relationships,
+      $publications_links,
+      $github_link,
+      $tech_for_creation,
+      $sample_collection_procedure,
+      $collection_conditions,
+      $other_collection,
+      $cleaning_methods,
+      $qa_procedures,
+      $key_analytic_methods,
+      $key_softwares,
+      $key_software_address,
+      $other_software_info,
+      $change_log,
+      $num_files,
+      $cleaned_data,
+      $file_names,
+      $naming_conventions,
+      $abbreviations_used,
+      $data_overview,
+      $abbreviations_used,
+      $variables_used,
+      $dependencies,
+      $additional_info
+    ]);
+
+
+  } catch (PDOException $e) {
+    $error = "Error submitting dataset. Please try again.";
+    $error = $e->getMessage();
+    error_log($error);
+  }
+  return $error;
+}
+
 if (session_status() === PHP_SESSION_NONE) {
   session_start();
 }
 $_SESSION['session_name'] = session_name();
-
+$_SESSION['update'] = [];
 $error = "";
-$metaSubmitted = false;
+$readme_submitted = false;
 
 $user_id = $_SESSION['user_id'];
 $U_Id = substr($user_id, 2);
@@ -27,12 +132,10 @@ if ($user) {
   $first_name = $user['FirstName'];
 }
 
-
-/**
- * 
- *
- *
- */
+if (isset($_POST['submitReadme'])) {
+  // Call your PHP function here
+  fieldsToReadMeATSQL($conn, $_POST, $user_id);
+}
 
 ?>
 
@@ -75,8 +178,8 @@ if ($user) {
               <p><em>* Indicates required question</em></p>
 
               <!-- General Information -->
-              <label for="creation_date">Creation Date (mm-yyyy) *</label>
-              <input type="month" id="creation_date" name="creation_date" required>
+              <label for="creation_date">Creation Date (mm-dd-yyyy) *</label>
+              <input type="date" id="creation_date" name="creation_date" value = "<?php echo date("Y-m-d")?>" required>
 
               <!-- Subcommittee(s) -->
               <label for="subcommittee">C3 Subcommittee(s) *</label>
@@ -106,13 +209,14 @@ if ($user) {
                 <?php
                 $sql = "SELECT title_subtitle FROM C3ReadMeAT";
                 $result = $conn->query($sql);
-                if ($result->num_rows > 0) {
-                  while ($row = $result->fetch_assoc()) {
-                    echo "<option value='" . $row["title"] . "'>" . $row["title"] . "</option>";
-                  }
+                
+                if ($result) {
+                    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                        echo "<option value='" . $row["title_subtitle"] . "'>" . $row["title_subtitle"] . "</option>";
+                    }
                 }
                 ?>
-              <input type="button" name="fill_from_title" value="Fill">
+              <input type="button" id="fill_from_title" value="Fill">
 
               <!-- Title/Sub-title FOR SOME REASON THIS DOESN'T SHOW UP-->
               <label for="title">Title/Subtitle *</label>
@@ -180,8 +284,8 @@ if ($user) {
               <!-- Licensed Data -->
               <label for="licensed_data">Licensed Data (Y/N) *</label>
               <select id="licensed_data" name="licensed_data" required>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
               </select>
 
               <!-- Data and File(s) Overview -->
@@ -199,8 +303,8 @@ if ($user) {
               <!-- IACUC and Other Compliance THIS LIKELY NEEDS TO CHANGE TO INCLUDE IACUC-->
               <label for="iacuc_compliance">IACUC,etc. (Y/N)</label>
               <select id="iacuc_compliance" name="iacuc_compliance">
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
               </select>
 
               <!-- Links to publicly accessible locations of the data -->
@@ -208,7 +312,7 @@ if ($user) {
               <input type="url" id="data_links" name="data_links" required>
 
               <!-- Relationships to ancillary datasets -->
-              <label for="ancillary_relationships">Relationships to Ancillary Datasets</label>
+              <label for="ancillary_relationships">Links to any Ancillary Datasets, description if no link is available</label>
               <textarea id="ancillary_relationships" name="ancillary_relationships" rows="4" required></textarea>
 
               <!-- GitHub link to any relevant code, libraries, etc... -->
@@ -224,7 +328,6 @@ if ($user) {
               <textarea id="change_log" name="change_log" rows="4"></textarea>
 
               <!-- Methodological Information -->
-               <!--THIS NEEDS TO BE eXPANDED TO more FIELDS. -->
               <label for="methodological_info">Methodological Information</label>
               <!-- tech for creation  -->
               <label for="tech_for_creation">List of any relevant technologies (software, hardware, instruments, and versions) used in creating the data include standards and calibration information, if appropriate</label>
@@ -242,8 +345,8 @@ if ($user) {
               <!-- cleaned data? -->
               <label for="cleaned_data">Cleaned Data? (Y/N)</label>
               <select id="cleaned_data" name="cleaned_data">
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
               </select>
               <!-- description on how data was cleaned / prepared for submission-->
               <label for="cleaning_methods">Descriptions of your methods used for data cleaning/processing</label>
@@ -269,6 +372,7 @@ if ($user) {
               <!-- abbreviations used -->
               <label for="abbreviations_used">List any abbreviations in submitted file with their definition</label>
               <input type="text" id="abbreviations_used" name="abbreviations_used" rows="4">
+              <!-- FILE NAMES -->
               <!-- variables description -->
               <label for="variables_used">List any variables and describe them, please include any relevent units</label>
               <input type="text" id="variables_used" name="variables_used" rows="4">
