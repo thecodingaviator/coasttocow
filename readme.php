@@ -53,10 +53,10 @@ function fieldsToReadMeATSQL($conn, $post_data, $user_id)
   $subcommittee = $post_data['subcommittee'];
   $primary_contact = $post_data['primary_contact'];
   $creators = $post_data['creators'];
-  $file_names = $post_data['file_names'];
+  $file_desc = $post_data['file_desc'];
 
   //prepare query
-  $sql = "INSERT INTO `C3ReadMeAT` (`creation_date`,`subcommittee`,`primary_contact`,`title_subtitle`,`institution`,`acknow`,`data_usage_agreement`,`keywords`,`licensed_data`,`iacuc`,`alternate_available_link`,`ancillary_link`,`publication_link`,`github_link`,`technology_for_creation`,`sample_collection_procedure`,`conditions_collection`,`data_collection_other`,`cleaning_desc`,`qa_procedures`,`key_analytical_methods`,`key_softwares`,`key_software_address`,`other_software_information`,`dataset_change_log`,`num_files_readme`,`cleaned`,`file_names`,`naming_conventions`,`file_description`,`abbreviations_definition`,`variables_description`,`dependencies`,`other_information`) VALUES (
+  $sql = "INSERT INTO `C3ReadMeAT` (`creation_date`,`subcommittee`,`primary_contact`,`title_subtitle`,`institution`,`acknow`,`data_usage_agreement`,`keywords`,`licensed_data`,`iacuc`,`alternate_available_link`,`ancillary_link`,`publication_link`,`github_link`,`technology_for_creation`,`sample_collection_procedure`,`conditions_collection`,`data_collection_other`,`cleaning_desc`,`qa_procedures`,`key_analytical_methods`,`key_softwares`,`key_software_address`,`other_software_information`,`dataset_change_log`,`num_files_readme`,`cleaned`,`naming_conventions`,`file_description`,`abbreviations_definition`,`variables_description`,`dependencies`,`other_information`) VALUES (
   ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
   $stmt = $conn->prepare($sql);
 
@@ -90,9 +90,8 @@ function fieldsToReadMeATSQL($conn, $post_data, $user_id)
       $change_log,
       $num_files,
       $cleaned_data,
-      $file_names,
       $naming_conventions,
-      $abbreviations_used,
+      $file_desc,
       $data_overview,
       $abbreviations_used,
       $variables_used,
@@ -372,13 +371,15 @@ if (isset($_POST['submitReadme'])) {
               <!-- abbreviations used -->
               <label for="abbreviations_used">List any abbreviations in submitted file with their definition</label>
               <input type="text" id="abbreviations_used" name="abbreviations_used" rows="4">
-              <!-- FILE NAMES -->
               <!-- variables description -->
               <label for="variables_used">List any variables and describe them, please include any relevent units</label>
               <input type="text" id="variables_used" name="variables_used" rows="4">
               <!-- dependencies to use data -->
               <label for="dependencies">List any system dependencies to use this data</label>
               <input type="text" id="dependencies" name="dependencies" rows="4">
+              <!-- File Description -->
+              <label for="file_desc">Describe the submitted files</label>
+              <textarea id="file_desc" name="file_desc" rows="4"></textarea>
               <!-- Additional Information -->
               <label for="additional_info">Additional Information</label>
               <textarea id="additional_info" name="additional_info" rows="4"></textarea>
