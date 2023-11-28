@@ -56,8 +56,13 @@ function fieldsToReadMeATSQL($conn, $post_data, $user_id)
   $file_desc = $post_data['file_desc'];
 
   //prepare query
-  $sql = "INSERT INTO `C3ReadMeAT` (`creation_date`,`subcommittee`,`primary_contact`,`title_subtitle`,`institution`,`acknow`,`data_usage_agreement`,`keywords`,`licensed_data`,`iacuc`,`alternate_available_link`,`ancillary_link`,`publication_link`,`github_link`,`technology_for_creation`,`sample_collection_procedure`,`conditions_collection`,`data_collection_other`,`cleaning_desc`,`qa_procedures`,`key_analytical_methods`,`key_softwares`,`key_software_address`,`other_software_information`,`dataset_change_log`,`num_files_readme`,`cleaned`,`naming_conventions`,`file_description`,`abbreviations_definition`,`variables_description`,`dependencies`,`other_information`) VALUES (
-  ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+  $sql = "INSERT INTO `C3ReadMeAT` (`creation_date`,`subcommittee`,`primary_contact`,`title_subtitle`,`institution`,
+  `acknow`,`data_usage_agreement`,`keywords`,`licensed_data`,`iacuc`,`alternate_available_link`,`ancillary_link`,
+  `publication_link`,`github_link`,`technology_for_creation`,`sample_collection_procedure`,`conditions_collection`,
+  `data_collection_other`,`cleaning_desc`,`qa_procedures`,`key_analytical_methods`,`key_softwares`,`key_software_address`,
+  `other_software_information`,`dataset_change_log`,`num_files_readme`,`cleaned`,`naming_conventions`,`file_description`,
+  `abbreviations_definition`,`variables_description`,`dependencies`,`other_information`) 
+  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
   $stmt = $conn->prepare($sql);
 
   try {
@@ -92,7 +97,6 @@ function fieldsToReadMeATSQL($conn, $post_data, $user_id)
       $cleaned_data,
       $naming_conventions,
       $file_desc,
-      $data_overview,
       $abbreviations_used,
       $variables_used,
       $dependencies,
