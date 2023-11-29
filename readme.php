@@ -5,12 +5,11 @@
 //Purpose:
 
 /**
- * Inserts a new record into the `C3DataMasterTest` table in the database using the data from a form submission.
+ * Inserts a new record into the `C3ReadMeAT` table in the database using the data from a form submission.
  *
  * @param MySQLi $conn The MySQLi connection object to the database.
  * @param array $post_data The array of form data to be inserted into the database.
  * @param string $user_id The user's id.
- *
  * @return string $error The error message, if any error occurred while inserting the data into the database. Empty if no errors occurred.
  *
  * @throws PDOException If there is an error executing the SQL statement.
@@ -52,17 +51,25 @@ function fieldsToReadMeATSQL($conn, $post_data, $user_id)
   $additional_info = $post_data['additional_info'];
   $subcommittee = $post_data['subcommittee'];
   $primary_contact = $post_data['primary_contact'];
+  $primary_email = $post_data['primary_contact_email'];
+  $secondary_contact = $post_data['secondary_contact'];
+  $secondary_email = $post_data['secondary_contact_email'];
+  $other_contact = $post_data['other_contact'];
+  $other_email = $post_data['other_contact_email'];
   $creators = $post_data['creators'];
   $file_desc = $post_data['file_desc'];
+  $use_agreement = $post_data['use_agreement'];
+  $use_agreement_link = $post_data['use_agreement_link'];
 
   //prepare query
-  $sql = "INSERT INTO `C3ReadMeAT` (`creation_date`,`subcommittee`,`primary_contact`,`title_subtitle`,`institution`,
+  $sql = "INSERT INTO `C3ReadMeAT` (`creation_date`,`subcommittee`,`primary_contact`,`primary_email`,`secondary_contact`,`secondary_email`,
+  `other_contact`,`other_email`,`title_subtitle`,`institution`,
   `acknow`,`data_usage_agreement`,`keywords`,`licensed_data`,`iacuc`,`alternate_available_link`,`ancillary_link`,
-  `publication_link`,`github_link`,`technology_for_creation`,`sample_collection_procedure`,`conditions_collection`,
+  `publication_link`,`external_use_agreement`,`external_use_agreement_source`,`github_link`,`technology_for_creation`,`sample_collection_procedure`,`conditions_collection`,
   `data_collection_other`,`cleaning_desc`,`qa_procedures`,`key_analytical_methods`,`key_softwares`,`key_software_address`,
   `other_software_information`,`dataset_change_log`,`num_files_readme`,`cleaned`,`naming_conventions`,`file_description`,
   `abbreviations_definition`,`variables_description`,`dependencies`,`other_information`) 
-  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
   $stmt = $conn->prepare($sql);
 
   try {
@@ -71,6 +78,11 @@ function fieldsToReadMeATSQL($conn, $post_data, $user_id)
       $creation_date,
       $subcommittee,
       $primary_contact,
+      $primary_email,
+      $secondary_contact,
+      $secondary_email,
+      $other_contact,
+      $other_email,
       $title,
       $creators,
       $acknowledgements,
@@ -81,6 +93,8 @@ function fieldsToReadMeATSQL($conn, $post_data, $user_id)
       $data_links,
       $ancillary_relationships,
       $publications_links,
+      $use_agreement,
+      $use_agreement_link,
       $github_link,
       $tech_for_creation,
       $sample_collection_procedure,
@@ -197,13 +211,19 @@ if (isset($_POST['submitReadme'])) {
               </select>
 
               <!-- Primary Contact -->
-              <!-- Doesn't work correctly yet -->
               <label for="primary_contact">Primary Contact Name and Email *</label>
-              <div id="primary_contact_container">
-                <label for="author1">Author 1:</label>
-                <input type="text" id="primary_contact" class="primary_contact" name="primary_contact" required>
-              </div>
-              <button type="button" id="add-author-btn">Add Another Author</button>
+              <input type="text" id="primary_contact" name="primary_contact" value="<?php echo $first_name . " " . $last_name?>" required>
+              <input type = "text" id="primary_contact_email" name="primary_contact_email" value="<?php echo $email?>" required>
+
+              <!-- secondary contact -->
+              <label for="secondary_contact">Secondary Contact Name and Email</label>
+              <input type="text" id="secondary_contact" name="secondary_contact">
+              <input type = "text" id="secondary_contact_email" name="secondary_contact_email">
+
+              <!-- other contact -->
+              <label for="other_contact">Other Contact Name and Email</label>
+              <input type="text" id="other_contact" name="other_contact">
+              <input type = "text" id="other_contact_email" name="other_contact_email">
 
               <!-- Base your readme on an existing table: -->
               <label for="selected_title">Base your readme on an existing table:</label>
@@ -290,6 +310,12 @@ if (isset($_POST['submitReadme'])) {
                 <option value="1">Yes</option>
                 <option value="0">No</option>
               </select>
+
+              <!-- use agreement -->
+              <label for="use_agreement">If the data derives from elsewhere, please provide use agreement</label>
+              <input type="text" id="use_agreement" name="use_agreement" rows="4">
+              <label for="use_agreement_link">Link to use agreement (if applicable)</label>
+              <input type="url" id="use_agreement_link" name="use_agreement_link">
 
               <!-- Data and File(s) Overview -->
               <label for="data_overview">Data and File(s) Overview *</label>
