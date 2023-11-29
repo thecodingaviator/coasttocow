@@ -70,9 +70,6 @@ function fillForm() {
           // Data and File(s) Overview textarea
           document.getElementById('data_overview').value = data.file_description;
 
-          // Sharing and Access Information textarea
-          document.getElementById('sharing_access_info').value = data.sharing_access_info; //CHECK
-
           // Links to Publications input
           document.getElementById('publications_links').value = data.publication_link;
 
