@@ -1,3 +1,16 @@
+/**
+ * Filename: explore.js
+ * Author: Parth Parth
+ * Date: 01/09/2023
+ * Description: Handles searching and downloading functionality for an ag-Grid-based table.
+ * 
+ * @fileOverview
+ * This script utilizes ag-Grid to display search results in a tabular format.
+ * It includes functionality to handle AJAX requests for fetching table data based on user input,
+ * display the data in an ag-Grid, and allow users to download the displayed data in CSV format.
+ * 
+ */
+
 'use strict';
 
 // We'll need some way to show errors
