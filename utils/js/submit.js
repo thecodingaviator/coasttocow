@@ -1,3 +1,16 @@
+/**
+ * Filename: submit.js
+ * Author: Gordon Doore, Parth Parth
+ * Date: 01/09/2023
+ * Code for submission of uploaded file
+ *
+ * @function handleFileUpload
+ * @description
+ *   Fetches form data from the specified HTML form, sends it to the server-side
+ *   script (upload.php) using AJAX, and displays a loader during the upload process.
+ *   Upon successful upload, it logs the success message and redirects to a confirmation page.
+ *   In case of an error, it logs the error message.
+ */
 function handleFileUpload() {
   var form = document.getElementById('upload_form');
   var formData = new FormData(form);

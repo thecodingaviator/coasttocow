@@ -1,3 +1,23 @@
+/**
+ * Filename: readme.js
+ * Author: Gordon Doore, Parth Parth
+ * Date: 01/09/2023
+ * Description: This script provides functionality to fill readme submission form dynamically
+ *              based on user-selected data fetched through AJAX in conenected database. It also
+ *              includes event handling for button clicks and text node
+ *              manipulation for asterisk wrapping allowing for formatting the selected data.
+ */
+
+
+/**
+ * Fills a form with data fetched through AJAX based on the selected title.
+ * If the selected title is "None," an alert is shown, and the function exits.
+ * Uses the fetched data to populate various form fields.
+ * Also includes event attachment for a button and a function to wrap asterisks in the document body.
+ *
+ * @function fillForm
+ * @throws {Error} If there is an issue with the AJAX request.
+ */
 function fillForm() {
 
   var selectedTitle = document.getElementById('selected_title').value;
@@ -109,12 +129,24 @@ function fillForm() {
     .catch(error => console.error('Error:', error));
 }
 
+/**
+ * Attaches the `fillForm` function to a button click event.
+ * Removes any existing click event to prevent multiple event bindings.
+ *
+ * @function attachFillFormEvent
+ */
 function attachFillFormEvent() {
   var fillFormButton = document.getElementById('fill_from_title');
   fillFormButton.removeEventListener('click', fillForm);
   fillFormButton.addEventListener('click', fillForm);
 }
 
+/**
+ * Recursively wraps asterisks within text nodes with a span element for styling.
+ *
+ * @function wrapAsterisks
+ * @param {Node} element - The HTML element to traverse and wrap asterisks.
+ */
 function wrapAsterisks(element) {
   if (element.hasChildNodes()) {
     element.childNodes.forEach(child => {
