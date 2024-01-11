@@ -1,5 +1,5 @@
 {
-    "AnimalTrials": [
+    "animalTrials": [
       { "label": "Question 1 for Option 1", "type": "text", "id": "question1_option1" },
       { "label": "Question 2 for Option 1", "type": "text", "id": "question2_option1" },
       {"label": "Question 3 for Option 1", "type": "chcekbox", "id": "question2_option1" , "options":["option1", "option2", "option3"]}

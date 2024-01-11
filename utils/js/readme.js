@@ -163,52 +163,47 @@ function wrapAsterisks(element) {
 }
 
 function questionSets(){
-  //use an event listener for the id: data_sect.  When it has been defined we remove 
-  //the current question set and then the right one defined by data_sect
-
   //get the current data sect 
   var data_sect = document.getElementById('data_sect').value;
-  //map this to a questionSet, throw error if can't find one
   
-  fetch('questionSets.json')
+  return fetch('utils/js/questionSets.json')
   .then(response => response.json())
   .then(data => {
-    uestionSets = data;
-    updateQuestionsBasedOnInput('data_sect', 'questions', questionSets);
+    console.log(data);
+    var questionSet = null;
+    if (data_sect == "animalTrials"){
+      questionSet = data.animalTrials;
+    }
+    else if (data_sect == "socialScience"){
+      questionSet = data.socialScience;
+    }
+    else if (data_sect == "other"){
+      questionSet = data.other;
+    }
+    if (!questionSet) {
+      throw new Error('No question set found for data_sect: ' + data_sect);
+    }
+    return questionSet;
   });
-
-  var questionSet = questionSets[data_sect];
-  if (!questionSet) {
-    throw new Error('No question set found for data_sect: ' + data_sect);
-  }
-
-  //remove current questionset if it exists and make the content questionSet
-  removeCurrentQuestionSet();
-
-  //wrap new question set in html
-  var questionSetDiv = wrapQuestionSet(questionSet);
-
-  //append new set to the form
-  appendQuestionSet(questionSetDiv);
 }
 
-function updateQuestionsBasedOnInput(inputElementId, questionsDivId, questionSets) {
-  document.getElementById(inputElementId).addEventListener('change', function(event) {
-    var questionsDiv = document.getElementById(questionsDivId);
+function updateQuestionsBasedOnInput(inputElement, questionsDiv, questionSet) {
+  inputElement.addEventListener('change', function(event) {
     questionsDiv.innerHTML = ''; // Clear current questions
 
-    var selectedOption = event.target.value;
-    var questions = questionSets[selectedOption] || []; // Default to empty array if no questions for this option
-
-    questions.forEach(function(question) {
-      questionsDiv.innerHTML += '<label for="' + question.id + '">' + question.label + '</label><br>';
+    var selectedOption = inputElement.value;
+    console.log(selectedOption)
+    var questions = questionSet[selectedOption] || []; // Default to empty array if no questions for this option
+    console.log(questionSet)
+    questions.forEach(function(questionSet) {
+      questionsDiv.innerHTML += '<label for="' + questionSet.id + '">' + questionSet.label + '</label><br>';
       
-      if (question.responseType === 'checkbox') {
-        question.options.forEach(function(option, index) {
-          questionsDiv.innerHTML += '<input type="' + question.responseType + '" id="' + question.id + index + '" name="' + question.id + '"><label for="' + question.id + index + '">' + option + '</label><br>';
+      if (questionSet.responseType === 'checkbox') {
+        questionSet.options.forEach(function(option, index) {
+          questionsDiv.innerHTML += '<input type="' + questionSet.responseType + '" id="' + questionSet.id + index + '" name="' + questionSet.id + '"><label for="' + questionSet.id + index + '">' + option + '</label><br>';
         });
       } else {
-        questionsDiv.innerHTML += '<input type="' + question.responseType + '" id="' + question.id + '" name="' + question.id + '"><br>';
+        questionsDiv.innerHTML += '<input type="' + questionSet.responseType + '" id="' + questionSet.id + '" name="' + questionSet.id + '"><br>';
       }
     });
   });
