@@ -215,13 +215,16 @@ function updateQuestionsBasedOnInput(questionsDivId, questionSet) {
   while (questionsDiv.firstChild) {
     questionsDiv.removeChild(questionsDiv.firstChild);
   }
-
+  //Loop through new question set
   questionSet.forEach(function(question) {
+    //All questions get a label regardless of type
     var label = document.createElement('label');
     label.setAttribute('for', question.id);
     label.textContent = question.label;
     questionsDiv.appendChild(label);
 
+    //now we need to create the input element based on the type
+    //for multiple choice questions, we need to create an input for each option
     if (question.type === "checkbox" || question.type === "radio") {
       question.options.forEach(function(option, index) {
         var input = document.createElement('input');
@@ -231,6 +234,7 @@ function updateQuestionsBasedOnInput(questionsDivId, questionSet) {
         questionsDiv.appendChild(input);
       });
     } 
+    //for text area we need to account for rows
     else if (question.type === "textarea") {
       var textarea = document.createElement('textarea');
       textarea.id = question.id;
@@ -238,10 +242,12 @@ function updateQuestionsBasedOnInput(questionsDivId, questionSet) {
       textarea.rows = question.rows;
       questionsDiv.appendChild(textarea);
     }
+    //for select we need to create an option for each selection
     else if (question.type === "select") {
       var select = document.createElement('select');
       select.id = question.id;
       select.name = question.id;
+
       question.options.forEach(function(option) {
         var optionElement = document.createElement('option');
         optionElement.value = option;
@@ -250,6 +256,7 @@ function updateQuestionsBasedOnInput(questionsDivId, questionSet) {
       });
       questionsDiv.appendChild(select);
     }
+    //general case for all other types, text and date mostly
     else {
       var input = document.createElement('input');
       input.type = question.type;

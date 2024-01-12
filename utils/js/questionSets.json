@@ -71,8 +71,9 @@
       },
       {
         "label": "Methodological Information",
-        "type": "label",
-        "id": "methodological_info"
+        "type": "textarea",
+        "id": "methodological_info",
+        "rows": 4
       },
       {
         "label": "List of any relevant technologies (software, hardware, instruments, and versions) used in creating the data include standards and calibration information, if appropriate",
