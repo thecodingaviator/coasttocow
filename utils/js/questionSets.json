@@ -1,8 +1,150 @@
 {
     "animalTrials": [
-      { "label": "Question 1 for Option 1", "type": "text", "id": "question1_option1" },
-      { "label": "Question 2 for Option 1", "type": "text", "id": "question2_option1" },
-      {"label": "Question 3 for Option 1", "type": "chcekbox", "id": "question2_option1" , "options":["option1", "option2", "option3"]}
+      { "label": "Data Usage Agreement *", "type": "text", "id": "data_usage_agreement" },
+      { "label": "Associated Keywords *", "type": "text", "id": "keywords" },
+      {"label": "Licenced Data (Y/N) *", "type": "select", "id": "licensed_data" , "options":["Yes", "No"]},
+      {
+        "label": "If the data derives from elsewhere, please provide use agreement",
+        "type": "text",
+        "id": "use_agreement"
+      },
+      {
+        "label": "Link to use agreement (if applicable)",
+        "type": "url",
+        "id": "use_agreement_link"
+      },
+      {
+        "label": "Data and File(s) Overview *",
+        "type": "textarea",
+        "id": "data_overview"
+      },
+      {
+        "label": "Links to Publications That Cite or Use the Data",
+        "type": "text",
+        "id": "publications_links"
+      },
+      {
+        "label": "IACUC,etc. (Y/N)",
+        "type": "select",
+        "id": "iacuc_compliance",
+        "options": ["Yes", "No"]
+      },
+      {
+        "label": "Links to Publicly Accessible Locations of the Data",
+        "type": "url",
+        "id": "data_links"
+      },
+      {
+        "label": "Links to any Ancillary Datasets, description if no link is available",
+        "type": "textarea",
+        "id": "ancillary_relationships"
+      },
+      {
+        "label": "GitHub Link to Relevant Code, Libraries, etc...",
+        "type": "url",
+        "id": "github_link"
+      },
+      {
+        "label": "Number of Files Associated with This Readme",
+        "type": "number",
+        "id": "num_files"
+      },
+      {
+        "label": "Dataset Change Log",
+        "type": "textarea",
+        "id": "change_log"
+      },
+      {
+        "label": "Methodological Information",
+        "type": "label",
+        "id": "methodological_info"
+      },
+      {
+        "label": "List of any relevant technologies (software, hardware, instruments, and versions) used in creating the data include standards and calibration information, if appropriate",
+        "type": "textarea",
+        "id": "tech_for_creation"
+      },
+      {
+        "label": "Sample collection, processing, analysis and/or submission procedures",
+        "type": "textarea",
+        "id": "sample_collection_procedure"
+      },
+      {
+        "label": "Experimental & environmental conditions of collection",
+        "type": "text",
+        "id": "collection_conditions"
+      },
+      {
+        "label": "Other key information related to data collection or generation.",
+        "type": "text",
+        "id": "other_collection"
+      },
+      {
+        "label": "Cleaned Data? (Y/N)",
+        "type": "select",
+        "id": "cleaned_data",
+        "options": ["Yes", "No"]
+      },
+      {
+        "label": "Descriptions of your methods used for data cleaning/processing",
+        "type": "text",
+        "id": "cleaning_methods"
+      },
+      {
+        "label": "Descriptions of your methods used for quality assurance of data",
+        "type": "text",
+        "id": "qa_procedures"
+      },
+      {
+        "label": "Your analytical methods, procedures, theories, etc used in analyzing data",
+        "type": "text",
+        "id": "key_analytic_methods"
+      },
+      {
+        "label": "Softwares used in obtaining, cleaning, or analyzing data",
+        "type": "text",
+        "id": "key_softwares"
+      },
+      {
+        "label": "If you put a software above, please include an address to the software/s you referenced",
+        "type": "text",
+        "id": "key_software_address"
+      },
+      {
+        "label": "Any other relevant information regarding software used?",
+        "type": "text",
+        "id": "other_software_info"
+      },
+      {
+        "label": "If you have important naming conventions, describe them",
+        "type": "text",
+        "id": "naming_conventions"
+      },
+      {
+        "label": "List any abbreviations in submitted file with their definition",
+        "type": "text",
+        "id": "abbreviations_used"
+      },
+      {
+        "label": "List any variables and describe them, please include any relevant units",
+        "type": "text",
+        "id": "variables_used"
+      },
+      {
+        "label": "List any system dependencies to use this data",
+        "type": "text",
+        "id": "dependencies"
+      },
+      {
+        "label": "Describe the submitted files",
+        "type": "textarea",
+        "id": "file_desc"
+      },
+      {
+        "label": "Additional Information",
+        "type": "textarea",
+        "id": "additional_info"
+      }
     ],
     "Option 2": [
       { "label": "Question 1 for Option 2", "type": "text", "id": "question1_option2" },

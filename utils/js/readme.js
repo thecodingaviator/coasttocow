@@ -195,11 +195,22 @@ function updateQuestionsBasedOnInput(questionsDivId, questionSet) {
   questionSet.forEach(function(question) {
     questionsDiv.innerHTML += '<label for="' + question.id + '">' + question.label + '</label><br>';
     
-    if (question.type === "checkbox") {
+    if (question.type === "checkbox" || question.type === "radio") {
       question.options.forEach(function(option, index) {
         questionsDiv.innerHTML += '<input type="' + question.type + '" id="' + question.id + index + '" name="' + question.id + '"><label for="' + question.id + index + '">' + option + '</label><br>';
       });
-    } else {
+    } 
+    else if (question.type === "textarea") {
+      questionsDiv.innerHTML += '<textarea id="' + question.id + '" name="' + question.id + '"></textarea><br>';
+    }
+    else if (question.type === "select") {
+      questionsDiv.innerHTML += '<select id="' + question.id + '" name="' + question.id + '">';
+      question.options.forEach(function(option) {
+        questionsDiv.innerHTML += '<option value="' + option + '">' + option + '</option>';
+      });
+      questionsDiv.innerHTML += '</select>';
+    }
+    else {
       questionsDiv.innerHTML += '<input type="' + question.type + '" id="' + question.id + '" name="' + question.id + '"><br>';
     }
     });
