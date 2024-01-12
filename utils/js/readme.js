@@ -187,26 +187,22 @@ function questionSets(){
   });
 }
 
-function updateQuestionsBasedOnInput(inputElement, questionsDiv, questionSet) {
-  inputElement.addEventListener('change', function(event) {
-    questionsDiv.innerHTML = ''; // Clear current questions
+function updateQuestionsBasedOnInput(questionsDivId, questionSet) {
+  var questionsDiv = document.getElementById(questionsDivId);
 
-    var selectedOption = inputElement.value;
-    console.log(selectedOption)
-    var questions = questionSet[selectedOption] || []; // Default to empty array if no questions for this option
-    console.log(questionSet)
-    questions.forEach(function(questionSet) {
-      questionsDiv.innerHTML += '<label for="' + questionSet.id + '">' + questionSet.label + '</label><br>';
-      
-      if (questionSet.responseType === 'checkbox') {
-        questionSet.options.forEach(function(option, index) {
-          questionsDiv.innerHTML += '<input type="' + questionSet.responseType + '" id="' + questionSet.id + index + '" name="' + questionSet.id + '"><label for="' + questionSet.id + index + '">' + option + '</label><br>';
-        });
-      } else {
-        questionsDiv.innerHTML += '<input type="' + questionSet.responseType + '" id="' + questionSet.id + '" name="' + questionSet.id + '"><br>';
-      }
+  questionsDiv.innerHTML = ''; // Clear current questions
+
+  questionSet.forEach(function(question) {
+    questionsDiv.innerHTML += '<label for="' + question.id + '">' + question.label + '</label><br>';
+    
+    if (question.type === "checkbox") {
+      question.options.forEach(function(option, index) {
+        questionsDiv.innerHTML += '<input type="' + question.type + '" id="' + question.id + index + '" name="' + question.id + '"><label for="' + question.id + index + '">' + option + '</label><br>';
+      });
+    } else {
+      questionsDiv.innerHTML += '<input type="' + question.type + '" id="' + question.id + '" name="' + question.id + '"><br>';
+    }
     });
-  });
 }
 
 

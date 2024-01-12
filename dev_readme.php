@@ -440,7 +440,7 @@ if (isset($_POST['submitReadme'])) {
             //call questionSets and handle the returned Promise
             questionSets().then(questionSet => {
                 //call updateQuestionsBasedOnInput
-                updateQuestionsBasedOnInput(inputElementId, variableQuestionsId, questionSet);
+                updateQuestionsBasedOnInput(variableQuestionsId, questionSet);
             }).catch(error => console.error('Error:', error));
         });
       </script>
