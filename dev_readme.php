@@ -222,6 +222,13 @@ if (isset($_POST['submitReadme'])) {
               <label for="other_contact">Other Contact Name and Email</label>
               <input type="text" id="other_contact" name="other_contact">
               <input type = "text" id="other_contact_email" name="other_contact_email">
+              <label for="data_sect">Data Sect (Impacts the Questions Asked Later)</label>
+                    <!-- select one of our three different data sects from dropdown-->
+                    <select id="data_sect" name="data_sect">
+                        <option value="animalTrials">Animal Trials</option>
+                        <option value="socialScience">Social Science</option>
+                        <option value="other">Other</option>
+                    </select>
 
               <!-- Base your readme on an existing table: -->
               <label for="selected_title">Base your readme on an existing table:</label>
@@ -288,141 +295,13 @@ if (isset($_POST['submitReadme'])) {
                   <input type="checkbox" id="wolfesNeckCenter" name="creators" value="Wolfe's Neck Center"> Wolfe's Neck
                   Center
                 </label><br>
-                <label for="data_sect">Data Sect (Impacts the Questions Asked Later)</label>
-                    <!-- select one of our three different data sects from dropdown-->
-                    <select id="data_sect" name="data_sect">
-                        <option value="animalTrials">Animal Trials</option>
-                        <option value="socialScience">Social Science</option>
-                        <option value="other">Other</option>
-                    </select>
                     
                 <!-- Acknowledgements -->
                 <label for="acknowledgements">Acknowledgements</label>
                 <textarea id="acknowledgements" name="acknowledgements" rows="4" required></textarea>
                 
                 <div class = "variable questions" id = "variable_questions">
-                    <!-- Use readme.js to fill in variable questions using functions there -->
-
-                    <!-- Data Usage Agreement -->
-                    <label for="data_usage_agreement">Data Usage Agreement *</label>
-                    <textarea id="data_usage_agreement" name="data_usage_agreement" rows="4" required></textarea>
-
-                    <!-- Associated Keywords -->
-                    <label for="keywords">Associated Keywords *</label>
-                    <input type="text" id="keywords" name="keywords" required>
-
-                    <!-- Licensed Data -->
-                    <label for="licensed_data">Licensed Data (Y/N) *</label>
-                    <select id="licensed_data" name="licensed_data" required>
-                    <option value="1">Yes</option>
-                    <option value="0">No</option>
-                    </select>
-
-                    <!-- use agreement -->
-                    <label for="use_agreement">If the data derives from elsewhere, please provide use agreement</label>
-                    <input type="text" id="use_agreement" name="use_agreement" rows="4">
-                    <label for="use_agreement_link">Link to use agreement (if applicable)</label>
-                    <input type="url" id="use_agreement_link" name="use_agreement_link">
-
-                    <!-- Data and File(s) Overview -->
-                    <label for="data_overview">Data and File(s) Overview *</label>
-                    <textarea id="data_overview" name="data_overview" rows="6" required></textarea>
-
-                    <!-- Links to Publications -->
-                    <label for="publications_links">Links to Publications That Cite or Use the Data</label>
-                    <input type="text" id="publications_links" name="publications_links">
-
-                    <!-- IACUC and Other Compliance THIS LIKELY NEEDS TO CHANGE TO INCLUDE IACUC-->
-                    <label for="iacuc_compliance">IACUC,etc. (Y/N)</label>
-                    <select id="iacuc_compliance" name="iacuc_compliance">
-                    <option value="1">Yes</option>
-                    <option value="0">No</option>
-                    </select>
-
-                    <!-- Links to publicly accessible locations of the data -->
-                    <label for="data_links">Links to Publicly Accessible Locations of the Data</label>
-                    <input type="url" id="data_links" name="data_links" required>
-
-                    <!-- Relationships to ancillary datasets -->
-                    <label for="ancillary_relationships">Links to any Ancillary Datasets, description if no link is
-                    available</label>
-                    <textarea id="ancillary_relationships" name="ancillary_relationships" rows="4" required></textarea>
-
-                    <!-- GitHub link to any relevant code, libraries, etc... -->
-                    <label for="github_link">GitHub Link to Relevant Code, Libraries, etc...</label>
-                    <input type="url" id="github_link" name="github_link" required>
-
-                    <!-- Number of files associated with this readme -->
-                    <label for="num_files">Number of Files Associated with This Readme</label>
-                    <input type="number" id="num_files" name="num_files" required>
-
-                    <!-- Dataset Change Log -->
-                    <label for="change_log">Dataset Change Log</label>
-                    <textarea id="change_log" name="change_log" rows="4"></textarea>
-
-                    <!-- Methodological Information -->
-                    <label for="methodological_info">Methodological Information</label>
-                    <!-- tech for creation  -->
-                    <label for="tech_for_creation">List of any relevant technologies (software, hardware, instruments, and
-                    versions) used in creating the data include standards and calibration information, if
-                    appropriate</label>
-                    <textarea id="tech_for_creation" name="tech_for_creation" rows="6"></textarea>
-                    <!-- sample_collection_procedure -->
-                    <label for="sample_collection_procedure">Sample collection, processing, analysis and/or submission
-                    procedures</label>
-                    <!-- potentially change to numerical inputs for written stuff -->
-                    <textarea id="sample_collection_procedure" name="sample_collection_procedure" rows="6"></textarea>
-                    <!-- environmental or experimental conditions for collection -->
-                    <label for="collection_conditions">Experimental & environmental conditions of collection</label>
-                    <input type="text" id="collection_conditions" name="collection_conditions" rows="4">
-                    <!-- other info about how data was collected or obtained -->
-                    <label for="other_collection">Other key information related to data collection or generation.</label>
-                    <input type="text" id="other_collection" name="other_collection" rows="4">
-                    <!-- cleaned data? -->
-                    <label for="cleaned_data">Cleaned Data? (Y/N)</label>
-                    <select id="cleaned_data" name="cleaned_data">
-                    <option value="1">Yes</option>
-                    <option value="0">No</option>
-                    </select>
-                    <!-- description on how data was cleaned / prepared for submission-->
-                    <label for="cleaning_methods">Descriptions of your methods used for data cleaning/processing</label>
-                    <input type="text" id="cleaning_methods" name="cleaning_methods" rows="4">
-                    <!-- QA procedures -->
-                    <label for="qa_procedures">Descriptions of your methods used for quality assurance of data</label>
-                    <input type="text" id="qa_procedures" name="qa_procedures" rows="4">
-                    <!-- key analytical methods -->
-                    <label for="key_analytic_methods">Your analytical methods, procedures, theories, etc used in analyzing
-                    data</label>
-                    <input type="text" id="key_analytic_methods" name="key_analytic_methods" rows="4">
-                    <!-- key softwares -->
-                    <label for="key_softwares">Softwares used in obtaining, cleaning, or analyzing data</label>
-                    <input type="text" id="key_softwares" name="key_softwares" rows="4">
-                    <!-- key software addresses (where is software from) -->
-                    <label for="key_software_address">If you put a software above, please include an address to the
-                    software/s you referenced</label>
-                    <input type="text" id="key_software_address" name="key_software_address" rows="4">
-                    <!-- other software information -->
-                    <label for="other_software_info">Any other relevant information regarding software used?</label>
-                    <input type="text" id="other_software_info" name="other_software_info" rows="4">
-                    <!-- nameing conventions -->
-                    <label for="naming_conventions">If you have important naming conventions, describe them</label>
-                    <input type="text" id="naming_conventions" name="naming_conventions" rows="4">
-                    <!-- abbreviations used -->
-                    <label for="abbreviations_used">List any abbreviations in submitted file with their definition</label>
-                    <input type="text" id="abbreviations_used" name="abbreviations_used" rows="4">
-                    <!-- variables description -->
-                    <label for="variables_used">List any variables and describe them, please include any relevent
-                    units</label>
-                    <input type="text" id="variables_used" name="variables_used" rows="4">
-                    <!-- dependencies to use data -->
-                    <label for="dependencies">List any system dependencies to use this data</label>
-                    <input type="text" id="dependencies" name="dependencies" rows="4">
-                    <!-- File Description -->
-                    <label for="file_desc">Describe the submitted files</label>
-                    <textarea id="file_desc" name="file_desc" rows="4"></textarea>
-                    <!-- Additional Information -->
-                    <label for="additional_info">Additional Information</label>
-                    <textarea id="additional_info" name="additional_info" rows="4"></textarea>
+                    
                 </div>
 
                 <input type="submit" name="submitReadme" value="Submit">

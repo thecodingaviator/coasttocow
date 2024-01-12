@@ -14,7 +14,8 @@
  * If the selected title is "None," an alert is shown, and the function exits.
  * Uses the fetched data to populate various form fields.
  * Also includes event attachment for a button and a function to wrap asterisks in the document body.
- *
+ *WILL EVENTUALLY NEED TO BE UPDATED TO INCLUDE ALL DATA SECTS OR SEPARATED TO MULTIPLE FUNCTIONS!
+ * 
  * @function fillForm
  * @throws {Error} If there is an issue with the AJAX request.
  */
@@ -162,6 +163,17 @@ function wrapAsterisks(element) {
   }
 }
 
+/**
+ * Fetches question sets from a JSON file and returns the set corresponding to the current data section.
+ * 
+ * The current data section is determined by the value of the 'data_sect' element in the DOM.
+ * 
+ * @returns {Promise} A promise that resolves to the question set for the current data section.
+ * If the data section is 'animalTrials', the promise resolves to data.animalTrials.
+ * If the data section is 'socialScience', the promise resolves to data.socialScience.
+ * If the data section is 'other', the promise resolves to data.other.
+ * If the data section does not match any of these options, the promise rejects with an error.
+ */
 function questionSets(){
   //get the current data sect 
   var data_sect = document.getElementById('data_sect').value;
@@ -187,33 +199,65 @@ function questionSets(){
   });
 }
 
+/**
+ * Updates the questions displayed in a specified HTML element based on a provided question set.
+ * 
+ * This function first clears any existing content in the specified HTML element. It then iterates over the provided question set,
+ * creating and appending new HTML elements for each question. The type of HTML element created for each question depends on the question's type.
+ * 
+ * @param {string} questionsDivId - The ID of the HTML element where the questions should be displayed.
+ * @param {Array} questionSet - An array of question objects. Each object should have a 'type', 'id', and 'label' property, and may optionally have an 'options' property if the type is 'checkbox', 'radio', or 'select'.
+ */
 function updateQuestionsBasedOnInput(questionsDivId, questionSet) {
   var questionsDiv = document.getElementById(questionsDivId);
 
-  questionsDiv.innerHTML = ''; // Clear current questions
+  // Clear current questions
+  while (questionsDiv.firstChild) {
+    questionsDiv.removeChild(questionsDiv.firstChild);
+  }
 
   questionSet.forEach(function(question) {
-    questionsDiv.innerHTML += '<label for="' + question.id + '">' + question.label + '</label><br>';
-    
+    var label = document.createElement('label');
+    label.setAttribute('for', question.id);
+    label.textContent = question.label;
+    questionsDiv.appendChild(label);
+
     if (question.type === "checkbox" || question.type === "radio") {
       question.options.forEach(function(option, index) {
-        questionsDiv.innerHTML += '<input type="' + question.type + '" id="' + question.id + index + '" name="' + question.id + '"><label for="' + question.id + index + '">' + option + '</label><br>';
+        var input = document.createElement('input');
+        input.type = question.type;
+        input.id = question.id + index;
+        input.name = question.id;
+        questionsDiv.appendChild(input);
       });
     } 
     else if (question.type === "textarea") {
-      questionsDiv.innerHTML += '<textarea id="' + question.id + '" name="' + question.id + '"></textarea><br>';
+      var textarea = document.createElement('textarea');
+      textarea.id = question.id;
+      textarea.name = question.id;
+      textarea.rows = question.rows;
+      questionsDiv.appendChild(textarea);
     }
     else if (question.type === "select") {
-      questionsDiv.innerHTML += '<select id="' + question.id + '" name="' + question.id + '">';
+      var select = document.createElement('select');
+      select.id = question.id;
+      select.name = question.id;
       question.options.forEach(function(option) {
-        questionsDiv.innerHTML += '<option value="' + option + '">' + option + '</option>';
+        var optionElement = document.createElement('option');
+        optionElement.value = option;
+        optionElement.textContent = option;
+        select.appendChild(optionElement);
       });
-      questionsDiv.innerHTML += '</select>';
+      questionsDiv.appendChild(select);
     }
     else {
-      questionsDiv.innerHTML += '<input type="' + question.type + '" id="' + question.id + '" name="' + question.id + '"><br>';
+      var input = document.createElement('input');
+      input.type = question.type;
+      input.id = question.id;
+      input.name = question.id;
+      questionsDiv.appendChild(input);
     }
-    });
+  });
 }
 
 

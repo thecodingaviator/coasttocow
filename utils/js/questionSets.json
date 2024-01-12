@@ -1,8 +1,20 @@
 {
     "animalTrials": [
-      { "label": "Data Usage Agreement *", "type": "text", "id": "data_usage_agreement" },
-      { "label": "Associated Keywords *", "type": "text", "id": "keywords" },
-      {"label": "Licenced Data (Y/N) *", "type": "select", "id": "licensed_data" , "options":["Yes", "No"]},
+      { 
+        "label": "Data Usage Agreement *", 
+        "type": "text", 
+        "id": "data_usage_agreement" 
+      },
+      { 
+        "label": "Associated Keywords *", 
+        "type": "text", 
+        "id": "keywords" 
+      },
+      {
+        "label": "Licenced Data (Y/N) *",
+        "type": "select", "id": "licensed_data" , 
+        "options":["Yes", "No"]
+      },
       {
         "label": "If the data derives from elsewhere, please provide use agreement",
         "type": "text",
@@ -16,7 +28,8 @@
       {
         "label": "Data and File(s) Overview *",
         "type": "textarea",
-        "id": "data_overview"
+        "id": "data_overview",
+        "rows": 4
       },
       {
         "label": "Links to Publications That Cite or Use the Data",
@@ -37,7 +50,8 @@
       {
         "label": "Links to any Ancillary Datasets, description if no link is available",
         "type": "textarea",
-        "id": "ancillary_relationships"
+        "id": "ancillary_relationships",
+        "rows": 4
       },
       {
         "label": "GitHub Link to Relevant Code, Libraries, etc...",
@@ -52,7 +66,8 @@
       {
         "label": "Dataset Change Log",
         "type": "textarea",
-        "id": "change_log"
+        "id": "change_log",
+        "rows": 4
       },
       {
         "label": "Methodological Information",
@@ -62,12 +77,14 @@
       {
         "label": "List of any relevant technologies (software, hardware, instruments, and versions) used in creating the data include standards and calibration information, if appropriate",
         "type": "textarea",
-        "id": "tech_for_creation"
+        "id": "tech_for_creation",
+        "rows": 4
       },
       {
         "label": "Sample collection, processing, analysis and/or submission procedures",
         "type": "textarea",
-        "id": "sample_collection_procedure"
+        "id": "sample_collection_procedure",
+        "rows": 4
       },
       {
         "label": "Experimental & environmental conditions of collection",
@@ -138,15 +155,17 @@
       {
         "label": "Describe the submitted files",
         "type": "textarea",
-        "id": "file_desc"
+        "id": "file_desc",
+        "rows": 4
       },
       {
         "label": "Additional Information",
         "type": "textarea",
-        "id": "additional_info"
+        "id": "additional_info",
+        "rows": 4
       }
     ],
-    "Option 2": [
+    "socialScience": [
       { "label": "Question 1 for Option 2", "type": "text", "id": "question1_option2" },
       { "label": "Question 2 for Option 2", "type": "text", "id": "question2_option2" }
     ]
