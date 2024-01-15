@@ -311,19 +311,20 @@ if (isset($_POST['submitReadme'])) {
               </form>
            </div>
         </div>
-            <form id="upload_form" enctype="multipart/form-data" method = "POST">
-              <input type="file" id="file_input" name="file_input">
-              <div>
-                <label>
-                  <input type="radio" name="folder_selection" value="research" required > Confirm you wish to upload research data
-                </label>
-              </div>
-              <input type="button" value="Upload" onclick="handleFileUpload()">
-            </form>
+        <div class="upload-file" style="<?php echo $metaSubmitted ? 'display: initial;' : 'display: none;'; ?>">
+          <form id="upload_form" enctype="multipart/form-data" method = "POST">
+                <input type="file" id="file_input" name="file_input">
+                <div>
+                  <label>
+                    <input type="radio" name="folder_selection" value="research" required > Confirm you wish to upload research data
+                  </label>
+                </div>
+                <input type="button" value="Upload" onclick="handleFileUpload()">
+              </form>
+         </div>
       </div>
     </div>
   </div>
-
       <script src="utils/js/readme.js"></script>
       <script>
         // event listener for when 'data_sect' dropdown is changed
