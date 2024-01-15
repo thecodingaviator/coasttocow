@@ -24,7 +24,7 @@ function fieldsToReadMeATSQL($conn, $post_data, $user_id)
   $keywords = $post_data['keywords'];
   $licensed_data = $post_data['licensed_data'];
   $data_overview = $post_data['data_overview'];
-  $sharing_access_info = $post_data['sharing_access_info'];
+  // $sharing_access_info = $post_data['sharing_access_info'];
   $publications_links = $post_data['publications_links'];
   $iacuc_compliance = $post_data['iacuc_compliance'];
   $data_links = $post_data['data_links'];
@@ -37,7 +37,7 @@ function fieldsToReadMeATSQL($conn, $post_data, $user_id)
   $sample_collection_procedure = $post_data['sample_collection_procedure'];
   $collection_conditions = $post_data['collection_conditions'];
   $other_collection = $post_data['other_collection'];
-  $cleaned_data = $post_data['cleaned_data'];
+  // $cleaned_data = $post_data['cleaned_data'];
   $cleaning_methods = $post_data['cleaning_methods'];
   $qa_procedures = $post_data['qa_procedures'];
   $key_analytic_methods = $post_data['key_analytic_methods'];
@@ -67,9 +67,9 @@ function fieldsToReadMeATSQL($conn, $post_data, $user_id)
   `acknow`,`data_usage_agreement`,`keywords`,`licensed_data`,`iacuc`,`alternate_available_link`,`ancillary_link`,
   `publication_link`,`external_use_agreement`,`external_use_agreement_source`,`github_link`,`technology_for_creation`,`sample_collection_procedure`,`conditions_collection`,
   `data_collection_other`,`cleaning_desc`,`qa_procedures`,`key_analytical_methods`,`key_softwares`,`key_software_address`,
-  `other_software_information`,`dataset_change_log`,`num_files_readme`,`cleaned`,`naming_conventions`,`file_description`,
+  `other_software_information`,`dataset_change_log`,`num_files_readme`,`naming_conventions`,`file_description`,
   `abbreviations_definition`,`variables_description`,`dependencies`,`other_information`) 
-  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
   $stmt = $conn->prepare($sql);
 
   try {
@@ -108,7 +108,6 @@ function fieldsToReadMeATSQL($conn, $post_data, $user_id)
       $other_software_info,
       $change_log,
       $num_files,
-      $cleaned_data,
       $naming_conventions,
       $file_desc,
       $abbreviations_used,
@@ -132,7 +131,7 @@ if (session_status() === PHP_SESSION_NONE) {
 $_SESSION['session_name'] = session_name();
 $_SESSION['update'] = [];
 $error = "";
-$readme_submitted = false;
+$metaSubmitted= false;
 
 $user_id = $_SESSION['user_id'];
 $U_Id = substr($user_id, 2);
@@ -152,6 +151,9 @@ if ($user) {
 if (isset($_POST['submitReadme'])) {
   // Call your PHP function here
   fieldsToReadMeATSQL($conn, $_POST, $user_id);
+  $metaSubmitted = true;
+  $_SESSION['update'][] = "Sucessfully Recorded Metadata. An email will be sent to you to confirm this submission";
+  $_SESSION['update'][] = $error;
 }
 
 ?>
@@ -188,7 +190,7 @@ if (isset($_POST['submitReadme'])) {
     <div class="content-wrapper">
       <div class="content">
         <h1>Readme Form</h1>
-        <div class="dataset-submission">
+        <div class="dataset-submission" style="<?php echo $metaSubmitted ? 'display: none;' : ''; ?>">
           <div class="enter-data">
             <form id="readme-form" action="" method="POST">
               <p><em>* Indicates a required question</em></p>
@@ -306,9 +308,22 @@ if (isset($_POST['submitReadme'])) {
                 </div>
 
                 <input type="submit" name="submitReadme" value="Submit">
-          </div>
+              </form>
+           </div>
         </div>
+            <form id="upload_form" enctype="multipart/form-data" method = "POST">
+              <input type="file" id="file_input" name="file_input">
+              <div>
+                <label>
+                  <input type="radio" name="folder_selection" value="research" required > Confirm you wish to upload research data
+                </label>
+              </div>
+              <input type="button" value="Upload" onclick="handleFileUpload()">
+            </form>
       </div>
+    </div>
+  </div>
+
       <script src="utils/js/readme.js"></script>
       <script>
         // event listener for when 'data_sect' dropdown is changed
@@ -324,5 +339,6 @@ if (isset($_POST['submitReadme'])) {
             }).catch(error => console.error('Error:', error));
         });
       </script>
+      <script src="utils/js/submit.js"></script>
     </body>
 </html>

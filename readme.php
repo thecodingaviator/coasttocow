@@ -420,6 +420,7 @@ if (isset($_POST['submitReadme'])) {
         </div>
       </div>
       <script src="utils/js/readme.js"></script>
+      <script src = "utils/js/submit.js"></script>
 </body>
 
 </html>
