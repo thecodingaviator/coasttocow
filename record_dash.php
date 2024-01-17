@@ -38,7 +38,7 @@ include "utils/config.php";
                 Data</a>
             </div>
             <div class="dash-button">
-              <a href="record_RD.php"><i><img src="utils/icons/magnifying_glass.svg " alt="Explore Icon"></i>C3 Research
+              <a href="readme.php"><i><img src="utils/icons/magnifying_glass.svg " alt="Explore Icon"></i>C3 Research
                 Data</a>
             </div>
           </div>

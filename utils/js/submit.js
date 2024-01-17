@@ -15,7 +15,6 @@
  */
 function handleFileUpload() {
   var form = document.getElementById('upload_form');
-  console.log(form == null)
   var formData = new FormData(form);
 
 
