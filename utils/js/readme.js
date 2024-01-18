@@ -265,6 +265,7 @@ function updateQuestionsBasedOnInput(questionsDivId, questionSet) {
       questionsDiv.appendChild(input);
     }
   });
+  wrapAsterisks(document.body);
 }
 
 
