@@ -88,6 +88,7 @@ input[type=submit]:hover, button[type=button]:hover {
   background-color: var(--global-green-hover) !important; /* Background color on hover using the CSS variable */
 }
 
+
 /* Read-only input styles */
 input[type=text]:-moz-read-only {
   background-color: #f5f5f5; /* Background color for read-only inputs in Mozilla Firefox */

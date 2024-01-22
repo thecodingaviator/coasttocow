@@ -268,6 +268,115 @@ function updateQuestionsBasedOnInput(questionsDivId, questionSet) {
   wrapAsterisks(document.body);
 }
 
+function addContact() {
+  document.getElementById('add_contact').addEventListener('click', function(e) {
+    e.preventDefault();
+
+    var contacts = document.getElementById('contacts');
+    var newContact = document.createElement('div');
+    newContact.className = 'contact';
+
+    var label = document.createElement('label');
+    label.textContent = 'Additional Contact Name and Email';
+
+    var nameInput = document.createElement('input');
+    nameInput.type = 'text';
+    nameInput.name = 'primary_contact[]';
+
+    var emailInput = document.createElement('input');
+    emailInput.type = 'text';
+    emailInput.name = 'primary_contact_email[]';
+
+    var removeButton = document.createElement('button');
+    removeButton.textContent = 'Remove Contact';
+    removeButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      contacts.removeChild(newContact);
+    });
+
+    newContact.appendChild(label);
+    newContact.appendChild(nameInput);
+    newContact.appendChild(emailInput);
+    newContact.appendChild(removeButton);
+
+    contacts.appendChild(newContact);
+
+    // Limit to 2 additional contacts
+    if (contacts.children.length >= 3) {
+      e.target.disabled = true;
+    }
+  });
+}
+
+function addCreatorFields() {
+  document.getElementById('add_creator').addEventListener('click', function(e) {
+    e.preventDefault();
+
+    var creatorsContainer = document.getElementById('creators_container');
+    var addCreatorButton = document.getElementById('add_creator');
+
+    // Only add a new creator if the limit hasn't been reached
+    if (creatorsContainer.children.length < 6) {
+      var newCreator = document.createElement('div');
+      newCreator.className = 'creator';
+
+      var creatorLabel = document.createElement('label');
+      creatorLabel.textContent = 'Additional Creator/Author';
+      creatorLabel.htmlFor = 'creators';
+
+      var creatorInput = document.createElement('input');
+      creatorInput.type = 'text';
+      creatorInput.id = 'creators';
+      creatorInput.name = 'creators';
+      creatorInput.required = true;
+
+      var orcidLabel = document.createElement('label');
+      orcidLabel.textContent = 'Additional Creator/Author ORCID';
+      orcidLabel.htmlFor = 'orcids';
+
+      var orcidInput = document.createElement('input');
+      orcidInput.type = 'text';
+      orcidInput.id = 'orcids';
+      orcidInput.name = 'orcids';
+
+      var removeButton = document.createElement('button');
+      removeButton.textContent = 'Remove Creator';
+      removeButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        creatorsContainer.removeChild(newCreator);
+
+        // Update the button text and color when a creator is removed
+        if (creatorsContainer.children.length < 6) {
+          addCreatorButton.style.color = 'white';
+          addCreatorButton.textContent = 'Add Another Creator/Author';
+        }
+      });
+
+      // Append the new fields to the new creator div
+      newCreator.appendChild(creatorLabel);
+      newCreator.appendChild(creatorInput);
+      newCreator.appendChild(orcidLabel);
+      newCreator.appendChild(orcidInput);
+      newCreator.appendChild(removeButton);
+
+      creatorsContainer.appendChild(newCreator);
+    }
+
+    // Update the button text and color based on whether the limit has been reached
+    if (creatorsContainer.children.length >= 6) {
+      addCreatorButton.style.color = 'red';
+      addCreatorButton.textContent = 'Creator limit reached';
+    } else {
+      addCreatorButton.style.color = 'white';
+      addCreatorButton.textContent = 'Add Another Creator/Author';
+    }
+  });
+}
+// Call the function when the document is loaded
+document.addEventListener('DOMContentLoaded', addCreatorFields);
+
+// Call the function when the document is loaded
+document.addEventListener('DOMContentLoaded', addContact);
 
 // Initial call to attach the event to existing buttons
 attachFillFormEvent();

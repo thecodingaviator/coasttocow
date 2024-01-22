@@ -211,19 +211,16 @@ if (isset($_POST['submitReadme'])) {
               </select>
 
               <!-- Primary Contact -->
-              <label for="primary_contact">Primary Contact Name and Email *</label>
-              <input type="text" id="primary_contact" name="primary_contact" value="<?php echo $first_name . " " . $last_name?>" required>
-              <input type = "text" id="primary_contact_email" name="primary_contact_email" value="<?php echo $email?>" required>
+              <div id="contacts">
+                <div class="contact">
+                  <label for="primary_contact">Primary Contact Name and Email *</label>
+                  <input type="text" id="primary_contact" name="primary_contact[]" required>
+                  <input type="text" id="primary_contact_email" name="primary_contact_email[]" required>
+                </div>
+              </div>
 
-              <!-- secondary contact -->
-              <label for="secondary_contact">Secondary Contact Name and Email</label>
-              <input type="text" id="secondary_contact" name="secondary_contact">
-              <input type = "text" id="secondary_contact_email" name="secondary_contact_email">
+              <button id="add_contact">Add another contact</button>
 
-              <!-- other contact -->
-              <label for="other_contact">Other Contact Name and Email</label>
-              <input type="text" id="other_contact" name="other_contact">
-              <input type = "text" id="other_contact_email" name="other_contact_email">
               <label for="data_sect">Data Sect (Impacts the Questions Asked Later)</label>
                     <!-- select one of our three different data sects from dropdown-->
                     <select id="data_sect" name="data_sect" required>
@@ -253,8 +250,22 @@ if (isset($_POST['submitReadme'])) {
                 <label for="title">Title/Subtitle *</label>
                 <input type="text" id="title" name="title" required>
 
+                <!-- Creators -->
+                <div id="creators_container">
+
+                  <label for="creators">Creators/Author *</label>
+                  <input type="text" id="creators" name="creators" required>
+
+                  <!-- Author ORCIDs -->
+                  <label for="creators">Creators/Author ORCID</label>
+                  <input type="text" id="orcids" name="orcids">
+                
+                </div>
+
+                <button id="add_creator">Add Another Creator/Author</button>
+
                 <!-- Creators/Authors and Institutions -->
-                <label for="creators">Creators/Authors Institutions *</label>
+                <label for="creators">Creators/Authors Institutions (check all that apply) *</label>
                 <label for="colbyCollege">
                   <input type="checkbox" id="colbyCollege" name="creators" value="Colby College"> Colby College
                 </label><br>
@@ -300,7 +311,7 @@ if (isset($_POST['submitReadme'])) {
                 </label><br>
                     
                 <!-- Acknowledgements -->
-                <label for="acknowledgements">Acknowledgements</label>
+                <label for="acknowledgements">Acknowledgements  (Funding and People)</label>
                 <textarea id="acknowledgements" name="acknowledgements" rows="4" required></textarea>
                 
                 <div class = "variable questions" id = "variable_questions">

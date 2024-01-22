@@ -76,6 +76,41 @@
         "rows": 4
       },
       {
+        "label": "Number of times fed per day",
+        "type": "number",
+        "id": "times_fed_per_day"
+      },
+      {
+        "label": "Times of day for feeding",
+        "type": "text",
+        "id": "feeding_times"
+      },
+      {
+        "label": "Number of times milked per day",
+        "type": "number",
+        "id": "times_milked_per_day"
+      },
+      {
+        "label": "Times of day for milking",
+        "type": "text",
+        "id": "milking_times"
+      },
+      {
+        "label": "Sample storing temperature (Celcius)",
+        "type": "number",
+        "id": "storing_temperature"
+      },
+      {
+        "label": "Sample holding time (hours)",
+        "type": "number",
+        "id": "holding_time"
+      },
+      {
+        "label": "Product form preparation for feeding",
+        "type": "text",
+        "id": "product_form_preparation"
+      },
+      {
         "label": "List of any relevant technologies (software, hardware, instruments, and versions) used in creating the data include standards and calibration information, if appropriate",
         "type": "textarea",
         "id": "tech_for_creation",
@@ -127,6 +162,12 @@
         "label": "If you put a software above, please include an address to the software/s you referenced",
         "type": "text",
         "id": "key_software_address"
+      },
+      {
+        "label": "Is the software used open source or free use?",
+        "type": "select",
+        "id": "software_open_source",
+        "options": ["No Software Used","Open Source", "Free Use", "Neither"]
       },
       {
         "label": "Any other relevant information regarding software used?",

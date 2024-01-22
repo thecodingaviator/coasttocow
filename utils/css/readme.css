@@ -37,6 +37,30 @@
   background: #004494;
 }
 
+button,
+input[type="button"] {
+  background-color:#0056b3; /* Green */
+  border: none;
+  color: white;
+  text-align: center;
+  padding: 5px 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition-duration: 0.4s;
+}
+
+button:hover,
+input[type="button"]:hover {
+  background-color: var(--global-green-hover);
+}
+
+
+
 /* Checkbox Styles */
 #readme-form label input[type="checkbox"] {
   margin-right: 10px;
