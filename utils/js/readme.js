@@ -266,8 +266,19 @@ function updateQuestionsBasedOnInput(questionsDivId, questionSet) {
     }
   });
   wrapAsterisks(document.body);
-}
 
+}
+/**
+ * Adds an event listener to the 'add_contact' button to create and append a new contact form to the 'contacts' div.
+ * 
+ * The new contact form includes fields for the contact's name and email, and a 'Remove Contact' button.
+ * The 'Remove Contact' button removes the contact form when clicked.
+ * The 'add_contact' button is disabled after 2 additional contacts have been added.
+ * 
+ * @listens {click} - When the 'add_contact' button is clicked.
+ * @fires {click} - When the 'Remove Contact' button is clicked.
+ * @throws {Error} - If the 'contacts' or 'add_contact' elements do not exist in the DOM.
+ */
 function addContact() {
   document.getElementById('add_contact').addEventListener('click', function(e) {
     e.preventDefault();
@@ -308,6 +319,17 @@ function addContact() {
   });
 }
 
+/**
+ * Adds an event listener to the 'add_creator' button to create and append a new creator form to the 'creators_container' div.
+ * 
+ * The new creator form includes fields for the creator's name and ORCID, and a 'Remove Creator' button.
+ * The 'Remove Creator' button removes the creator form when clicked and updates the 'add_creator' button text and color.
+ * The 'add_creator' button text and color are also updated based on whether the limit of 6 creators has been reached.
+ * 
+ * @listens {click} - When the 'add_creator' button is clicked.
+ * @fires {click} - When the 'Remove Creator' button is clicked.
+ * @throws {Error} - If the 'creators_container' or 'add_creator' elements do not exist in the DOM.
+ */
 function addCreatorFields() {
   document.getElementById('add_creator').addEventListener('click', function(e) {
     e.preventDefault();
