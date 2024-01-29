@@ -159,9 +159,34 @@ document.getElementById("confirmDownload").addEventListener("click", function ()
     link.setAttribute("download", "data.csv");
     document.body.appendChild(link);
     link.click();
+
+    var table_name = document.querySelector('#search_table').value;
+    // Log the download activity
+    // Log the download activity
+    fetch('utils/logActivity.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `activity=Downloaded CSV of ${table_name}`,
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(data => {
+      console.log(data);
+    })
+    .catch(error => {
+      console.error('There was a problem with the fetch operation:', error);
+    });
+    
   }
   else {
     // If data is not populated, show an error
+    console.log('no data to download')
     errorMessage.textContent = 'Error: No data to download';
     errorDiv.style.display = 'block';
   }
