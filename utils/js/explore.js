@@ -162,7 +162,6 @@ document.getElementById("confirmDownload").addEventListener("click", function ()
 
     var table_name = document.querySelector('#search_table').value;
     // Log the download activity
-    // Log the download activity
     fetch('utils/logActivity.php', {
       method: 'POST',
       headers: {

@@ -57,6 +57,7 @@ if ($user) {
   </div>
   <div class="wrapper">
     <?php include "navbar.php"; ?>
+    <?php include "loader.php"; ?>
     <div class="content-wrapper">
       <div class="content">
         <h1>Record DairyOne PDF</h1>
