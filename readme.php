@@ -221,10 +221,10 @@ if (isset($_POST['submitReadme'])) {
 
               <button id="add_contact">Add another contact</button>
 
-              <label for="data_sect">Data Sect (Impacts the Questions Asked Later)</label>
-                    <!-- select one of our three different data sects from dropdown-->
+              <label for="data_sect">Data Subgroup (Impacts the Questions Asked Later)</label>
+                    <!-- select one of our three different data Subgroups from dropdown-->
                     <select id="data_sect" name="data_sect" required>
-                        <option value = "" disabled selected>Select a Data Sect</option>
+                        <option value = "" disabled selected>Select a Data Subgroup</option>
                         <option value="animalTrials">Animal Trials</option>
                         <option value="socialScience">Social Science</option>
                         <option value="other">Other</option>
