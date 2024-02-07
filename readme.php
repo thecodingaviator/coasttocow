@@ -246,14 +246,14 @@ if (isset($_POST['submitReadme'])) {
                 ?>
                 <input type="button" id="fill_from_title" value="Fill">
 
-                <!-- Title/Sub-title FOR SOME REASON THIS DOESN'T SHOW UP-->
-                <label for="title">Title/Subtitle *</label>
+                <!-- Document Title -->
+                <label for="title">Document or Dataset Title/Subtitle *</label>
                 <input type="text" id="title" name="title" required>
 
                 <!-- Creators -->
                 <div id="creators_container">
 
-                  <label for="creators">Creators/Author *</label>
+                  <label for="creators">Creators (Last, First) *</label>
                   <input type="text" id="creators" name="creators" required>
 
                   <!-- Author ORCIDs -->

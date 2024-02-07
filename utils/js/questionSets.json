@@ -2,11 +2,12 @@
     "animalTrials": [
       { 
         "label": "Data Usage Agreement *", 
-        "type": "text", 
-        "id": "data_usage_agreement" 
+        "type": "textarea", 
+        "id": "data_usage_agreement",
+        "rows": 4 
       },
       { 
-        "label": "Associated Keywords *", 
+        "label": "Associated Keywords (comma separated) *", 
         "type": "text", 
         "id": "keywords" 
       },
@@ -32,7 +33,7 @@
         "rows": 4
       },
       {
-        "label": "Links to Publications That Cite or Use the Data",
+        "label": "Links to Publications That Cite or Use the Data (DOI preferred)",
         "type": "text",
         "id": "publications_links"
       },
@@ -64,10 +65,10 @@
         "id": "num_files"
       },
       {
-        "label": "Dataset Change Log",
-        "type": "textarea",
-        "id": "change_log",
-        "rows": 4
+        "label": "Submitted Files Extensions (check all that apply)",
+        "type": "checkbox",
+        "id": "file_extensions",
+        "options": ["csv", "tsv", "txt", "pdf", "doc", "docx", "xls", "xlsx", "jpg", "jpeg", "png", "gif", "zip", "tar", "gz", "rar", "7z", "mp3", "mp4", "mov", "avi", "wav", "flac", "other"]
       },
       {
         "label": "Methodological Information",
@@ -81,29 +82,9 @@
         "id": "times_fed_per_day"
       },
       {
-        "label": "Times of day for feeding",
-        "type": "text",
-        "id": "feeding_times"
-      },
-      {
         "label": "Number of times milked per day",
         "type": "number",
         "id": "times_milked_per_day"
-      },
-      {
-        "label": "Times of day for milking",
-        "type": "text",
-        "id": "milking_times"
-      },
-      {
-        "label": "Sample storing temperature (Celcius)",
-        "type": "number",
-        "id": "storing_temperature"
-      },
-      {
-        "label": "Sample holding time (hours)",
-        "type": "number",
-        "id": "holding_time"
       },
       {
         "label": "Product form preparation for feeding",
@@ -111,7 +92,7 @@
         "id": "product_form_preparation"
       },
       {
-        "label": "List of any relevant technologies (software, hardware, instruments, and versions) used in creating the data include standards and calibration information, if appropriate",
+        "label": "List of any relevant technologies (software, hardware, instruments, and versions) used in creating the data. Include standards and calibration information, if appropriate (e.g. GreenFeed Emissions Monitoring system) ",
         "type": "textarea",
         "id": "tech_for_creation",
         "rows": 4
@@ -123,7 +104,7 @@
         "rows": 4
       },
       {
-        "label": "Experimental & environmental conditions of collection",
+        "label": "Experimental & environmental conditions of collection (e.g. SOMETHING)",
         "type": "text",
         "id": "collection_conditions"
       },
@@ -131,12 +112,6 @@
         "label": "Other key information related to data collection or generation.",
         "type": "text",
         "id": "other_collection"
-      },
-      {
-        "label": "Cleaned Data? (Y/N)",
-        "type": "select",
-        "id": "cleaned_data",
-        "options": ["Yes", "No"]
       },
       {
         "label": "Descriptions of your methods used for data cleaning/processing",
@@ -149,7 +124,7 @@
         "id": "qa_procedures"
       },
       {
-        "label": "Your analytical methods, procedures, theories, etc used in analyzing data",
+        "label": "Your analytical methods, procedures, protocols, models, etc used in analyzing data",
         "type": "text",
         "id": "key_analytic_methods"
       },
