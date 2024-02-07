@@ -4,6 +4,19 @@
 // Purpose: Dashboard for exploring data html
 // Last modified: 07/24/2023
 include "utils/config.php";
+
+// Check if the session is not already started, start a new session
+if (session_status() === PHP_SESSION_NONE) {
+  session_start();
+}
+
+// Check if the user is not logged in, redirect to the login page
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+  header("Location: index.php"); // Redirect the user to index.php
+  exit(); // Stop executing the rest of the code
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -65,6 +78,5 @@ include "utils/config.php";
   </div>
 
   <script src="utils/js/explore.js"></script>
-</body>
 
 </html>

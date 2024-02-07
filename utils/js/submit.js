@@ -4,6 +4,8 @@
  * Date: 01/09/2023
  * Code for submission of uploaded file
  *
+ * 
+ * 
  * @function handleFileUpload
  * @description
  *   Fetches form data from the specified HTML form, sends it to the server-side
@@ -14,6 +16,7 @@
 function handleFileUpload() {
   var form = document.getElementById('upload_form');
   var formData = new FormData(form);
+
 
   document.getElementsByClassName("loader")[0].style.display = "block";
 

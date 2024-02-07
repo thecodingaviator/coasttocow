@@ -14,7 +14,8 @@
  * If the selected title is "None," an alert is shown, and the function exits.
  * Uses the fetched data to populate various form fields.
  * Also includes event attachment for a button and a function to wrap asterisks in the document body.
- *
+ *WILL EVENTUALLY NEED TO BE UPDATED TO INCLUDE ALL DATA SECTS OR SEPARATED TO MULTIPLE FUNCTIONS!
+ * 
  * @function fillForm
  * @throws {Error} If there is an issue with the AJAX request.
  */
@@ -162,6 +163,244 @@ function wrapAsterisks(element) {
   }
 }
 
+/**
+ * Fetches question sets from a JSON file and returns the set corresponding to the current data section.
+ * 
+ * The current data section is determined by the value of the 'data_sect' element in the DOM.
+ * 
+ * @returns {Promise} A promise that resolves to the question set for the current data section.
+ * If the data section is 'animalTrials', the promise resolves to data.animalTrials.
+ * If the data section is 'socialScience', the promise resolves to data.socialScience.
+ * If the data section is 'other', the promise resolves to data.other.
+ * If the data section does not match any of these options, the promise rejects with an error.
+ */
+function questionSets(){
+  //get the current data sect 
+  var data_sect = document.getElementById('data_sect').value;
+  
+  return fetch('utils/js/questionSets.json')
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+    var questionSet = null;
+    if (data_sect == "animalTrials"){
+      questionSet = data.animalTrials;
+    }
+    else if (data_sect == "socialScience"){
+      questionSet = data.socialScience;
+    }
+    else if (data_sect == "other"){
+      questionSet = data.other;
+    }
+    if (!questionSet) {
+      throw new Error('No question set found for data_sect: ' + data_sect);
+    }
+    return questionSet;
+  });
+}
+
+/**
+ * Updates the questions displayed in a specified HTML element based on a provided question set.
+ * 
+ * This function first clears any existing content in the specified HTML element. It then iterates over the provided question set,
+ * creating and appending new HTML elements for each question. The type of HTML element created for each question depends on the question's type.
+ * 
+ * @param {string} questionsDivId - The ID of the HTML element where the questions should be displayed.
+ * @param {Array} questionSet - An array of question objects. Each object should have a 'type', 'id', and 'label' property, and may optionally have an 'options' property if the type is 'checkbox', 'radio', or 'select'.
+ */
+function updateQuestionsBasedOnInput(questionsDivId, questionSet) {
+  var questionsDiv = document.getElementById(questionsDivId);
+
+  // Clear current questions
+  while (questionsDiv.firstChild) {
+    questionsDiv.removeChild(questionsDiv.firstChild);
+  }
+  //Loop through new question set
+  questionSet.forEach(function(question) {
+    //All questions get a label regardless of type
+    var label = document.createElement('label');
+    label.setAttribute('for', question.id);
+    label.textContent = question.label;
+    questionsDiv.appendChild(label);
+
+    //now we need to create the input element based on the type
+    //for multiple choice questions, we need to create an input for each option
+    if (question.type === "checkbox" || question.type === "radio") {
+      question.options.forEach(function(option, index) {
+        var input = document.createElement('input');
+        input.type = question.type;
+        input.id = question.id + index;
+        input.name = question.id;
+        questionsDiv.appendChild(input);
+      });
+    } 
+    //for text area we need to account for rows
+    else if (question.type === "textarea") {
+      var textarea = document.createElement('textarea');
+      textarea.id = question.id;
+      textarea.name = question.id;
+      textarea.rows = question.rows;
+      questionsDiv.appendChild(textarea);
+    }
+    //for select we need to create an option for each selection
+    else if (question.type === "select") {
+      var select = document.createElement('select');
+      select.id = question.id;
+      select.name = question.id;
+
+      question.options.forEach(function(option) {
+        var optionElement = document.createElement('option');
+        optionElement.value = option;
+        optionElement.textContent = option;
+        select.appendChild(optionElement);
+      });
+      questionsDiv.appendChild(select);
+    }
+    //general case for all other types, text and date mostly
+    else {
+      var input = document.createElement('input');
+      input.type = question.type;
+      input.id = question.id;
+      input.name = question.id;
+      questionsDiv.appendChild(input);
+    }
+  });
+  wrapAsterisks(document.body);
+
+}
+/**
+ * Adds an event listener to the 'add_contact' button to create and append a new contact form to the 'contacts' div.
+ * 
+ * The new contact form includes fields for the contact's name and email, and a 'Remove Contact' button.
+ * The 'Remove Contact' button removes the contact form when clicked.
+ * The 'add_contact' button is disabled after 2 additional contacts have been added.
+ * 
+ * @listens {click} - When the 'add_contact' button is clicked.
+ * @fires {click} - When the 'Remove Contact' button is clicked.
+ * @throws {Error} - If the 'contacts' or 'add_contact' elements do not exist in the DOM.
+ */
+function addContact() {
+  document.getElementById('add_contact').addEventListener('click', function(e) {
+    e.preventDefault();
+
+    var contacts = document.getElementById('contacts');
+    var newContact = document.createElement('div');
+    newContact.className = 'contact';
+
+    var label = document.createElement('label');
+    label.textContent = 'Additional Contact Name and Email';
+
+    var nameInput = document.createElement('input');
+    nameInput.type = 'text';
+    nameInput.name = 'primary_contact[]';
+
+    var emailInput = document.createElement('input');
+    emailInput.type = 'text';
+    emailInput.name = 'primary_contact_email[]';
+
+    var removeButton = document.createElement('button');
+    removeButton.textContent = 'Remove Contact';
+    removeButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      contacts.removeChild(newContact);
+    });
+
+    newContact.appendChild(label);
+    newContact.appendChild(nameInput);
+    newContact.appendChild(emailInput);
+    newContact.appendChild(removeButton);
+
+    contacts.appendChild(newContact);
+
+    // Limit to 2 additional contacts
+    if (contacts.children.length >= 3) {
+      e.target.disabled = true;
+    }
+  });
+}
+
+/**
+ * Adds an event listener to the 'add_creator' button to create and append a new creator form to the 'creators_container' div.
+ * 
+ * The new creator form includes fields for the creator's name and ORCID, and a 'Remove Creator' button.
+ * The 'Remove Creator' button removes the creator form when clicked and updates the 'add_creator' button text and color.
+ * The 'add_creator' button text and color are also updated based on whether the limit of 6 creators has been reached.
+ * 
+ * @listens {click} - When the 'add_creator' button is clicked.
+ * @fires {click} - When the 'Remove Creator' button is clicked.
+ * @throws {Error} - If the 'creators_container' or 'add_creator' elements do not exist in the DOM.
+ */
+function addCreatorFields() {
+  document.getElementById('add_creator').addEventListener('click', function(e) {
+    e.preventDefault();
+
+    var creatorsContainer = document.getElementById('creators_container');
+    var addCreatorButton = document.getElementById('add_creator');
+
+    // Only add a new creator if the limit hasn't been reached
+    if (creatorsContainer.children.length < 6) {
+      var newCreator = document.createElement('div');
+      newCreator.className = 'creator';
+
+      var creatorLabel = document.createElement('label');
+      creatorLabel.textContent = 'Additional Creator/Author';
+      creatorLabel.htmlFor = 'creators';
+
+      var creatorInput = document.createElement('input');
+      creatorInput.type = 'text';
+      creatorInput.id = 'creators';
+      creatorInput.name = 'creators';
+      creatorInput.required = true;
+
+      var orcidLabel = document.createElement('label');
+      orcidLabel.textContent = 'Additional Creator/Author ORCID';
+      orcidLabel.htmlFor = 'orcids';
+
+      var orcidInput = document.createElement('input');
+      orcidInput.type = 'text';
+      orcidInput.id = 'orcids';
+      orcidInput.name = 'orcids';
+
+      var removeButton = document.createElement('button');
+      removeButton.textContent = 'Remove Creator';
+      removeButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        creatorsContainer.removeChild(newCreator);
+
+        // Update the button text and color when a creator is removed
+        if (creatorsContainer.children.length < 6) {
+          addCreatorButton.style.color = 'white';
+          addCreatorButton.textContent = 'Add Another Creator/Author';
+        }
+      });
+
+      // Append the new fields to the new creator div
+      newCreator.appendChild(creatorLabel);
+      newCreator.appendChild(creatorInput);
+      newCreator.appendChild(orcidLabel);
+      newCreator.appendChild(orcidInput);
+      newCreator.appendChild(removeButton);
+
+      creatorsContainer.appendChild(newCreator);
+    }
+
+    // Update the button text and color based on whether the limit has been reached
+    if (creatorsContainer.children.length >= 6) {
+      addCreatorButton.style.color = 'red';
+      addCreatorButton.textContent = 'Creator limit reached';
+    } else {
+      addCreatorButton.style.color = 'white';
+      addCreatorButton.textContent = 'Add Another Creator/Author';
+    }
+  });
+}
+// Call the function when the document is loaded
+document.addEventListener('DOMContentLoaded', addCreatorFields);
+
+// Call the function when the document is loaded
+document.addEventListener('DOMContentLoaded', addContact);
+
 // Initial call to attach the event to existing buttons
 attachFillFormEvent();
 wrapAsterisks(document.body);
+

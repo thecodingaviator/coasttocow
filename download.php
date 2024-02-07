@@ -7,6 +7,7 @@
 
 require_once __DIR__ . '/vendor/autoload.php';
 include "utils/config.php";
+include "utils/logActivity.php";
 
 putenv('GOOGLE_APPLICATION_CREDENTIALS=utils/c3-upload.json');
 
@@ -43,8 +44,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['name'])) {
     $response = $service->files->get($fileId, ['alt' => 'media', 'supportsAllDrives' => true]);
     $content = $response->getBody()->getContents();
 
-    // Output the file content to the browser
-    echo $content;
+    // //record file download
+    try {
+      $userID = $_SESSION['user_id'];
+      $activity = "Downloaded file from href: " . $file->getName();
+      logActivity($conn, $userID, $activity);
+  } catch (Exception $e) {
+      error_log($e->getMessage());
+  }
     exit;
   } else {
     echo "File not found.";
