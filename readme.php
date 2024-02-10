@@ -309,6 +309,10 @@ if (isset($_POST['submitReadme'])) {
                   <input type="checkbox" id="wolfesNeckCenter" name="creators" value="Wolfe's Neck Center"> Wolfe's Neck
                   Center
                 </label><br>
+
+                <label for="other_institution">
+                  <input type="text" id="other_institution" name="creators" value="Other Institutions"> Other Institutions
+                </label><br>
                     
                 <!-- Acknowledgements -->
                 <label for="acknowledgements">Acknowledgements  (Funding and People)</label>
