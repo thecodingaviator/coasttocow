@@ -1,12 +1,6 @@
 {
     "animalTrials": [
       { 
-        "label": "Data Usage Agreement *", 
-        "type": "textarea", 
-        "id": "data_usage_agreement",
-        "rows": 4 
-      },
-      { 
         "label": "Associated Keywords (comma separated) *", 
         "type": "text", 
         "id": "keywords" 
@@ -27,7 +21,7 @@
         "id": "use_agreement_link"
       },
       {
-        "label": "Data and File(s) Overview *",
+        "label": "Data and File(s) Overview e.g (2 csv, 1 pdf) *",
         "type": "textarea",
         "id": "data_overview",
         "rows": 4
@@ -104,9 +98,21 @@
         "rows": 4
       },
       {
-        "label": "Experimental & environmental conditions of collection (e.g. SOMETHING)",
+        "label": "Feeding System",
+        "type": "select",
+        "id": "feeding_system",
+        "options": ["Not Applicable","Calan Broadbent", "Free stall", "Other"]
+      },
+      {
+        "label": "Experimental Design",
+        "type": "select",
+        "id": "experimental_design",
+        "options": ["Not Applicable","Latin Square", "Continuous", "Other"]
+      },
+      {
+        "label": "Other Experimental & environmental conditions of collection (e.g. SOMETHING)",
         "type": "text",
-        "id": "collection_conditions"
+        "id": "other_collection_conditions"
       },
       {
         "label": "Other key information related to data collection or generation.",
@@ -155,14 +161,9 @@
         "id": "naming_conventions"
       },
       {
-        "label": "List any abbreviations in submitted file with their definition",
+        "label": "List any abbreviations in submitted file with their definitions",
         "type": "text",
         "id": "abbreviations_used"
-      },
-      {
-        "label": "List any variables and describe them, please include any relevant units",
-        "type": "text",
-        "id": "variables_used"
       },
       {
         "label": "List any system dependencies to use this data",
@@ -170,7 +171,7 @@
         "id": "dependencies"
       },
       {
-        "label": "Describe the submitted files",
+        "label": "Describe the submitted files. What is this data about? What do you want other project members to know about it?",
         "type": "textarea",
         "id": "file_desc",
         "rows": 4
