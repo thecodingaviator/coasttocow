@@ -278,6 +278,7 @@ function updateQuestionsBasedOnInput(questionsDivId, questionSet) {
     }
   });
   wrapAsterisks(document.body);
+  attachEventListener(questionsDivId);
 
 }
 /**
@@ -331,6 +332,44 @@ function addContact() {
   });
 }
 
+function attachEventListener(questionsDivId) {
+  var inputElements = document.getElementById(questionsDivId).getElementsByTagName('input');
+  var selectElements = document.getElementById(questionsDivId).getElementsByTagName('select');
+
+  for (var i = 0; i < inputElements.length; i++) {
+    if (inputElements[i].type == 'checkbox' || inputElements[i].type == 'radio') {
+      inputElements[i].addEventListener('change', function() {
+        handleInputChange(this);
+        console.log('here')
+      });
+    }
+  }
+
+  for (var i = 0; i < selectElements.length; i++) {
+    selectElements[i].addEventListener('change', function() {
+      handleInputChange(this);
+    });
+  }
+
+  function handleInputChange(element) {
+    var input = document.getElementById(element.id + '_other');
+    if (element.value === "Other" || element.value === "other" && (element.checked || element.tagName === 'SELECT')) {
+      if (!input) {
+        console.log("here")
+        input = document.createElement('input');
+        input.type = 'text';
+        input.id = element.id + '_other';
+        input.name = element.id + '_other';
+        input.value = 'Please specify other';
+        element.parentNode.insertBefore(input, element.nextSibling);
+      }
+    } else {
+      if (input) {
+        input.parentNode.removeChild(input);
+      }
+    }
+  }
+}
 // Call the function when the document is loaded
 document.addEventListener('DOMContentLoaded', addContact);
 

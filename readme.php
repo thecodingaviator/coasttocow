@@ -336,7 +336,7 @@ if (isset($_POST['submitReadme'])) {
                 <input type="file" id="file_input" name="file_input">
                 <div>
                   <label>
-                    <input type="radio" name="folder_selection" value="research" required > Confirm you wish to upload research data
+                    <input type="radio" name="folder_selection" value="research" required > I acknowledge that my data will be shared with only the C3 team and collaborators for research purposes  
                   </label>
                 </div>
                 <input type="button" value="Upload" onclick="handleFileUpload()">
