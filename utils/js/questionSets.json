@@ -7,7 +7,7 @@
       "id": "keywords" 
     },
       {
-      "label": "What is the purpose of the dataset? Provide a brief summary of potential research   questions that could be/are answered using the dataset and the types of data included (e.g., feed trials, environmental measurements, etc.).",
+      "label": "What is the purpose of the dataset? Provide a brief summary of potential research questions that could be/are answered using the dataset and the types of data included (e.g., feed trials, environmental measurements, etc.).",
       "type": "textarea",
       "id": "data_overview",
       "rows": 4
@@ -28,7 +28,7 @@
       "type": "text",
       "id": "abbreviations_used"
     },{
-      "label": "Are there publications that cite or use the data, if so provide links (DOI preferred)",
+      "label": "Are there publically accessible publications that cite or use the data, if so provide links (DOI preferred)",
       "type": "text",
       "id": "publications_links"
     },
@@ -40,7 +40,8 @@
     },
       {
       "label": "Does your dataset include data licensed from a third-party. (Y/N) *",
-      "type": "select", "id": "licensed_data" , 
+      "type": "select", 
+      "id": "licensed_data" , 
       "options":["Yes", "No"]
     },
     {
@@ -97,13 +98,13 @@
       "id": "product_form_preparation"
     },
     {
-      "label": "List of any relevant technologies (software, hardware, instruments, and versions) used in creating the data. Include standards and  calibration information, if appropriate (e.g. GreenFeed Emissions Monitoring system, etc.) ",
+      "label": "List of any relevant technologies (software, hardware, instruments, and versions) used in creating the data. Include standards and  calibration information, if appropriate (e.g. SOMETHING, etc.) ",
       "type": "textarea",
       "id": "tech_for_creation",
       "rows": 4
     },
     {
-      "label": "Please provide brief overview of sample collection, processing, analysis and/or submission procedures.",
+      "label": "Please provide brief overview of sample collection, processing, analysis and/or submission procedures (e.g GreenFeed Emissions Monitoring system)",
       "type": "textarea",
       "id": "sample_collection_procedure",
       "rows": 4
@@ -142,7 +143,8 @@
     },
     {
       "label": "Provide key analytical methods, procedures, protocols, models, etc. used in analyzing data.",
-      "type": "text",
+      "type": "textarea",
+      "rows":2,
       "id": "key_analytic_methods"
     },
     {
@@ -151,15 +153,15 @@
       "id": "key_softwares"
     },
     {
-      "label": "If you put a software above, please include an URL to the software/s you referenced",
-      "type": "text",
-      "id": "key_software_address"
-    },
-    {
-      "label": "Are any of the software(s) used open source or free use? If so please list them.",
+      "label": "Are any of the software(s) used open source or free use?",
       "type": "select",
       "id": "software_open_source",
       "options": ["No Software Used","Open Source", "Free Use", "Neither"]
+    },
+    {
+      "label": "Please provide names of open source or free use software(s) used. Separate multiple softwares with a comma.",
+      "type": "text",
+      "id": "open_source_software"
     },
     {
       "label": "Please provide any other relevant information regarding software used, that would be important for reproducibility.",
@@ -168,7 +170,7 @@
     },
   
     {
-      "label": "Please list any system dependencies to use this data",
+      "label": "Please list any other system dependencies to use this data. This includes necessary libraries, OS versions, etc...",
       "type": "text",
       "id": "dependencies"
     },
