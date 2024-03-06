@@ -1,189 +1,188 @@
+
 {
-    "animalTrials": [
-      { 
-        "label": "Data Usage Agreement *", 
-        "type": "textarea", 
-        "id": "data_usage_agreement",
-        "rows": 4 
-      },
-      { 
-        "label": "Associated Keywords (comma separated) *", 
-        "type": "text", 
-        "id": "keywords" 
-      },
+  "animalTrials": [
+    { 
+      "label": "Please provide keywords/terms associated with your dataset (comma separated). *", 
+      "type": "text", 
+      "id": "keywords" 
+    },
       {
-        "label": "Licenced Data (Y/N) *",
-        "type": "select", "id": "licensed_data" , 
-        "options":["Yes", "No"]
-      },
+      "label": "What is the purpose of the dataset? Provide a brief summary of potential research questions that could be/are answered using the dataset and the types of data included (e.g., feed trials, environmental measurements, etc.).",
+      "type": "textarea",
+      "id": "data_overview",
+      "rows": 4
+    },
+    {
+      "label": "Please describe each submitted file(s), including file name before description. Provide a brief overview of what the data is and what you want other project members to know about the file(s).",
+      "type": "textarea",
+      "id": "file_desc",
+      "rows": 4
+    },
+    {
+      "label": "If you are not providing a data dictionary, please provide the metadata used in submitted files with their meaning and any naming conventions.",
+      "type": "text",
+      "id": "naming_conventions"
+    },
+    {
+      "label": "Please list any abbreviations within submitted file with their definitions",
+      "type": "text",
+      "id": "abbreviations_used"
+    },{
+      "label": "Are there publically accessible publications that cite or use the data, if so provide links (DOI preferred)",
+      "type": "text",
+      "id": "publications_links"
+    },
+    {
+      "label": "Is the data governed by an IACUC or similar agreements. (Y/N)",
+      "type": "select",
+      "id": "iacuc_compliance",
+      "options": ["Yes", "No"]
+    },
       {
-        "label": "If the data derives from elsewhere, please provide use agreement",
-        "type": "text",
-        "id": "use_agreement"
-      },
-      {
-        "label": "Link to use agreement (if applicable)",
-        "type": "url",
-        "id": "use_agreement_link"
-      },
-      {
-        "label": "Data and File(s) Overview *",
-        "type": "textarea",
-        "id": "data_overview",
-        "rows": 4
-      },
-      {
-        "label": "Links to Publications That Cite or Use the Data (DOI preferred)",
-        "type": "text",
-        "id": "publications_links"
-      },
-      {
-        "label": "IACUC,etc. (Y/N)",
-        "type": "select",
-        "id": "iacuc_compliance",
-        "options": ["Yes", "No"]
-      },
-      {
-        "label": "Links to Publicly Accessible Locations of the Data",
-        "type": "url",
-        "id": "data_links"
-      },
-      {
-        "label": "Links to any Ancillary Datasets, description if no link is available",
-        "type": "textarea",
-        "id": "ancillary_relationships",
-        "rows": 4
-      },
-      {
-        "label": "GitHub Link to Relevant Code, Libraries, etc...",
-        "type": "url",
-        "id": "github_link"
-      },
-      {
-        "label": "Number of Files Associated with This Readme",
-        "type": "number",
-        "id": "num_files"
-      },
-      {
-        "label": "Submitted Files Extensions (check all that apply)",
-        "type": "checkbox",
-        "id": "file_extensions",
-        "options": ["csv", "tsv", "txt", "pdf", "doc", "docx", "xls", "xlsx", "jpg", "jpeg", "png", "gif", "zip", "tar", "gz", "rar", "7z", "mp3", "mp4", "mov", "avi", "wav", "flac", "other"]
-      },
-      {
-        "label": "Methodological Information",
-        "type": "textarea",
-        "id": "methodological_info",
-        "rows": 4
-      },
-      {
-        "label": "Number of times fed per day",
-        "type": "number",
-        "id": "times_fed_per_day"
-      },
-      {
-        "label": "Number of times milked per day",
-        "type": "number",
-        "id": "times_milked_per_day"
-      },
-      {
-        "label": "Product form preparation for feeding",
-        "type": "text",
-        "id": "product_form_preparation"
-      },
-      {
-        "label": "List of any relevant technologies (software, hardware, instruments, and versions) used in creating the data. Include standards and calibration information, if appropriate (e.g. GreenFeed Emissions Monitoring system) ",
-        "type": "textarea",
-        "id": "tech_for_creation",
-        "rows": 4
-      },
-      {
-        "label": "Sample collection, processing, analysis and/or submission procedures",
-        "type": "textarea",
-        "id": "sample_collection_procedure",
-        "rows": 4
-      },
-      {
-        "label": "Experimental & environmental conditions of collection (e.g. SOMETHING)",
-        "type": "text",
-        "id": "collection_conditions"
-      },
-      {
-        "label": "Other key information related to data collection or generation.",
-        "type": "text",
-        "id": "other_collection"
-      },
-      {
-        "label": "Descriptions of your methods used for data cleaning/processing",
-        "type": "text",
-        "id": "cleaning_methods"
-      },
-      {
-        "label": "Descriptions of your methods used for quality assurance of data",
-        "type": "text",
-        "id": "qa_procedures"
-      },
-      {
-        "label": "Your analytical methods, procedures, protocols, models, etc used in analyzing data",
-        "type": "text",
-        "id": "key_analytic_methods"
-      },
-      {
-        "label": "Softwares used in obtaining, cleaning, or analyzing data",
-        "type": "text",
-        "id": "key_softwares"
-      },
-      {
-        "label": "If you put a software above, please include an address to the software/s you referenced",
-        "type": "text",
-        "id": "key_software_address"
-      },
-      {
-        "label": "Is the software used open source or free use?",
-        "type": "select",
-        "id": "software_open_source",
-        "options": ["No Software Used","Open Source", "Free Use", "Neither"]
-      },
-      {
-        "label": "Any other relevant information regarding software used?",
-        "type": "text",
-        "id": "other_software_info"
-      },
-      {
-        "label": "If you have important naming conventions, describe them",
-        "type": "text",
-        "id": "naming_conventions"
-      },
-      {
-        "label": "List any abbreviations in submitted file with their definition",
-        "type": "text",
-        "id": "abbreviations_used"
-      },
-      {
-        "label": "List any variables and describe them, please include any relevant units",
-        "type": "text",
-        "id": "variables_used"
-      },
-      {
-        "label": "List any system dependencies to use this data",
-        "type": "text",
-        "id": "dependencies"
-      },
-      {
-        "label": "Describe the submitted files",
-        "type": "textarea",
-        "id": "file_desc",
-        "rows": 4
-      },
-      {
-        "label": "Additional Information",
-        "type": "textarea",
-        "id": "additional_info",
-        "rows": 4
-      }
-    ],
-    "socialScience": [
-      { "label": "Question 1 for Option 2", "type": "text", "id": "question1_option2" },
-      { "label": "Question 2 for Option 2", "type": "text", "id": "question2_option2" }
-    ]
-  }
+      "label": "Does your dataset include data licensed from a third-party. (Y/N) *",
+      "type": "select", 
+      "id": "licensed_data" , 
+      "options":["Yes", "No"]
+    },
+    {
+      "label": "If any part of the dataset, contains data from a licensed a third-party source, please provide link to use agreement.",
+      "type": "text",
+      "id": "use_agreement"
+    },
+  {
+      "label": "Does your dataset use any ancillary public data, if so please provide URL(s) to where the data came from.",
+      "type": "url",
+      "id": "data_links"
+    },
+    {
+      "label": "If using any ancillary public datasets, please provide description(s) if URL(s) are not available.",
+      "type": "textarea",
+      "id": "ancillary_relationships",
+      "rows": 4
+    },
+    {
+      "label": "If you have a GitHub related to the dataset, please provide link.",
+      "type": "url",
+      "id": "github_link"
+    },
+    {
+      "label": "What are the number of files (all formats) associated with this ReadMe?",
+      "type": "number",
+      "id": "num_files"
+    },
+    {
+      "label": "Please select all file extensions/formats that are part of your dataset (check all that apply).",
+      "type": "checkbox",
+      "id": "file_extensions",
+      "options": ["csv", "tsv", "txt", "pdf", "doc", "docx", "xls", "xlsx", "jpg", "jpeg", "png", "gif", "zip", "tar", "gz", "rar", "7z", "mp3", "mp4", "mov", "avi", "wav", "flac", "other"]
+    },
+    {
+      "label": "Please provide brief overview of methodological research process related to dataset.",
+      "type": "textarea",
+      "id": "methodological_info",
+      "rows": 4
+    },
+    {
+      "label": "Please provide number of times fed per day",
+      "type": "number",
+      "id": "times_fed_per_day"
+    },
+    {
+      "label": "Please provide number of times milked per day",
+      "type": "number",
+      "id": "times_milked_per_day"
+    },
+    {
+      "label": "Please provide product form preparation for feeding",
+      "type": "text",
+      "id": "product_form_preparation"
+    },
+    {
+      "label": "List of any relevant technologies (software, hardware, instruments, and versions) used in creating the data. Include standards and  calibration information, if appropriate (e.g. SOMETHING, etc.) ",
+      "type": "textarea",
+      "id": "tech_for_creation",
+      "rows": 4
+    },
+    {
+      "label": "Please provide brief overview of sample collection, processing, analysis and/or submission procedures (e.g GreenFeed Emissions Monitoring system)",
+      "type": "textarea",
+      "id": "sample_collection_procedure",
+      "rows": 4
+    },
+    {
+      "label": "Select name of feeding system",
+      "type": "select",
+      "id": "feeding_system",
+      "options": ["Not Applicable","Calan Broadbent", "Free stall", "Other"]
+    },
+    {
+      "label": "Select type of experimental design",
+      "type": "select",
+      "id": "experimental_design",
+      "options": ["Not Applicable","Latin Square", "Continuous", "Other"]
+    },
+    {
+      "label": "Please provide information on other experimental & environmental conditions of collection (e.g. SOMETHING)",
+      "type": "text",
+      "id": "other_collection_conditions"
+    },
+    {
+      "label": "Use this space to provide other key information related to data collection or generation.",
+      "type": "text",
+      "id": "other_collection"
+    },
+    {
+      "label": "Provide descriptions of your methods used for data cleaning/processing",
+      "type": "text",
+      "id": "cleaning_methods"
+    },
+    {
+      "label": "Provide descriptions of your methods used for quality assurance of data",
+      "type": "text",
+      "id": "qa_procedures"
+    },
+    {
+      "label": "Provide key analytical methods, procedures, protocols, models, etc. used in analyzing data.",
+      "type": "textarea",
+      "rows":2,
+      "id": "key_analytic_methods"
+    },
+    {
+      "label": "Provide the names of softwares used in obtaining, cleaning, or analyzing data.",
+      "type": "text",
+      "id": "key_softwares"
+    },
+    {
+      "label": "Are any of the software(s) used open source or free use?",
+      "type": "select",
+      "id": "software_open_source",
+      "options": ["No Software Used","Open Source", "Free Use", "Neither"]
+    },
+    {
+      "label": "Please provide names of open source or free use software(s) used. Separate multiple softwares with a comma.",
+      "type": "text",
+      "id": "open_source_software"
+    },
+    {
+      "label": "Please provide any other relevant information regarding software used, that would be important for reproducibility.",
+      "type": "text",
+      "id": "other_software_info"
+    },
+  
+    {
+      "label": "Please list any other system dependencies to use this data. This includes necessary libraries, OS versions, etc...",
+      "type": "text",
+      "id": "dependencies"
+    },
+          {
+      "label": "Additional Information",
+      "type": "textarea",
+      "id": "additional_info",
+      "rows": 4
+    }
+  ],
+  "socialScience": [
+    { "label": "Question 1 for Option 2", "type": "text", "id": "question1_option2" },
+    { "label": "Question 2 for Option 2", "type": "text", "id": "question2_option2" }
+  ]
+}

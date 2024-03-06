@@ -253,16 +253,16 @@ if (isset($_POST['submitReadme'])) {
                 <!-- Creators -->
                 <div id="creators_container">
 
-                  <label for="creators">Creators (Last, First) *</label>
+                  <label for="creators">Primary Creator/Author (Last, First) *</label>
                   <input type="text" id="creators" name="creators" required>
 
                   <!-- Author ORCIDs -->
-                  <label for="creators">Creators/Author ORCID</label>
+                  <label for="creators">Primary Creator/Author ORCID</label>
                   <input type="text" id="orcids" name="orcids">
                 
+                  <label for="additional_creators">Additional Creators/Authors </label>
+                  <textarea type="textarea" id="additional_creators" name="creators" rows = "4">(Person1 Last, Person1 First), (Person2 Last, Person2 First), ...</textarea>
                 </div>
-
-                <button id="add_creator">Add Another Creator/Author</button>
 
                 <!-- Creators/Authors and Institutions -->
                 <label for="creators">Creators/Authors Institutions (check all that apply) *</label>
@@ -309,6 +309,15 @@ if (isset($_POST['submitReadme'])) {
                   <input type="checkbox" id="wolfesNeckCenter" name="creators" value="Wolfe's Neck Center"> Wolfe's Neck
                   Center
                 </label><br>
+
+                <label for="other_institution_checkbox">
+                  <input type="checkbox" id="other_institution_checkbox" name="creators" value="Other Institution" onchange="toggleOtherInstitutionInput()"> Other Institution
+                </label><br>
+
+                <div id="other_institution_div" style="display: none;">
+                  <label for="other_institution">Specify Other Institution</label>
+                  <input type="text" id="other_institution" name="creators" value="">
+                </div><br>
                     
                 <!-- Acknowledgements -->
                 <label for="acknowledgements">Acknowledgements  (Funding and People)</label>
@@ -327,7 +336,7 @@ if (isset($_POST['submitReadme'])) {
                 <input type="file" id="file_input" name="file_input">
                 <div>
                   <label>
-                    <input type="radio" name="folder_selection" value="research" required > Confirm you wish to upload research data
+                    <input type="radio" name="folder_selection" value="research" required > I acknowledge that my data will be shared with only the C3 team and collaborators for research purposes  
                   </label>
                 </div>
                 <input type="button" value="Upload" onclick="handleFileUpload()">
@@ -338,6 +347,17 @@ if (isset($_POST['submitReadme'])) {
   </div>
       <script src="utils/js/readme.js"></script>
       <script>
+
+        function toggleOtherInstitutionInput() {
+          var checkbox = document.getElementById('other_institution_checkbox');
+          var div = document.getElementById('other_institution_div');
+
+          if (checkbox.checked) {
+            div.style.display = 'flex';
+          } else {
+            div.style.display = 'none';
+          }
+        }
         // event listener for when 'data_sect' dropdown is changed
         document.getElementById("data_sect").addEventListener("change", function() {
             // get the input value from the dropdown
