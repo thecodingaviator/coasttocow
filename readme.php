@@ -31,7 +31,7 @@ function fieldsToReadMeATSQL($conn, $post_data, $user_id)
   $ancillary_relationships = $post_data['ancillary_relationships'];
   $github_link = $post_data['github_link'];
   $num_files = $post_data['num_files'];
-  $creation_date = $post_data['creation_date'];
+  $creation_date = $post_data['creation_date'];//STAY
   $change_log = $post_data['change_log'];
   $tech_for_creation = $post_data['tech_for_creation'];
   $sample_collection_procedure = $post_data['sample_collection_procedure'];
@@ -49,14 +49,14 @@ function fieldsToReadMeATSQL($conn, $post_data, $user_id)
   $variables_used = $post_data['variables_used'];
   $dependencies = $post_data['dependencies'];
   $additional_info = $post_data['additional_info'];
-  $subcommittee = $post_data['subcommittee'];
-  $primary_contact = $post_data['primary_contact'];
-  $primary_email = $post_data['primary_contact_email'];
+  $subcommittee = $post_data['subcommittee'];//STAY
+  $primary_contact = $post_data['primary_contact'];//STAY
+  $primary_email = $post_data['primary_contact_email'];//STAY
   $secondary_contact = $post_data['secondary_contact'];
   $secondary_email = $post_data['secondary_contact_email'];
   $other_contact = $post_data['other_contact'];
   $other_email = $post_data['other_contact_email'];
-  $creators = $post_data['creators'];
+  $creators = $post_data['creators'];//STAY
   $file_desc = $post_data['file_desc'];
   $use_agreement = $post_data['use_agreement'];
   $use_agreement_link = $post_data['use_agreement_link'];
@@ -336,7 +336,7 @@ if (isset($_POST['submitReadme'])) {
                 <input type="file" id="file_input" name="file_input">
                 <div>
                   <label>
-                    <input type="radio" name="folder_selection" value="research" required > I acknowledge that my data will be shared with only the C3 team and collaborators for research purposes  
+                    <input type="radio" name="folder_selection" value="research" required >  I acknowledge that this data will only be used internally by C3 team members for exploratory purposes. Anyone accessing my data will acknowledge me and my team as data generators and alert me to its use.  
                   </label>
                 </div>
                 <input type="button" value="Upload" onclick="handleFileUpload()">

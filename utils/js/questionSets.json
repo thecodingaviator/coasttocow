@@ -45,7 +45,7 @@
       "options":["Yes", "No"]
     },
     {
-      "label": "If any part of the dataset, contains data from a licensed a third-party source, please provide link to use agreement.",
+      "label": "If any part of the dataset contains data from a licensed a third-party source, please provide link to use agreement.",
       "type": "text",
       "id": "use_agreement"
     },
@@ -55,13 +55,13 @@
       "id": "data_links"
     },
     {
-      "label": "If using any ancillary public datasets, please provide description(s) if URL(s) are not available.",
+      "label": "If using any ancillary public datasets, please provide the description(s) if URL(s) are not available.",
       "type": "textarea",
       "id": "ancillary_relationships",
       "rows": 4
     },
     {
-      "label": "If you have a GitHub related to the dataset, please provide link.",
+      "label": "If you have a GitHub related to the dataset, please provide the link.",
       "type": "url",
       "id": "github_link"
     },
@@ -77,18 +77,18 @@
       "options": ["csv", "tsv", "txt", "pdf", "doc", "docx", "xls", "xlsx", "jpg", "jpeg", "png", "gif", "zip", "tar", "gz", "rar", "7z", "mp3", "mp4", "mov", "avi", "wav", "flac", "other"]
     },
     {
-      "label": "Please provide brief overview of methodological research process related to dataset.",
+      "label": "Please provide a brief overview of the methodological research process related to dataset.",
       "type": "textarea",
       "id": "methodological_info",
       "rows": 4
     },
     {
-      "label": "Please provide number of times fed per day",
+      "label": "Please provide the number of times fed per day",
       "type": "number",
       "id": "times_fed_per_day"
     },
     {
-      "label": "Please provide number of times milked per day",
+      "label": "Please provide the number of times milked per day",
       "type": "number",
       "id": "times_milked_per_day"
     },
@@ -98,7 +98,7 @@
       "id": "product_form_preparation"
     },
     {
-      "label": "List of any relevant technologies (software, hardware, instruments, and versions) used in creating the data. Include standards and  calibration information, if appropriate (e.g. SOMETHING, etc.) ",
+      "label": "List of any relevant technologies (software, hardware, instruments, and versions) used in creating the data. Include standards and  calibration information, if appropriate. ",
       "type": "textarea",
       "id": "tech_for_creation",
       "rows": 4
@@ -120,11 +120,6 @@
       "type": "select",
       "id": "experimental_design",
       "options": ["Not Applicable","Latin Square", "Continuous", "Other"]
-    },
-    {
-      "label": "Please provide information on other experimental & environmental conditions of collection (e.g. SOMETHING)",
-      "type": "text",
-      "id": "other_collection_conditions"
     },
     {
       "label": "Use this space to provide other key information related to data collection or generation.",
@@ -159,12 +154,12 @@
       "options": ["No Software Used","Open Source", "Free Use", "Neither"]
     },
     {
-      "label": "Please provide names of open source or free use software(s) used. Separate multiple softwares with a comma.",
+      "label": "Please provide the names of open source or free use software(s) used. Separate multiple softwares with a comma.",
       "type": "text",
       "id": "open_source_software"
     },
     {
-      "label": "Please provide any other relevant information regarding software used, that would be important for reproducibility.",
+      "label": "Please provide any other relevant information regarding the software used, that would be important for reproducibility.",
       "type": "text",
       "id": "other_software_info"
     },
