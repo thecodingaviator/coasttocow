@@ -120,7 +120,7 @@ document.querySelector('#searchForm').addEventListener('submit', function (event
         allColumnIds.push(column.getId());
       });
 
-      gridOptions.columnApi.autoSizeColumns(allColumnIds, true);
+      gridOptions.columnApi.autoSizeColumns(allColumnIds);
 
       // Clear any previous error
       errorDiv.style.display = 'none';
