@@ -227,6 +227,7 @@ if (isset($_POST['submitReadme'])) {
                         <option value = "" disabled selected>Select a Data Subgroup</option>
                         <option value="animalTrials">Animal Trials</option>
                         <option value="socialScience">Social Science</option>
+                        <option value="benchTrials">Bench Trials</option>
                         <option value="other">Other</option>
                     </select>
 
