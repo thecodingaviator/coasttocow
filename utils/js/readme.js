@@ -189,6 +189,9 @@ function questionSets(){
     else if (data_sect == "socialScience"){
       questionSet = data.socialScience;
     }
+    else if (data_sect == "benchTrials"){
+      questionSet = data.benchTrials
+    }
     else if (data_sect == "other"){
       questionSet = data.other;
     }

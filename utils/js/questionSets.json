@@ -177,7 +177,298 @@
     }
   ],
   "socialScience": [
-    { "label": "Question 1 for Option 2", "type": "text", "id": "question1_option2" },
-    { "label": "Question 2 for Option 2", "type": "text", "id": "question2_option2" }
+    {
+      "label": "Creation Date", 
+      "type": "text", 
+      "id": "creation_date`" 
+    },
+    { "label": "C3 Subcommittee", 
+      "type": "text", 
+      "id": "subcommittee" 
+    },
+    { "label": "Primary Contact", 
+      "type": "text", 
+      "id": "primary_contact" 
+    },
+    { "label": "Primary Email", 
+      "type": "text", 
+      "id": "primary_email" 
+    },
+    { "label": "Acknowledgements", 
+      "type": "text", 
+      "id": "acknow" 
+    },
+    { "label": "Please provide keywords/terms associated with your dataset (comma separated)", 
+      "type": "text", 
+      "id": "keywords" 
+    },
+    { "label": "What is the purpose of the dataset? Provide a brief summary of potential research   questions that could be/are answered using the dataset and the types of data included (e.g., feed trials, environmental measurements, etc)", 
+      "type": "textarea",
+      "id": "data_overview",
+      "rows": 4
+    },
+    { "label": "Please describe each submitted file(s), including file name before description. Provide a brief overview of what the data is and what you want other project members to know about the file(s).",
+      "type": "textarea",
+      "id": "file_desc",
+      "rows": 4
+    },
+    {
+      "label": "Does your dataset include data licensed from a third-party. (Y/N)", 
+      "type": "select", 
+      "id": "licensed_data" , 
+      "options":["Yes", "No"]
+    },
+    { "label": "Is the data governed by an IRB or similar agreements. (Y/N)", 
+      "type": "select",
+      "id": "iacuc_compliance",
+      "options": ["Yes", "No"]
+    },
+    { "label": "If using any ancillary public datasets, please provide description(s) if URL(s) are not available", 
+      "type": "textarea",
+      "id": "ancillary_relationships",
+      "rows": 4
+    },
+    { "label": "Are there publications that cite or use the data, if so provide links (DOI preferred)", 
+      "type": "text", 
+      "id": "publication_link" 
+    },
+    { "label": "If you have a GitHub related to the dataset, please provide link.", 
+      "type": "url",
+      "id": "github_link"
+    },
+    { "label": "What are the number of files (all formats) associated with this ReadMe?", 
+      "type": "number",
+      "id": "num_files"
+    },
+    { "label": "If you are not providing a data dictionary, please provide the metadata used in submitted files with their meaning and any naming conventions.", 
+      "type": "text", 
+      "id": "naming_conventions" 
+    },
+    { "label": "Please list any abbreviations in submitted file with their definitions", 
+      "type": "text", 
+      "id": "abbreviations_used" 
+    },
+    { "label": "If any part of the dataset, contains data from a licensed a third-party source, please provide link to use agreement", 
+      "type": "text", 
+      "id": "use_agreement" 
+    },
+    {
+      "label": "Does your dataset use any ancillary public data, if so please provide URL(s) to where the data came from", 
+      "type": "url",
+      "id": "data_links"
+    },
+    { "label": "Please select all file extensions/formats that are part of your dataset (check all that apply)", 
+      "type": "checkbox",
+      "id": "file_extensions",
+      "options": ["csv", "tsv", "txt", "pdf", "doc", "docx", "xls", "xlsx", "jpg", "jpeg", "png", "gif", "zip", "tar", "gz", "rar", "7z", "mp3", "mp4", "mov", "avi", "wav", "flac", "other"]
+    },
+    { "label": "Please provide brief overview of methodological research process related to dataset. List any relevant technologies (software, hardware, survey instruments, etc.) used in creating the data. (e.g. focus group, virtual survey, individual interview)", 
+      "type": "textarea",
+      "id": "methodological_info",
+      "rows": 4
+    },
+    { "label": "Please provide product form preparation for feeding", 
+      "type": "text", 
+      "id": "product_form_preparation" 
+    },
+    { "label": "Please provide brief overview of datasample collection, processing, analysis and/or submission procedure", 
+      "type": "textarea",
+      "id": "tech_for_creation",
+      "rows": 4
+    },
+    { "label": "Please provide brief overview of sample collection, processing, analysis and/or submission procedures", 
+      "type": "textarea",
+      "id": "sample_collection_procedure",
+      "rows": 4 
+    },
+    { "label": "Use this space to provide other key information related to data collection or generation", 
+      "type": "text", 
+      "id": "other_collection" 
+    },
+    { "label": "Provide descriptions of your methods used for data cleaning/processing", 
+      "type": "text", 
+      "id": "cleaning_methods" 
+    },
+    { "label": "Provide descriptions of your methods used for quality assurance of data", 
+      "type": "text", 
+      "id": "qa_procedures" 
+    },
+    { "label": "Provide key analytical methods, procedures, protocols, models, etc. used in analyzing data.", 
+      "type": "textarea",
+      "rows":2,
+      "id": "key_analytic_methods"
+    },
+    { "label": "Provide the names of softwares used in obtaining, cleaning, or analyzing data", 
+      "type": "text", 
+      "id": "key_softwares" 
+    },
+    { "label": "If you put a software above, please include an URL to the software/s you referenced", 
+      "type": "text", 
+      "id": "key_softwares_address" 
+    },
+    { "label": "Are any of the software(s) used open source or free use? If so please list them", 
+      "type": "select",
+      "id": "software_open_source",
+      "options": ["No Software Used","Open Source", "Free Use", "Neither"]
+    },
+    { "label": "Please provide any other relevant information regarding software used, that would be important for reproducibility", 
+      "type": "text", 
+      "id": "other_software_info" 
+    },
+    { "label": "Please list any system dependencies to use this data", 
+      "type": "text", 
+      "id": "dependencies" 
+    },
+    { "label": "Additional Information", 
+      "type": "textarea",
+      "id": "additional_info",
+      "rows": 4
+    }
+  ],
+  "benchTrials": [
+    {
+      "label": "Creation Date", 
+      "type": "text", 
+      "id": "creation_date`" 
+    },
+    { "label": "C3 Subcommittee", 
+      "type": "text", 
+      "id": "subcommittee" 
+    },
+    { "label": "Primary Contact", 
+      "type": "text", 
+      "id": "primary_contact" 
+    },
+    { "label": "Primary Email", 
+      "type": "text", 
+      "id": "primary_email" 
+    },
+    { "label": "Acknowledgements", 
+      "type": "text", 
+      "id": "acknow" 
+    },
+    { "label": "Please provide keywords/terms associated with your dataset (comma separated)", 
+      "type": "text", 
+      "id": "keywords" 
+    },
+    { "label": "What is the purpose of the dataset? Provide a brief summary of potential research   questions that could be/are answered using the dataset and the types of data included (e.g., experiments, analysis, environmental measurements, etc.)", 
+      "type": "textarea",
+      "id": "data_overview",
+      "rows": 4
+    },
+    { "label": "Please describe each submitted file(s), including file name before description. Provide a brief overview of what the data is and what you want other project members to know about the file(s).",
+      "type": "textarea",
+      "id": "file_desc",
+      "rows": 4
+    },
+    {
+      "label": "Does your dataset include data licensed from a third-party. (Y/N)", 
+      "type": "select", 
+      "id": "licensed_data" , 
+      "options":["Yes", "No"]
+    },
+    { "label": "Is the data governed by or connected to an IACUC or similar agreements (i.e. additive compound concentrations). (Y/N)", 
+      "type": "select",
+      "id": "iacuc_compliance",
+      "options": ["Yes", "No"]
+    },
+    { "label": "If using any ancillary public datasets, please provide description(s) if URL(s) are not available", 
+      "type": "textarea",
+      "id": "ancillary_relationships",
+      "rows": 4
+    },
+    { "label": "Are there publications that cite or use the data, if so provide links (DOI preferred)", 
+      "type": "text", 
+      "id": "publication_link" 
+    },
+    { "label": "If you have a GitHub related to the dataset, please provide link.", 
+      "type": "url",
+      "id": "github_link"
+    },
+    { "label": "What are the number of files (all formats) associated with this ReadMe?", 
+      "type": "number",
+      "id": "num_files"
+    },
+    { "label": "If you are not providing a data dictionary, please provide the metadata used in submitted files with their meaning and any naming conventions.", 
+      "type": "text", 
+      "id": "naming_conventions" 
+    },
+    { "label": "Please list any abbreviations in submitted file with their definitions", 
+      "type": "text", 
+      "id": "abbreviations_used" 
+    },
+    { "label": "If any part of the dataset, contains data from a licensed a third-party source, please provide link to use agreement", 
+      "type": "text", 
+      "id": "use_agreement" 
+    },
+    {
+      "label": "Does your dataset use any ancillary public data, if so please provide URL(s) to where the data came from", 
+      "type": "url",
+      "id": "data_links"
+    },
+    { "label": "Please select all file extensions/formats that are part of your dataset (check all that apply)", 
+      "type": "checkbox",
+      "id": "file_extensions",
+      "options": ["csv", "tsv", "txt", "pdf", "doc", "docx", "xls", "xlsx", "jpg", "jpeg", "png", "gif", "zip", "tar", "gz", "rar", "7z", "mp3", "mp4", "mov", "avi", "wav", "flac", "other"]
+    },
+    { "label": "Please provide brief overview of methodological research process related to dataset", 
+      "type": "textarea",
+      "id": "methodological_info",
+      "rows": 4
+    },
+    { "label": "List of any relevant technologies (software, hardware, instruments, and versions) used in creating the data. Include standards and  calibration information, if appropriate.", 
+      "type": "textarea",
+      "id": "tech_for_creation",
+      "rows": 4
+    },
+    { "label": "Please provide brief overview of sample collection, processing, analysis and/or submission procedures", 
+      "type": "textarea",
+      "id": "sample_collection_procedure",
+      "rows": 4 
+    },
+    { "label": "Use this space to provide other key information related to data collection or generation", 
+      "type": "text", 
+      "id": "other_collection" 
+    },
+    { "label": "Provide descriptions of your methods used for data cleaning/processing", 
+      "type": "text", 
+      "id": "cleaning_methods" 
+    },
+    { "label": "Provide descriptions of your methods used for quality assurance of data", 
+      "type": "text", 
+      "id": "qa_procedures" 
+    },
+    { "label": "Provide key analytical methods, procedures, protocols, models, etc. used in analyzing data.", 
+      "type": "textarea",
+      "rows":2,
+      "id": "key_analytic_methods"
+    },
+    { "label": "Provide the names of softwares used in obtaining, cleaning, or analyzing data", 
+      "type": "text", 
+      "id": "key_softwares" 
+    },
+    { "label": "If you put a software above, please include an URL to the software/s you referenced", 
+      "type": "text", 
+      "id": "key_softwares_address" 
+    },
+    { "label": "Are any of the software(s) used open source or free use? If so please list them", 
+      "type": "select",
+      "id": "software_open_source",
+      "options": ["No Software Used","Open Source", "Free Use", "Neither"]
+    },
+    { "label": "Please provide any other relevant information regarding software used, that would be important for reproducibility", 
+      "type": "text", 
+      "id": "other_software_info" 
+    },
+    { "label": "Please list any system dependencies to use this data", 
+      "type": "text", 
+      "id": "dependencies" 
+    },
+    { "label": "Additional Information", 
+      "type": "textarea",
+      "id": "additional_info",
+      "rows": 4
+    }
   ]
 }
+
